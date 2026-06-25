@@ -1,0 +1,269 @@
+{
+  "benchmark": "crafted_original",
+  "canonical_reference_count": 240,
+  "category_counts": {
+    "class/object interaction": 6,
+    "data structures": 6,
+    "exception/error handling": 6,
+    "graph/search": 6,
+    "numeric/boundary conditions": 6,
+    "recursion/dp": 6,
+    "state machines/simulation": 6,
+    "strings/parsing": 6
+  },
+  "claimed_languages": [
+    "python",
+    "cpp",
+    "java",
+    "javascript",
+    "go"
+  ],
+  "collection_name": "crafted_original_release",
+  "construction_note": "Crafted sources use project-authored curated benchmark families together with cross-language review, deterministic release checks, and manually finalized public release records.",
+  "contract_drift_families": [],
+  "coverage": {
+    "claimed_language_count": 5,
+    "clean_reference_compile_rate": null,
+    "clean_reference_pass_rate": null,
+    "declared_semantic_validation_language_rate": 1.0,
+    "declared_semantic_validation_rate": 1.0,
+    "declared_unvalidated_languages": [],
+    "missing_claimed_languages": [],
+    "observed_coverage_rate": 1.0,
+    "observed_language_count": 5,
+    "runtime_semantic_validation_language_rate": null,
+    "runtime_semantic_validation_rate": null,
+    "runtime_unvalidated_languages": [],
+    "runtime_validation_annotations_available": false,
+    "runtime_validation_basis": "unavailable",
+    "semantic_validation_language_rate": null,
+    "semantic_validation_rate": null,
+    "unvalidated_languages": []
+  },
+  "dataset_label": "Crafted Original",
+  "datasets": [
+    "Crafted Original"
+  ],
+  "difficulty_counts": {
+    "easy": 70,
+    "hard": 50,
+    "medium": 120
+  },
+  "family_count": 48,
+  "family_counts": {
+    "crafted_original_000": 5,
+    "crafted_original_001": 5,
+    "crafted_original_002": 5,
+    "crafted_original_003": 5,
+    "crafted_original_004": 5,
+    "crafted_original_005": 5,
+    "crafted_original_006": 5,
+    "crafted_original_007": 5,
+    "crafted_original_008": 5,
+    "crafted_original_009": 5,
+    "crafted_original_010": 5,
+    "crafted_original_011": 5,
+    "crafted_original_012": 5,
+    "crafted_original_013": 5,
+    "crafted_original_014": 5,
+    "crafted_original_015": 5,
+    "crafted_original_016": 5,
+    "crafted_original_017": 5,
+    "crafted_original_018": 5,
+    "crafted_original_019": 5,
+    "crafted_original_020": 5,
+    "crafted_original_021": 5,
+    "crafted_original_022": 5,
+    "crafted_original_023": 5,
+    "crafted_original_024": 5,
+    "crafted_original_025": 5,
+    "crafted_original_026": 5,
+    "crafted_original_027": 5,
+    "crafted_original_028": 5,
+    "crafted_original_029": 5,
+    "crafted_original_030": 5,
+    "crafted_original_031": 5,
+    "crafted_original_032": 5,
+    "crafted_original_033": 5,
+    "crafted_original_034": 5,
+    "crafted_original_035": 5,
+    "crafted_original_036": 5,
+    "crafted_original_037": 5,
+    "crafted_original_038": 5,
+    "crafted_original_039": 5,
+    "crafted_original_040": 5,
+    "crafted_original_041": 5,
+    "crafted_original_042": 5,
+    "crafted_original_043": 5,
+    "crafted_original_044": 5,
+    "crafted_original_045": 5,
+    "crafted_original_046": 5,
+    "crafted_original_047": 5
+  },
+  "family_difficulty_counts": {
+    "easy": 14,
+    "hard": 10,
+    "medium": 24
+  },
+  "family_language_coverage_rate": 1.0,
+  "include_difficulties": [
+    "easy",
+    "hard",
+    "medium"
+  ],
+  "include_languages": [
+    "python",
+    "cpp",
+    "java",
+    "javascript",
+    "go"
+  ],
+  "include_origin_types": [
+    "crafted_original"
+  ],
+  "include_reference_kinds": [
+    "canonical"
+  ],
+  "include_source_groups": [
+    "crafted_original"
+  ],
+  "input_filtered_counts": {
+    "data/release/sources/crafted_original_release.normalized.jsonl": 240
+  },
+  "inputs": [
+    "data/release/sources/crafted_original_release.normalized.jsonl"
+  ],
+  "language_counts": {
+    "cpp": 48,
+    "go": 48,
+    "java": 48,
+    "javascript": 48,
+    "python": 48
+  },
+  "languages": [
+    "python",
+    "cpp",
+    "java",
+    "javascript",
+    "go"
+  ],
+  "normalized_path": "data/release/sources/crafted_original_release.normalized.jsonl",
+  "observed_languages": [
+    "cpp",
+    "go",
+    "java",
+    "javascript",
+    "python"
+  ],
+  "origin_type": "crafted_original",
+  "origin_type_counts": {
+    "crafted_original": 240
+  },
+  "quota_per_language": {
+    "cpp": 48,
+    "go": 48,
+    "java": 48,
+    "javascript": 48,
+    "python": 48
+  },
+  "quota_per_source_group": {},
+  "record_count": 240,
+  "reference_kind_counts": {
+    "canonical": 240
+  },
+  "reference_kind_total": 240,
+  "sample_ids_path": "data/release/sources/crafted_original_release.normalized.sample_ids.json",
+  "schema_version": 2,
+  "smoke_overlay_reference_count": 0,
+  "source_group": "crafted_original",
+  "source_group_counts": {
+    "crafted_original": 240
+  },
+  "source_manifests": [
+    {
+      "benchmark": "crafted_original",
+      "category_counts": {
+        "class/object interaction": 6,
+        "data structures": 6,
+        "exception/error handling": 6,
+        "graph/search": 6,
+        "numeric/boundary conditions": 6,
+        "recursion/dp": 6,
+        "state machines/simulation": 6,
+        "strings/parsing": 6
+      },
+      "dataset_label": "Crafted Original",
+      "family_count": 48,
+      "languages": [
+        "python",
+        "cpp",
+        "java",
+        "javascript",
+        "go"
+      ],
+      "origin_type": "crafted_original",
+      "source_group": "crafted_original",
+      "task_count": 240,
+      "task_count_per_family": 5,
+      "template_family_counts": {
+        "API-style normalization": 8,
+        "arrays/lists": 6,
+        "dp/recursion": 6,
+        "graph/search": 6,
+        "maps/sets": 2,
+        "math/bit ops": 6,
+        "parsing": 8,
+        "stateful update": 6
+      }
+    }
+  ],
+  "suite_selection_policy": {
+    "languages": [
+      "python",
+      "cpp",
+      "java",
+      "javascript",
+      "go"
+    ],
+    "strata": [
+      "category",
+      "difficulty"
+    ],
+    "target_family_count": 48,
+    "target_record_count": 240,
+    "type": "category_balanced_canonical_release_source"
+  },
+  "task_count": 240,
+  "task_count_per_family": 5,
+  "taxonomy_categories": [
+    "class/object interaction",
+    "data structures",
+    "exception/error handling",
+    "graph/search",
+    "numeric/boundary conditions",
+    "recursion/dp",
+    "state machines/simulation",
+    "strings/parsing"
+  ],
+  "template_family_counts": {
+    "API-style normalization": 8,
+    "arrays/lists": 6,
+    "dp/recursion": 6,
+    "graph/search": 6,
+    "maps/sets": 2,
+    "math/bit ops": 6,
+    "parsing": 8,
+    "stateful update": 6
+  },
+  "validation_backend_counts": {
+    "docker_remote": 192,
+    "python_exec": 48
+  },
+  "validation_supported_languages": [
+    "cpp",
+    "go",
+    "java",
+    "javascript",
+    "python"
+  ]
+}

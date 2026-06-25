@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "repo_url": "https://github.com/luyijian3/EWD.git",
+  "pinned_commit": "605756acf802528a3df89d95a4661a031eafc79b",
+  "license_status": "unverified",
+  "checkout_root": "third_party/EWD",
+  "external_root": "external_checkout/EWD",
+  "source_relative": ".",
+  "public_external_root": "external_checkout/EWD",
+  "method_symbol": "EWD",
+  "notes": "Pinned EWD upstream implementation. The benchmark layer keeps the watermark algorithm logic intact while routing orchestration, local model loading, and decoding policy through the shared benchmark runner."
+}

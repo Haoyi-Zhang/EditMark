@@ -1,0 +1,15 @@
+{
+  "project": {"name": "posteditbench-crafted-translation-only", "artifact_mode": "redacted", "seed": 2058},
+  "paths": {"prepared_benchmark": "data/release/sources/crafted_translation_release.normalized.jsonl", "results_root": "results/runs"},
+  "benchmark": {
+    "prepared_output": "data/release/sources/crafted_translation_release.normalized.jsonl",
+    "validation_scope": "multilingual_exec",
+    "languages": ["python", "cpp", "java", "javascript", "go"],
+    "source": "data/release/sources/crafted_translation_release.normalized.jsonl",
+    "source_group": "crafted_translation"
+  },
+  "provider": {"mode": "offline_mock", "parameters": {}},
+  "watermark": {"scheme": "kgw", "strength": 0.55},
+  "attacks": {"include": ["comment_strip", "identifier_rename", "whitespace_normalize", "control_flow_flatten", "budgeted_adaptive"]},
+  "reporting": {"clean_samples_per_task": 20, "pass_threshold": 0.72}
+}

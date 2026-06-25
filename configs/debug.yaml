@@ -1,0 +1,48 @@
+{
+  "project": {
+    "name": "posteditbench-watermark-debug",
+    "artifact_mode": "redacted",
+    "seed": 7
+  },
+  "paths": {
+    "attack_matrix": "data/fixtures/attacks/attack_matrix.json",
+    "prepared_benchmark": "data/interim/benchmark.normalized.jsonl",
+    "results_root": "results/runs",
+    "cache_root": "model_cache"
+  },
+  "benchmark": {
+    "source": "data/fixtures/benchmarks/synthetic_tasks.jsonl",
+    "prepared_output": "data/interim/benchmark.normalized.jsonl",
+    "limit": 4
+  },
+  "watermark": {
+    "scheme": "kgw",
+    "strength": 0.35,
+    "bias": 0.08,
+    "seed": 7
+  },
+  "attacks": {
+    "include": [
+      "comment_strip",
+      "identifier_rename",
+      "control_flow_flatten",
+      "budgeted_adaptive"
+    ]
+  },
+  "attack_parameters": {
+    "budgeted_adaptive": {
+        "budget": 2,
+        "min_quality": 0.45,
+        "candidate_order": [
+          "comment_strip",
+          "identifier_rename",
+          "control_flow_flatten",
+          "whitespace_normalize"
+        ]
+      }
+    },
+  "reporting": {
+    "top_k_failures": 3,
+    "pass_threshold": 0.68
+  }
+}

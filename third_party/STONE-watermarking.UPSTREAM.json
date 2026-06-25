@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "repo_url": "https://github.com/inistory/STONE-watermarking.git",
+  "pinned_commit": "bb5d809c0c494a219411e861f2313cca2b9fd7b4",
+  "license_status": "unverified",
+  "checkout_root": "third_party/STONE-watermarking",
+  "external_root": "external_checkout/STONE-watermarking",
+  "source_relative": "stone_implementation",
+  "public_external_root": "external_checkout/STONE-watermarking",
+  "method_symbol": "STONE",
+  "notes": "Pinned STONE upstream implementation. The benchmark layer keeps the watermark algorithm logic intact while routing orchestration, local model loading, and decoding policy through the shared benchmark runner. The current license note is a distribution-policy caveat only; it does not imply that benchmark execution used a modified vendored variant."
+}

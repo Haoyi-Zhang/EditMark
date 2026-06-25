@@ -1,0 +1,30 @@
+[
+  {
+    "method": "SWEET",
+    "paper_label": "SWEET",
+    "origin": "upstream",
+    "detection_separability": 0.722,
+    "utility": 0.6467
+  },
+  {
+    "method": "EWD",
+    "paper_label": "EWD",
+    "origin": "upstream",
+    "detection_separability": 0.7706,
+    "utility": 0.6467
+  },
+  {
+    "method": "STONE",
+    "paper_label": "STONE",
+    "origin": "upstream",
+    "detection_separability": 0.5312,
+    "utility": 0.6509
+  },
+  {
+    "method": "KGW",
+    "paper_label": "KGW",
+    "origin": "upstream",
+    "detection_separability": 0.6045,
+    "utility": 0.6476
+  }
+]

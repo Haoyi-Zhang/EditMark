@@ -1,0 +1,86 @@
+{
+  "artifact_role": "suite_all_models_methods_release_summary_export_identity",
+  "assembly_source_execution_modes": [
+    "single_host_canonical"
+  ],
+  "assembly_source_index_count": 1,
+  "canonical_manifest_digest": "6af8f0fdf44e15940b383fcde80d8168539a7c2e76b7af2ba04bbbe172b0fbeb",
+  "code_snapshot_digest": "2d35702144c21a8c997188259b09809e6c59fb9404a5eef9998b4d824f2ffed3",
+  "environment_capture_public_safe_paths": true,
+  "execution_environment_fingerprint": "28ee33d7e551f2adc5aed51a4417e50505dcbba9075f08d772ce69682cd27a7d",
+  "execution_mode": "single_host_canonical",
+  "failed_count": 0,
+  "figure_stems": [
+    "suite_all_models_methods_score_decomposition",
+    "suite_all_models_methods_detection_vs_utility"
+  ],
+  "manifest": "configs/matrices/suite_all_models_methods.json",
+  "matrix_code_snapshot_digest": "2d35702144c21a8c997188259b09809e6c59fb9404a5eef9998b4d824f2ffed3",
+  "matrix_index": "results/matrix/suite_all_models_methods/matrix_index.json",
+  "matrix_index_sha256": "7bf4cc0a125b0a9bf9e1cb8efb8cdfd089a3521c4f58b7daf399edc862d35c0b",
+  "matrix_index_static_artifact_note": "The raw matrix index is not tracked in the anonymous static artifact; restore a separate raw rerun artifact before using the matrix_index path.",
+  "matrix_index_static_artifact_status": "omitted_from_static_review_package",
+  "model_roster": [
+    {
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_family": "qwen25",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "model_slug": "qwen25_14b"
+    },
+    {
+      "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "model_family": "qwen25",
+      "model_revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+      "model_slug": "qwen25_7b"
+    },
+    {
+      "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "model_family": "qwen25",
+      "model_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+      "model_slug": "qwen25_1p5b"
+    },
+    {
+      "model": "bigcode/starcoder2-7b",
+      "model_family": "starcoder2",
+      "model_revision": "bb9afde76d7945da5745592525db122d4d729eb1",
+      "model_slug": "starcoder2_7b"
+    },
+    {
+      "model": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "model_family": "deepseek_coder",
+      "model_revision": "e5d64addd26a6a1db0f9b863abf6ee3141936807",
+      "model_slug": "deepseek_coder_6p7b"
+    }
+  ],
+  "profile": "suite_all_models_methods",
+  "required_figure_hashes": {
+    "suite_all_models_methods_detection_vs_utility.csv": "fbed851a493e38de76d5ee449ce5fb1685d4a3bc7edb306889ada9290c60fc32",
+    "suite_all_models_methods_detection_vs_utility.json": "a996524ef47c9762b4cf21c16ec191805fd23a6ed12f210facf8fc580a3d1a58",
+    "suite_all_models_methods_detection_vs_utility.png": "3565f1fec2288ab1dfa3a3eb7740c2fdc05c648acd4bd74b022c6d11ef5c2b83",
+    "suite_all_models_methods_score_decomposition.csv": "058441bf916706481260604de83330a9a8559abc60c88871ef9623f0a5ca3c27",
+    "suite_all_models_methods_score_decomposition.json": "8366254f620ebd32a6c54cfae024783c043966986daade06b5c9ca725ad5c817",
+    "suite_all_models_methods_score_decomposition.png": "f2f31af503019e7b4b1814b6f1ed8d0a39cc4fba33a62f58f94bd3c5466f29a4"
+  },
+  "required_table_hashes": {
+    "core_vs_stress_robustness_summary.csv": "fcb4159519ed5f735dd8b059cb4454094789d9ad130ca9dfe3f4e6f7fbe65afc",
+    "core_vs_stress_robustness_summary.json": "a168ca2fde780fe72ceddca7047228c322ea756c5ff5b692d732cafc87bc5351",
+    "gate_decomposition.csv": "a0c9ae813cefeec1405a7e855ff75255bab92062416a0bd2db61cbe959096636",
+    "gate_decomposition.json": "151c969c69c0d595ef1c89f9469d22fd6de722fdf55bbada454af41366aa3f3a",
+    "generalization_axis_breakdown.csv": "879d2f7ca9eb2f387e6703aca30510785a08f6e34702a5a36bb20aac117fc624",
+    "generalization_axis_breakdown.json": "6c0bdc8a3fcb47e7149d6ea64c4a671ae5e03b2b5b94befe1b57da75c6d31f2f",
+    "method_summary.json": "78ffd6e8485f8bfb06317cc06b9e290fa088fc1495af6e1d33e957b6ac5a86bc",
+    "per_attack_robustness_breakdown.csv": "c25bfd016acdde17de3d51f7f43660383947c03173f1f1d675745c6fa514c749",
+    "per_attack_robustness_breakdown.json": "274f767b651a2c0a916fb4dbc53e82b5d93762f17c16e97f51b752e0c82870b7",
+    "robustness_factor_decomposition.csv": "c7d468b7ac9efa775570812683f3d79799b421a87214acbd008da5fa8d849d66",
+    "robustness_factor_decomposition.json": "e23d60d7c8f718c5cae669c517e43c727f20d8a39d87c8fc3de773333e8ab460",
+    "suite_all_models_methods_method_master_leaderboard.json": "fde48c6ac8e5c8c15ac77219e29dcc3acdb8933429549d5fc7d834081e53117b",
+    "suite_all_models_methods_method_model_leaderboard.json": "35d138ba4e50d29e20464aa2b497fa513f08c9cd046aba2da7eb78ef2ba91090",
+    "suite_all_models_methods_model_method_functional_quality.json": "eb64327924a9539d258760127fc5e040e30d5894ece93d3598f9edf042be31cd",
+    "utility_factor_decomposition.csv": "8e9c935266ac5c6ec5badd2a450fb8df87636f1a86ea18178b24c46cdbca7ec4",
+    "utility_factor_decomposition.json": "7013a996f1ea3708bfb467d11c3d479323747f6fedcfb0921a7e4ce21483c06e"
+  },
+  "run_count": 140,
+  "schema_version": 1,
+  "score_version": "posteditbench-suite-v8-core-stress-public-summary",
+  "success_count": 140
+}

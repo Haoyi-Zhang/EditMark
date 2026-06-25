@@ -1,0 +1,46 @@
+{
+  "project": {
+    "name": "posteditbench-unified-multilingual-balanced-full",
+    "artifact_mode": "redacted",
+    "seed": 2061
+  },
+  "paths": {
+    "prepared_benchmark": "data/interim/collections/unified_multilingual_balanced_full.normalized.jsonl",
+    "results_root": "results/runs"
+  },
+  "benchmark": {
+    "collection_name": "unified_multilingual_balanced_full",
+    "prepared_output": "data/interim/collections/unified_multilingual_balanced_full.normalized.jsonl",
+    "validation_scope": "multilingual_exec",
+    "include_reference_kinds": ["canonical"],
+    "languages": ["python", "cpp", "java", "javascript", "go"],
+    "language_balance": {
+      "enabled": true,
+      "target": "max_feasible",
+      "reference_kind_priority": ["canonical"]
+    },
+    "collection_sources": [
+      {"type": "public", "name": "humaneval_x", "path": "data/release/sources/suite_humanevalx_release.normalized.jsonl"},
+      {"type": "public", "name": "mbxp_5lang", "path": "data/release/sources/suite_mbxp_release.normalized.jsonl"},
+      {"type": "crafted", "name": "crafted_original", "path": "data/interim/crafted/crafted_original.normalized.jsonl"},
+      {"type": "crafted", "name": "crafted_translation", "path": "data/interim/crafted/crafted_translation.normalized.jsonl"},
+      {"type": "crafted", "name": "crafted_stress", "path": "data/interim/crafted/crafted_stress.normalized.jsonl"}
+    ]
+  },
+  "provider": {
+    "mode": "offline_mock",
+    "parameters": {}
+  },
+  "watermark": {
+    "scheme": "kgw",
+    "strength": 0.55
+  },
+  "attacks": {
+    "include": ["comment_strip", "identifier_rename", "whitespace_normalize", "control_flow_flatten", "budgeted_adaptive"]
+  },
+  "reporting": {
+    "clean_samples_per_task": 20,
+    "pass_threshold": 0.72
+  }
+}
+

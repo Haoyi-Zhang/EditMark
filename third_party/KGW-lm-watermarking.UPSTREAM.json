@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "repo_url": "https://github.com/jwkirchenbauer/lm-watermarking.git",
+  "pinned_commit": "82922516930c02f8aa322765defdb5863d07a00e",
+  "license_status": "redistributable",
+  "checkout_root": "third_party/lm-watermarking",
+  "external_root": "external_checkout/lm-watermarking",
+  "source_relative": ".",
+  "public_external_root": "external_checkout/lm-watermarking",
+  "method_symbol": "KGW",
+  "notes": "Pinned KGW upstream implementation from jwkirchenbauer/lm-watermarking. The benchmark layer keeps the watermark algorithm logic intact while routing orchestration, local model loading, and decoding policy through the shared benchmark runner."
+}

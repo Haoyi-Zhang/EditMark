@@ -1,0 +1,191 @@
+[
+  {
+    "dataset_label": "HumanEval+",
+    "language": "python",
+    "record_count": 164,
+    "scope": "release",
+    "slug": "humaneval_plus"
+  },
+  {
+    "dataset_label": "MBPP+",
+    "language": "python",
+    "record_count": 378,
+    "scope": "release",
+    "slug": "mbpp_plus"
+  },
+  {
+    "dataset_label": "HumanEval-X (5-language balanced slice)",
+    "language": "cpp",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "humaneval_x"
+  },
+  {
+    "dataset_label": "HumanEval-X (5-language balanced slice)",
+    "language": "go",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "humaneval_x"
+  },
+  {
+    "dataset_label": "HumanEval-X (5-language balanced slice)",
+    "language": "java",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "humaneval_x"
+  },
+  {
+    "dataset_label": "HumanEval-X (5-language balanced slice)",
+    "language": "javascript",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "humaneval_x"
+  },
+  {
+    "dataset_label": "HumanEval-X (5-language balanced slice)",
+    "language": "python",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "humaneval_x"
+  },
+  {
+    "dataset_label": "MBXP-5lang (5-language balanced slice)",
+    "language": "cpp",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "mbxp_5lang"
+  },
+  {
+    "dataset_label": "MBXP-5lang (5-language balanced slice)",
+    "language": "go",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "mbxp_5lang"
+  },
+  {
+    "dataset_label": "MBXP-5lang (5-language balanced slice)",
+    "language": "java",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "mbxp_5lang"
+  },
+  {
+    "dataset_label": "MBXP-5lang (5-language balanced slice)",
+    "language": "javascript",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "mbxp_5lang"
+  },
+  {
+    "dataset_label": "MBXP-5lang (5-language balanced slice)",
+    "language": "python",
+    "record_count": 40,
+    "scope": "release",
+    "slug": "mbxp_5lang"
+  },
+  {
+    "dataset_label": "Crafted Original",
+    "language": "cpp",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "dataset_label": "Crafted Original",
+    "language": "go",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "dataset_label": "Crafted Original",
+    "language": "java",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "dataset_label": "Crafted Original",
+    "language": "javascript",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "dataset_label": "Crafted Original",
+    "language": "python",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "dataset_label": "Crafted Translation",
+    "language": "cpp",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "dataset_label": "Crafted Translation",
+    "language": "go",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "dataset_label": "Crafted Translation",
+    "language": "java",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "dataset_label": "Crafted Translation",
+    "language": "javascript",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "dataset_label": "Crafted Translation",
+    "language": "python",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "dataset_label": "Crafted Stress",
+    "language": "cpp",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "dataset_label": "Crafted Stress",
+    "language": "go",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "dataset_label": "Crafted Stress",
+    "language": "java",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "dataset_label": "Crafted Stress",
+    "language": "javascript",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "dataset_label": "Crafted Stress",
+    "language": "python",
+    "record_count": 48,
+    "scope": "release",
+    "slug": "crafted_stress"
+  }
+]

@@ -1,0 +1,5 @@
+aggregation_view,attack_support_rate,attacked_detected_semantic_rate,attacked_pass_preservation,method,raw_robustness_strict,robustness,robustness_status,robustness_support_rate,row_count,score_semantics,table_role,watermark_retention_mean
+suite_method_master_leaderboard,0.7208,0.0,0.5362,KGW,0.0,0.4439,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_robustness_factor_decomposition,0.7462
+suite_method_master_leaderboard,0.7355,0.0202,0.5512,STONE,0.0602,0.3536,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_robustness_factor_decomposition,0.58
+suite_method_master_leaderboard,0.7228,0.0,0.5311,SWEET,0.0,0.3361,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_robustness_factor_decomposition,0.5398
+suite_method_master_leaderboard,0.7236,0.0,0.5229,EWD,0.0,0.2645,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_robustness_factor_decomposition,0.3739

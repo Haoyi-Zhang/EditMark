@@ -1,0 +1,79 @@
+{
+  "project": {
+    "name": "posteditbench-local-hf-starcoder2-structural-flow-humaneval-plus",
+    "artifact_mode": "redacted",
+    "seed": 2084
+  },
+  "paths": {
+    "attack_matrix": "data/fixtures/attacks/attack_matrix.json",
+    "prepared_benchmark": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "results_root": "results/runs",
+    "cache_root": "model_cache"
+  },
+  "benchmark": {
+    "public_source": "humaneval_plus",
+    "source": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "prepared_output": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "split": "test",
+    "limit": 164,
+    "include_reference_kinds": [
+      "canonical"
+    ],
+    "dataset_label": "HumanEval+",
+    "source_url": "https://raw.githubusercontent.com/evalplus/humanevalplus_release/200defce9e3429d28ca215b6dd061c0f7f31c18b/HumanEvalPlus.jsonl.gz",
+    "source_revision": "200defce9e3429d28ca215b6dd061c0f7f31c18b",
+    "license_note": "Apache-2.0; EvalPlus HumanEval+ release",
+    "validation_scope": "python_first"
+  },
+  "provider": {
+    "mode": "local_hf",
+    "parameters": {
+      "model": "bigcode/starcoder2-7b",
+      "device": "cuda",
+      "dtype": "float16",
+      "max_new_tokens": 256,
+      "do_sample": true,
+      "temperature": 0.2,
+      "top_p": 0.95,
+      "no_repeat_ngram_size": 4,
+      "trust_remote_code": false,
+      "cache_dir": "model_cache/huggingface",
+      "local_files_only": true
+    }
+  },
+  "watermark": {
+    "scheme": "structural_flow",
+    "strength": 0.6,
+    "seed": 2084
+  },
+  "attacks": {
+    "include": [
+      "comment_strip",
+      "identifier_rename",
+      "whitespace_normalize",
+      "noise_insert",
+      "control_flow_flatten",
+      "block_shuffle",
+      "budgeted_adaptive"
+    ]
+  },
+  "attack_parameters": {
+    "budgeted_adaptive": {
+      "budget": 5,
+      "min_quality": 0.35,
+      "candidate_order": [
+        "comment_strip",
+        "whitespace_normalize",
+        "identifier_rename",
+        "control_flow_flatten",
+        "block_shuffle"
+      ]
+    }
+  },
+  "reporting": {
+    "clean_samples_per_task": 1,
+    "top_k_failures": 10,
+    "pass_threshold": 0.72
+  }
+}
+

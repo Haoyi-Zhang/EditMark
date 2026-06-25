@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "repo_url": "https://github.com/hongcheki/sweet-watermark.git",
+  "pinned_commit": "853b47eb064c180beebd383302d09491fc98a565",
+  "license_status": "unverified",
+  "checkout_root": "third_party/sweet-watermark",
+  "external_root": "external_checkout/sweet-watermark",
+  "source_relative": ".",
+  "public_external_root": "external_checkout/sweet-watermark",
+  "method_symbol": "SWEET",
+  "notes": "Pinned SWEET upstream implementation. The benchmark layer keeps the watermark algorithm logic intact while routing orchestration, local model loading, and decoding policy through the shared benchmark runner."
+}

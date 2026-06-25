@@ -1,0 +1,1601 @@
+{
+  "schema_version": 1,
+  "profile": "suite_canary_heavy",
+  "description": "Stage A heavy precheck: Qwen2.5-Coder-14B across the release-suite atomic-source roster with bounded sample counts.",
+  "fairness_rule": "For each local model backbone, compare all four official imported baselines on the same executable benchmark rows; cross-model execution may run in parallel but aggregation remains model-conditioned.",
+  "model_roster": [
+    "Qwen/Qwen2.5-Coder-14B-Instruct"
+  ],
+  "model_revisions": {
+    "Qwen/Qwen2.5-Coder-14B-Instruct": "aedcc2d42b622764e023cf882b6652e646b95671"
+  },
+  "model_roster_metadata": [
+    {
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "slug": "qwen25_14b",
+      "family": "qwen25"
+    }
+  ],
+  "benchmark_roster": [
+    "HumanEval+",
+    "MBPP+",
+    "HumanEval-X (5-language balanced slice)",
+    "MBXP-5lang (5-language balanced slice)",
+    "Crafted Original",
+    "Crafted Translation",
+    "Crafted Stress"
+  ],
+  "atomic_benchmark_sources": [
+    "humaneval_plus",
+    "mbpp_plus",
+    "humaneval_x",
+    "mbxp_5lang",
+    "crafted_original",
+    "crafted_translation",
+    "crafted_stress"
+  ],
+  "suite_inventory_datasets": [
+    "HumanEval+",
+    "MBPP+",
+    "HumanEval-X (5-language balanced slice)",
+    "MBXP-5lang (5-language balanced slice)",
+    "Crafted Original",
+    "Crafted Translation",
+    "Crafted Stress"
+  ],
+  "suite_inventory_dataset_counts": {
+    "HumanEval+": 164,
+    "MBPP+": 378,
+    "HumanEval-X (5-language balanced slice)": 200,
+    "MBXP-5lang (5-language balanced slice)": 200,
+    "Crafted Original": 240,
+    "Crafted Translation": 240,
+    "Crafted Stress": 240
+  },
+  "suite_inventory_source_aliases": {
+    "humaneval_plus": {
+      "label": "HumanEval+",
+      "release_file": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+      "release_file_basename": "suite_humaneval_plus_release.normalized.jsonl"
+    },
+    "mbpp_plus": {
+      "label": "MBPP+",
+      "release_file": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+      "release_file_basename": "suite_mbpp_plus_release.normalized.jsonl"
+    },
+    "humaneval_x": {
+      "label": "HumanEval-X (5-language balanced slice)",
+      "release_file": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+      "release_file_basename": "suite_humanevalx_release.normalized.jsonl"
+    },
+    "mbxp_5lang": {
+      "label": "MBXP-5lang (5-language balanced slice)",
+      "release_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+      "release_file_basename": "suite_mbxp_release.normalized.jsonl"
+    },
+    "crafted_original": {
+      "label": "Crafted Original",
+      "release_file": "data/release/sources/crafted_original_release.normalized.jsonl",
+      "release_file_basename": "crafted_original_release.normalized.jsonl"
+    },
+    "crafted_translation": {
+      "label": "Crafted Translation",
+      "release_file": "data/release/sources/crafted_translation_release.normalized.jsonl",
+      "release_file_basename": "crafted_translation_release.normalized.jsonl"
+    },
+    "crafted_stress": {
+      "label": "Crafted Stress",
+      "release_file": "data/release/sources/crafted_stress_release.normalized.jsonl",
+      "release_file_basename": "crafted_stress_release.normalized.jsonl"
+    }
+  },
+  "method_roster": [
+    "stone_runtime",
+    "sweet_runtime",
+    "ewd_runtime",
+    "kgw_runtime"
+  ],
+  "required_watermark_methods": [
+    "stone_runtime",
+    "sweet_runtime",
+    "ewd_runtime",
+    "kgw_runtime"
+  ],
+  "required_provider_modes": [
+    "offline_mock"
+  ],
+  "required_gpu_pools": [
+    "runtime"
+  ],
+  "runs": [
+    {
+      "run_id": "stage_a_qwen25_14b_heplus_stone_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_stone_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "stone_runtime",
+      "source_slug": "humaneval_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-stone_runtime-qwen25_14b-heplus",
+          "seed": 574845
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "humaneval_plus",
+          "source": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "HumanEval+",
+          "validation_scope": "python_first",
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_humaneval_plus",
+          "collection_name": "suite_humaneval_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5010100012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "heplus",
+        "stone_runtime",
+        "stone_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_heplus_sweet_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_sweet_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "sweet_runtime",
+      "source_slug": "humaneval_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-sweet_runtime-qwen25_14b-heplus",
+          "seed": 574845
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "humaneval_plus",
+          "source": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "HumanEval+",
+          "validation_scope": "python_first",
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_humaneval_plus",
+          "collection_name": "suite_humaneval_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5020100012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "heplus",
+        "sweet_runtime",
+        "sweet_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_heplus_ewd_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_ewd_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "ewd_runtime",
+      "source_slug": "humaneval_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-ewd_runtime-qwen25_14b-heplus",
+          "seed": 574845
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "humaneval_plus",
+          "source": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "HumanEval+",
+          "validation_scope": "python_first",
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_humaneval_plus",
+          "collection_name": "suite_humaneval_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5040100012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "heplus",
+        "ewd_runtime",
+        "ewd_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_heplus_kgw_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_kgw_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "kgw_runtime",
+      "source_slug": "humaneval_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-kgw_runtime-qwen25_14b-heplus",
+          "seed": 574845
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "humaneval_plus",
+          "source": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "HumanEval+",
+          "validation_scope": "python_first",
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_humaneval_plus",
+          "collection_name": "suite_humaneval_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5030100012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "heplus",
+        "kgw_runtime",
+        "kgw_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbppplus_stone_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_mbpp_plus_stone_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "stone_runtime",
+      "source_slug": "mbpp_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-stone_runtime-qwen25_14b-mbppplus",
+          "seed": 765818
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "mbpp_plus",
+          "source": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "MBPP+",
+          "source_url": "https://raw.githubusercontent.com/evalplus/mbppplus_release/dadf43da556a00f7bacd71cb154f2932757d9144/MbppPlus.jsonl.gz",
+          "source_revision": "dadf43da556a00f7bacd71cb154f2932757d9144",
+          "license_note": "Apache-2.0; EvalPlus MBPP+ release",
+          "validation_scope": "python_first",
+          "stress_suite": true,
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_mbpp_plus",
+          "collection_name": "suite_mbpp_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5010200012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbppplus",
+        "stone_runtime",
+        "stone_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbppplus_sweet_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_mbpp_plus_sweet_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "sweet_runtime",
+      "source_slug": "mbpp_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-sweet_runtime-qwen25_14b-mbppplus",
+          "seed": 765818
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "mbpp_plus",
+          "source": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "MBPP+",
+          "source_url": "https://raw.githubusercontent.com/evalplus/mbppplus_release/dadf43da556a00f7bacd71cb154f2932757d9144/MbppPlus.jsonl.gz",
+          "source_revision": "dadf43da556a00f7bacd71cb154f2932757d9144",
+          "license_note": "Apache-2.0; EvalPlus MBPP+ release",
+          "validation_scope": "python_first",
+          "stress_suite": true,
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_mbpp_plus",
+          "collection_name": "suite_mbpp_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5020200012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbppplus",
+        "sweet_runtime",
+        "sweet_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbppplus_ewd_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_mbpp_plus_ewd_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "ewd_runtime",
+      "source_slug": "mbpp_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-ewd_runtime-qwen25_14b-mbppplus",
+          "seed": 765818
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "mbpp_plus",
+          "source": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "MBPP+",
+          "source_url": "https://raw.githubusercontent.com/evalplus/mbppplus_release/dadf43da556a00f7bacd71cb154f2932757d9144/MbppPlus.jsonl.gz",
+          "source_revision": "dadf43da556a00f7bacd71cb154f2932757d9144",
+          "license_note": "Apache-2.0; EvalPlus MBPP+ release",
+          "validation_scope": "python_first",
+          "stress_suite": true,
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_mbpp_plus",
+          "collection_name": "suite_mbpp_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5040200012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbppplus",
+        "ewd_runtime",
+        "ewd_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbppplus_kgw_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_mbpp_plus_kgw_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "kgw_runtime",
+      "source_slug": "mbpp_plus",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-kgw_runtime-qwen25_14b-mbppplus",
+          "seed": 765818
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "public_source": "mbpp_plus",
+          "source": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "prepared_output": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+          "split": "test",
+          "limit": 12,
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "dataset_label": "MBPP+",
+          "source_url": "https://raw.githubusercontent.com/evalplus/mbppplus_release/dadf43da556a00f7bacd71cb154f2932757d9144/MbppPlus.jsonl.gz",
+          "source_revision": "dadf43da556a00f7bacd71cb154f2932757d9144",
+          "license_note": "Apache-2.0; EvalPlus MBPP+ release",
+          "validation_scope": "python_first",
+          "stress_suite": true,
+          "languages": [
+            "python"
+          ],
+          "source_group": "public_mbpp_plus",
+          "collection_name": "suite_mbpp_plus_release"
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5030200012,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbppplus",
+        "kgw_runtime",
+        "kgw_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_humanevalx_stone_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_stone_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "stone_runtime",
+      "source_slug": "humaneval_x",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-stone_runtime-qwen25_14b-humanevalx",
+          "seed": 721071
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humanevalx_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_humanevalx_release",
+          "prepared_output": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "source_group": "public_humaneval_x",
+          "dataset_label": "HumanEval-X (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5010300015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "humanevalx",
+        "stone_runtime",
+        "stone_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_humanevalx_sweet_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_sweet_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "sweet_runtime",
+      "source_slug": "humaneval_x",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-sweet_runtime-qwen25_14b-humanevalx",
+          "seed": 721071
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humanevalx_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_humanevalx_release",
+          "prepared_output": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "source_group": "public_humaneval_x",
+          "dataset_label": "HumanEval-X (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5020300015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "humanevalx",
+        "sweet_runtime",
+        "sweet_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_humanevalx_ewd_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_ewd_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "ewd_runtime",
+      "source_slug": "humaneval_x",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-ewd_runtime-qwen25_14b-humanevalx",
+          "seed": 721071
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humanevalx_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_humanevalx_release",
+          "prepared_output": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "source_group": "public_humaneval_x",
+          "dataset_label": "HumanEval-X (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5040300015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "humanevalx",
+        "ewd_runtime",
+        "ewd_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_humanevalx_kgw_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_kgw_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "kgw_runtime",
+      "source_slug": "humaneval_x",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-kgw_runtime-qwen25_14b-humanevalx",
+          "seed": 721071
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_humanevalx_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_humanevalx_release",
+          "prepared_output": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+          "source_group": "public_humaneval_x",
+          "dataset_label": "HumanEval-X (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5030300015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "humanevalx",
+        "kgw_runtime",
+        "kgw_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbxp_stone_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_stone_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "stone_runtime",
+      "source_slug": "mbxp_5lang",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-stone_runtime-qwen25_14b-mbxp",
+          "seed": 737280
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbxp_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_mbxp_release",
+          "prepared_output": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "source_group": "public_mbxp_5lang",
+          "dataset_label": "MBXP-5lang (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5010400015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbxp",
+        "stone_runtime",
+        "stone_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbxp_sweet_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_sweet_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "sweet_runtime",
+      "source_slug": "mbxp_5lang",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-sweet_runtime-qwen25_14b-mbxp",
+          "seed": 737280
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbxp_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_mbxp_release",
+          "prepared_output": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "source_group": "public_mbxp_5lang",
+          "dataset_label": "MBXP-5lang (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5020400015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbxp",
+        "sweet_runtime",
+        "sweet_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbxp_ewd_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_ewd_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "ewd_runtime",
+      "source_slug": "mbxp_5lang",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-ewd_runtime-qwen25_14b-mbxp",
+          "seed": 737280
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbxp_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_mbxp_release",
+          "prepared_output": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "source_group": "public_mbxp_5lang",
+          "dataset_label": "MBXP-5lang (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5040400015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbxp",
+        "ewd_runtime",
+        "ewd_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_mbxp_kgw_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_kgw_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "kgw_runtime",
+      "source_slug": "mbxp_5lang",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-kgw_runtime-qwen25_14b-mbxp",
+          "seed": 737280
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/suite_mbxp_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "collection_name": "suite_mbxp_release",
+          "prepared_output": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+          "source_group": "public_mbxp_5lang",
+          "dataset_label": "MBXP-5lang (5-language balanced slice)",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5030400015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "mbxp",
+        "kgw_runtime",
+        "kgw_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_original_stone_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_stone_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "stone_runtime",
+      "source_slug": "crafted_original",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-stone_runtime-qwen25_14b-crafted_original",
+          "seed": 253294
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_original_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "source_group": "crafted_original",
+          "dataset_label": "Crafted Original",
+          "collection_name": "crafted_original_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5010700015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_original",
+        "stone_runtime",
+        "stone_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_original_sweet_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_sweet_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "sweet_runtime",
+      "source_slug": "crafted_original",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-sweet_runtime-qwen25_14b-crafted_original",
+          "seed": 253294
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_original_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "source_group": "crafted_original",
+          "dataset_label": "Crafted Original",
+          "collection_name": "crafted_original_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5020700015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_original",
+        "sweet_runtime",
+        "sweet_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_original_ewd_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_ewd_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "ewd_runtime",
+      "source_slug": "crafted_original",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-ewd_runtime-qwen25_14b-crafted_original",
+          "seed": 253294
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_original_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "source_group": "crafted_original",
+          "dataset_label": "Crafted Original",
+          "collection_name": "crafted_original_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5040700015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_original",
+        "ewd_runtime",
+        "ewd_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_original_kgw_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_kgw_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "kgw_runtime",
+      "source_slug": "crafted_original",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-kgw_runtime-qwen25_14b-crafted_original",
+          "seed": 253294
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_original_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_original_release.normalized.jsonl",
+          "source_group": "crafted_original",
+          "dataset_label": "Crafted Original",
+          "collection_name": "crafted_original_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5030700015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_original",
+        "kgw_runtime",
+        "kgw_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_translation_stone_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_stone_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "stone_runtime",
+      "source_slug": "crafted_translation",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-stone_runtime-qwen25_14b-crafted_translation",
+          "seed": 124309
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_translation_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "source_group": "crafted_translation",
+          "dataset_label": "Crafted Translation",
+          "collection_name": "crafted_translation_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5010600015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_translation",
+        "stone_runtime",
+        "stone_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_translation_sweet_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_sweet_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "sweet_runtime",
+      "source_slug": "crafted_translation",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-sweet_runtime-qwen25_14b-crafted_translation",
+          "seed": 124309
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_translation_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "source_group": "crafted_translation",
+          "dataset_label": "Crafted Translation",
+          "collection_name": "crafted_translation_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5020600015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_translation",
+        "sweet_runtime",
+        "sweet_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_translation_ewd_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_ewd_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "ewd_runtime",
+      "source_slug": "crafted_translation",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-ewd_runtime-qwen25_14b-crafted_translation",
+          "seed": 124309
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_translation_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "source_group": "crafted_translation",
+          "dataset_label": "Crafted Translation",
+          "collection_name": "crafted_translation_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5040600015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_translation",
+        "ewd_runtime",
+        "ewd_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_translation_kgw_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_kgw_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "kgw_runtime",
+      "source_slug": "crafted_translation",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-kgw_runtime-qwen25_14b-crafted_translation",
+          "seed": 124309
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_translation_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_translation_release.normalized.jsonl",
+          "source_group": "crafted_translation",
+          "dataset_label": "Crafted Translation",
+          "collection_name": "crafted_translation_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5030600015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_translation",
+        "kgw_runtime",
+        "kgw_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_stress_stone_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_stone_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "stone_runtime",
+      "source_slug": "crafted_stress",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-stone_runtime-qwen25_14b-crafted_stress",
+          "seed": 895623
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_stress_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "source_group": "crafted_stress",
+          "dataset_label": "Crafted Stress",
+          "collection_name": "crafted_stress_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5010500015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_stress",
+        "stone_runtime",
+        "stone_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_stress_sweet_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_sweet_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "sweet_runtime",
+      "source_slug": "crafted_stress",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-sweet_runtime-qwen25_14b-crafted_stress",
+          "seed": 895623
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_stress_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "source_group": "crafted_stress",
+          "dataset_label": "Crafted Stress",
+          "collection_name": "crafted_stress_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5020500015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_stress",
+        "sweet_runtime",
+        "sweet_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_stress_ewd_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_ewd_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "ewd_runtime",
+      "source_slug": "crafted_stress",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-ewd_runtime-qwen25_14b-crafted_stress",
+          "seed": 895623
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_stress_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "source_group": "crafted_stress",
+          "dataset_label": "Crafted Stress",
+          "collection_name": "crafted_stress_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5040500015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_stress",
+        "ewd_runtime",
+        "ewd_runtime"
+      ]
+    },
+    {
+      "run_id": "stage_a_qwen25_14b_crafted_stress_kgw_runtime",
+      "profile": "suite_canary_heavy",
+      "config": "configs/public_humaneval_plus_kgw_runtime.yaml",
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "model_revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "method": "kgw_runtime",
+      "source_slug": "crafted_stress",
+      "config_overrides": {
+        "project": {
+          "name": "posteditbench-stage-a-kgw_runtime-qwen25_14b-crafted_stress",
+          "seed": 895623
+        },
+        "paths": {
+          "prepared_benchmark": "data/release/sources/crafted_stress_release.normalized.jsonl"
+        },
+        "benchmark": {
+          "prepared_output": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "validation_scope": "multilingual_exec",
+          "include_reference_kinds": [
+            "canonical"
+          ],
+          "languages": [
+            "cpp",
+            "go",
+            "java",
+            "javascript",
+            "python"
+          ],
+          "source": "data/release/sources/crafted_stress_release.normalized.jsonl",
+          "source_group": "crafted_stress",
+          "dataset_label": "Crafted Stress",
+          "collection_name": "crafted_stress_release",
+          "limit": 15
+        },
+        "watermark": {
+          "model_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+          "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+        }
+      },
+      "resource": "gpu",
+      "gpu_pool": "runtime",
+      "baseline_eval": true,
+      "baseline_eval_sample_limit": 16,
+      "priority": 5030500015,
+      "tags": [
+        "precheck",
+        "stage_a",
+        "qwen25_14b",
+        "crafted_stress",
+        "kgw_runtime",
+        "kgw_runtime"
+      ]
+    }
+  ]
+}

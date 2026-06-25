@@ -1,0 +1,67 @@
+{
+  "project": {
+    "name": "posteditbench-identifier-mbpp-plus",
+    "artifact_mode": "redacted",
+    "seed": 2043
+  },
+  "paths": {
+    "attack_matrix": "data/fixtures/attacks/attack_matrix.json",
+    "prepared_benchmark": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+    "results_root": "results/runs",
+    "cache_root": "model_cache"
+  },
+  "benchmark": {
+    "public_source": "mbpp_plus",
+    "source": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+    "prepared_output": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+    "split": "test",
+    "limit": 378,
+    "include_reference_kinds": [
+      "canonical"
+    ],
+    "dataset_label": "MBPP+",
+    "source_url": "https://raw.githubusercontent.com/evalplus/mbppplus_release/dadf43da556a00f7bacd71cb154f2932757d9144/MbppPlus.jsonl.gz",
+    "source_revision": "dadf43da556a00f7bacd71cb154f2932757d9144",
+    "license_note": "Apache-2.0; EvalPlus MBPP+ release",
+    "validation_scope": "python_first",
+    "stress_suite": true
+  },
+  "provider": {
+    "mode": "offline_mock",
+    "parameters": {}
+  },
+  "watermark": {
+    "scheme": "identifier",
+    "strength": 0.56,
+    "seed": 2043
+  },
+  "attacks": {
+    "include": [
+      "comment_strip",
+      "identifier_rename",
+      "whitespace_normalize",
+      "noise_insert",
+      "control_flow_flatten",
+      "block_shuffle",
+      "budgeted_adaptive"
+    ]
+  },
+  "attack_parameters": {
+    "budgeted_adaptive": {
+      "budget": 5,
+      "min_quality": 0.34,
+      "candidate_order": [
+        "comment_strip",
+        "whitespace_normalize",
+        "identifier_rename",
+        "control_flow_flatten",
+        "block_shuffle"
+      ]
+    }
+  },
+  "reporting": {
+    "top_k_failures": 15,
+    "pass_threshold": 0.7
+  }
+}
+

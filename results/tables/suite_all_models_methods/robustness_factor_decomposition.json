@@ -1,0 +1,62 @@
+[
+  {
+    "table_role": "repo_robustness_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "KGW",
+    "row_count": 54005,
+    "attack_support_rate": 0.7208,
+    "robustness": 0.4439,
+    "raw_robustness_strict": 0.0,
+    "robustness_status": "supported_nonzero",
+    "robustness_support_rate": 1.0,
+    "watermark_retention_mean": 0.7462,
+    "attacked_detected_semantic_rate": 0.0,
+    "attacked_pass_preservation": 0.5362
+  },
+  {
+    "table_role": "repo_robustness_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "STONE",
+    "row_count": 54005,
+    "attack_support_rate": 0.7355,
+    "robustness": 0.3536,
+    "raw_robustness_strict": 0.0602,
+    "robustness_status": "supported_nonzero",
+    "robustness_support_rate": 1.0,
+    "watermark_retention_mean": 0.58,
+    "attacked_detected_semantic_rate": 0.0202,
+    "attacked_pass_preservation": 0.5512
+  },
+  {
+    "table_role": "repo_robustness_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "SWEET",
+    "row_count": 54005,
+    "attack_support_rate": 0.7228,
+    "robustness": 0.3361,
+    "raw_robustness_strict": 0.0,
+    "robustness_status": "supported_nonzero",
+    "robustness_support_rate": 1.0,
+    "watermark_retention_mean": 0.5398,
+    "attacked_detected_semantic_rate": 0.0,
+    "attacked_pass_preservation": 0.5311
+  },
+  {
+    "table_role": "repo_robustness_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "EWD",
+    "row_count": 54005,
+    "attack_support_rate": 0.7236,
+    "robustness": 0.2645,
+    "raw_robustness_strict": 0.0,
+    "robustness_status": "supported_nonzero",
+    "robustness_support_rate": 1.0,
+    "watermark_retention_mean": 0.3739,
+    "attacked_detected_semantic_rate": 0.0,
+    "attacked_pass_preservation": 0.5229
+  }
+]

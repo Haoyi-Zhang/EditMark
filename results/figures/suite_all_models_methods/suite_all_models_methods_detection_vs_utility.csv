@@ -1,0 +1,5 @@
+method,paper_label,origin,detection_separability,utility
+SWEET,SWEET,upstream,0.722,0.6467
+EWD,EWD,upstream,0.7706,0.6467
+STONE,STONE,upstream,0.5312,0.6509
+KGW,KGW,upstream,0.6045,0.6476

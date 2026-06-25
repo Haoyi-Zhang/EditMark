@@ -1,0 +1,23 @@
+analysis_view,scope,slug,dataset_label,category,category_label,record_count
+crafted_only,release,crafted_original,Crafted Original,class/object interaction,class/object interaction,30
+crafted_only,release,crafted_original,Crafted Original,data structures,data structures,30
+crafted_only,release,crafted_original,Crafted Original,exception/error handling,exception/error handling,30
+crafted_only,release,crafted_original,Crafted Original,graph/search,graph/search,30
+crafted_only,release,crafted_original,Crafted Original,numeric/boundary conditions,numeric/boundary conditions,30
+crafted_only,release,crafted_original,Crafted Original,recursion/dp,recursion/dp,30
+crafted_only,release,crafted_original,Crafted Original,state machines/simulation,state machines/simulation,30
+crafted_only,release,crafted_original,Crafted Original,strings/parsing,strings/parsing,30
+crafted_only,release,crafted_translation,Crafted Translation,cross-language idiom preservation,cross-language idiom preservation,50
+crafted_only,release,crafted_translation,Crafted Translation,data structures,data structures,50
+crafted_only,release,crafted_translation,Crafted Translation,strings/parsing,strings/parsing,50
+crafted_only,release,crafted_translation,Crafted Translation,class/object interaction,class/object interaction,45
+crafted_only,release,crafted_translation,Crafted Translation,exception/error handling,exception/error handling,45
+crafted_only,release,crafted_stress,Crafted Stress,graph/search,graph/search,30
+crafted_only,release,crafted_stress,Crafted Stress,numeric/boundary conditions,numeric/boundary conditions,30
+crafted_only,release,crafted_stress,Crafted Stress,state machines/simulation,state machines/simulation,30
+crafted_only,release,crafted_stress,Crafted Stress,class/object interaction,class/object interaction,25
+crafted_only,release,crafted_stress,Crafted Stress,cross-language idiom preservation,cross-language idiom preservation,25
+crafted_only,release,crafted_stress,Crafted Stress,data structures,data structures,25
+crafted_only,release,crafted_stress,Crafted Stress,exception/error handling,exception/error handling,25
+crafted_only,release,crafted_stress,Crafted Stress,recursion/dp,recursion/dp,25
+crafted_only,release,crafted_stress,Crafted Stress,strings/parsing,strings/parsing,25

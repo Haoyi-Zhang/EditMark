@@ -1,0 +1,40 @@
+{
+  "attacks": [
+    {
+      "description": "Remove comments and docstrings.",
+      "name": "comment_strip",
+      "severity": 0.12
+    },
+    {
+      "description": "Rename identifiers while preserving structure.",
+      "name": "identifier_rename",
+      "severity": 0.2
+    },
+    {
+      "description": "Whitespace-only normalization.",
+      "name": "whitespace_normalize",
+      "severity": 0.08
+    },
+    {
+      "description": "Add benign comment noise to stress detection.",
+      "name": "noise_insert",
+      "severity": 0.18
+    },
+    {
+      "description": "Flatten redundant control-flow scaffolds without changing behavior.",
+      "name": "control_flow_flatten",
+      "severity": 0.42
+    },
+    {
+      "description": "Shuffle code blocks while preserving local semantics.",
+      "name": "block_shuffle",
+      "severity": 0.35
+    },
+    {
+      "description": "Compose multiple transformations under a perturbation budget.",
+      "name": "budgeted_adaptive",
+      "severity": 0.5
+    }
+  ],
+  "schema_version": 2
+}

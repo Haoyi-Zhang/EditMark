@@ -1,0 +1,15 @@
+# Release environment anchors for the formal single-host CUDA 12.4 run.
+#
+# Use this file as an additional requirements file together with
+# requirements.txt and requirements-remote.txt when recreating the release
+# execution environment. These are direct release anchors recorded in
+# results/environment/runtime_environment.json; transitive packages not listed
+# here should be resolved by pip for the target platform.
+#
+# Example:
+#   python -m pip install --extra-index-url https://download.pytorch.org/whl/cu124 \
+#     -r requirements.txt -r requirements-remote.txt -r constraints-release-cu124.txt
+#
+torch==2.6.0+cu124
+transformers==4.57.6
+numpy==2.2.6

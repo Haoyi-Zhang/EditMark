@@ -1,0 +1,54 @@
+[
+  {
+    "table_role": "repo_gate_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "STONE",
+    "row_count": 54005,
+    "gate": 0.5266,
+    "watermarked_pass_preservation": 0.5266,
+    "negative_control_fpr": 0.1465,
+    "descriptive_clean_test_pass_rate": 0.0321,
+    "descriptive_watermarked_test_pass_rate": 0.0294,
+    "negative_control_support_rate": 0.7148
+  },
+  {
+    "table_role": "repo_gate_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "EWD",
+    "row_count": 54005,
+    "gate": 0.5,
+    "watermarked_pass_preservation": 0.5,
+    "negative_control_fpr": 0.0,
+    "descriptive_clean_test_pass_rate": 0.013,
+    "descriptive_watermarked_test_pass_rate": 0.0106,
+    "negative_control_support_rate": 0.9991
+  },
+  {
+    "table_role": "repo_gate_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "SWEET",
+    "row_count": 54005,
+    "gate": 0.4984,
+    "watermarked_pass_preservation": 0.4984,
+    "negative_control_fpr": 0.0,
+    "descriptive_clean_test_pass_rate": 0.0131,
+    "descriptive_watermarked_test_pass_rate": 0.0118,
+    "negative_control_support_rate": 1.0
+  },
+  {
+    "table_role": "repo_gate_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "KGW",
+    "row_count": 54005,
+    "gate": 0.492,
+    "watermarked_pass_preservation": 0.492,
+    "negative_control_fpr": 0.0,
+    "descriptive_clean_test_pass_rate": 0.0126,
+    "descriptive_watermarked_test_pass_rate": 0.0122,
+    "negative_control_support_rate": 1.0
+  }
+]

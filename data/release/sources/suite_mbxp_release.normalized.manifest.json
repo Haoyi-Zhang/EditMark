@@ -1,0 +1,277 @@
+{
+  "benchmark": "mbxp_5lang",
+  "canonical_reference_count": 143,
+  "claimed_languages": [
+    "python",
+    "cpp",
+    "java",
+    "javascript",
+    "go"
+  ],
+  "collection_name": "suite_mbxp_release",
+  "coverage": {
+    "claimed_language_count": 5,
+    "clean_reference_compile_rate": null,
+    "clean_reference_pass_rate": null,
+    "declared_semantic_validation_language_rate": 1.0,
+    "declared_semantic_validation_rate": 1.0,
+    "declared_unvalidated_languages": [],
+    "missing_claimed_languages": [],
+    "observed_coverage_rate": 1.0,
+    "observed_language_count": 5,
+    "runtime_semantic_validation_language_rate": null,
+    "runtime_semantic_validation_rate": null,
+    "runtime_unvalidated_languages": [],
+    "runtime_validation_annotations_available": false,
+    "runtime_validation_basis": "unavailable",
+    "semantic_validation_language_rate": null,
+    "semantic_validation_rate": null,
+    "unvalidated_languages": []
+  },
+  "dataset_label": "MBXP-5lang (5-language balanced slice)",
+  "datasets": [
+    "MBXP-5lang (5-language balanced slice)"
+  ],
+  "difficulty_counts": {
+    "easy": 18,
+    "hard": 120,
+    "medium": 62
+  },
+  "family_count": 40,
+  "family_counts": {
+    "mbxp_1": 5,
+    "mbxp_100": 5,
+    "mbxp_101": 5,
+    "mbxp_102": 5,
+    "mbxp_103": 5,
+    "mbxp_104": 5,
+    "mbxp_105": 5,
+    "mbxp_106": 5,
+    "mbxp_107": 5,
+    "mbxp_109": 5,
+    "mbxp_11": 5,
+    "mbxp_110": 5,
+    "mbxp_111": 5,
+    "mbxp_112": 5,
+    "mbxp_113": 5,
+    "mbxp_114": 5,
+    "mbxp_116": 5,
+    "mbxp_117": 5,
+    "mbxp_118": 5,
+    "mbxp_119": 5,
+    "mbxp_12": 5,
+    "mbxp_120": 5,
+    "mbxp_121": 5,
+    "mbxp_122": 5,
+    "mbxp_123": 5,
+    "mbxp_125": 5,
+    "mbxp_126": 5,
+    "mbxp_129": 5,
+    "mbxp_137": 5,
+    "mbxp_140": 5,
+    "mbxp_141": 5,
+    "mbxp_147": 5,
+    "mbxp_149": 5,
+    "mbxp_152": 5,
+    "mbxp_154": 5,
+    "mbxp_161": 5,
+    "mbxp_241": 5,
+    "mbxp_380": 5,
+    "mbxp_493": 5,
+    "mbxp_694": 5
+  },
+  "include_difficulties": [
+    "easy",
+    "hard",
+    "medium"
+  ],
+  "include_languages": [
+    "python",
+    "cpp",
+    "java",
+    "javascript",
+    "go"
+  ],
+  "include_origin_types": [
+    "public"
+  ],
+  "include_reference_kinds": [
+    "canonical",
+    "smoke_overlay"
+  ],
+  "include_source_groups": [
+    "public_mbxp_5lang"
+  ],
+  "input_filtered_counts": {
+    "data/release/sources/suite_mbxp_release.normalized.jsonl": 200
+  },
+  "inputs": [
+    "data/release/sources/suite_mbxp_release.normalized.jsonl"
+  ],
+  "language_counts": {
+    "cpp": 40,
+    "go": 40,
+    "java": 40,
+    "javascript": 40,
+    "python": 40
+  },
+  "observed_languages": [
+    "cpp",
+    "go",
+    "java",
+    "javascript",
+    "python"
+  ],
+  "origin_type_counts": {
+    "public": 200
+  },
+  "quota_per_language": {
+    "cpp": 40,
+    "go": 40,
+    "java": 40,
+    "javascript": 40,
+    "python": 40
+  },
+  "quota_per_source_group": {},
+  "record_count": 200,
+  "reference_kind_counts": {
+    "canonical": 143,
+    "smoke_overlay": 57
+  },
+  "reference_kind_total": 200,
+  "sample_ids_path": "data/release/sources/suite_mbxp_release.normalized.sample_ids.json",
+  "schema_version": 1,
+  "smoke_overlay_reference_count": 57,
+  "source_group_counts": {
+    "public_mbxp_5lang": 200
+  },
+  "source_manifests": [
+    {
+      "benchmark": "mbxp_5lang",
+      "dataset_label": "MBXP-5lang (5-language balanced slice)",
+      "language": "python",
+      "license_note": "Apache-2.0; MXEval MBXP release",
+      "sample_task_ids": [
+        "MBPP/1",
+        "MBPP/2",
+        "MBPP/3",
+        "MBPP/974"
+      ],
+      "source_group": "public_mbxp_5lang",
+      "source_path": "mbpp_release_v1.jsonl",
+      "source_revision": "e09974f990eeaf0c0e8f2b5eaff4be66effb2c86",
+      "source_sha256": "fd4cbc0421f3c487e85bab591ec69092740fbfc1e8d16b147db33005921955f3",
+      "source_url": "https://github.com/amazon-science/mxeval",
+      "split": "test",
+      "task_count": 974,
+      "task_id_digest": "400b8df496f3443b889a2a30f3529820afea353b7a44b7b51b3aca27282f5b34"
+    },
+    {
+      "benchmark": "mbxp_5lang",
+      "dataset_label": "MBXP-5lang (5-language balanced slice)",
+      "language": "cpp",
+      "license_note": "Apache-2.0; MXEval MBXP release",
+      "sample_task_ids": [
+        "MBCPP/1",
+        "MBCPP/2",
+        "MBCPP/3",
+        "MBCPP/974"
+      ],
+      "source_group": "public_mbxp_5lang",
+      "source_path": "mbcpp_release_v1.2.jsonl",
+      "source_revision": "e09974f990eeaf0c0e8f2b5eaff4be66effb2c86",
+      "source_sha256": "bba79fefe1963b34e4db39409fe3e59d12bc37b86c1906b86e043feec3589b72",
+      "source_url": "https://github.com/amazon-science/mxeval",
+      "split": "test",
+      "task_count": 848,
+      "task_id_digest": "3ff377d063ff3dd0343576209c2e2b7f8f0170e705ee81c08701066b6d5d753a"
+    },
+    {
+      "benchmark": "mbxp_5lang",
+      "dataset_label": "MBXP-5lang (5-language balanced slice)",
+      "language": "java",
+      "license_note": "Apache-2.0; MXEval MBXP release",
+      "sample_task_ids": [
+        "MBJP/1",
+        "MBJP/2",
+        "MBJP/3",
+        "MBJP/974"
+      ],
+      "source_group": "public_mbxp_5lang",
+      "source_path": "mbjp_release_v1.2.jsonl",
+      "source_revision": "e09974f990eeaf0c0e8f2b5eaff4be66effb2c86",
+      "source_sha256": "534cd0fecaed50a51860f6a74abb433b8e22f2a77d3cd77a43a8c581242a7737",
+      "source_url": "https://github.com/amazon-science/mxeval",
+      "split": "test",
+      "task_count": 966,
+      "task_id_digest": "45f50bc1bb99aecb9272319c4f4d8bc0d99b510b3f6b53dd4327815e940fa887"
+    },
+    {
+      "benchmark": "mbxp_5lang",
+      "dataset_label": "MBXP-5lang (5-language balanced slice)",
+      "language": "javascript",
+      "license_note": "Apache-2.0; MXEval MBXP release",
+      "sample_task_ids": [
+        "MBJSP/1",
+        "MBJSP/2",
+        "MBJSP/3",
+        "MBJSP/974"
+      ],
+      "source_group": "public_mbxp_5lang",
+      "source_path": "mbjsp_release_v1.2.jsonl",
+      "source_revision": "e09974f990eeaf0c0e8f2b5eaff4be66effb2c86",
+      "source_sha256": "172fc0f7d816e5d94b64d3b53ce74b98dc0ddbf640baa7dc6551a59c9c4b5ee6",
+      "source_url": "https://github.com/amazon-science/mxeval",
+      "split": "test",
+      "task_count": 966,
+      "task_id_digest": "376d72b6893b0e5ef02fea8a74423ad09ac76dce78023f2ec8b37b76654ba693"
+    },
+    {
+      "benchmark": "mbxp_5lang",
+      "dataset_label": "MBXP-5lang (5-language balanced slice)",
+      "language": "go",
+      "license_note": "Apache-2.0; MXEval MBXP release",
+      "sample_task_ids": [
+        "MBGP/1",
+        "MBGP/2",
+        "MBGP/3",
+        "MBGP/974"
+      ],
+      "source_group": "public_mbxp_5lang",
+      "source_path": "mbgp_release_v1.1.jsonl",
+      "source_revision": "e09974f990eeaf0c0e8f2b5eaff4be66effb2c86",
+      "source_sha256": "ea41ec934893d865ec39f79880a4e62c73c235fdd2f015c81e1fe9064f7abf9b",
+      "source_url": "https://github.com/amazon-science/mxeval",
+      "split": "test",
+      "task_count": 939,
+      "task_id_digest": "607972f17a059b1305161d377a77426703fcd73577d9cf20fc2b054c9db41b1e"
+    }
+  ],
+  "suite_selection_policy": {
+    "allowed_reference_kinds": [
+      "canonical",
+      "smoke_overlay"
+    ],
+    "languages": [
+      "python",
+      "cpp",
+      "java",
+      "javascript",
+      "go"
+    ],
+    "strata": [
+      "difficulty"
+    ],
+    "target_family_count": 40,
+    "target_record_count": 200,
+    "type": "family_balanced_multilingual_release_slice"
+  },
+  "task_count": 200,
+  "validation_supported_languages": [
+    "cpp",
+    "go",
+    "java",
+    "javascript",
+    "python"
+  ]
+}

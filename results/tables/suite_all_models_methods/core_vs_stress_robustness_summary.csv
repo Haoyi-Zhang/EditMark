@@ -1,0 +1,5 @@
+﻿PostEditScore,aggregation_view,attack_support_rate,method,raw_robustness_strict,robustness,robustness_status,robustness_support_rate,row_count,score_semantics,stress_robustness,table_role
+0.3498,suite_method_master_leaderboard,0.7208,KGW,0.0,0.4439,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.4771,repo_core_vs_stress_robustness_summary
+0.3504,suite_method_master_leaderboard,0.7355,STONE,0.0602,0.3536,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.44,repo_core_vs_stress_robustness_summary
+0.3827,suite_method_master_leaderboard,0.7228,SWEET,0.0,0.3361,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.4291,repo_core_vs_stress_robustness_summary
+0.3761,suite_method_master_leaderboard,0.7236,EWD,0.0,0.2645,supported_nonzero,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.4603,repo_core_vs_stress_robustness_summary

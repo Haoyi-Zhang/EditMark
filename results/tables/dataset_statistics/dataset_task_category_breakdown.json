@@ -1,0 +1,200 @@
+[
+  {
+    "analysis_view": "crafted_only",
+    "category": "class/object interaction",
+    "category_label": "class/object interaction",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "data structures",
+    "category_label": "data structures",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "exception/error handling",
+    "category_label": "exception/error handling",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "graph/search",
+    "category_label": "graph/search",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "numeric/boundary conditions",
+    "category_label": "numeric/boundary conditions",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "recursion/dp",
+    "category_label": "recursion/dp",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "state machines/simulation",
+    "category_label": "state machines/simulation",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "strings/parsing",
+    "category_label": "strings/parsing",
+    "dataset_label": "Crafted Original",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_original"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "cross-language idiom preservation",
+    "category_label": "cross-language idiom preservation",
+    "dataset_label": "Crafted Translation",
+    "record_count": 50,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "data structures",
+    "category_label": "data structures",
+    "dataset_label": "Crafted Translation",
+    "record_count": 50,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "strings/parsing",
+    "category_label": "strings/parsing",
+    "dataset_label": "Crafted Translation",
+    "record_count": 50,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "class/object interaction",
+    "category_label": "class/object interaction",
+    "dataset_label": "Crafted Translation",
+    "record_count": 45,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "exception/error handling",
+    "category_label": "exception/error handling",
+    "dataset_label": "Crafted Translation",
+    "record_count": 45,
+    "scope": "release",
+    "slug": "crafted_translation"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "graph/search",
+    "category_label": "graph/search",
+    "dataset_label": "Crafted Stress",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "numeric/boundary conditions",
+    "category_label": "numeric/boundary conditions",
+    "dataset_label": "Crafted Stress",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "state machines/simulation",
+    "category_label": "state machines/simulation",
+    "dataset_label": "Crafted Stress",
+    "record_count": 30,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "class/object interaction",
+    "category_label": "class/object interaction",
+    "dataset_label": "Crafted Stress",
+    "record_count": 25,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "cross-language idiom preservation",
+    "category_label": "cross-language idiom preservation",
+    "dataset_label": "Crafted Stress",
+    "record_count": 25,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "data structures",
+    "category_label": "data structures",
+    "dataset_label": "Crafted Stress",
+    "record_count": 25,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "exception/error handling",
+    "category_label": "exception/error handling",
+    "dataset_label": "Crafted Stress",
+    "record_count": 25,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "recursion/dp",
+    "category_label": "recursion/dp",
+    "dataset_label": "Crafted Stress",
+    "record_count": 25,
+    "scope": "release",
+    "slug": "crafted_stress"
+  },
+  {
+    "analysis_view": "crafted_only",
+    "category": "strings/parsing",
+    "category_label": "strings/parsing",
+    "dataset_label": "Crafted Stress",
+    "record_count": 25,
+    "scope": "release",
+    "slug": "crafted_stress"
+  }
+]

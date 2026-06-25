@@ -1,0 +1,198 @@
+{
+  "host": {
+    "hostname": "execution-host",
+    "fqdn": "execution-host"
+  },
+  "platform": {
+    "system": "Linux",
+    "release": "3.10.0-1160.118.1.el7.x86_64",
+    "version": "#1 SMP Wed Apr 24 16:01:50 UTC 2024",
+    "machine": "x86_64",
+    "processor": "x86_64"
+  },
+  "python": {
+    "executable": "<release-python>/python",
+    "version": "3.10.12 (main, Mar  3 2026, 11:56:32) [GCC 11.4.0]"
+  },
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.6",
+    "numpy": "2.2.6",
+    "pandas": null
+  },
+  "cuda": {
+    "torch_cuda_version": "12.4",
+    "nvidia_smi_cuda_version": "12.4"
+  },
+  "tools": {
+    "g++": {
+      "command": [
+        "g++",
+        "--version"
+      ],
+      "error": null,
+      "returncode": 0,
+      "stdout": "g++ (Ubuntu 13.4.0-6ubuntu1~22~ppa2) 13.4.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "stderr": ""
+    },
+    "javac": {
+      "command": [
+        "javac",
+        "-version"
+      ],
+      "error": null,
+      "returncode": 0,
+      "stdout": "javac 21.0.10",
+      "stderr": ""
+    },
+    "java": {
+      "command": [
+        "java",
+        "-version"
+      ],
+      "error": null,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-122.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-122.04, mixed mode, sharing)"
+    },
+    "node": {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "error": null,
+      "returncode": 0,
+      "stdout": "v20.20.0",
+      "stderr": ""
+    },
+    "go": {
+      "command": [
+        "go",
+        "version"
+      ],
+      "error": null,
+      "returncode": 0,
+      "stdout": "go version go1.22.12 linux/amd64",
+      "stderr": ""
+    },
+    "nvidia_smi": {
+      "command": [
+        "nvidia-smi"
+      ],
+      "error": null,
+      "returncode": 0,
+      "stdout": "Sat Apr 25 01:50:32 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: 12.4     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA A800-SXM4-40GB          On  |   00000000:10:00.0 Off |                    0 |\n| N/A   33C    P0             56W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   1  NVIDIA A800-SXM4-40GB          On  |   00000000:16:00.0 Off |                    0 |\n| N/A   31C    P0             54W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   2  NVIDIA A800-SXM4-40GB          On  |   00000000:49:00.0 Off |                    0 |\n| N/A   32C    P0             53W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   3  NVIDIA A800-SXM4-40GB          On  |   00000000:4D:00.0 Off |                    0 |\n| N/A   32C    P0             58W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   4  NVIDIA A800-SXM4-40GB          On  |   00000000:8C:00.0 Off |                    0 |\n| N/A   33C    P0             55W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   5  NVIDIA A800-SXM4-40GB          On  |   00000000:91:00.0 Off |                    0 |\n| N/A   32C    P0             52W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   6  NVIDIA A800-SXM4-40GB          On  |   00000000:C7:00.0 Off |                    0 |\n| N/A   31C    P0             58W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   7  NVIDIA A800-SXM4-40GB          On  |   00000000:CB:00.0 Off |                    0 |\n| N/A   33C    P0             54W /  400W |       1MiB /  40960MiB |      0%   E. Process |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+",
+      "stderr": ""
+    },
+    "git": {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "error": "command returned non-zero exit status 128",
+      "returncode": 128,
+      "stdout": "",
+      "stderr": "fatal: not a git repository (or any parent up to mount point /root)\nStopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set)."
+    }
+  },
+  "gpu": {
+    "count": 8,
+    "visible_gpu_count": 8,
+    "devices": [
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      }
+    ],
+    "visible_devices": [
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      },
+      {
+        "name": "NVIDIA A800-SXM4-40GB",
+        "driver_version": "550.163.01",
+        "memory_total": "40960 MiB"
+      }
+    ],
+    "driver_version": "550.163.01",
+    "summary": "NVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB\nNVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB\nNVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB\nNVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB\nNVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB\nNVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB\nNVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB\nNVIDIA A800-SXM4-40GB, 550.163.01, 40960 MiB",
+    "cuda_visible_devices": "0,1,2,3,4,5,6,7"
+  },
+  "label": "formal-single-host-full",
+  "execution": {
+    "execution_mode": "single_host_canonical",
+    "cuda_visible_devices": "0,1,2,3,4,5,6,7",
+    "visible_gpu_count": 8,
+    "code_snapshot_digest": "e77c05e89cbc7cbb180b1f2504cbcc3d9706ed72dcdd851beb84a45d6e238a6b",
+    "execution_environment_fingerprint": "28ee33d7e551f2adc5aed51a4417e50505dcbba9075f08d772ce69682cd27a7d"
+  }
+}

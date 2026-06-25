@@ -1,0 +1,61 @@
+{
+  "project": {
+    "name": "posteditbench-watermark-humaneval",
+    "artifact_mode": "redacted",
+    "seed": 2028
+  },
+  "paths": {
+    "attack_matrix": "data/fixtures/attacks/attack_matrix.json",
+    "prepared_benchmark": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "results_root": "results/runs",
+    "cache_root": "model_cache"
+  },
+  "benchmark": {
+    "public_source": "human_eval",
+    "source": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "prepared_output": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "split": "test",
+    "limit": null,
+    "include_reference_kinds": ["canonical"],
+    "dataset_label": "HumanEval",
+    "source_url": "https://raw.githubusercontent.com/openai/human-eval/6d43fb980f9fee3c892a914eda09951f772ad10d/data/HumanEval.jsonl.gz",
+    "source_revision": "6d43fb980f9fee3c892a914eda09951f772ad10d",
+    "license_note": "MIT; original HumanEval repository",
+    "validation_scope": "python_first"
+  },
+  "watermark": {
+    "scheme": "kgw",
+    "strength": 0.58,
+    "bias": 0.11,
+    "seed": 2028
+  },
+  "attacks": {
+    "include": [
+      "comment_strip",
+      "identifier_rename",
+      "whitespace_normalize",
+      "noise_insert",
+      "control_flow_flatten",
+      "block_shuffle",
+      "budgeted_adaptive"
+    ]
+  },
+  "attack_parameters": {
+    "budgeted_adaptive": {
+        "budget": 4,
+        "min_quality": 0.35,
+        "candidate_order": [
+          "comment_strip",
+          "whitespace_normalize",
+          "identifier_rename",
+          "control_flow_flatten",
+          "block_shuffle"
+        ]
+      }
+    },
+  "reporting": {
+    "top_k_failures": 5,
+    "pass_threshold": 0.7
+  }
+}
+

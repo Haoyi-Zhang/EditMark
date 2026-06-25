@@ -1,0 +1,28 @@
+scope,slug,dataset_label,language,record_count
+release,humaneval_plus,HumanEval+,python,164
+release,mbpp_plus,MBPP+,python,378
+release,humaneval_x,HumanEval-X (5-language balanced slice),cpp,40
+release,humaneval_x,HumanEval-X (5-language balanced slice),go,40
+release,humaneval_x,HumanEval-X (5-language balanced slice),java,40
+release,humaneval_x,HumanEval-X (5-language balanced slice),javascript,40
+release,humaneval_x,HumanEval-X (5-language balanced slice),python,40
+release,mbxp_5lang,MBXP-5lang (5-language balanced slice),cpp,40
+release,mbxp_5lang,MBXP-5lang (5-language balanced slice),go,40
+release,mbxp_5lang,MBXP-5lang (5-language balanced slice),java,40
+release,mbxp_5lang,MBXP-5lang (5-language balanced slice),javascript,40
+release,mbxp_5lang,MBXP-5lang (5-language balanced slice),python,40
+release,crafted_original,Crafted Original,cpp,48
+release,crafted_original,Crafted Original,go,48
+release,crafted_original,Crafted Original,java,48
+release,crafted_original,Crafted Original,javascript,48
+release,crafted_original,Crafted Original,python,48
+release,crafted_translation,Crafted Translation,cpp,48
+release,crafted_translation,Crafted Translation,go,48
+release,crafted_translation,Crafted Translation,java,48
+release,crafted_translation,Crafted Translation,javascript,48
+release,crafted_translation,Crafted Translation,python,48
+release,crafted_stress,Crafted Stress,cpp,48
+release,crafted_stress,Crafted Stress,go,48
+release,crafted_stress,Crafted Stress,java,48
+release,crafted_stress,Crafted Stress,javascript,48
+release,crafted_stress,Crafted Stress,python,48

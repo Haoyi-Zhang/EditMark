@@ -1,0 +1,5 @@
+aggregation_view,descriptive_clean_test_pass_rate,descriptive_watermarked_test_pass_rate,gate,method,negative_control_fpr,negative_control_support_rate,row_count,score_semantics,table_role,watermarked_pass_preservation
+suite_method_master_leaderboard,0.0321,0.0294,0.5266,STONE,0.1465,0.7148,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_gate_decomposition,0.5266
+suite_method_master_leaderboard,0.013,0.0106,0.5,EWD,0.0,0.9991,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_gate_decomposition,0.5
+suite_method_master_leaderboard,0.0131,0.0118,0.4984,SWEET,0.0,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_gate_decomposition,0.4984
+suite_method_master_leaderboard,0.0126,0.0122,0.492,KGW,0.0,1.0,54005,scorecard_recomputed_from_grouped_benchmark_rows,repo_gate_decomposition,0.492

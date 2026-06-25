@@ -1,0 +1,14 @@
+{
+  "active_sources": 7,
+  "figure_dir": "results/figures/dataset_statistics",
+  "manual_review_files": [
+    "benchmark_definition_summary.csv",
+    "release_slice_language_breakdown.csv",
+    "dataset_task_category_breakdown.csv",
+    "dataset_family_breakdown.csv",
+    "release_source_manifest_index.csv",
+    "release_slice_composition.png",
+    "evaluation_dimensions_overview.png"
+  ],
+  "table_dir": "results/tables/dataset_statistics"
+}

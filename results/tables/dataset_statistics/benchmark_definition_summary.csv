@@ -1,0 +1,8 @@
+source,slug,source_group,source_type,active_release_size,scored_in_aggregate,execution_slice,execution_languages,sampling_rule
+HumanEval+,humaneval_plus,public_humaneval_plus,public,164,True,python,python,full retained
+MBPP+,mbpp_plus,public_mbpp_plus,public,378,True,python,python,full retained
+HumanEval-X (5-language balanced slice),humaneval_x,public_humaneval_x,public,200,True,python/cpp/java/javascript/go,"cpp,go,java,javascript,python",deterministic five-language balanced slice
+MBXP-5lang (5-language balanced slice),mbxp_5lang,public_mbxp_5lang,public,200,True,python/cpp/java/javascript/go,"cpp,go,java,javascript,python",deterministic five-language balanced slice with smoke-overlay support
+Crafted Original,crafted_original,crafted_original,crafted,240,True,python/cpp/java/javascript/go,"cpp,go,java,javascript,python",project-authored curated five-language family/category-balanced crafted release source
+Crafted Translation,crafted_translation,crafted_translation,crafted,240,True,python/cpp/java/javascript/go,"cpp,go,java,javascript,python",project-authored curated five-language family/category-balanced crafted release source
+Crafted Stress,crafted_stress,crafted_stress,crafted,240,True,python/cpp/java/javascript/go,"cpp,go,java,javascript,python",project-authored curated five-language family/category-balanced crafted release source

@@ -1,0 +1,81 @@
+{
+  "project": {
+    "name": "posteditbench-local-hf-qwen25_14b-mbpp-plus",
+    "artifact_mode": "redacted",
+    "seed": 2083
+  },
+  "paths": {
+    "attack_matrix": "data/fixtures/attacks/attack_matrix.json",
+    "prepared_benchmark": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+    "results_root": "results/runs",
+    "cache_root": "model_cache"
+  },
+  "benchmark": {
+    "public_source": "mbpp_plus",
+    "source": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+    "prepared_output": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+    "split": "test",
+    "limit": 378,
+    "include_reference_kinds": [
+      "canonical"
+    ],
+    "dataset_label": "MBPP+",
+    "source_url": "https://raw.githubusercontent.com/evalplus/mbppplus_release/dadf43da556a00f7bacd71cb154f2932757d9144/MbppPlus.jsonl.gz",
+    "source_revision": "dadf43da556a00f7bacd71cb154f2932757d9144",
+    "license_note": "Apache-2.0; EvalPlus MBPP+ release",
+    "validation_scope": "python_first",
+    "stress_suite": true
+  },
+  "provider": {
+    "mode": "local_hf",
+    "parameters": {
+      "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "device": "cuda",
+      "dtype": "float16",
+      "max_new_tokens": 256,
+      "do_sample": true,
+      "temperature": 0.2,
+      "top_p": 0.95,
+      "no_repeat_ngram_size": 4,
+      "trust_remote_code": false,
+      "cache_dir": "model_cache/huggingface",
+      "local_files_only": true
+    }
+  },
+  "watermark": {
+    "scheme": "kgw",
+    "strength": 0.58,
+    "bias": 0.1,
+    "seed": 2083
+  },
+  "attacks": {
+    "include": [
+      "comment_strip",
+      "identifier_rename",
+      "whitespace_normalize",
+      "noise_insert",
+      "control_flow_flatten",
+      "block_shuffle",
+      "budgeted_adaptive"
+    ]
+  },
+  "attack_parameters": {
+    "budgeted_adaptive": {
+      "budget": 5,
+      "min_quality": 0.35,
+      "candidate_order": [
+        "comment_strip",
+        "whitespace_normalize",
+        "identifier_rename",
+        "control_flow_flatten",
+        "block_shuffle"
+      ]
+    }
+  },
+  "reporting": {
+    "clean_samples_per_task": 1,
+    "top_k_failures": 15,
+    "pass_threshold": 0.7
+  }
+}
+

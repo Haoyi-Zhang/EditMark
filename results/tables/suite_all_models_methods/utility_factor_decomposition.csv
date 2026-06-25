@@ -1,0 +1,5 @@
+aggregation_view,declared_semantic_validation_rate,method,quality_score_mean,raw_utility_strict,row_count,score_semantics,semantic_preservation_rate,semantic_validation_rate,table_role,utility,utility_status,utility_support_rate
+suite_method_master_leaderboard,1.0,STONE,0.9237,0.2,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.0289,1.0,repo_utility_factor_decomposition,0.6509,supported_nonzero,1.0
+suite_method_master_leaderboard,1.0,KGW,0.927,0.1585,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.0157,1.0,repo_utility_factor_decomposition,0.6476,supported_nonzero,1.0
+suite_method_master_leaderboard,1.0,EWD,0.9273,0.1514,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.0129,1.0,repo_utility_factor_decomposition,0.6467,supported_nonzero,1.0
+suite_method_master_leaderboard,1.0,SWEET,0.9271,0.1536,54005,scorecard_recomputed_from_grouped_benchmark_rows,0.0132,1.0,repo_utility_factor_decomposition,0.6467,supported_nonzero,1.0

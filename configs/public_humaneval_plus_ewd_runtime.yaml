@@ -1,0 +1,77 @@
+{
+  "project": {
+    "name": "posteditbench-ewd-runtime-humaneval-plus",
+    "artifact_mode": "redacted",
+    "seed": 2046
+  },
+  "paths": {
+    "attack_matrix": "data/fixtures/attacks/attack_matrix.json",
+    "prepared_benchmark": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "results_root": "results/runs",
+    "cache_root": "model_cache"
+  },
+  "benchmark": {
+    "public_source": "humaneval_plus",
+    "source": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "prepared_output": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "split": "test",
+    "limit": 164,
+    "include_reference_kinds": ["canonical"],
+    "dataset_label": "HumanEval+",
+    "validation_scope": "python_first"
+  },
+  "provider": {
+    "mode": "offline_mock",
+    "parameters": {}
+  },
+  "watermark": {
+    "scheme": "ewd_runtime",
+    "strength": 0.6,
+    "model_name": "bigcode/starcoder2-7b",
+    "device": "cuda",
+    "dtype": "float16",
+    "gamma": 0.5,
+    "delta": 0.5,
+    "hash_key": 15485863,
+    "prefix_length": 0,
+    "z_threshold": 10.0,
+    "max_new_tokens": 256,
+    "min_length": 1,
+    "do_sample": true,
+    "top_p": 0.95,
+    "temperature": 0.2,
+    "no_repeat_ngram_size": 4,
+    "trust_remote_code": true,
+    "token_env": "HF_ACCESS_TOKEN",
+    "cache_dir": "model_cache/huggingface",
+    "local_files_only": true
+  },
+  "attacks": {
+    "include": [
+      "comment_strip",
+      "identifier_rename",
+      "whitespace_normalize",
+      "noise_insert",
+      "control_flow_flatten",
+      "block_shuffle",
+      "budgeted_adaptive"
+    ]
+  },
+  "attack_parameters": {
+    "budgeted_adaptive": {
+      "budget": 5,
+      "min_quality": 0.35,
+      "candidate_order": [
+        "comment_strip",
+        "whitespace_normalize",
+        "identifier_rename",
+        "control_flow_flatten",
+        "block_shuffle"
+      ]
+    }
+  },
+  "reporting": {
+    "top_k_failures": 10,
+    "pass_threshold": 0.72
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "table_role": "repo_generalization_axis_breakdown",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "KGW",
+    "row_count": 54005,
+    "generalization": 0.9984,
+    "raw_generalization_strict": 0.0,
+    "headline_generalization": 0.9985,
+    "generalization_status": "supported_nonzero",
+    "generalization_available_axes": [
+      "source_stability",
+      "task_stability",
+      "language_stability",
+      "cross_family_transfer"
+    ],
+    "source_stability": 0.9991,
+    "task_stability": 0.9978,
+    "language_stability": 0.9997,
+    "cross_family_transfer": 0.997
+  },
+  {
+    "table_role": "repo_generalization_axis_breakdown",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "SWEET",
+    "row_count": 54005,
+    "generalization": 0.9983,
+    "raw_generalization_strict": 0.0,
+    "headline_generalization": 0.9984,
+    "generalization_status": "supported_nonzero",
+    "generalization_available_axes": [
+      "source_stability",
+      "task_stability",
+      "language_stability",
+      "cross_family_transfer"
+    ],
+    "source_stability": 0.9984,
+    "task_stability": 0.9976,
+    "language_stability": 0.9992,
+    "cross_family_transfer": 0.9981
+  },
+  {
+    "table_role": "repo_generalization_axis_breakdown",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "EWD",
+    "row_count": 54005,
+    "generalization": 0.9945,
+    "raw_generalization_strict": 0.0,
+    "headline_generalization": 0.9948,
+    "generalization_status": "supported_nonzero",
+    "generalization_available_axes": [
+      "source_stability",
+      "task_stability",
+      "language_stability",
+      "cross_family_transfer"
+    ],
+    "source_stability": 0.9904,
+    "task_stability": 0.9944,
+    "language_stability": 0.9968,
+    "cross_family_transfer": 0.9965
+  },
+  {
+    "table_role": "repo_generalization_axis_breakdown",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "STONE",
+    "row_count": 54005,
+    "generalization": 0.7452,
+    "raw_generalization_strict": 0.0,
+    "headline_generalization": 0.7579,
+    "generalization_status": "supported_nonzero",
+    "generalization_available_axes": [
+      "source_stability",
+      "task_stability",
+      "language_stability",
+      "cross_family_transfer"
+    ],
+    "source_stability": 0.9905,
+    "task_stability": 0.9908,
+    "language_stability": 0.0,
+    "cross_family_transfer": 0.9997
+  }
+]

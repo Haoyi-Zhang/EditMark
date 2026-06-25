@@ -1,0 +1,62 @@
+[
+  {
+    "table_role": "repo_utility_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "STONE",
+    "row_count": 54005,
+    "utility": 0.6509,
+    "raw_utility_strict": 0.2,
+    "utility_status": "supported_nonzero",
+    "utility_support_rate": 1.0,
+    "quality_score_mean": 0.9237,
+    "semantic_preservation_rate": 0.0289,
+    "semantic_validation_rate": 1.0,
+    "declared_semantic_validation_rate": 1.0
+  },
+  {
+    "table_role": "repo_utility_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "KGW",
+    "row_count": 54005,
+    "utility": 0.6476,
+    "raw_utility_strict": 0.1585,
+    "utility_status": "supported_nonzero",
+    "utility_support_rate": 1.0,
+    "quality_score_mean": 0.927,
+    "semantic_preservation_rate": 0.0157,
+    "semantic_validation_rate": 1.0,
+    "declared_semantic_validation_rate": 1.0
+  },
+  {
+    "table_role": "repo_utility_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "EWD",
+    "row_count": 54005,
+    "utility": 0.6467,
+    "raw_utility_strict": 0.1514,
+    "utility_status": "supported_nonzero",
+    "utility_support_rate": 1.0,
+    "quality_score_mean": 0.9273,
+    "semantic_preservation_rate": 0.0129,
+    "semantic_validation_rate": 1.0,
+    "declared_semantic_validation_rate": 1.0
+  },
+  {
+    "table_role": "repo_utility_factor_decomposition",
+    "aggregation_view": "suite_method_master_leaderboard",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "SWEET",
+    "row_count": 54005,
+    "utility": 0.6467,
+    "raw_utility_strict": 0.1536,
+    "utility_status": "supported_nonzero",
+    "utility_support_rate": 1.0,
+    "quality_score_mean": 0.9271,
+    "semantic_preservation_rate": 0.0132,
+    "semantic_validation_rate": 1.0,
+    "declared_semantic_validation_rate": 1.0
+  }
+]

@@ -1,0 +1,62 @@
+﻿[
+  {
+    "table_role": "paper_utility_robustness_summary",
+    "aggregation_view": "suite_method_utility_robustness_summary",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "KGW",
+    "origin": "upstream",
+    "utility": 0.6476,
+    "robustness": 0.4439,
+    "utility_robustness_drop": 0.2037,
+    "detection_separability": 0.6045,
+    "gate": 0.492,
+    "headline_core_score": 0.5062,
+    "generalization_status": "supported_nonzero",
+    "PostEditScore": 0.3498
+  },
+  {
+    "table_role": "paper_utility_robustness_summary",
+    "aggregation_view": "suite_method_utility_robustness_summary",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "STONE",
+    "origin": "upstream",
+    "utility": 0.6509,
+    "robustness": 0.3536,
+    "utility_robustness_drop": 0.2973,
+    "detection_separability": 0.5312,
+    "gate": 0.5266,
+    "headline_core_score": 0.5843,
+    "generalization_status": "supported_nonzero",
+    "PostEditScore": 0.3504
+  },
+  {
+    "table_role": "paper_utility_robustness_summary",
+    "aggregation_view": "suite_method_utility_robustness_summary",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "SWEET",
+    "origin": "upstream",
+    "utility": 0.6467,
+    "robustness": 0.3361,
+    "utility_robustness_drop": 0.3106,
+    "detection_separability": 0.722,
+    "gate": 0.4984,
+    "headline_core_score": 0.5904,
+    "generalization_status": "supported_nonzero",
+    "PostEditScore": 0.3827
+  },
+  {
+    "table_role": "paper_utility_robustness_summary",
+    "aggregation_view": "suite_method_utility_robustness_summary",
+    "score_semantics": "scorecard_recomputed_from_grouped_benchmark_rows",
+    "method": "EWD",
+    "origin": "upstream",
+    "utility": 0.6467,
+    "robustness": 0.2645,
+    "utility_robustness_drop": 0.3822,
+    "detection_separability": 0.7706,
+    "gate": 0.5,
+    "headline_core_score": 0.5687,
+    "generalization_status": "supported_nonzero",
+    "PostEditScore": 0.3761
+  }
+]

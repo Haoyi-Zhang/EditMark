@@ -1,0 +1,79 @@
+[
+  {
+    "active_release_size": 164,
+    "execution_languages": "python",
+    "execution_slice": "python",
+    "sampling_rule": "full retained",
+    "scored_in_aggregate": true,
+    "slug": "humaneval_plus",
+    "source": "HumanEval+",
+    "source_group": "public_humaneval_plus",
+    "source_type": "public"
+  },
+  {
+    "active_release_size": 378,
+    "execution_languages": "python",
+    "execution_slice": "python",
+    "sampling_rule": "full retained",
+    "scored_in_aggregate": true,
+    "slug": "mbpp_plus",
+    "source": "MBPP+",
+    "source_group": "public_mbpp_plus",
+    "source_type": "public"
+  },
+  {
+    "active_release_size": 200,
+    "execution_languages": "cpp,go,java,javascript,python",
+    "execution_slice": "python/cpp/java/javascript/go",
+    "sampling_rule": "deterministic five-language balanced slice",
+    "scored_in_aggregate": true,
+    "slug": "humaneval_x",
+    "source": "HumanEval-X (5-language balanced slice)",
+    "source_group": "public_humaneval_x",
+    "source_type": "public"
+  },
+  {
+    "active_release_size": 200,
+    "execution_languages": "cpp,go,java,javascript,python",
+    "execution_slice": "python/cpp/java/javascript/go",
+    "sampling_rule": "deterministic five-language balanced slice with smoke-overlay support",
+    "scored_in_aggregate": true,
+    "slug": "mbxp_5lang",
+    "source": "MBXP-5lang (5-language balanced slice)",
+    "source_group": "public_mbxp_5lang",
+    "source_type": "public"
+  },
+  {
+    "active_release_size": 240,
+    "execution_languages": "cpp,go,java,javascript,python",
+    "execution_slice": "python/cpp/java/javascript/go",
+    "sampling_rule": "project-authored curated five-language family/category-balanced crafted release source",
+    "scored_in_aggregate": true,
+    "slug": "crafted_original",
+    "source": "Crafted Original",
+    "source_group": "crafted_original",
+    "source_type": "crafted"
+  },
+  {
+    "active_release_size": 240,
+    "execution_languages": "cpp,go,java,javascript,python",
+    "execution_slice": "python/cpp/java/javascript/go",
+    "sampling_rule": "project-authored curated five-language family/category-balanced crafted release source",
+    "scored_in_aggregate": true,
+    "slug": "crafted_translation",
+    "source": "Crafted Translation",
+    "source_group": "crafted_translation",
+    "source_type": "crafted"
+  },
+  {
+    "active_release_size": 240,
+    "execution_languages": "cpp,go,java,javascript,python",
+    "execution_slice": "python/cpp/java/javascript/go",
+    "sampling_rule": "project-authored curated five-language family/category-balanced crafted release source",
+    "scored_in_aggregate": true,
+    "slug": "crafted_stress",
+    "source": "Crafted Stress",
+    "source_group": "crafted_stress",
+    "source_type": "crafted"
+  }
+]

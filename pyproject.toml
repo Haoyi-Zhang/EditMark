@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "posteditbench"
+version = "0.1.0"
+description = "Anonymous artifact for evaluating post-edit provenance evidence in source-code watermarking"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+keywords = ["benchmark", "code watermarking", "robustness", "evaluation", "code generation", "provenance"]
+dependencies = [
+  "PyYAML>=6.0",
+  "click>=8.1",
+  "rich>=13.0",
+  "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.0",
+  "safetensors>=0.4",
+]
+remote = [
+  "transformers>=4.46,<5",
+  "safetensors>=0.4",
+  "sentencepiece>=0.2",
+  "Pillow>=10",
+  "scipy>=1.12",
+  "nltk>=3.9",
+]
+
+[project.scripts]
+posteditbench = "posteditbench.__main__:cli"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["posteditbench*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:typeguard"

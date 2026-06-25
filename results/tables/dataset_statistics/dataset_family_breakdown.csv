@@ -1,0 +1,25 @@
+analysis_view,scope,slug,dataset_label,source_type,template_family,template_family_label,record_count,family_count
+crafted_only,release,crafted_original,Crafted Original,crafted,api-style normalization,API-style normalization,40,48
+crafted_only,release,crafted_original,Crafted Original,crafted,parsing,parsing,40,48
+crafted_only,release,crafted_original,Crafted Original,crafted,arrays/lists,arrays/lists,30,48
+crafted_only,release,crafted_original,Crafted Original,crafted,dp/recursion,dp/recursion,30,48
+crafted_only,release,crafted_original,Crafted Original,crafted,graph/search,graph/search,30,48
+crafted_only,release,crafted_original,Crafted Original,crafted,math/bit ops,math/bit ops,30,48
+crafted_only,release,crafted_original,Crafted Original,crafted,stateful update,stateful update,30,48
+crafted_only,release,crafted_original,Crafted Original,crafted,maps/sets,maps/sets,10,48
+crafted_only,release,crafted_translation,Crafted Translation,crafted,api-style normalization,API-style normalization,60,48
+crafted_only,release,crafted_translation,Crafted Translation,crafted,arrays/lists,arrays/lists,40,48
+crafted_only,release,crafted_translation,Crafted Translation,crafted,maps/sets,maps/sets,40,48
+crafted_only,release,crafted_translation,Crafted Translation,crafted,parsing,parsing,40,48
+crafted_only,release,crafted_translation,Crafted Translation,crafted,strings,strings,40,48
+crafted_only,release,crafted_translation,Crafted Translation,crafted,stateful update,stateful update,20,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,api-style normalization,API-style normalization,40,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,stateful update,stateful update,40,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,strings,strings,35,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,graph/search,graph/search,30,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,dp/recursion,dp/recursion,25,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,arrays/lists,arrays/lists,15,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,interval/greedy,interval/greedy,15,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,math/bit ops,math/bit ops,15,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,parsing,parsing,15,48
+crafted_only,release,crafted_stress,Crafted Stress,crafted,maps/sets,maps/sets,10,48

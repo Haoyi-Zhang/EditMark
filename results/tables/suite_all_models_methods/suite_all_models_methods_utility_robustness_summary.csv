@@ -1,0 +1,5 @@
+﻿PostEditScore,aggregation_view,detection_separability,gate,generalization_status,headline_core_score,method,origin,robustness,score_semantics,table_role,utility,utility_robustness_drop
+0.3498,suite_method_utility_robustness_summary,0.6045,0.492,supported_nonzero,0.5062,KGW,upstream,0.4439,scorecard_recomputed_from_grouped_benchmark_rows,paper_utility_robustness_summary,0.6476,0.2037
+0.3504,suite_method_utility_robustness_summary,0.5312,0.5266,supported_nonzero,0.5843,STONE,upstream,0.3536,scorecard_recomputed_from_grouped_benchmark_rows,paper_utility_robustness_summary,0.6509,0.2973
+0.3827,suite_method_utility_robustness_summary,0.722,0.4984,supported_nonzero,0.5904,SWEET,upstream,0.3361,scorecard_recomputed_from_grouped_benchmark_rows,paper_utility_robustness_summary,0.6467,0.3106
+0.3761,suite_method_utility_robustness_summary,0.7706,0.5,supported_nonzero,0.5687,EWD,upstream,0.2645,scorecard_recomputed_from_grouped_benchmark_rows,paper_utility_robustness_summary,0.6467,0.3822
