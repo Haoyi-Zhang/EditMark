@@ -4,6 +4,8 @@ This repository is the anonymous artifact companion for a double-anonymous softw
 
 The paper, supplement, and artifact are meant to be read together. The paper makes the central claim, the supplement exposes the additional evidence surface, and this repository lets a reviewer check the frozen summaries and navigation path behind both. The repository binds each reported claim to a reviewer-checkable evidence release rather than to an undocumented rerun environment.
 
+For the shortest reviewer path, start with `REVIEWER_GUIDE.md`. It separates a three-minute integrity check, a fifteen-minute claim audit, and a deeper evidence browse, all without credentials or a fresh GPU execution.
+
 ## What the Artifact Supports
 
 The submitted paper asks when clean watermark detection can support provenance evidence after software edits that pass the same task-level correctness checks. The artifact exposes the evidence surface behind that question:
