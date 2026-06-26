@@ -289,7 +289,7 @@ def _ensure_git_checkout(spec: PublicBenchmarkSpec, *, cache_dir: Path, fetch: b
 
 
 def _download_bytes(url: str, *, timeout: float = 60.0) -> bytes:
-    request = urllib.request.Request(url, headers={"User-Agent": "codex"})
+    request = urllib.request.Request(url, headers={"User-Agent": "posteditbench-artifact"})
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return response.read()
