@@ -15,7 +15,7 @@ Expected signals:
 
 - `release_integrity=passed`;
 - `run_count=140` and `success_count=140`;
-- a detection-minus-robustness gap line reporting 0.3221 from rounded shipped tables, corresponding to the paper's unrounded 0.3220 headline value;
+- a detection-minus-robustness gap line reporting 0.3221 from rounded shipped tables, corresponding to the paper's unrounded 0.3220 headline value on the admitted post-edit surface;
 - a leave-one-out range of 0.3093 to 0.3327 over the fixed 20 method-by-generator slices.
 
 Then open `artifact/CLAIM_TO_EVIDENCE.md` and follow the detection-to-robustness row to the named tables and figures.
@@ -30,7 +30,7 @@ Use this path when checking whether the paper, supplement, and repository agree:
 4. Inspect `results/tables/suite_all_models_methods/` for method-level detection, retained evidence, controls, utility, support, and cost summaries.
 5. Inspect `results/tables/dataset_statistics/` for source admission and release-surface summaries.
 
-This path verifies the paper-level numerical claims and the evidence surface behind them. It is the intended artifact-evaluation path for anonymous review.
+This path verifies the paper-level numerical claims, including the support-conditioned retained-evidence surface behind them. It is the intended artifact-evaluation path for anonymous review.
 
 ## Sixty-Minute Evidence Browse
 

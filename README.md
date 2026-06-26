@@ -2,13 +2,13 @@
 
 This repository is the anonymous artifact companion for a double-anonymous software-engineering submission on source-code watermarking after test-passing software edits. It provides the frozen evidence release behind the paper: benchmark code, source slices, tracked summary tables, rendered result figures, and lightweight integrity checks. Optional rerun material is documented for completeness, while the primary review path is inspection of the shipped summaries used by the paper and supplement.
 
-The paper, supplement, and artifact are meant to be read together. The paper makes the central claim, the supplement exposes the additional evidence surface, and this repository lets a reviewer check the frozen summaries and navigation path behind both. The repository binds each reported claim to a reviewer-checkable evidence release rather than to an undocumented rerun environment.
+The paper, supplement, and artifact are meant to be read together. The paper makes the central claim about the evaluated open-source methods, the supplement exposes the additional evidence surface, and this repository lets a reviewer check the frozen summaries and navigation path behind both. The repository binds each reported claim to a reviewer-checkable evidence release rather than to an undocumented rerun environment.
 
 For the shortest reviewer path, start with `REVIEWER_GUIDE.md`. It separates a three-minute integrity check, a fifteen-minute claim audit, and a deeper evidence browse, all without credentials or a fresh GPU execution.
 
 ## What the Artifact Supports
 
-The submitted paper asks when clean watermark detection can support provenance evidence after software edits that pass the same task-level correctness checks. The artifact exposes the evidence surface behind that question:
+The submitted paper asks when clean watermark detection can support provenance evidence after software edits that pass the same task-level correctness checks. The artifact exposes the evidence surface behind that question for the evaluated open-source comparison surface:
 
 - four runnable watermarking baselines under a shared benchmark harness, selected because each exposes generation, a declared detector and threshold, negative controls, transformed-code validation, support, and cost under one auditable protocol;
 - seven source groups and five model settings in the canonical comparison surface;
@@ -16,7 +16,7 @@ The submitted paper asks when clean watermark detection can support provenance e
 - transformation-conditioned evidence for detection, retained robustness, utility, control behavior, support, and efficiency, including ordinary workflow edits and stress probes such as block shuffling, control-flow flattening, and budgeted adaptive edits;
 - reviewer-safe scripts for browsing and checking the shipped evidence without credentials.
 
-The main claim is a post-edit provenance claim. Clean detection is useful, but provenance decisions are made on software after ordinary edits, validation, and review. A post-edit claim therefore states the edit scope, test-admission rule, support surface, false-positive behavior, and cost needed to interpret the detector output. The reported detection and retained-evidence values are unit-scale summaries formed from each method's declared detector and threshold. The headline gap is an engineering proxy break: it measures how much evidence is lost when the object under review is the edited program rather than the fresh generation. The test-admission rule records task-exposed behavior after software change, which is the object available to downstream reviewers.
+The main claim is a post-edit provenance claim. Clean detection is useful, but provenance decisions are made on software after ordinary edits, validation, and review. A post-edit claim therefore states the edit scope, test-admission rule, admitted support surface, false-positive behavior, and cost needed to interpret the detector output. The reported detection and retained-evidence values are unit-scale summaries formed from each method's declared detector and threshold. The headline gap is an engineering proxy break: it measures how much evidence is lost when the object under review is the edited program rather than the fresh generation. The test-admission rule records task-exposed behavior after software change, which is the object available to downstream reviewers; it is not presented as full semantic equivalence.
 
 The repository is also organized as a reusable comparison protocol: a new method is comparable only when it exposes generation, a declared detector and threshold, transformed-code validation, controls, utility, cost, and support under the same reviewer-facing summaries.
 
