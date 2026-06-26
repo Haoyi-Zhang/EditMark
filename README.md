@@ -1,8 +1,8 @@
 # Post-Edit Provenance Artifact
 
-This repository is the anonymous artifact companion for a double-anonymous software-engineering submission on source-code watermarking after test-passing software edits. It provides the frozen evidence surface behind the paper: benchmark code, source slices, tracked summary tables, rendered result figures, and lightweight integrity checks. Optional rerun material is documented for completeness, but the default review path is inspection of the shipped summaries used by the paper and supplement.
+This repository is the anonymous artifact companion for a double-anonymous software-engineering submission on source-code watermarking after test-passing software edits. It provides the frozen evidence release behind the paper: benchmark code, source slices, tracked summary tables, rendered result figures, and lightweight integrity checks. Optional rerun material is documented for completeness, while the primary review path is inspection of the shipped summaries used by the paper and supplement.
 
-The paper, supplement, and artifact are meant to be read together. The paper makes the central claim, the supplement exposes the additional evidence surface, and this repository lets a reviewer check the frozen summaries and navigation path behind both. The repository does not ask reviewers to trust a rerun that depends on private state; it exposes the static evidence surface used for the submitted claims.
+The paper, supplement, and artifact are meant to be read together. The paper makes the central claim, the supplement exposes the additional evidence surface, and this repository lets a reviewer check the frozen summaries and navigation path behind both. The repository binds each reported claim to a reviewer-checkable evidence release rather than to an undocumented rerun environment.
 
 ## What the Artifact Supports
 
@@ -11,10 +11,10 @@ The submitted paper asks when clean watermark detection can support provenance e
 - four runnable watermarking baselines under a shared benchmark harness, selected because each exposes generation, a declared detector and threshold, negative controls, transformed-code validation, support, and cost under one auditable protocol;
 - seven source groups and five model settings in the canonical comparison surface;
 - tracked summary exports for 140 completed configurations;
-- transformation-conditioned evidence for detection, retained robustness, utility, control behavior, support, and efficiency, including ordinary workflow edits and bounded stress probes such as block shuffling, control-flow flattening, and budgeted adaptive edits;
+- transformation-conditioned evidence for detection, retained robustness, utility, control behavior, support, and efficiency, including ordinary workflow edits and stress probes such as block shuffling, control-flow flattening, and budgeted adaptive edits;
 - reviewer-safe scripts for browsing and checking the shipped evidence without credentials.
 
-The main claim is intentionally bounded. Clean detection is useful, but it is not by itself an operational provenance claim. A post-edit claim must state the edit scope, test-admission rule, support boundary, false-positive behavior, and cost needed to interpret the detector output. The reported detection and retained-evidence values are unit-scale summaries formed from each method's declared detector and threshold, not deployment accuracy certificates. The headline gap is an engineering proxy failure: it measures how much evidence is lost when the object under review is the edited program rather than the fresh generation. The test-admission rule records task-exposed behavior; it is not a claim of line coverage, branch coverage, mutation adequacy, or full semantic equivalence.
+The main claim is a post-edit provenance claim. Clean detection is useful, but provenance decisions are made on software after ordinary edits, validation, and review. A post-edit claim therefore states the edit scope, test-admission rule, support surface, false-positive behavior, and cost needed to interpret the detector output. The reported detection and retained-evidence values are unit-scale summaries formed from each method's declared detector and threshold. The headline gap is an engineering proxy break: it measures how much evidence is lost when the object under review is the edited program rather than the fresh generation. The test-admission rule records task-exposed behavior after software change, which is the object available to downstream reviewers.
 
 The repository is also organized as a reusable evaluation contract: a new method is comparable only when it exposes generation, a declared detector and threshold, transformed-code validation, controls, utility, cost, and support under the same reviewer-facing summaries.
 
@@ -26,7 +26,7 @@ The repository is also organized as a reusable evaluation contract: a new method
 - `results/tables/`: materialized summary tables used by the manuscript and supplement.
 - `results/figures/`: rendered summary figures and their small sidecar data.
 - `scripts/`: reviewer browse and integrity checks plus maintained utility scripts.
-- `artifact/`: anonymous review notes, claim-to-evidence map, and boundary statement.
+- `artifact/`: anonymous review notes, claim-to-evidence map, and evidence-contract statement.
 - `third_party/`: upstream baseline provenance and redistribution notes.
 
 ## Reviewer Quick Start
@@ -51,9 +51,9 @@ For a fuller local browse, run:
 python scripts/reviewer_workflow.py browse
 ```
 
-The full rerun path is deliberately not the default artifact path. It requires pinned model snapshots, baseline upstream checkouts, a matching Linux GPU host, and substantially more time. Reviewers should treat the shipped tables and figures as the review surface unless they explicitly want to perform an optional fresh execution. The script `scripts/audit_anonymous_artifact.py` checks the release boundary for author cues, private infrastructure, credentials, paper build products, and other review-unsafe files.
+The shipped tables and figures are the primary review surface. A full rerun path is documented for readers who want fresh execution with pinned model snapshots, baseline upstream checkouts, a matching Linux GPU host, and substantially more time. The script `scripts/audit_anonymous_artifact.py` checks the release package for author cues, private infrastructure, credentials, paper build products, and other review-unsafe files.
 
-The browse command may report that the raw matrix index is not materialized. That is expected for this static review package; the shipped summary tables, figures, and claim map are the default evidence surface.
+The browse command may report that the raw matrix index is not materialized. That is expected for this frozen evidence release; the shipped summary tables, figures, and claim map are the primary evidence surface.
 
 To prepare a file archive for anonymous review, export only tracked release files:
 
@@ -67,12 +67,12 @@ The exporter writes a zip archive outside the repository root and refuses to inc
 
 The fastest way to audit the submission package is:
 
-1. Confirm the package boundary with `python scripts/verify_release_integrity.py`. This checks that the shipped release manifest, source slices, and summary surfaces match the recorded static artifact.
-2. Inspect `artifact/CLAIM_TO_EVIDENCE.md`. It maps the paper's main claims to concrete result tables, figures, and scripts, and records what each claim cannot support.
+1. Confirm the package integrity with `python scripts/verify_release_integrity.py`. This checks that the shipped release manifest, source slices, and summary surfaces match the recorded evidence release.
+2. Inspect `artifact/CLAIM_TO_EVIDENCE.md`. It maps the paper's main claims to concrete result tables, figures, and scripts, and records the evidence surface for each claim.
 3. Browse the frozen evidence with `python scripts/reviewer_workflow.py browse --summary-only`. This shows the comparison surface without credentials or a fresh execution.
 4. When reading the supplement, use the repository tables as the check surface: source admission is under `results/tables/dataset_statistics/`, method and transformation evidence is under `results/tables/suite_all_models_methods/`, and rendered summaries are under `results/figures/`.
 
-This order mirrors the paper's logic: source admission first, then clean detection, then post-edit retained evidence, then controls, support, utility, and cost. A result that cannot be followed through this chain should not be read as a central claim.
+This order mirrors the paper's logic: source admission first, then clean detection, then post-edit retained evidence, then controls, support, utility, and cost. Central claims are the ones that can be followed through this chain.
 
 ## Anonymity Boundary
 
@@ -82,6 +82,6 @@ For submission, the repository must be hosted through an anonymous review URL or
 
 ## Reading the Result
 
-The artifact should be read as a post-edit evidence surface, not as a single leaderboard. If a method has high clean detection but weak retained evidence after test-passing edits, the artifact narrows the provenance claim rather than declaring the method useless. If a method retains evidence but has visible cost or control limitations, the supported claim is similarly conditional.
+The artifact should be read as a post-edit evidence surface, not as a single leaderboard. If a method has high clean detection but weak retained evidence after test-passing edits, the artifact changes the provenance sentence from fresh-output detection to workflow-conditioned evidence. If a method retains evidence but has visible cost or control conditions, those dimensions become part of the operational provenance claim.
 
-This is the distinction the paper asks reviewers to judge: the contribution is a workflow-constrained post-edit robustness reporting protocol for provenance use, instantiated as a benchmark showing where fresh-output detector evidence fails as provenance evidence under test-passing software edits. Robustness, controls, support, utility, and cost are the dimensions that make that failure auditable.
+This is the distinction the paper asks reviewers to judge: the contribution is a workflow-conditioned post-edit robustness reporting protocol for provenance use, instantiated as a benchmark showing where fresh-output detector evidence breaks as provenance evidence under test-passing software edits. Robustness, controls, support, utility, and cost are the dimensions that make that break auditable.

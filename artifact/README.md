@@ -22,7 +22,7 @@ The artifact is aligned with the submitted paper and supplement as follows. The 
 
 ## Review Interpretation
 
-The artifact checks whether the paper's claims follow from the frozen comparison surface. It does not certify deployment security, provider-general coverage, or robustness against arbitrary adaptive rewriting. The supported question is narrower and reviewable: whether clean detector-and-threshold evidence remains admissible as provenance evidence after edits that pass the same task-level correctness checks, under visible support, control, utility, and efficiency boundaries.
+The artifact checks whether the paper's claims follow from the frozen comparison surface. Its supported question is reviewable and workflow-conditioned: whether clean detector-and-threshold evidence remains admissible as provenance evidence after edits that pass the same task-level correctness checks, under visible support, control, utility, and efficiency conditions.
 
 The artifact should therefore be read as evidence for the reporting protocol, not as a hidden extension of the paper. A reviewer can inspect whether each post-edit provenance claim names its edit scope, admission rule, controls, support, utility, and cost before accepting detector output as origin evidence.
 
