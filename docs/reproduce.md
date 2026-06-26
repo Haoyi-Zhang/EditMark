@@ -10,10 +10,10 @@ Level 1 is sufficient for checking the paper-level numerical claims. It is not a
 
 ## Level 2: Summary Regeneration
 
-Regenerate figures and tables only after restoring the raw matrix tree from an archival raw-run store. Do not write regenerated outputs over the shipped canonical summary paths unless the restored matrix identity matches the canonical manifest.
+Regenerate figures and tables only when working from a matrix tree whose identity matches the canonical manifest. Do not write regenerated outputs over the shipped canonical summary paths unless that identity check passes.
 
-The default anonymous package intentionally omits the raw matrix index because the review package is the frozen summary evidence used by the paper and supplement. Regeneration is therefore a separate audit path, not the baseline review path.
+The submitted package is organized around the materialized evidence layer used by the paper and supplement: summary tables, rendered figures, sidecar statistics, integrity metadata, and claim-to-evidence mappings. Regeneration is a separate audit path for rebuilding those surfaces from a verified raw matrix tree.
 
 ## Level 3: Fresh Rerun
 
-A fresh full rerun requires a Linux GPU host, pinned model snapshots, upstream baseline availability, and explicit reviewer intent. It is outside the default anonymous review path.
+A fresh full rerun is the deepest reproduction tier. It requires a Linux GPU host, pinned model snapshots, upstream baseline availability, and explicit reviewer intent.

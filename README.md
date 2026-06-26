@@ -53,9 +53,9 @@ For a fuller local browse, run:
 python scripts/reviewer_workflow.py browse
 ```
 
-The shipped tables and figures are the primary review surface. A full rerun path is documented for readers who want fresh execution with pinned model snapshots, baseline upstream checkouts, a matching Linux GPU host, and substantially more time. The script `scripts/audit_anonymous_artifact.py` checks the release package for author cues, private infrastructure, credentials, paper build products, and other review-unsafe files.
+The shipped tables and figures are the primary review surface. They are the paper's frozen evidence layer: the layer a reviewer can inspect quickly and deterministically. A separate full-execution tier is documented for readers who want to rebuild the same surface from pinned model snapshots, baseline upstream checkouts, and a matching Linux GPU host. The script `scripts/audit_anonymous_artifact.py` checks the release package for author cues, private infrastructure, credentials, paper build products, and other review-unsafe files.
 
-The browse command may report that the raw matrix index is not materialized. That is expected for this frozen evidence release; the shipped summary tables, figures, and claim map are the primary evidence surface.
+The browse command starts from the materialized evidence layer used by the paper: summary tables, rendered figures, sidecar statistics, and the claim map. Raw-matrix rebuilding is a deeper reproduction tier, not the entry point for reviewing the submitted claims.
 
 To prepare a file archive for anonymous review, export only tracked release files:
 

@@ -47,11 +47,11 @@ Then compare the repository surfaces with the supplement:
 - rendered summaries: `results/figures/suite_all_models_methods/`;
 - claim map and evidence protocol: `artifact/`.
 
-The raw matrix index may be reported as not materialized. That is expected for this anonymous frozen evidence release. The submitted review object is the paper, supplement, and shipped summary evidence, with optional full regeneration documented separately for readers who explicitly want a fresh execution environment.
+The browse path starts from the materialized evidence layer used by the paper: summary tables, rendered figures, sidecar statistics, and claim mappings. Raw-matrix rebuilding is a deeper reproduction tier for readers who explicitly want a fresh execution environment; it is not needed for checking the submitted paper-level claims.
 
 ## What This Artifact Is Not
 
-This package is not a hidden appendix and is not required for understanding the paper's central argument. It is the audit surface behind the submitted claims. A full raw-matrix rerun requires pinned model snapshots, upstream baseline availability, a Linux GPU host, and substantially more time; it is outside the default anonymous review path.
+This package is not a hidden appendix and is not required for understanding the paper's central argument. It is the audit surface behind the submitted claims. A full raw-matrix rebuild is a separate reproduction tier that requires pinned model snapshots, upstream baseline availability, a Linux GPU host, and substantially more time.
 
 ## Anonymity Boundary
 

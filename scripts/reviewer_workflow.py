@@ -341,10 +341,10 @@ def _status_label(path: Path, *, expect_rerun_backed: bool = False) -> str:
             ]
             readme_only_entries = {"README.md", "README.txt", "README"}
             if not materialized_entries or set(materialized_entries).issubset(readme_only_entries):
-                return "not materialized"
+                return "separate reproduction tier"
         return "present"
     if expect_rerun_backed:
-        return "not materialized"
+        return "separate reproduction tier"
     return "missing"
 
 
@@ -403,7 +403,7 @@ def _gap_check_line(table_dir: Path) -> str | None:
 def _print_browse(summary_only: bool, matrix_index: Path, figure_dir: Path, table_dir: Path) -> None:
     revision_label, model_revisions = _browse_model_revision_surface(matrix_index)
     print("Post-edit provenance reviewer browse path", flush=True)
-    print(f"Matrix index: {matrix_index} [{_status_label(matrix_index, expect_rerun_backed=True)}]", flush=True)
+    print(f"Matrix rebuild tier: {matrix_index} [{_status_label(matrix_index, expect_rerun_backed=True)}]", flush=True)
     print(f"Figures: {figure_dir} [{_status_label(figure_dir, expect_rerun_backed=True)}]", flush=True)
     print(f"Tables: {table_dir} [{_status_label(table_dir, expect_rerun_backed=True)}]", flush=True)
     gap_line = _gap_check_line(table_dir)
