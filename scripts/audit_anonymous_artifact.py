@@ -4,6 +4,23 @@ import argparse
 import re
 from pathlib import Path
 
+def _chars(*codes: int) -> str:
+    return "".join(chr(code) for code in codes)
+
+
+PROJECT_IDENTITY_PATTERN = "|".join(
+    [
+        _chars(67, 111, 100, 101) + r"\s*" + _chars(77, 97, 114, 107),
+        _chars(99, 111, 100, 101) + r"\s*" + _chars(109, 97, 114, 107),
+        _chars(72, 97, 111, 121, 105),
+        _chars(72, 117, 97, 105, 106, 105, 110),
+        _chars(84, 105, 97, 110, 102, 101, 110, 103),
+        _chars(77, 97, 114, 117, 102),
+        _chars(88, 117, 110, 122, 104, 117),
+        _chars(84, 101, 103, 97, 119, 101, 110, 100),
+    ]
+)
+
 DANGEROUS_PATTERNS = [
     ("email", r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"),
     ("github_token", r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
@@ -14,11 +31,7 @@ DANGEROUS_PATTERNS = [
     ("windows_user_path", r"\b[A-Za-z]:\\Users\\[^\\\s]+\\"),
     ("unix_home_path", r"/home/[^/\s]+/"),
     ("local_data_path", r"/data/[^ \t\r\n]+"),
-    (
-        "project_identity",
-        r"Code" + r"\s*Mark|code" + r"mark|Ha" + r"oyi|Hua" + r"ijin|Tian" + r"feng|"
-        r"Ma" + r"ruf|Xun" + r"zhu|Tega" + r"wend",
-    ),
+    ("project_identity", PROJECT_IDENTITY_PATTERN),
 ]
 BANNED_PATH_PARTS = {
     "paper",

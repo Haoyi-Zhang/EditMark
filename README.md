@@ -16,7 +16,7 @@ The submitted paper asks when clean watermark detection can support provenance e
 
 The main claim is a post-edit provenance claim. Clean detection is useful, but provenance decisions are made on software after ordinary edits, validation, and review. A post-edit claim therefore states the edit scope, test-admission rule, support surface, false-positive behavior, and cost needed to interpret the detector output. The reported detection and retained-evidence values are unit-scale summaries formed from each method's declared detector and threshold. The headline gap is an engineering proxy break: it measures how much evidence is lost when the object under review is the edited program rather than the fresh generation. The test-admission rule records task-exposed behavior after software change, which is the object available to downstream reviewers.
 
-The repository is also organized as a reusable evaluation contract: a new method is comparable only when it exposes generation, a declared detector and threshold, transformed-code validation, controls, utility, cost, and support under the same reviewer-facing summaries.
+The repository is also organized as a reusable comparison protocol: a new method is comparable only when it exposes generation, a declared detector and threshold, transformed-code validation, controls, utility, cost, and support under the same reviewer-facing summaries.
 
 ## Repository Layout
 
@@ -26,7 +26,7 @@ The repository is also organized as a reusable evaluation contract: a new method
 - `results/tables/`: materialized summary tables used by the manuscript and supplement.
 - `results/figures/`: rendered summary figures and their small sidecar data.
 - `scripts/`: reviewer browse and integrity checks plus maintained utility scripts.
-- `artifact/`: anonymous review notes, claim-to-evidence map, and evidence-contract statement.
+- `artifact/`: anonymous review notes, claim-to-evidence map, and evidence-protocol statement.
 - `third_party/`: upstream baseline provenance and redistribution notes.
 
 ## Reviewer Quick Start
@@ -78,7 +78,7 @@ This order mirrors the paper's logic: source admission first, then clean detecti
 
 This repository is prepared for double-anonymous review. It omits author names, affiliations, email addresses, acknowledgments, public archival links that identify the authors, private server information, API credentials, model caches, raw matrix archives, and paper build artifacts. Public upstream baseline URLs are retained only when needed to identify third-party methods.
 
-For submission, the repository must be hosted through an anonymous review URL or an anonymous account, and any exported archive must exclude `.git` metadata. Git remotes, fetch logs, commit identities, bytecode caches, and hosting owners are outside the reviewer-facing evidence contract; if they identify the authors, the package should be considered not submission-ready even when the working tree itself is anonymized. Use `scripts/export_anonymous_review_package.py` for a tracked-only archive rather than compressing the working directory by hand.
+For submission, the repository must be hosted through an anonymous review URL or an anonymous account, and any exported archive must exclude `.git` metadata. Git remotes, fetch logs, commit identities, bytecode caches, and hosting owners are outside the reviewer-facing archive; if they identify the authors, the package should be considered not submission-ready even when the working tree itself is anonymized. Use `scripts/export_anonymous_review_package.py` for a tracked-only archive rather than compressing the working directory by hand.
 
 ## Reading the Result
 

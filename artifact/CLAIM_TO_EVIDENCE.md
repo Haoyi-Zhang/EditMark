@@ -10,7 +10,7 @@ This file is the artifact-side reading guide for the submitted paper and supplem
 - Support, control, and claim-reading evidence is bound to `results/tables/suite_all_models_methods/gate_decomposition.*` and `robustness_factor_decomposition.*`.
 - Figures under `results/figures/` are reviewer-facing summaries of those tables, not a separate result source.
 
-The four evaluated baselines form the reproducible open comparison surface. They were retained because each exposes the pieces needed for a common post-edit provenance test: generation, a declared detector and threshold, transformed-code validation, negative controls, support, and cost. This shared contract lets the paper test the central proxy question directly: whether clean detector evidence remains admissible after test-passing software edits.
+The four evaluated baselines form the reproducible open comparison surface. They were retained because each exposes the pieces needed for a common post-edit provenance test: generation, a declared detector and threshold, transformed-code validation, negative controls, support, and cost. This shared protocol lets the paper test the central proxy question directly: whether clean detector evidence remains admissible after test-passing software edits.
 
 | Paper-level claim | Reviewer question | Artifact evidence | Reading rule |
 | --- | --- | --- | --- |

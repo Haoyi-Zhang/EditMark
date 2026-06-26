@@ -9,13 +9,13 @@ The release layer combines four public executable benchmark slices with three cr
 - public programming-task slices with executable task-level checks;
 - multilingual public slices where validation can be run through the configured language backend;
 - crafted original tasks designed to cover algorithmic, data-structure, state-machine, parsing, and simulation behavior;
-- crafted translation and stress families used to test whether the same evidence contract remains interpretable across source variation.
+- crafted translation and stress families used to test whether the same evidence protocol remains interpretable across source variation.
 
 Together these groups form the comparison surface described in the paper: seven source groups, five model settings, four runnable watermarking baselines, and 140 completed canonical configurations.
 
 ## Admission Boundary
 
-A record enters the release surface only when it has a normalized task statement, a target language, an executable validation route, and a task-level correctness check. The release does not claim full semantic equivalence, line coverage, branch coverage, or mutation adequacy. It records the task-exposed behavior available to the benchmark.
+A record enters the release surface only when it has a normalized task statement, a target language, an executable validation route, and a task-level correctness check. The release records task-exposed behavior after software change and keeps stronger equivalence or coverage analyses outside the retained-evidence estimate rather than mixing them into the provenance score.
 
 ## Where To Inspect
 
