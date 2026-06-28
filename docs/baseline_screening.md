@@ -1,6 +1,6 @@
 # Baseline Screening Notes
 
-The artifact includes four runnable watermarking baselines because each one exposes the minimum contract needed for the paper's comparison: generation, a declared detector or rule, a threshold or decision rule, negative controls, transformation-time validation, support accounting, and cost accounting under the same harness.
+The artifact includes four open, locally auditable watermarking families because each one exposes the minimum contract needed for the paper's comparison: generation, a declared detector or rule, a threshold or decision rule, negative controls, transformation-time validation, support accounting, and cost accounting under the same harness.
 
 ## Inclusion Criteria
 
@@ -22,4 +22,4 @@ The `third_party/` manifests record upstream URL, pinned commit, source subpath,
 
 ## Interpretation
 
-The four included baselines support a completed-surface claim: clean detection is not automatically exchangeable with post-edit provenance evidence on this reproducible comparison surface. The artifact does not claim population coverage over every watermarking family, future method, closed provider detector, or deployment environment.
+The four included auditable families support a completed-surface claim: clean detection is not automatically exchangeable with post-edit provenance evidence on this reproducible comparison surface. The artifact does not claim population coverage over every watermarking family, future method, closed provider detector, or deployment environment.

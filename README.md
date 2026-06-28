@@ -8,9 +8,9 @@ For the shortest reviewer path, start with `REVIEWER_GUIDE.md`. It separates a t
 
 ## What the Artifact Supports
 
-The submitted paper asks when clean watermark detection can support provenance evidence after software edits that pass the same task-level correctness checks. The artifact exposes the evidence surface behind that question for the evaluated open-source comparison surface:
+The submitted paper asks when clean watermark detection can support provenance evidence after software edits that pass the same task-level correctness checks. The artifact exposes the evidence surface behind that question for the evaluated open, locally auditable comparison surface:
 
-- four runnable watermarking baselines under a shared benchmark harness, selected because each exposes generation, a declared detector and threshold, negative controls, transformed-code validation, support, and cost under one auditable protocol;
+- four open runnable watermarking families under a shared benchmark harness, selected because each exposes generation, a declared detector and threshold, negative controls, transformed-code validation, support, and cost under one auditable protocol;
 - seven source groups and five model settings in the canonical comparison surface;
 - tracked summary exports for 140 completed configurations;
 - transformation-conditioned evidence for detection, retained robustness, utility, control behavior, support, and efficiency, including ordinary workflow edits and stress probes such as block shuffling, control-flow flattening, and budgeted adaptive edits;
