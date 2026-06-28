@@ -1,0 +1,43 @@
+{
+  "record": {
+    "baseline_family": "string",
+    "baseline_origin": "string",
+    "baseline_upstream_commit": "string",
+    "evaluation_track": "string",
+    "attack_outcome_score": "number"
+  },
+  "summary": {
+    "by_baseline_family": "object",
+    "by_evaluation_track": "object",
+    "baseline_families": "array",
+    "baseline_origins": "array",
+    "baseline_upstream_commits": "array",
+    "evaluation_tracks": "array",
+    "paper_primary_track": "string",
+    "paper_track_ready": "boolean",
+    "watermarked_functional_metrics": "object",
+    "runtime_validation_basis": "string",
+    "runtime_validation_annotations_available": "boolean",
+    "clean_reference_compile_rate": "number|null",
+    "clean_reference_pass_rate": "number|null",
+    "mean_attack_outcome_score": "number"
+  },
+  "scorecard": {
+    "PostEditScore": "number",
+    "headline_core_score": "number",
+    "generalization": "number|null",
+    "headline_generalization": "number",
+    "generalization_status": "string",
+    "raw_robustness_strict": "number|null",
+    "robustness_support_rate": "number",
+    "stress_robustness": "number|null",
+    "raw_utility_strict": "number|null",
+    "utility_support_rate": "number",
+    "raw_generalization_strict": "number|null",
+    "raw_core_score_strict": "number",
+    "raw_composite_strict": "number"
+  },
+  "scorecard_contract": {
+    "headline_formula": "PostEditScore = gate * geometric_mean(headline_core_score, headline_generalization)"
+  }
+}
