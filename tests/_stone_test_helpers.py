@@ -58,9 +58,9 @@ def _git(repo: Path, *args: str, env: dict[str, str] | None = None) -> str:
     run_env.update(
         {
             "GIT_AUTHOR_NAME": "PostEditBench",
-            "GIT_AUTHOR_EMAIL": "posteditbench@example.com",
+            "GIT_AUTHOR_EMAIL": "posteditbench@example.invalid",
             "GIT_COMMITTER_NAME": "PostEditBench",
-            "GIT_COMMITTER_EMAIL": "posteditbench@example.com",
+            "GIT_COMMITTER_EMAIL": "posteditbench@example.invalid",
         }
     )
     if env is not None:
@@ -96,7 +96,7 @@ def create_stone_checkout(
     checkout.mkdir(parents=True, exist_ok=True)
     _git(checkout, "init")
     _git(checkout, "config", "user.name", "PostEditBench")
-    _git(checkout, "config", "user.email", "posteditbench@example.com")
+    _git(checkout, "config", "user.email", "posteditbench@example.invalid")
     _git(checkout, "config", "core.fileMode", "false")
 
     stone_root = checkout / "stone_implementation"
@@ -162,7 +162,7 @@ def create_runtime_checkout(
     checkout.mkdir(parents=True, exist_ok=True)
     _git(checkout, "init")
     _git(checkout, "config", "user.name", "PostEditBench")
-    _git(checkout, "config", "user.email", "posteditbench@example.com")
+    _git(checkout, "config", "user.email", "posteditbench@example.invalid")
     _git(checkout, "config", "core.fileMode", "false")
 
     if method == "sweet_runtime":

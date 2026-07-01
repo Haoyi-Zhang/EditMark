@@ -15,7 +15,7 @@ Expected signals:
 
 - `release_integrity=passed`;
 - `run_count=140` and `success_count=140`;
-- a detection-minus-robustness gap line reporting 0.3221 from rounded shipped tables, corresponding to the paper's unrounded 0.3220 headline value on the admitted post-edit surface;
+- a detection-minus-robustness gap line reporting 0.3221 from rounded shipped tables, corresponding to the paper's unrounded 0.3220 headline value on the admitted post-edit surface and its descriptive bootstrap range of 0.2619--0.3836;
 - a leave-one-out range of 0.3093 to 0.3327 over the fixed 20 method-by-generator slices.
 
 Then open `artifact/CLAIM_TO_EVIDENCE.md` and follow the detection-to-robustness row to the named tables and figures.

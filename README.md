@@ -44,7 +44,7 @@ python scripts/reviewer_workflow.py browse --summary-only
 For a three-minute claim check, use this path:
 
 1. Run `python scripts/verify_release_integrity.py` and confirm `release_integrity=passed`.
-2. Run `python scripts/reviewer_workflow.py browse --summary-only` and check the printed gap line: the rounded 20-slice comparison surface gives a mean detection-minus-robustness gap of 0.3221, tracing the paper's unrounded reported gap of 0.3220. Dropping any one method-by-generator slice keeps the mean gap between 0.3093 and 0.3327; slice counts are descriptive support, not separate significance tests. The reviewer-facing check file is `artifact/headline_gap_statistics.*`.
+2. Run `python scripts/reviewer_workflow.py browse --summary-only` and check the printed gap line: the rounded 20-slice comparison surface gives a mean detection-minus-robustness gap of 0.3221, tracing the paper's unrounded reported gap of 0.3220 and descriptive bootstrap range of 0.2619--0.3836. Dropping any one method-by-generator slice keeps the mean gap between 0.3093 and 0.3327; slice counts are descriptive support, not separate significance tests. The reviewer-facing check file is `artifact/headline_gap_statistics.*`.
 3. Open `artifact/CLAIM_TO_EVIDENCE.md` and follow the row for the detection-to-robustness gap to the named summary tables and figures.
 
 For a fuller local browse, run:

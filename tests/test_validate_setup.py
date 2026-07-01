@@ -96,7 +96,7 @@ def test_benchmark_content_scan_flags_non_public_email(tmp_path):
     row = {
         "task_id": "fixture-1",
         "language": "python",
-        "prompt": "Contact the maintainer at leak@example.edu for help.",
+        "prompt": "Contact the maintainer at leak@example.invalid for help.",
         "reference_solution": "def solve():\n    return 1\n",
     }
     benchmark_path.write_text(json.dumps(row) + "\n", encoding="utf-8")

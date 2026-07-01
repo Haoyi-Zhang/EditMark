@@ -7,7 +7,7 @@ from posteditbench.public_benchmarks import PublicBenchmarkSpec, normalize_publi
 
 
 def test_release_path_helpers_redact_coordination_paths() -> None:
-    root = Path(r"C:\repo\PostEditBench")
+    root = Path("R:/review/artifact/PostEditBench")
     source = root / ".coordination" / "external" / "mxeval" / "data" / "mbxp" / "mbcpp_release_v1.2.jsonl"
 
     assert source_relative_to(root, source) == "mbcpp_release_v1.2.jsonl"
@@ -39,14 +39,14 @@ def test_release_path_helpers_redact_coordination_paths() -> None:
 
 
 def test_release_path_helpers_redact_public_cache_paths() -> None:
-    root = Path(r"C:\repo\PostEditBench")
+    root = Path("R:/review/artifact/PostEditBench")
     source = root / "data" / "public" / "_cache" / "humaneval_plus.source.jsonl.gz"
 
     assert source_relative_to(root, source) == "humaneval_plus.source.jsonl.gz"
 
 
 def test_release_path_helpers_redact_public_cache_repo_paths() -> None:
-    root = Path(r"C:\repo\PostEditBench")
+    root = Path("R:/review/artifact/PostEditBench")
     source = (
         root
         / "data"

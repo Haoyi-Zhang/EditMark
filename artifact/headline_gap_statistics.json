@@ -2,7 +2,8 @@
   "artifact_role": "headline_detection_to_robustness_gap_check",
   "comparison_surface": "20 method-by-generator slices",
   "paper_reported_gap": 0.3220,
-  "paper_reported_interval": null,
+  "paper_reported_interval": [0.2619, 0.3836],
+  "paper_reported_interval_type": "descriptive bootstrap range over the frozen paired workflow slices",
   "rounded_table_recomputed_gap": 0.3221,
   "rounded_slice_gap_min": 0.1223,
   "rounded_slice_gap_max": 0.5656,
@@ -10,6 +11,6 @@
   "leave_one_out_mean_gap_min": 0.3093,
   "leave_one_out_mean_gap_max": 0.3327,
   "rounded_table_note": "The CSV records four-decimal values exported in the anonymous static tables. Recomputing from these rounded rows gives 0.3221; the paper reports 0.3220 from the frozen unrounded analysis.",
-  "resampling_note": "The submitted paper treats leave-one-out recomputation as a stability diagnostic. It does not report a population confidence interval because the comparison surface is fixed and repeats methods across generator settings.",
+  "resampling_note": "The submitted paper reports a descriptive bootstrap range of 0.2619--0.3836 and treats leave-one-out recomputation as a stability diagnostic. These summaries describe the fixed comparison surface; they are not population confidence intervals over all watermarking methods or providers.",
   "interpretation": "The statistic is the mean clean-detection minus retained-robustness gap on the completed comparison surface. It is not a population prevalence estimate over all watermarking methods or providers."
 }

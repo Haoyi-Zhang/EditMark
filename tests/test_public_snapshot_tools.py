@@ -78,7 +78,7 @@ def test_export_publish_repo_validates_required_public_assets(monkeypatch, tmp_p
 def test_export_publish_repo_identity_scan_rejects_leaked_metadata(monkeypatch, tmp_path: Path) -> None:
     root = tmp_path / "publish"
     root.mkdir(parents=True, exist_ok=True)
-    (root / "README.md").write_text("contact author@example.com\n", encoding="utf-8")
+    (root / "README.md").write_text("contact author@example.invalid\n", encoding="utf-8")
 
     with pytest.raises(SystemExit, match="identity-marker findings"):
         export_publish_repo._validate_public_snapshot_identity_markers(root)
@@ -88,7 +88,7 @@ def test_export_publish_repo_identity_scan_skips_test_fixtures(monkeypatch, tmp_
     root = tmp_path / "publish"
     tests_dir = root / "tests"
     tests_dir.mkdir(parents=True, exist_ok=True)
-    (tests_dir / "fixture_test.py").write_text("CONTACT = 'author@example.com'\n", encoding="utf-8")
+    (tests_dir / "fixture_test.py").write_text("CONTACT = 'author@example.invalid'\n", encoding="utf-8")
 
     export_publish_repo._validate_public_snapshot_identity_markers(root)
 
