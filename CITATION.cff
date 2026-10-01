@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying paper when using the evidence contract or software."
+title: "EditMark: Machine-Checkable Evidence Contracts for Evaluating Code Watermarks After Software Edits"
+type: software
+authors:
+  - family-names: Zhang
+    given-names: Haoyi
+    email: hyeliozhang@gmail.com
+    affiliation: Xi'an Jiaotong-Liverpool University
+  - family-names: Ran
+    given-names: Huaijin
+    email: huaijin003@e.ntu.edu.sg
+    affiliation: Nanyang Technological University
+  - family-names: Tang
+    given-names: Xunzhu
+    email: realdanieltang@gmail.com
+    affiliation: University of Luxembourg
+repository-code: "https://github.com/Haoyi-Zhang/CodeMarkBench"
+license: MIT

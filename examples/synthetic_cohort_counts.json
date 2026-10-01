@@ -1,0 +1,28 @@
+{
+  "schema_version": "editmark-cohort-counts",
+  "population": "watermarked_positive",
+  "evidence_kind": "synthetic_test",
+  "analysis_contract": "same-rule-changed-pairs",
+  "cohort_sha256": "cf5a3aed5cdaeda3e0b275368b2bc453c9234d6e20c4b87c155de03d2ae09f60",
+  "stratum": {
+    "experiment_id": "SYNTHETIC",
+    "method": "toy",
+    "model": "toy",
+    "source_group": "toy",
+    "language": "python",
+    "edit": "format",
+    "variant_id": "v0"
+  },
+  "decision_rule": {
+    "rule_id": "synthetic-rule",
+    "threshold": 0.5,
+    "comparator": "ge"
+  },
+  "counts": {
+    "n": 5,
+    "before_positive": 4,
+    "after_positive": 2
+  },
+  "attempted_pairs": 5,
+  "first_exclusion_counts": {}
+}

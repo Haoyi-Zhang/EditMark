@@ -1,7 +1,13 @@
-# Result Interpretation
+# Result interpretation
 
-The result surface separates detector evidence from provenance evidence. A clean detector score says that a watermark signal is visible before software change. A post-edit provenance claim additionally requires retained evidence after test-passing edits, support, negative controls, utility, and cost.
+Use the following discipline when reading included aggregate tables:
 
-The tables should therefore be read component-wise. A method can be useful under one edit family and weak under another. A method can retain evidence but still carry a cost or false-positive boundary. The artifact is meant to prevent those distinctions from being collapsed into a single ranking.
+- keep the release inventory, configured population, and downstream aggregation populations separate;
+- read pass-rate ratios as ratios, not absolute probabilities;
+- read support as recorded applicability, not proof of source change or functional preservation;
+- read a displayed zero as a rounded aggregate, not proof of zero population risk;
+- keep clean controls separate from edited controls;
+- do not compare AUROC with a composite index as though they were the same outcome;
+- do not pool methods or detector rules without a defensible calibration model.
 
-The compact score is a secondary navigation index, not the paper's claim. The released score multiplies the gate by a geometric combination of headline core evidence and headline generalization after the scorecard's soft-floor component scaling. The core evidence itself combines detection, robustness, utility, control behavior, and efficiency. Use it as a navigation cue, then inspect the component tables before interpreting any provenance claim.
+The evidence-contract analyzer produces within-stratum descriptions by default and makes missingness explicit.

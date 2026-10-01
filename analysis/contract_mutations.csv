@@ -1,0 +1,17 @@
+id,stage,attack,expected_disposition,observed
+unknown-field,parse,Misspelled or undeclared record field,reject,EvidenceError
+hash-mismatch,parse,Source text disagrees with supplied digest,reject,EvidenceError
+change-contradiction,parse,Change flag contradicts source hashes,reject,EvidenceError
+check-contract-drift,eligibility,Before and after use different validators,exclude,1
+decision-rule-drift,eligibility,Before and after use different detector rules,exclude,1
+missing-decision,identification,Eligible pair has an unobserved edited decision,bound,0.0
+conflicting-duplicate,deduplication,Same identity carries incompatible outcomes,reject,EvidenceError
+rounded-count,count analysis,Rounded rate supplied where exact integer count is required,reject,EvidenceError
+broken-partition,count analysis,Attempted total does not equal admitted plus exclusions,reject,EvidenceError
+transition-conflict,count analysis,Joint table contradicts its marginals,reject,EvidenceError
+positive-only-fpr,certificate,Edited FPR requested from positive observations,not admissible,not_admissible
+positive-only-auroc,certificate,AUROC change requested without negative score distributions,not admissible,not_admissible
+posterior-provenance,certificate,Posterior origin probability requested without prevalence/calibration,not admissible,not_admissible
+certificate-hash-tamper,verification,Certificate content changed without updating its hash,reject,EvidenceError
+certificate-semantic-tamper,verification,Estimate changed and certificate hash recomputed,reject,EvidenceError
+existing-output,publication,A report path already exists,reject,FileExistsError

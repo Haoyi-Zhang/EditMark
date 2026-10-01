@@ -1,0 +1,242 @@
+{
+  "$comment": "Runtime checks enforce non-Boolean integer counts, finite rules, exact partitions, and marginal/joint compatibility. Cohort membership is a supplied assertion.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "analysis_contract": {
+      "const": "same-rule-changed-pairs"
+    },
+    "attempted_pairs": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "cohort_sha256": {
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "type": "string"
+    },
+    "counts": {
+      "additionalProperties": false,
+      "properties": {
+        "after_positive": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "before_positive": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "n": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "n",
+        "before_positive",
+        "after_positive"
+      ],
+      "type": "object"
+    },
+    "decision_rule": {
+      "additionalProperties": false,
+      "properties": {
+        "comparator": {
+          "enum": [
+            "ge",
+            "gt",
+            "le",
+            "lt"
+          ]
+        },
+        "rule_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "threshold": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "rule_id",
+        "threshold",
+        "comparator"
+      ],
+      "type": "object"
+    },
+    "evidence_kind": {
+      "enum": [
+        "saved_observation",
+        "synthetic_test"
+      ]
+    },
+    "first_exclusion_counts": {
+      "additionalProperties": false,
+      "properties": {
+        "change_unknown": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "check_contract_changed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "check_contract_unknown": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "decision_rule_changed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "decision_rule_unknown": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "edited_checks_failed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "edited_checks_unknown": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "edited_decision_unavailable": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "edited_validation_unavailable": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "original_checks_failed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "original_checks_unknown": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "original_decision_unavailable": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "original_validation_unavailable": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "source_identity_missing": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "support_unknown": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unchanged": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unsupported": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "population": {
+      "const": "watermarked_positive"
+    },
+    "schema_version": {
+      "const": "editmark-cohort-counts"
+    },
+    "stratum": {
+      "additionalProperties": false,
+      "properties": {
+        "edit": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "experiment_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "language": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "method": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "model": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_group": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "variant_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "experiment_id",
+        "method",
+        "model",
+        "source_group",
+        "language",
+        "edit",
+        "variant_id"
+      ],
+      "type": "object"
+    },
+    "transitions": {
+      "additionalProperties": false,
+      "properties": {
+        "n00": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "n01": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "n10": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "n11": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "n00",
+        "n01",
+        "n10",
+        "n11"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "population",
+    "evidence_kind",
+    "analysis_contract",
+    "cohort_sha256",
+    "stratum",
+    "decision_rule",
+    "counts",
+    "attempted_pairs",
+    "first_exclusion_counts"
+  ],
+  "title": "EditMark exact fixed-cohort counts",
+  "type": "object"
+}

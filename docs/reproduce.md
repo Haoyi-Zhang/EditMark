@@ -1,19 +1,40 @@
-# Reproduction Levels
+# Reproduction guide
 
-## Level 1: Static Review
+## Model-free verification
 
-Run the integrity and browse commands. This is the expected review path and requires no credentials.
+```bash
+make check
+```
 
-This level is the submitted evidence surface. It checks the frozen source slices, materialized summary tables, rendered figures, claim map, and headline-gap sidecar. The anonymous package provides a rounded-table recomputation check that gives 0.3221 rather than the paper's unrounded 0.3220, records the paper's descriptive bootstrap range of 0.2619--0.3836, and exposes leave-one-out stability diagnostics over the 20 method-by-generator slices. It also exposes the admission funnel, strict raw utility, support, and control summaries used to interpret the post-edit estimand.
+Expected components:
 
-Level 1 is sufficient for checking the paper-level numerical claims. It is not a fresh-execution claim: the submitted object is a frozen evidence release with integrity checks, traceability tables, and reviewer-browse scripts.
+- evidence-contract unit and exhaustive-enumeration tests;
+- included source-inventory arithmetic checks;
+- synthetic mutation and certificate-tamper checks;
+- JSON Schema and certificate-regeneration checks;
+- manuscript citation, label, and source-graph checks.
 
-## Level 2: Summary Regeneration
+## Figures and paper
 
-Regenerate figures and tables only when working from a matrix tree whose identity matches the canonical manifest. Do not write regenerated outputs over the shipped canonical summary paths unless that identity check passes.
+```bash
+python -m pip install '.[figures]'
+make assets
+make paper
+```
 
-The submitted package is organized around the materialized evidence layer used by the paper and supplement: summary tables, rendered figures, sidecar statistics, integrity metadata, and claim-to-evidence mappings. Regeneration is a separate audit path for rebuilding those surfaces from a verified raw matrix tree.
+The generated files have deterministic numerical inputs. PDF metadata can differ across TeX installations, so verification should compare extracted text and rendered layout rather than raw PDF bytes.
 
-## Level 3: Fresh Rerun
+## Experimental runtime
 
-A fresh full rerun is the deepest reproduction tier. It requires a Linux GPU host, pinned model snapshots, upstream baseline availability, and explicit reviewer intent.
+The archived runtime is not required for the paper's contract, proofs, or case-study audit. Running it can download models, consume substantial compute, and execute generated programs. It is outside the default verification path.
+
+
+## Certificate regeneration
+
+```bash
+editmark-counts examples/synthetic_cohort_counts.json --out /tmp/counts.json
+editmark-certificate /tmp/counts.json --claim positive_decision_change --out /tmp/certs.json
+editmark-verify /tmp/certs.json --basis /tmp/counts.json
+```
+
+These examples are software fixtures, not experimental evidence.

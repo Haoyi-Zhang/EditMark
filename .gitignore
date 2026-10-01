@@ -1,8 +1,16 @@
+# Local caches, credentials, generated execution data and build auxiliaries.
+# Manuscript sources, vector figures and the verified review PDF are NOT ignored.
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+build/
+dist/
 .venv/
 venv/
 env/
@@ -32,13 +40,11 @@ results/release_bundle/
 *.zst
 *.zip
 *.7z
-*.pdf
-paper/
-paper_icse_2027/
-*.tex
+# Keep .tex, .bib, .bbl, figures and the release PDF versioned.
 *.aux
-*.bbl
 *.blg
+*.fls
+*.fdb_latexmk
 *.log
 *.out
 *.toc

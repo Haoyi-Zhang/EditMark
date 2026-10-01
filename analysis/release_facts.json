@@ -1,0 +1,18 @@
+{
+  "claim_type_count": 5,
+  "configured_records": 1605,
+  "contract_test_count": 190,
+  "edit_pass_cell_max": 12.46,
+  "edit_pass_cell_min": 1.0,
+  "edited_pass_max": 3.4000000000000004,
+  "edited_pass_min": 1.25,
+  "excluded_records": 57,
+  "high_coverage_edit_pass_max": 3.45,
+  "mbxp_go_configured": 0,
+  "methods": 4,
+  "models": 5,
+  "mutation_case_count": 16,
+  "release_records": 1662,
+  "run_inventory_rows": 140,
+  "source_groups": 7
+}

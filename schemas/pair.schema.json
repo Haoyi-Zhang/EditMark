@@ -1,0 +1,299 @@
+{
+  "$comment": "Run Pair.parse after structural validation. Unknown observations remain null. Runtime checks enforce finite exact inputs, source hashes, duplicate identity, and cross-field consistency.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "changed": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "cluster_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "edit": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "edited": {
+      "additionalProperties": false,
+      "properties": {
+        "detection": {
+          "additionalProperties": false,
+          "properties": {
+            "available": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "comparator": {
+              "enum": [
+                null,
+                "",
+                "ge",
+                "gt",
+                "le",
+                "lt"
+              ]
+            },
+            "detected": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "rule_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "score": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "threshold": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "required": [],
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_sha256": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "const": ""
+            },
+            {
+              "pattern": "^[a-fA-F0-9]{64}$",
+              "type": "string"
+            }
+          ]
+        },
+        "validation": {
+          "additionalProperties": false,
+          "properties": {
+            "available": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "contract_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "passed": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "required": [],
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "required": [],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "evidence_kind": {
+      "enum": [
+        "saved_observation",
+        "synthetic_test"
+      ]
+    },
+    "experiment_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "language": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "method": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "model": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "original": {
+      "additionalProperties": false,
+      "properties": {
+        "detection": {
+          "additionalProperties": false,
+          "properties": {
+            "available": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "comparator": {
+              "enum": [
+                null,
+                "",
+                "ge",
+                "gt",
+                "le",
+                "lt"
+              ]
+            },
+            "detected": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "rule_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "score": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "threshold": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "required": [],
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_sha256": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "const": ""
+            },
+            {
+              "pattern": "^[a-fA-F0-9]{64}$",
+              "type": "string"
+            }
+          ]
+        },
+        "validation": {
+          "additionalProperties": false,
+          "properties": {
+            "available": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "contract_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "passed": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "required": [],
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "required": [],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "population": {
+      "const": "watermarked_positive"
+    },
+    "replicate_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "sample_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "editmark-pair"
+    },
+    "source_group": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "supported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "variant_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "population",
+    "evidence_kind",
+    "experiment_id",
+    "method",
+    "model",
+    "source_group",
+    "language",
+    "sample_id",
+    "replicate_id",
+    "edit",
+    "variant_id"
+  ],
+  "title": "EditMark normalized positive pair",
+  "type": "object"
+}

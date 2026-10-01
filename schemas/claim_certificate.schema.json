@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "analysis_contract": {
+      "type": "string"
+    },
+    "analysis_status": {
+      "type": "string"
+    },
+    "attempted_pairs": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "bounds": {
+      "type": "object"
+    },
+    "certificate_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "claim_id": {
+      "type": "string"
+    },
+    "claim_text": {
+      "type": "string"
+    },
+    "claim_text_verified": {
+      "const": false
+    },
+    "cohort_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "counts": {
+      "type": "object"
+    },
+    "decision": {
+      "enum": [
+        "admissible",
+        "partially_admissible",
+        "not_admissible"
+      ]
+    },
+    "decision_rule": {
+      "type": "object"
+    },
+    "estimand": {
+      "type": "string"
+    },
+    "estimate": {
+      "additionalProperties": false,
+      "properties": {
+        "decimal": {
+          "type": "number"
+        },
+        "denominator": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "numerator": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "numerator",
+        "denominator",
+        "decimal"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "evidence_kind": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first_exclusion_counts": {
+      "type": "object"
+    },
+    "identification": {
+      "type": "string"
+    },
+    "membership_verified": {
+      "type": "boolean"
+    },
+    "population": {
+      "type": "string"
+    },
+    "prohibited_interpretations": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "requested_claim": {
+      "type": "string"
+    },
+    "requirements": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "editmark-claim-certificate"
+    },
+    "stratum": {
+      "type": "object"
+    },
+    "supported_statement": {
+      "type": "string"
+    },
+    "synthetic_warning": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "transitions": {
+      "additionalProperties": false,
+      "properties": {
+        "n00": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "n01": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "n10": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "n11": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "requested_claim",
+    "decision",
+    "identification",
+    "population",
+    "analysis_contract",
+    "cohort_sha256",
+    "stratum",
+    "decision_rule",
+    "counts",
+    "transitions",
+    "attempted_pairs",
+    "first_exclusion_counts",
+    "analysis_status",
+    "membership_verified",
+    "claim_text_verified",
+    "requirements",
+    "prohibited_interpretations",
+    "supported_statement",
+    "certificate_sha256"
+  ],
+  "title": "EditMark claim certificate",
+  "type": "object"
+}

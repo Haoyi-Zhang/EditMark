@@ -1,0 +1,335 @@
+{
+  "certificates": {
+    "auroc_change": {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 5,
+      "certificate_sha256": "bb5333378ab3dbaf80d32bf9999332a542ae9aaa28eccd92db9fda0f6a00cfd7",
+      "claim_id": "",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "counts": {
+        "after_positive": 2,
+        "before_positive": 4,
+        "n": 5
+      },
+      "decision": "not_admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "synthetic-rule",
+        "threshold": 0.5
+      },
+      "estimate": null,
+      "evidence_kind": "synthetic_test",
+      "first_exclusion_counts": {},
+      "identification": "missing_score_distributions_and_controls",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "auroc_change",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "rename",
+        "experiment_id": "SYNTHETIC",
+        "language": "python",
+        "method": "toy",
+        "model": "toy",
+        "source_group": "toy",
+        "variant_id": "v0"
+      },
+      "supported_statement": "AUROC change requires before/after score distributions for both positive and negative cohorts. Thresholded positive counts are insufficient.",
+      "synthetic_warning": "NOT AN EMPIRICAL RESULT",
+      "transitions": {
+        "n00": 0,
+        "n01": 1,
+        "n10": 3,
+        "n11": 1
+      }
+    },
+    "detection_survival": {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 5,
+      "certificate_sha256": "7d16304054f58c5d62a54772c4fe527ede68ddc29b231c412666fc5b1e3842eb",
+      "claim_id": "",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "counts": {
+        "after_positive": 2,
+        "before_positive": 4,
+        "n": 5
+      },
+      "decision": "admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "synthetic-rule",
+        "threshold": 0.5
+      },
+      "estimand": "fraction of initially positive cohort members remaining positive after editing",
+      "estimate": {
+        "decimal": 0.25,
+        "denominator": 4,
+        "numerator": 1
+      },
+      "evidence_kind": "synthetic_test",
+      "first_exclusion_counts": {},
+      "identification": "identified",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "detection_survival",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "rename",
+        "experiment_id": "SYNTHETIC",
+        "language": "python",
+        "method": "toy",
+        "model": "toy",
+        "source_group": "toy",
+        "variant_id": "v0"
+      },
+      "supported_statement": "Detection survival is identified on the named cohort as 0.25.",
+      "synthetic_warning": "NOT AN EMPIRICAL RESULT",
+      "transitions": {
+        "n00": 0,
+        "n01": 1,
+        "n10": 3,
+        "n11": 1
+      }
+    },
+    "edited_false_positive_rate": {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 5,
+      "certificate_sha256": "43405a9b21cb692b7f2b2ab15c22f4ae3b4940a05d80e054ab85389b4d5780a3",
+      "claim_id": "",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "counts": {
+        "after_positive": 2,
+        "before_positive": 4,
+        "n": 5
+      },
+      "decision": "not_admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "synthetic-rule",
+        "threshold": 0.5
+      },
+      "estimate": null,
+      "evidence_kind": "synthetic_test",
+      "first_exclusion_counts": {},
+      "identification": "missing_negative_cohort",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "edited_false_positive_rate",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "rename",
+        "experiment_id": "SYNTHETIC",
+        "language": "python",
+        "method": "toy",
+        "model": "toy",
+        "source_group": "toy",
+        "variant_id": "v0"
+      },
+      "supported_statement": "An edited false-positive rate requires an edited unwatermarked control cohort evaluated under the same rule; this disclosure contains positive pairs only.",
+      "synthetic_warning": "NOT AN EMPIRICAL RESULT",
+      "transitions": {
+        "n00": 0,
+        "n01": 1,
+        "n10": 3,
+        "n11": 1
+      }
+    },
+    "positive_decision_change": {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 5,
+      "certificate_sha256": "ec794f59e37c88cbcf7fd4160db8bae47cb383f8bc2d350a5460cda729ad1bfa",
+      "claim_id": "",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "counts": {
+        "after_positive": 2,
+        "before_positive": 4,
+        "n": 5
+      },
+      "decision": "admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "synthetic-rule",
+        "threshold": 0.5
+      },
+      "estimand": "after-positive rate minus before-positive rate on the admitted cohort",
+      "estimate": {
+        "decimal": -0.4,
+        "denominator": 5,
+        "numerator": -2
+      },
+      "evidence_kind": "synthetic_test",
+      "first_exclusion_counts": {},
+      "identification": "identified",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "positive_decision_change",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "rename",
+        "experiment_id": "SYNTHETIC",
+        "language": "python",
+        "method": "toy",
+        "model": "toy",
+        "source_group": "toy",
+        "variant_id": "v0"
+      },
+      "supported_statement": "On the named jointly valid, changed, same-rule positive cohort, the after-minus-before positive-decision change is -0.4.",
+      "synthetic_warning": "NOT AN EMPIRICAL RESULT",
+      "transitions": {
+        "n00": 0,
+        "n01": 1,
+        "n10": 3,
+        "n11": 1
+      }
+    },
+    "post_edit_provenance_probability": {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 5,
+      "certificate_sha256": "c6c468cef081b1ba5ef94f150a82b173bebc6dbd716f2813491876ec3e4ed165",
+      "claim_id": "",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "counts": {
+        "after_positive": 2,
+        "before_positive": 4,
+        "n": 5
+      },
+      "decision": "not_admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "synthetic-rule",
+        "threshold": 0.5
+      },
+      "estimate": null,
+      "evidence_kind": "synthetic_test",
+      "first_exclusion_counts": {},
+      "identification": "missing_prevalence_and_calibration",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "post_edit_provenance_probability",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "rename",
+        "experiment_id": "SYNTHETIC",
+        "language": "python",
+        "method": "toy",
+        "model": "toy",
+        "source_group": "toy",
+        "variant_id": "v0"
+      },
+      "supported_statement": "A posterior provenance probability requires a deployment prevalence model and calibrated positive and negative likelihoods; this certificate supplies neither.",
+      "synthetic_warning": "NOT AN EMPIRICAL RESULT",
+      "transitions": {
+        "n00": 0,
+        "n01": 1,
+        "n10": 3,
+        "n11": 1
+      }
+    }
+  },
+  "synthetic": true
+}

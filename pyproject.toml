@@ -3,43 +3,37 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "posteditbench"
-version = "0.1.0"
-description = "Anonymous artifact for evaluating post-edit provenance evidence in source-code watermarking"
+name = "editmark-evidence"
+version = "1.0.0"
+description = "Machine-checkable evidence contracts for code-watermark evaluation after software edits"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
-keywords = ["benchmark", "code watermarking", "robustness", "evaluation", "code generation", "provenance"]
-dependencies = [
-  "PyYAML>=6.0",
-  "click>=8.1",
-  "rich>=13.0",
-  "matplotlib>=3.8",
+authors = [
+  {name = "Haoyi Zhang", email = "hyeliozhang@gmail.com"},
+  {name = "Huaijin Ran", email = "huaijin003@e.ntu.edu.sg"},
+  {name = "Xunzhu Tang", email = "realdanieltang@gmail.com"},
 ]
+keywords = ["code-watermarking", "measurement", "software-edits", "reproducibility", "claim-certificates"]
+dependencies = []
 
 [project.optional-dependencies]
-test = [
-  "pytest>=8.0",
-  "safetensors>=0.4",
-]
-remote = [
-  "transformers>=4.46,<5",
-  "safetensors>=0.4",
-  "sentencepiece>=0.2",
-  "Pillow>=10",
-  "scipy>=1.12",
-  "nltk>=3.9",
-]
+figures = ["matplotlib>=3.8"]
+test = ["pytest>=8.0", "coverage>=7.0"]
 
 [project.scripts]
-posteditbench = "posteditbench.__main__:cli"
+editmark-pairs = "editmark_audit.__main__:main"
+editmark-counts = "editmark_audit.aggregates:main"
+editmark-certificate = "editmark_audit.certificate:main"
+editmark-verify = "editmark_audit.verify:main"
 
-[tool.setuptools]
-include-package-data = true
+[project.urls]
+Repository = "https://github.com/Haoyi-Zhang/CodeMarkBench"
 
 [tool.setuptools.packages.find]
-include = ["posteditbench*"]
+include = ["editmark_audit*"]
+exclude = ["posteditbench*", "tests*", "analysis*"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests/contract"]
 addopts = "-p no:typeguard"

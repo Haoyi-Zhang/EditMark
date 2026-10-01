@@ -1,30 +1,33 @@
-# Reviewer Artifact Quickstart
+# Reviewer guide
 
-## Three-Minute Claim Check
-
-This is the shortest path for checking that the artifact matches the paper's central claim: clean detection is not enough for post-edit provenance unless the edited program, controls, support, utility, and cost remain visible.
+The fastest model-free audit path is:
 
 ```bash
-python scripts/verify_release_integrity.py
-python scripts/reviewer_workflow.py browse --summary-only
+make check
+editmark-counts examples/synthetic_cohort_counts.json --out /tmp/counts.json
+editmark-certificate /tmp/counts.json \
+  --claim positive_decision_change --out /tmp/certificates.json
+editmark-verify /tmp/certificates.json --basis /tmp/counts.json
 ```
 
-Expected review signals:
+The examples are explicitly synthetic. The workflow checks arithmetic, cohort/rule identities, certificate integrity, and deterministic regeneration; it does not create watermark observations.
 
-- `release_integrity=passed`;
-- the canonical surface reports `140/140` completed configurations;
-- `artifact/CLAIM_TO_EVIDENCE.md` maps the detection-to-robustness gap to the shipped summary tables and figures.
+## What to inspect
 
-This check does not prove every result from scratch. It verifies that the frozen evidence surface is present, intact, anonymous, and navigable.
+1. `paper/tosem/main.pdf` for the argument, theory, and read-only artifact case study.
+2. `docs/evidence_contract.md` for field definitions and estimands.
+3. `editmark_audit/records.py`, `analysis.py`, `aggregates.py`, `certificate.py`, and `verify.py` for the executable contract.
+4. `analysis/frozen_audit.json` for included artifact facts.
+5. `analysis/contract_mutations.json` for generated adversarial checker cases.
+6. `tests/contract/` for exact, exhaustive, tamper, schema, and file-safety tests.
 
-## Normal Browse Path
+## What the package does not claim
 
-Use the lightweight path first:
+- It does not rerun language models, watermark embedding, detection, transformations, or generated-program validation.
+- It does not infer record-level outcomes from rounded aggregate rates.
+- It does not report edited false-positive rate without edited negative controls.
+- It does not subtract clean AUROC from a composite robustness index and call the result detector loss.
+- It does not treat transformation applicability as proof that source bytes changed.
+- It does not treat a certificate hash as trusted execution attestation or authorship proof.
 
-```bash
-python -m pip install -r requirements.txt
-python scripts/verify_release_integrity.py
-python scripts/reviewer_workflow.py browse
-```
-
-This path checks the canonical manifest digest, shipped summary-table hashes, required figures, source-slice counts, run inventory, and environment-capture files. It does not execute model generation, download model weights, or require private credentials.
+The central technical object is a verifiable claim package: a structured claim, named population, eligibility gate, fixed detector rule, sufficient statistics, exclusion partition, identification result, generated supported statement, and prohibited interpretations.
