@@ -30,20 +30,20 @@ assets:
 	MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/build_paper_assets.py
 
 lint:
-	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/verify_manuscript.py paper/tosem
+	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/verify_manuscript.py ../paper/tosem
 
 hygiene:
 	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/verify_release_hygiene.py .
 
 paper:
 	@test -n "$(BIBTEX)" || { echo 'A BibTeX executable is required.' >&2; exit 2; }
-	cd paper/tosem && $(LATEXMK) -e '$$bibtex="$(BIBTEX) %O %B"' -pdf -interaction=nonstopmode -halt-on-error main.tex
+	cd ../paper/tosem && $(LATEXMK) -e '$$bibtex="$(BIBTEX) %O %B"' -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 check: test facts lint hygiene
 
 full-check: check assets paper
 
 clean:
-	cd paper/tosem && $(LATEXMK) -C main.tex || true
+	cd ../paper/tosem && $(LATEXMK) -C main.tex || true
 	find . -type d -name __pycache__ -prune -exec rm -rf {} +
 	find . -type f \( -name '*.pyc' -o -name '.coverage' \) -delete

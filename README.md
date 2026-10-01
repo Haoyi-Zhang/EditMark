@@ -7,11 +7,17 @@
 3. Were both detector decisions produced by the same rule?
 4. Which claim is identified by the available positive and negative cohorts?
 
-The repository contains the paper, the archived benchmark implementation and summaries used as a case study, and a model-free analysis package. The default workflow does **not** download models, generate code, run watermark detectors, or execute generated programs.
+This code repository contains the archived benchmark implementation and summaries used as a case study, and a model-free analysis package. The full distribution places the manuscript in the sibling `../paper/tosem/` directory. The default workflow does **not** download models, generate code, run watermark detectors, or execute generated programs.
 
 ## One-minute verification
 
-Python 3.10 or later is sufficient for the core checks.
+Python 3.10 or later is sufficient for the core checks. With this directory as the working directory, the code-only test entrypoint is:
+
+```bash
+make test
+```
+
+The full package checks also require the sibling `../paper/tosem/` sources:
 
 ```bash
 make check
@@ -73,7 +79,7 @@ All files under `examples/` are explicitly synthetic software fixtures, not expe
 
 | Path | Purpose |
 |---|---|
-| `paper/tosem/` | ACM journal manuscript, bibliography, figures, and generated table fragments |
+| `../paper/tosem/` (full package) | ACM journal manuscript, bibliography, figures, and generated table fragments |
 | `editmark_audit/` | Typed pair parser, eligibility gate, exact-count analysis, certificates, and independent verification |
 | `schemas/` | Local JSON Schemas for pairs, sufficient counts, and certificates |
 | `tests/contract/` | Model-free unit, exhaustive-enumeration, mutation, and file-safety tests |

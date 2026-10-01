@@ -1,6 +1,6 @@
 # Reviewer guide
 
-The fastest model-free audit path is:
+The fastest model-free audit path from this artifact directory, with the sibling `../paper/tosem/` manuscript directory from the full package available, is:
 
 ```bash
 make check
@@ -14,7 +14,7 @@ The examples are explicitly synthetic. The workflow checks arithmetic, cohort/ru
 
 ## What to inspect
 
-1. `paper/tosem/main.pdf` for the argument, theory, and read-only artifact case study.
+1. `../paper/tosem/main.pdf` for the argument, theory, and read-only artifact case study. A code-only checkout can run `make test`; `make check` additionally requires the manuscript sources.
 2. `docs/evidence_contract.md` for field definitions and estimands.
 3. `editmark_audit/records.py`, `analysis.py`, `aggregates.py`, `certificate.py`, and `verify.py` for the executable contract.
 4. `analysis/frozen_audit.json` for included artifact facts.
