@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[2]
 class ArtifactFactsTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.audit=json.loads((ROOT/'analysis/frozen_audit.json').read_text())
+        cls.audit=json.loads((ROOT/'analysis/frozen_audit.json').read_text(encoding='utf-8'))
     def test_release_and_configured_populations_are_distinct(self):
         self.assertEqual(self.audit['release_records'],1662)
         self.assertEqual(self.audit['canonical_source_records'],1605)
@@ -17,7 +17,7 @@ class ArtifactFactsTests(unittest.TestCase):
         total=0
         for row in self.audit['corpus']:
             path=ROOT/row['release_file']
-            count=sum(bool(line.strip()) for line in path.read_text().splitlines())
+            count=sum(bool(line.strip()) for line in path.read_text(encoding='utf-8').splitlines())
             self.assertEqual(count,row['release_records'],row['source_group'])
             total+=count
         self.assertEqual(total,self.audit['release_records'])
