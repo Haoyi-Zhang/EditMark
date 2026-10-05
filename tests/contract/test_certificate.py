@@ -26,6 +26,29 @@ def counts(n=5,b=4,a=2,transitions=None):
     }
 
 class CertificateTests(unittest.TestCase):
+    def test_stale_analysis_is_rejected_before_issuance(self):
+        for field, value in (
+            ('net_detection_change', {'numerator': 0, 'denominator': 1, 'decimal': 0.0}),
+            ('status', 'undefined_empty_cohort'),
+            ('survival_bounds', {'lower': None, 'upper': None}),
+        ):
+            with self.subTest(field=field):
+                analysis = analyze(counts())
+                analysis[field] = value
+                with self.assertRaises(EvidenceError):
+                    certify_analysis(analysis, 'positive_decision_change')
+
+    def test_inconsistent_exact_counts_are_rejected(self):
+        analysis = analyze(counts())
+        analysis['counts']['after_positive'] = 6
+        with self.assertRaises(EvidenceError):
+            certify_analysis(analysis, 'positive_decision_change')
+
+    def test_empty_raw_count_cohort_has_denial_outcome(self):
+        certificate = certify_analysis(analyze(counts(n=0, b=0, a=0)),
+                                       'positive_decision_change')
+        self.assertEqual(certificate['decision'], 'not_admissible')
+
     def test_change_is_identified(self):
         certificate=certify_analysis(analyze(counts()),'positive_decision_change')
         self.assertEqual(certificate['decision'],'admissible')

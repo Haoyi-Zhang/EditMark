@@ -15,7 +15,7 @@ import sys
 from typing import Any, Iterable, Mapping
 from .aggregates import analyze as analyze_counts, from_pair_stratum
 from .constants import (
-    CERTIFICATE_BUNDLE_SCHEMA, CERTIFICATE_SCHEMA, COUNT_REPORT_SCHEMA,
+    CERTIFICATE_BUNDLE_SCHEMA, CERTIFICATE_SCHEMA, COUNT_ANALYSIS_SCHEMA, COUNT_REPORT_SCHEMA,
     COUNT_SCHEMA, PAIR_REPORT_SCHEMA,
 )
 from .io import EvidenceError, digest, load_rows, loads, write_new_json
@@ -47,7 +47,7 @@ def certify_analysis(
     if requested_claim not in CLAIMS:
         raise EvidenceError(f'requested_claim must be one of {CLAIMS}')
     required = {
-        'schema_version', 'population', 'analysis_contract', 'cohort_sha256',
+        'schema_version', 'evidence_kind', 'population', 'analysis_contract', 'cohort_sha256',
         'stratum', 'decision_rule', 'counts', 'attempted_pairs',
         'first_exclusion_counts', 'status', 'net_detection_change',
         'survival', 'survival_status', 'survival_bounds', 'membership_verified',
@@ -55,6 +55,28 @@ def certify_analysis(
     missing = required - set(analysis)
     if missing:
         raise EvidenceError(f'count analysis missing required fields: {sorted(missing)!r}')
+
+    if analysis['schema_version'] != COUNT_ANALYSIS_SCHEMA:
+        raise EvidenceError(f'Expected {COUNT_ANALYSIS_SCHEMA!r}')
+    facts = {
+        key: analysis[key] for key in (
+            'population', 'evidence_kind', 'analysis_contract', 'cohort_sha256',
+            'stratum', 'decision_rule', 'counts', 'attempted_pairs',
+            'first_exclusion_counts',
+        )
+    }
+    facts['schema_version'] = COUNT_SCHEMA
+    facts['transitions'] = analysis.get('transitions')
+    derived = analyze_counts(facts)
+    mismatched = [
+        key for key in derived
+        if key not in {'membership_verified', 'claim_boundary', 'synthetic_warning'}
+        and key in analysis and analysis[key] != derived[key]
+    ]
+    if mismatched:
+        raise EvidenceError(f'count analysis contradicts its exact facts: {sorted(mismatched)!r}')
+    derived['membership_verified'] = bool(analysis['membership_verified'])
+    analysis = derived
 
     checks = {
         'positive_cohort_named': analysis['population'] == 'watermarked_positive',
