@@ -28,7 +28,7 @@ editmark-certificate = "editmark_audit.certificate:main"
 editmark-verify = "editmark_audit.verify:main"
 
 [project.urls]
-Repository = "https://github.com/Haoyi-Zhang/CodeMarkBench"
+Repository = "https://github.com/Haoyi-Zhang/EditMark-code"
 
 [tool.setuptools.packages.find]
 include = ["editmark_audit*"]

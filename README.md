@@ -58,7 +58,7 @@ Exact integer counts can identify net decision change without releasing source t
 ### 3. Claim certificates
 
 ```bash
-python -m editmark_audit.certificate examples/synthetic_cohort_counts.json \
+python -m editmark_audit.certificate /tmp/editmark-count-report.json \
   --claim positive_decision_change \
   --out /tmp/editmark-certificate.json
 ```
