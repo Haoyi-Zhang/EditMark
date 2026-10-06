@@ -1,0 +1,198 @@
+[
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "KGW",
+    "source_group": "crafted_original"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "KGW",
+    "source_group": "crafted_stress"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "KGW",
+    "source_group": "crafted_translation"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 164,
+    "master_edit_rows": 5740,
+    "method": "KGW",
+    "source_group": "public_humaneval_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 162,
+    "master_edit_rows": 5670,
+    "method": "KGW",
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 378,
+    "master_edit_rows": 13230,
+    "method": "KGW",
+    "source_group": "public_mbpp_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 119,
+    "master_edit_rows": 4165,
+    "method": "KGW",
+    "source_group": "public_mbxp_5lang"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "SWEET",
+    "source_group": "crafted_original"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "SWEET",
+    "source_group": "crafted_stress"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "SWEET",
+    "source_group": "crafted_translation"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 164,
+    "master_edit_rows": 5740,
+    "method": "SWEET",
+    "source_group": "public_humaneval_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 162,
+    "master_edit_rows": 5670,
+    "method": "SWEET",
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 378,
+    "master_edit_rows": 13230,
+    "method": "SWEET",
+    "source_group": "public_mbpp_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 119,
+    "master_edit_rows": 4165,
+    "method": "SWEET",
+    "source_group": "public_mbxp_5lang"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "STONE",
+    "source_group": "crafted_original"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "STONE",
+    "source_group": "crafted_stress"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "STONE",
+    "source_group": "crafted_translation"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 164,
+    "master_edit_rows": 5740,
+    "method": "STONE",
+    "source_group": "public_humaneval_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 162,
+    "master_edit_rows": 5670,
+    "method": "STONE",
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 378,
+    "master_edit_rows": 13230,
+    "method": "STONE",
+    "source_group": "public_mbpp_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 119,
+    "master_edit_rows": 4165,
+    "method": "STONE",
+    "source_group": "public_mbxp_5lang"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "EWD",
+    "source_group": "crafted_original"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "EWD",
+    "source_group": "crafted_stress"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 240,
+    "master_edit_rows": 8400,
+    "method": "EWD",
+    "source_group": "crafted_translation"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 164,
+    "master_edit_rows": 5740,
+    "method": "EWD",
+    "source_group": "public_humaneval_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 162,
+    "master_edit_rows": 5670,
+    "method": "EWD",
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 378,
+    "master_edit_rows": 13230,
+    "method": "EWD",
+    "source_group": "public_mbpp_plus"
+  },
+  {
+    "basis": "Exported edit-row count divided by documented 5-model x 7-edit design; not re-observed raw records",
+    "implied_source_records_after_legacy_dedup": 119,
+    "master_edit_rows": 4165,
+    "method": "EWD",
+    "source_group": "public_mbxp_5lang"
+  }
+]

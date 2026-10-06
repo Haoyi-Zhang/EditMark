@@ -1,0 +1,5 @@
+method,master_positive_examples,human_reference_control_count,clean_generation_control_count,clean_control_coverage,transformed_control_count,transformed_fpr,transformed_status
+KGW,7715,7715,7715,1.0,,,NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED
+SWEET,7715,7715,7714,1.0,,,NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED
+STONE,7715,5695,5691,0.7381,,,NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED
+EWD,7715,7715,7704,0.9994,,,NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED

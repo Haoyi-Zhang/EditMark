@@ -1,0 +1,8 @@
+source_group,release_records,canonical_records,excluded_records,inventory_family_ids,release_file
+crafted_original,240,240,0,48,data/release/sources/crafted_original_release.normalized.jsonl
+crafted_stress,240,240,0,48,data/release/sources/crafted_stress_release.normalized.jsonl
+crafted_translation,240,240,0,48,data/release/sources/crafted_translation_release.normalized.jsonl
+public_humaneval_plus,164,164,0,164,data/release/sources/suite_humaneval_plus_release.normalized.jsonl
+public_humaneval_x,200,200,0,40,data/release/sources/suite_humanevalx_release.normalized.jsonl
+public_mbpp_plus,378,378,0,378,data/release/sources/suite_mbpp_plus_release.normalized.jsonl
+public_mbxp_5lang,200,143,57,40,data/release/sources/suite_mbxp_release.normalized.jsonl

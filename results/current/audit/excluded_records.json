@@ -1,0 +1,458 @@
+[
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/1"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/1"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/100"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/101"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/102"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/103"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/104"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/105"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/106"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/107"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/109"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/11"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/110"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/111"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/111"
+  },
+  {
+    "canonical_available": false,
+    "language": "javascript",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBJSP/111"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/112"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/113"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/114"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/114"
+  },
+  {
+    "canonical_available": false,
+    "language": "java",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBJP/114"
+  },
+  {
+    "canonical_available": false,
+    "language": "javascript",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBJSP/114"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/116"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/117"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/117"
+  },
+  {
+    "canonical_available": false,
+    "language": "javascript",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBJSP/117"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/118"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/118"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/119"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/12"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/12"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/120"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/121"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/122"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/123"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/125"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/126"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/129"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/137"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/140"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/140"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/141"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/147"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/147"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/149"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/152"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/154"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/161"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/241"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/380"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/493"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/493"
+  },
+  {
+    "canonical_available": false,
+    "language": "java",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBJP/493"
+  },
+  {
+    "canonical_available": false,
+    "language": "javascript",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBJSP/493"
+  },
+  {
+    "canonical_available": false,
+    "language": "cpp",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBCPP/694"
+  },
+  {
+    "canonical_available": false,
+    "language": "go",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBGP/694"
+  },
+  {
+    "canonical_available": false,
+    "language": "java",
+    "reference_kind": "smoke_overlay",
+    "source_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "source_group": "public_mbxp_5lang",
+    "task_id": "MBJP/694"
+  }
+]

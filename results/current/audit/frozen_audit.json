@@ -1,0 +1,326 @@
+{
+  "availability": {
+    "exact_joint_admission_counts": "not available in aggregate exports",
+    "no_op_sensitivity": "not available; legacy BenchmarkRow serialization does not explicitly persist outcome.changed",
+    "root_causes_of_failed_execution": "not inferable from these summaries",
+    "strict_paired_detection": "not available in supplied archive",
+    "transformed_negative_controls": "not identified in saved pipeline"
+  },
+  "basis": "Read-only static inventory and arithmetic checks of frozen aggregates; no experiment rerun",
+  "canonical_source_records": 1605,
+  "caveat": "Rates are published rounded summaries, not recovered raw-event counts. Master and descriptive aggregation views must not be mixed.",
+  "corpus": [
+    {
+      "canonical_records": 240,
+      "excluded_records": 0,
+      "inventory_family_ids": 48,
+      "release_file": "data/release/sources/crafted_original_release.normalized.jsonl",
+      "release_records": 240,
+      "source_group": "crafted_original"
+    },
+    {
+      "canonical_records": 240,
+      "excluded_records": 0,
+      "inventory_family_ids": 48,
+      "release_file": "data/release/sources/crafted_stress_release.normalized.jsonl",
+      "release_records": 240,
+      "source_group": "crafted_stress"
+    },
+    {
+      "canonical_records": 240,
+      "excluded_records": 0,
+      "inventory_family_ids": 48,
+      "release_file": "data/release/sources/crafted_translation_release.normalized.jsonl",
+      "release_records": 240,
+      "source_group": "crafted_translation"
+    },
+    {
+      "canonical_records": 164,
+      "excluded_records": 0,
+      "inventory_family_ids": 164,
+      "release_file": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+      "release_records": 164,
+      "source_group": "public_humaneval_plus"
+    },
+    {
+      "canonical_records": 200,
+      "excluded_records": 0,
+      "inventory_family_ids": 40,
+      "release_file": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+      "release_records": 200,
+      "source_group": "public_humaneval_x"
+    },
+    {
+      "canonical_records": 378,
+      "excluded_records": 0,
+      "inventory_family_ids": 378,
+      "release_file": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+      "release_records": 378,
+      "source_group": "public_mbpp_plus"
+    },
+    {
+      "canonical_records": 143,
+      "excluded_records": 57,
+      "inventory_family_ids": 40,
+      "release_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+      "release_records": 200,
+      "source_group": "public_mbxp_5lang"
+    }
+  ],
+  "curated_static_inventory": [
+    {
+      "categories": {
+        "class/object interaction": 30,
+        "data structures": 30,
+        "exception/error handling": 30,
+        "graph/search": 30,
+        "numeric/boundary conditions": 30,
+        "recursion/dp": 30,
+        "state machines/simulation": 30,
+        "strings/parsing": 30
+      },
+      "difficulty": {
+        "easy": 70,
+        "hard": 50,
+        "medium": 120
+      },
+      "named_family_ids": 48,
+      "note": "Static template inventory, not independent expert review or observed test success",
+      "records": 240,
+      "source_group": "crafted_original",
+      "template_families": {
+        "API-style normalization": 40,
+        "arrays/lists": 30,
+        "dp/recursion": 30,
+        "graph/search": 30,
+        "maps/sets": 10,
+        "math/bit ops": 30,
+        "parsing": 40,
+        "stateful update": 30
+      }
+    },
+    {
+      "categories": {
+        "class/object interaction": 25,
+        "cross-language idiom preservation": 25,
+        "data structures": 25,
+        "exception/error handling": 25,
+        "graph/search": 30,
+        "numeric/boundary conditions": 30,
+        "recursion/dp": 25,
+        "state machines/simulation": 30,
+        "strings/parsing": 25
+      },
+      "difficulty": {
+        "easy": 30,
+        "hard": 120,
+        "medium": 90
+      },
+      "named_family_ids": 48,
+      "note": "Static template inventory, not independent expert review or observed test success",
+      "records": 240,
+      "source_group": "crafted_stress",
+      "template_families": {
+        "API-style normalization": 40,
+        "arrays/lists": 15,
+        "dp/recursion": 25,
+        "graph/search": 30,
+        "interval/greedy": 15,
+        "maps/sets": 10,
+        "math/bit ops": 15,
+        "parsing": 15,
+        "stateful update": 40,
+        "strings": 35
+      }
+    },
+    {
+      "categories": {
+        "class/object interaction": 45,
+        "cross-language idiom preservation": 50,
+        "data structures": 50,
+        "exception/error handling": 45,
+        "strings/parsing": 50
+      },
+      "difficulty": {
+        "easy": 60,
+        "hard": 50,
+        "medium": 130
+      },
+      "named_family_ids": 48,
+      "note": "Static template inventory, not independent expert review or observed test success",
+      "records": 240,
+      "source_group": "crafted_translation",
+      "template_families": {
+        "API-style normalization": 60,
+        "arrays/lists": 40,
+        "maps/sets": 40,
+        "parsing": 40,
+        "stateful update": 20,
+        "strings": 40
+      }
+    }
+  ],
+  "excluded_source_records": 57,
+  "mbxp_canonical_go_records": 0,
+  "method_count": 4,
+  "method_profiles": [
+    {
+      "deduplicated_edit_rows": 54005,
+      "descriptive_clean_auroc": 0.6057,
+      "descriptive_clean_control_fpr_mean": 0.0,
+      "descriptive_edit_rows": 56175,
+      "descriptive_edited_test_pass_mean": 0.0141,
+      "descriptive_marked_test_pass_mean": 0.0122,
+      "descriptive_tasks_all_models": 8025,
+      "descriptive_unmarked_test_pass_mean": 0.0126,
+      "duplicate_edit_rows_removed": 2170,
+      "legacy_descriptive_robustness_index": 0.445,
+      "legacy_descriptive_utility_index": 0.6471,
+      "legacy_master_robustness_index": 0.4439,
+      "legacy_master_utility_index": 0.6476,
+      "legacy_preservation_ratio_not_admission": 0.5362,
+      "master_clean_auroc": 0.6045,
+      "master_edited_detected_among_edited_pass_mean": 0.0,
+      "master_edited_validation_pass_mean": 0.0157,
+      "master_positive_examples": 7715,
+      "method": "KGW",
+      "paired_status": "NOT_IDENTIFIABLE_FROM_RELEASED_SUMMARIES",
+      "paired_tpr_loss": null,
+      "paired_valid_changed_n": null,
+      "paired_valid_changed_tpr_after": null,
+      "paired_valid_changed_tpr_before": null
+    },
+    {
+      "deduplicated_edit_rows": 54005,
+      "descriptive_clean_auroc": 0.723,
+      "descriptive_clean_control_fpr_mean": 0.0,
+      "descriptive_edit_rows": 56175,
+      "descriptive_edited_test_pass_mean": 0.0137,
+      "descriptive_marked_test_pass_mean": 0.0118,
+      "descriptive_tasks_all_models": 8025,
+      "descriptive_unmarked_test_pass_mean": 0.0131,
+      "duplicate_edit_rows_removed": 2170,
+      "legacy_descriptive_robustness_index": 0.3438,
+      "legacy_descriptive_utility_index": 0.6468,
+      "legacy_master_robustness_index": 0.3361,
+      "legacy_master_utility_index": 0.6467,
+      "legacy_preservation_ratio_not_admission": 0.5352,
+      "master_clean_auroc": 0.722,
+      "master_edited_detected_among_edited_pass_mean": 0.0,
+      "master_edited_validation_pass_mean": 0.0132,
+      "master_positive_examples": 7715,
+      "method": "SWEET",
+      "paired_status": "NOT_IDENTIFIABLE_FROM_RELEASED_SUMMARIES",
+      "paired_tpr_loss": null,
+      "paired_valid_changed_n": null,
+      "paired_valid_changed_tpr_after": null,
+      "paired_valid_changed_tpr_before": null
+    },
+    {
+      "deduplicated_edit_rows": 54005,
+      "descriptive_clean_auroc": 0.5381,
+      "descriptive_clean_control_fpr_mean": 0.1461,
+      "descriptive_edit_rows": 56175,
+      "descriptive_edited_test_pass_mean": 0.034,
+      "descriptive_marked_test_pass_mean": 0.0294,
+      "descriptive_tasks_all_models": 8025,
+      "descriptive_unmarked_test_pass_mean": 0.0321,
+      "duplicate_edit_rows_removed": 2170,
+      "legacy_descriptive_robustness_index": 0.3591,
+      "legacy_descriptive_utility_index": 0.651,
+      "legacy_master_robustness_index": 0.3536,
+      "legacy_master_utility_index": 0.6509,
+      "legacy_preservation_ratio_not_admission": 0.5473,
+      "master_clean_auroc": 0.5312,
+      "master_edited_detected_among_edited_pass_mean": 0.0202,
+      "master_edited_validation_pass_mean": 0.0289,
+      "master_positive_examples": 7715,
+      "method": "STONE",
+      "paired_status": "NOT_IDENTIFIABLE_FROM_RELEASED_SUMMARIES",
+      "paired_tpr_loss": null,
+      "paired_valid_changed_n": null,
+      "paired_valid_changed_tpr_after": null,
+      "paired_valid_changed_tpr_before": null
+    },
+    {
+      "deduplicated_edit_rows": 54005,
+      "descriptive_clean_auroc": 0.7703,
+      "descriptive_clean_control_fpr_mean": 0.0,
+      "descriptive_edit_rows": 56175,
+      "descriptive_edited_test_pass_mean": 0.0125,
+      "descriptive_marked_test_pass_mean": 0.0106,
+      "descriptive_tasks_all_models": 8025,
+      "descriptive_unmarked_test_pass_mean": 0.013,
+      "duplicate_edit_rows_removed": 2170,
+      "legacy_descriptive_robustness_index": 0.2641,
+      "legacy_descriptive_utility_index": 0.6465,
+      "legacy_master_robustness_index": 0.2645,
+      "legacy_master_utility_index": 0.6467,
+      "legacy_preservation_ratio_not_admission": 0.5136,
+      "master_clean_auroc": 0.7706,
+      "master_edited_detected_among_edited_pass_mean": 0.0,
+      "master_edited_validation_pass_mean": 0.0129,
+      "master_positive_examples": 7715,
+      "method": "EWD",
+      "paired_status": "NOT_IDENTIFIABLE_FROM_RELEASED_SUMMARIES",
+      "paired_tpr_loss": null,
+      "paired_valid_changed_n": null,
+      "paired_valid_changed_tpr_after": null,
+      "paired_valid_changed_tpr_before": null
+    }
+  ],
+  "model_count": 5,
+  "negative_control_coverage": [
+    {
+      "clean_control_coverage": 1.0,
+      "clean_generation_control_count": 7715,
+      "human_reference_control_count": 7715,
+      "master_positive_examples": 7715,
+      "method": "KGW",
+      "transformed_control_count": null,
+      "transformed_fpr": null,
+      "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+    },
+    {
+      "clean_control_coverage": 1.0,
+      "clean_generation_control_count": 7714,
+      "human_reference_control_count": 7715,
+      "master_positive_examples": 7715,
+      "method": "SWEET",
+      "transformed_control_count": null,
+      "transformed_fpr": null,
+      "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+    },
+    {
+      "clean_control_coverage": 0.7381,
+      "clean_generation_control_count": 5691,
+      "human_reference_control_count": 5695,
+      "master_positive_examples": 7715,
+      "method": "STONE",
+      "transformed_control_count": null,
+      "transformed_fpr": null,
+      "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+    },
+    {
+      "clean_control_coverage": 0.9994,
+      "clean_generation_control_count": 7704,
+      "human_reference_control_count": 7715,
+      "master_positive_examples": 7715,
+      "method": "EWD",
+      "transformed_control_count": null,
+      "transformed_fpr": null,
+      "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+    }
+  ],
+  "raw_results_directories_present": {
+    "results/matrix": false,
+    "results/runs": false
+  },
+  "release_records": 1662,
+  "run_inventory_rows": 140,
+  "run_status_counts": {
+    "success": 140
+  },
+  "schema_version": "editmark-frozen-audit-v1",
+  "source_group_count": 7
+}

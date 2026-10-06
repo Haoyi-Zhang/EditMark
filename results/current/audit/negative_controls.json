@@ -1,0 +1,42 @@
+[
+  {
+    "clean_control_coverage": 1.0,
+    "clean_generation_control_count": 7715,
+    "human_reference_control_count": 7715,
+    "master_positive_examples": 7715,
+    "method": "KGW",
+    "transformed_control_count": null,
+    "transformed_fpr": null,
+    "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+  },
+  {
+    "clean_control_coverage": 1.0,
+    "clean_generation_control_count": 7714,
+    "human_reference_control_count": 7715,
+    "master_positive_examples": 7715,
+    "method": "SWEET",
+    "transformed_control_count": null,
+    "transformed_fpr": null,
+    "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+  },
+  {
+    "clean_control_coverage": 0.7381,
+    "clean_generation_control_count": 5691,
+    "human_reference_control_count": 5695,
+    "master_positive_examples": 7715,
+    "method": "STONE",
+    "transformed_control_count": null,
+    "transformed_fpr": null,
+    "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+  },
+  {
+    "clean_control_coverage": 0.9994,
+    "clean_generation_control_count": 7704,
+    "human_reference_control_count": 7715,
+    "master_positive_examples": 7715,
+    "method": "EWD",
+    "transformed_control_count": null,
+    "transformed_fpr": null,
+    "transformed_status": "NO_TRANSFORMED_CONTROL_PIPELINE_IDENTIFIED"
+  }
+]

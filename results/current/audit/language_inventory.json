@@ -1,0 +1,191 @@
+[
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "cpp",
+    "release_records": 48,
+    "source_group": "crafted_original"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "go",
+    "release_records": 48,
+    "source_group": "crafted_original"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "java",
+    "release_records": 48,
+    "source_group": "crafted_original"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "javascript",
+    "release_records": 48,
+    "source_group": "crafted_original"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "python",
+    "release_records": 48,
+    "source_group": "crafted_original"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "cpp",
+    "release_records": 48,
+    "source_group": "crafted_stress"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "go",
+    "release_records": 48,
+    "source_group": "crafted_stress"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "java",
+    "release_records": 48,
+    "source_group": "crafted_stress"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "javascript",
+    "release_records": 48,
+    "source_group": "crafted_stress"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "python",
+    "release_records": 48,
+    "source_group": "crafted_stress"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "cpp",
+    "release_records": 48,
+    "source_group": "crafted_translation"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "go",
+    "release_records": 48,
+    "source_group": "crafted_translation"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "java",
+    "release_records": 48,
+    "source_group": "crafted_translation"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "javascript",
+    "release_records": 48,
+    "source_group": "crafted_translation"
+  },
+  {
+    "canonical_records": 48,
+    "excluded_records": 0,
+    "language": "python",
+    "release_records": 48,
+    "source_group": "crafted_translation"
+  },
+  {
+    "canonical_records": 164,
+    "excluded_records": 0,
+    "language": "python",
+    "release_records": 164,
+    "source_group": "public_humaneval_plus"
+  },
+  {
+    "canonical_records": 40,
+    "excluded_records": 0,
+    "language": "cpp",
+    "release_records": 40,
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "canonical_records": 40,
+    "excluded_records": 0,
+    "language": "go",
+    "release_records": 40,
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "canonical_records": 40,
+    "excluded_records": 0,
+    "language": "java",
+    "release_records": 40,
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "canonical_records": 40,
+    "excluded_records": 0,
+    "language": "javascript",
+    "release_records": 40,
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "canonical_records": 40,
+    "excluded_records": 0,
+    "language": "python",
+    "release_records": 40,
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "canonical_records": 378,
+    "excluded_records": 0,
+    "language": "python",
+    "release_records": 378,
+    "source_group": "public_mbpp_plus"
+  },
+  {
+    "canonical_records": 30,
+    "excluded_records": 10,
+    "language": "cpp",
+    "release_records": 40,
+    "source_group": "public_mbxp_5lang"
+  },
+  {
+    "canonical_records": 0,
+    "excluded_records": 40,
+    "language": "go",
+    "release_records": 40,
+    "source_group": "public_mbxp_5lang"
+  },
+  {
+    "canonical_records": 37,
+    "excluded_records": 3,
+    "language": "java",
+    "release_records": 40,
+    "source_group": "public_mbxp_5lang"
+  },
+  {
+    "canonical_records": 36,
+    "excluded_records": 4,
+    "language": "javascript",
+    "release_records": 40,
+    "source_group": "public_mbxp_5lang"
+  },
+  {
+    "canonical_records": 40,
+    "excluded_records": 0,
+    "language": "python",
+    "release_records": 40,
+    "source_group": "public_mbxp_5lang"
+  }
+]

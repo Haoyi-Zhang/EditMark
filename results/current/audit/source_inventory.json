@@ -1,0 +1,58 @@
+[
+  {
+    "canonical_records": 240,
+    "excluded_records": 0,
+    "inventory_family_ids": 48,
+    "release_file": "data/release/sources/crafted_original_release.normalized.jsonl",
+    "release_records": 240,
+    "source_group": "crafted_original"
+  },
+  {
+    "canonical_records": 240,
+    "excluded_records": 0,
+    "inventory_family_ids": 48,
+    "release_file": "data/release/sources/crafted_stress_release.normalized.jsonl",
+    "release_records": 240,
+    "source_group": "crafted_stress"
+  },
+  {
+    "canonical_records": 240,
+    "excluded_records": 0,
+    "inventory_family_ids": 48,
+    "release_file": "data/release/sources/crafted_translation_release.normalized.jsonl",
+    "release_records": 240,
+    "source_group": "crafted_translation"
+  },
+  {
+    "canonical_records": 164,
+    "excluded_records": 0,
+    "inventory_family_ids": 164,
+    "release_file": "data/release/sources/suite_humaneval_plus_release.normalized.jsonl",
+    "release_records": 164,
+    "source_group": "public_humaneval_plus"
+  },
+  {
+    "canonical_records": 200,
+    "excluded_records": 0,
+    "inventory_family_ids": 40,
+    "release_file": "data/release/sources/suite_humanevalx_release.normalized.jsonl",
+    "release_records": 200,
+    "source_group": "public_humaneval_x"
+  },
+  {
+    "canonical_records": 378,
+    "excluded_records": 0,
+    "inventory_family_ids": 378,
+    "release_file": "data/release/sources/suite_mbpp_plus_release.normalized.jsonl",
+    "release_records": 378,
+    "source_group": "public_mbpp_plus"
+  },
+  {
+    "canonical_records": 143,
+    "excluded_records": 57,
+    "inventory_family_ids": 40,
+    "release_file": "data/release/sources/suite_mbxp_release.normalized.jsonl",
+    "release_records": 200,
+    "source_group": "public_mbxp_5lang"
+  }
+]
