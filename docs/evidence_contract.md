@@ -42,3 +42,5 @@ Those claims require separately identified negative cohorts, score distributions
 ## Certificate verification
 
 The certificate generator and verifier are separate command-line paths. The verifier rejects a modified certificate when its hash is stale and also rejects a semantically inconsistent certificate after an attacker recomputes the hash. With the original evidence basis, it verifies the recorded SHA-256 and regenerates the complete bundle. This establishes integrity and logical sufficiency, not the truth of the supplied observations.
+
+These paths share the analyzer and certifier implementation. Basis verification against a pair report checks consistency with that report; it does not reconstruct raw-record membership or authenticate execution. Both certificate disclosure paths leave `membership_verified` and `cohort_membership_authenticated` false. Re-derived count-report fields must agree as canonical JSON, including the distinction between Booleans and integers. All report writers, including the verification writer, publish exclusively without replacing an existing path.

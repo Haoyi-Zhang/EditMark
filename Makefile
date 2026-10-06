@@ -37,7 +37,7 @@ hygiene:
 
 paper:
 	@test -n "$(BIBTEX)" || { echo 'A BibTeX executable is required.' >&2; exit 2; }
-	cd ../paper/tosem && $(LATEXMK) -e '$$bibtex="$(BIBTEX) %O %B"' -pdf -interaction=nonstopmode -halt-on-error main.tex
+	cd ../paper/tosem && $(LATEXMK) -e '$$bibtex="$(BIBTEX) %O %B"' -xelatex -interaction=nonstopmode -halt-on-error main.tex
 
 check: test facts lint hygiene
 

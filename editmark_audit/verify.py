@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import argparse
 from collections.abc import Mapping
-import json
 from pathlib import Path
 import sys
 from typing import Any
@@ -32,7 +31,7 @@ from .constants import (
     CERTIFICATE_SCHEMA,
     COUNT_SCHEMA,
 )
-from .io import EvidenceError, digest, loads
+from .io import EvidenceError, digest, loads, write_new_json
 
 
 def _core_hash(certificate: Mapping[str, Any]) -> str:
@@ -81,7 +80,8 @@ def verify_certificate(certificate: Mapping[str, Any]) -> dict[str, Any]:
         raise EvidenceError(f'expected {CERTIFICATE_SCHEMA!r}')
     _core_hash(certificate)
     analysis = analyze_counts(_count_document(certificate))
-    analysis['membership_verified'] = bool(certificate.get('membership_verified', False))
+    if certificate.get('membership_verified') is not False:
+        raise EvidenceError('Supplied certificates do not authenticate cohort membership')
     expected = certify_analysis(
         analysis,
         str(certificate.get('requested_claim', '')),
@@ -184,12 +184,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.basis is not None else verify_bundle(document)
         )
         if args.out is not None:
-            if args.out.exists() or args.out.is_symlink():
-                raise EvidenceError(f'Refusing to overwrite {args.out}')
-            args.out.write_text(
-                json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + '\n',
-                encoding='utf-8',
-            )
+            write_new_json(args.out, result)
         mode = 'basis+certificate' if result['basis_verified'] else 'certificate'
         print(
             f'CERTIFICATES_VERIFIED count={result["certificates_verified"]} mode={mode}'

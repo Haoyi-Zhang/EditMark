@@ -34,7 +34,7 @@ def load(name: str):
 def file_entry(path: Path) -> dict[str, object]:
     data = path.read_bytes()
     return {
-        'path': str(path.relative_to(ROOT)),
+        'path': path.relative_to(ROOT.parent).as_posix(),
         'bytes': len(data),
         'sha256': hashlib.sha256(data).hexdigest(),
     }

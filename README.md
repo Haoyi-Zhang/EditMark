@@ -73,6 +73,8 @@ editmark-verify /tmp/editmark-certificate.json \
 
 Standalone verification checks the canonical certificate hash and re-derives every semantic field from embedded sufficient facts. With `--basis`, the verifier also checks the source-file digest and regenerates the complete certificate bundle. It does not treat a cohort fingerprint as proof that an experiment was honestly executed.
 
+The verifier is a separate entrypoint but shares the analyzer and certifier code; it is not an independent arithmetic implementation. A pair report is supplied evidence, not raw-record membership authentication, so both certificate routes retain `membership_verified=false` and `cohort_membership_authenticated=false`. Count-report re-derivation distinguishes JSON Booleans from exact integer fields, and verification outputs use the same exclusive, non-overwriting publication routine as the other reports.
+
 All files under `examples/` are explicitly synthetic software fixtures, not experimental observations.
 
 ## Repository map

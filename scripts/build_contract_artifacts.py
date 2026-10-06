@@ -272,10 +272,17 @@ def build_figure():
 
 
 def manifest(paths):
-    result=[]
+    output = ROOT.parent / 'paper/tosem/generated/asset_manifest.json'
+    result = json.loads(output.read_text(encoding='utf-8')) if output.exists() else {'assets': []}
+    if not isinstance(result, dict):
+        raise EvidenceError('Expected an asset manifest object')
+    entries = {entry['path']: entry for entry in result.get('assets', [])}
     for path in paths:
-        data=path.read_bytes();result.append({'path':str(path.relative_to(ROOT)),'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
-    write_json(ROOT.parent / 'paper/tosem/generated/asset_manifest.json',result)
+        data = path.read_bytes()
+        relative = path.relative_to(ROOT.parent).as_posix()
+        entries[relative] = {'path': relative, 'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
+    result['assets'] = list(entries.values())
+    write_json(output, result)
 
 
 def main(argv=None):

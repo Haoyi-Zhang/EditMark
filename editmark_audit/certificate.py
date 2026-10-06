@@ -71,11 +71,15 @@ def certify_analysis(
     mismatched = [
         key for key in derived
         if key not in {'membership_verified', 'claim_boundary', 'synthetic_warning'}
-        and key in analysis and analysis[key] != derived[key]
+        and key in analysis
+        and canonical_hash({'value': analysis[key]}) != canonical_hash({'value': derived[key]})
     ]
     if mismatched:
         raise EvidenceError(f'count analysis contradicts its exact facts: {sorted(mismatched)!r}')
-    derived['membership_verified'] = bool(analysis['membership_verified'])
+    if analysis['membership_verified'] is not False:
+        raise EvidenceError(
+            'Supplied counts or pair reports do not authenticate cohort membership; '
+            'membership_verified must be false')
     analysis = derived
 
     checks = {
@@ -229,7 +233,6 @@ def certificates_from_pair_report(
             continue
         document = from_pair_stratum(stratum, evidence_kind)
         analysis = analyze_counts(document)
-        analysis['membership_verified'] = True
         certificate = certify_analysis(
             analysis, requested_claim,
             claim_id=f'stratum-{index}',
