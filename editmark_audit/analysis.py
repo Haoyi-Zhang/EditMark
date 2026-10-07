@@ -82,6 +82,7 @@ def summarize(pairs: Iterable[Pair], mode: str = 'changed_only') -> dict[str, An
     excluded: Counter[str] = Counter()
     joint: Counter[str] = Counter()
     target: list[Pair] = []
+    admitted: list[Pair] = []
     for pair in rows:
         if precondition(pair, mode) is None:
             target.append(pair)
@@ -89,12 +90,12 @@ def summarize(pairs: Iterable[Pair], mode: str = 'changed_only') -> dict[str, An
         if reason:
             excluded[reason] += 1
         else:
+            admitted.append(pair)
             joint[
                 f'n{int(pair.original.detection.detected)}{int(pair.edited.detection.detected)}'
             ] += 1
 
-    admitted = sorted(
-        (pair for pair in rows if exclusion(pair, mode) is None), key=lambda pair: pair.key)
+    admitted.sort(key=lambda pair: pair.key)
     payload = [
         (
             pair.key,

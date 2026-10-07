@@ -21,6 +21,7 @@ help:
 
 test:
 	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m unittest discover -s tests/contract -v
+	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m unittest discover -s regressions -v
 
 facts:
 	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/build_contract_artifacts.py --skip-figure

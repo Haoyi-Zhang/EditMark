@@ -32,6 +32,7 @@ jobs:
           ulimit -n 256
           timeout --signal=TERM --kill-after=10s 240s bash -euo pipefail <<'CHECKS' 2>&1 | tee "$CHECK_OUTPUT/raw.log"
           python -B -m unittest discover -s tests/contract -v
+          python -B -m unittest discover -s regressions -v
           python -B scripts/audit_frozen_evidence.py --out "$CHECK_OUTPUT/audit"
           python -B scripts/verify_release_integrity.py
           CHECKS
