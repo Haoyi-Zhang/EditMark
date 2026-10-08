@@ -17,7 +17,7 @@ FORBIDDEN_SEGMENT = re.compile(
     r"draft(?:[-_].*)?|round\d*|history|old|backup|previous|superseded)$",
     re.IGNORECASE,
 )
-EXPECTED_AUTHORS = ("Haoyi Zhang", "Huaijin Ran", "Xunzhu Tang")
+EXPECTED_AUTHORS = ("Huaijin Ran", "Haoyi Zhang", "Xunzhu Tang")
 
 
 def verify(root: Path) -> list[str]:

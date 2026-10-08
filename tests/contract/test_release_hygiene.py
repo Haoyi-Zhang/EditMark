@@ -14,7 +14,7 @@ class ReleaseHygieneTests(unittest.TestCase):
         (paper / "sections").mkdir(parents=True)
         (paper / "main.tex").write_text(r"\input{authors}\input{sections/body}", encoding="utf-8")
         (paper / "authors.tex").write_text(
-            "\\author{Haoyi Zhang}\n\\author{Huaijin Ran}\n\\author{Xunzhu Tang}\n",
+            "\\author{Huaijin Ran}\n\\author{Haoyi Zhang}\n\\author{Xunzhu Tang}\n",
             encoding="utf-8",
         )
         (paper / "sections" / "body.tex").write_text("body\n", encoding="utf-8")
@@ -35,6 +35,17 @@ class ReleaseHygieneTests(unittest.TestCase):
             (root / "history").mkdir()
             (root / "history" / "paper.tex").write_text("old", encoding="utf-8")
             self.assertTrue(any("superseded-version path" in item for item in verify(root)))
+
+    def test_stale_author_order_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "artifact"
+            root.mkdir()
+            self.fixture(root)
+            (root.parent / "paper" / "tosem" / "authors.tex").write_text(
+                "\\author{Haoyi Zhang}\n\\author{Huaijin Ran}\n\\author{Xunzhu Tang}\n",
+                encoding="utf-8",
+            )
+            self.assertTrue(any("author list" in item for item in verify(root)))
 
     def test_inactive_manuscript_source_is_rejected(self):
         with tempfile.TemporaryDirectory() as td:
