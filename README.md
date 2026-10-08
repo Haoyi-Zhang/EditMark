@@ -25,7 +25,7 @@ make check
 
 This command runs the evidence-contract tests, rebuilds the machine-readable facts from included files, and checks the active manuscript source graph. It does not invoke the experimental runtime.
 
-The current Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
+The retained Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
 
 `summarize` retains admitted immutable pairs during its existing eligibility
 traversal and sorts that invocation-local list for the cohort fingerprint.
@@ -33,8 +33,8 @@ Public exclusion precedence and all three selection modes remain unchanged.
 Four supplementary tests in `regressions/` independently specify eligibility
 truth tables, enumerate missing-decision completions, and check exact hash
 payloads and certificate round trips. `make test` and the scientific workflow
-run them as a separate mandatory stage. The retained 203-test transcript and
-source-derived contract test count are unchanged; the four supplementary
+run them as a separate mandatory stage. The retained 203-test transcript is
+unchanged; the current 204-test suite includes an author-order regression, and the four supplementary
 regressions are not retroactively attributed to that archived run. This is a
 bounded implementation correctness change, not measured speedup or new
 watermark observations.
