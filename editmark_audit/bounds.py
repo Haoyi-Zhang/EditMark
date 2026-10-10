@@ -47,7 +47,11 @@ def incomplete_loss_bounds(total: int, complete: int, observed_difference_sum: i
 
 
 def decision_difference_range(before: bool | None, after: bool | None) -> tuple[int,int]:
-    """Retain partially observed decisions: a known positive is not thrown away."""
+    """Loss range sharp over unrestricted completion of Boolean/null inputs.
+
+    A known decision is retained. Scores and rules are not inputs here, so this
+    range can be conservative relative to richer supplied score/rule facts.
+    """
     for x in (before,after):
         if x is not None and type(x) is not bool: raise EvidenceError('Expected boolean or null decision')
     blo,bhi=(0,1) if before is None else (int(before),int(before))

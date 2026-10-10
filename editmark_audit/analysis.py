@@ -237,9 +237,12 @@ def summarize(pairs: Iterable[Pair], mode: str = 'changed_only') -> dict[str, An
             'upper': rate(-lower_difference, len(target)),
             'estimand': 'net_detection_change',
             'interpretation': (
-                'Sharp finite-target identification interval, not a confidence interval. '
-                'Only jointly valid, changed, same-rule pairs form this target; '
-                'unknown validation remains outside it.'
+                'Finite-target interval sharp relative to unrestricted completion of the '
+                'coarsened observed-Boolean/null projection, not a confidence interval. '
+                'Retained scores are not used to infer missing decisions; the interval '
+                'can be conservative relative to supplied score/rule information. '
+                'Only jointly valid, same-rule pairs eligible under the selected analysis mode '
+                'form this target; unknown validation remains outside it.'
             ),
         },
         'missing_decision_bounds': {
@@ -252,7 +255,10 @@ def summarize(pairs: Iterable[Pair], mode: str = 'changed_only') -> dict[str, An
             'upper': rate(upper_difference, len(target)),
             'estimand': 'net_detection_loss',
             'interpretation': (
-                'Sharp finite-target identification interval, not a confidence interval. '
+                'Finite-target interval sharp relative to unrestricted completion of the '
+                'coarsened observed-Boolean/null projection, not a confidence interval. '
+                'Retained scores are not used to infer missing decisions; the interval '
+                'can be conservative relative to supplied score/rule information. '
                 'This is the sign-reversed form of missing_decision_change_bounds.'
             ),
         },
