@@ -34,8 +34,10 @@ Four supplementary tests in `regressions/` independently specify eligibility
 truth tables, enumerate missing-decision completions, and check exact hash
 payloads and certificate round trips. `make test` and the scientific workflow
 run them as a separate mandatory stage. The retained 203-test transcript is
-unchanged; the current 204-test suite includes an author-order regression, and the four supplementary
-regressions are not retroactively attributed to that archived run. This is a
+unchanged; the current source inventory contains 209 contract-test methods,
+including an author-order regression and five missing-decision mathematical-bound
+regressions. Neither these additions nor the four supplementary regressions are
+retroactively attributed to that archived run. This is a
 bounded implementation correctness change, not measured speedup or new
 watermark observations.
 
