@@ -79,69 +79,11 @@ for method in methods:
     )
 (G / 'profile_rows.tex').write_text('\n'.join(rows) + '\n' + r'\bottomrule' + '\n', encoding='utf-8')
 
-# Edit-specific absolute test-pass figure from the checked-in descriptive export.
-attack_csv = ROOT / 'results' / 'tables' / 'suite_all_models_methods' / 'method_attack_summary.csv'
-with attack_csv.open(newline='', encoding='utf-8-sig') as handle:
-    attack_rows = list(csv.DictReader(handle))
-edit_order = [
-    'whitespace_normalize', 'comment_strip', 'noise_insert', 'identifier_rename',
-    'block_shuffle', 'control_flow_flatten', 'budgeted_adaptive',
-]
-edit_labels = [
-    'Whitespace', 'Comment removal', 'Comment insertion', 'Identifier renaming',
-    'Block shuffle', 'Control-flow edit', 'Budgeted adaptive',
-]
-attack_present = {row['attack'] for row in attack_rows}
-if 'budgeted_adaptive' not in attack_present:
-    matches = [name for name in attack_present if 'adaptive' in name]
-    if len(matches) != 1:
-        raise SystemExit(f'Unexpected attack names: {sorted(attack_present)!r}')
-    edit_order[-1] = matches[0]
-edit_pass = {
-    (row['method'], row['attack']): 100.0 * float(row['attacked_test_pass_rate'])
-    for row in attack_rows
-}
-markers = ['o', 's', '^', 'D']
-fig, ax = plt.subplots(figsize=(8.0, 4.7))
-for j, method in enumerate(methods):
-    ax.plot(
-        [edit_pass[(method, name)] for name in edit_order],
-        [i + (j - 1.5) * 0.10 for i in range(len(edit_order))],
-        markers[j], markersize=5, label=method, linestyle='none'
-    )
-ax.set_yticks(range(len(edit_order)), edit_labels)
-ax.invert_yaxis()
-ax.set_xlabel('Edited-program test-pass fraction in method-edit export (%)')
-ax.legend(ncol=4, loc='lower center', bbox_to_anchor=(0.5, 1.01), frameon=False)
-ax.grid(axis='x', linestyle=':', alpha=0.45)
-fig.tight_layout()
-fig.savefig(F / 'edit_functionality.pdf', metadata={'CreationDate': None, 'ModDate': None})
-fig.savefig(F / 'edit_functionality.png', dpi=180)
-plt.close(fig)
+from plot_figures import build_figures
 
-# Transformation applicability figure.
-components = load('edit_component_audit.json')
-present = {row['edit'] for row in components}
-if not set(edit_order).issubset(present):
-    raise SystemExit(f'Unexpected edit names: {sorted(present)!r}')
-fig, ax = plt.subplots(figsize=(8.0, 4.7))
-for j, method in enumerate(methods):
-    by_edit = {row['edit']: row for row in components if row['method'] == method}
-    ax.plot(
-        [100 * by_edit[name]['application_coverage'] for name in edit_order],
-        [i + (j - 1.5) * 0.10 for i in range(len(edit_order))],
-        markers[j], markersize=5, label=method, linestyle='none'
-    )
-ax.set_yticks(range(len(edit_order)), edit_labels)
-ax.invert_yaxis()
-ax.set_xlim(-2, 103)
-ax.set_xlabel('Rows reported applicable / attempted edit rows (%)')
-ax.legend(ncol=4, loc='lower center', bbox_to_anchor=(0.5, 1.01), frameon=False)
-ax.grid(axis='x', linestyle=':', alpha=0.45)
-fig.tight_layout()
-fig.savefig(F / 'application_coverage.pdf', metadata={'CreationDate': None, 'ModDate': None})
-fig.savefig(F / 'application_coverage.png', dpi=180)
-plt.close(fig)
+# Reuse the standalone vector producer; it reads the same retained audit exports.
+build_figures(ROOT)
+
 
 # Remove manuscript assets that are no longer referenced.
 for name in ('utility_vs_pass.pdf', 'utility_vs_pass.png',
