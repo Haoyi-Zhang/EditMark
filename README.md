@@ -93,6 +93,34 @@ The verifier is a separate entrypoint but shares the analyzer and certifier code
 
 All files under `examples/` are explicitly synthetic software fixtures, not experimental observations.
 
+## Bounded same-information diagnostic
+
+`scripts/diagnose_information.py` inventories retained JSON/JSONL/CSV evidence,
+independently redoes ordinary exact-count and pair arithmetic, and keeps
+missing-only target cohorts explicit. It neither executes source programs nor
+runs watermarking, detector inference, or transformations. Run from this directory:
+
+```bash
+python -B scripts/diagnose_information.py --out results/repair_diagnostic/new-information.json
+python -B -m unittest discover -s regressions -v
+```
+
+The output path must be new and within `results/repair_diagnostic/`. The retained
+`information-v3.json` records nine synthetic pair cases, the exact-count
+comparison, all 28 rounded component checks, 142 serialized-file inventory
+entries, and local processing costs. The costs include a separately measured
+fresh-process/durable-publication workflow, not just arithmetic time. Direct
+arithmetic and the contract receive the same disclosed information but provide
+different guarantees; this is not a speedup or new detector-performance result.
+The archived non-finite EWD summary literal is flagged and preserved, not turned
+into a measured zero. No real paired effect is recoverable from this inventory.
+
+Bundle verification now enforces the declared bundle fields and a nonempty
+input name plus a lowercase 64-hex input digest. A syntactically valid digest
+still does not authenticate the basis in standalone mode. Twelve new
+supplementary regression methods cover these checks and the diagnostic; they
+are not attributed to the retained Ubuntu test transcript.
+
 ## Repository map
 
 | Path | Purpose |

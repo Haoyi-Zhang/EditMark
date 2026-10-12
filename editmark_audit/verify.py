@@ -18,7 +18,7 @@ from pathlib import Path
 import sys
 from typing import Any
 
-from .aggregates import analyze as analyze_counts
+from .aggregates import analyze as analyze_counts, sha256
 from .certificate import (
     canonical_hash,
     certificates_from_count_documents,
@@ -32,6 +32,7 @@ from .constants import (
     COUNT_SCHEMA,
 )
 from .io import EvidenceError, digest, loads, write_new_json
+from .records import checked_object, text
 
 
 def _core_hash(certificate: Mapping[str, Any]) -> str:
@@ -107,6 +108,10 @@ def verify_certificate(certificate: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def verify_bundle(bundle: Mapping[str, Any]) -> dict[str, Any]:
+    bundle = checked_object(
+        bundle, 'certificate_bundle',
+        {'schema_version', 'input_file', 'requested_claim', 'certificates'},
+    )
     if bundle.get('schema_version') != CERTIFICATE_BUNDLE_SCHEMA:
         raise EvidenceError(f'expected {CERTIFICATE_BUNDLE_SCHEMA!r}')
     certificates = bundle.get('certificates')
@@ -128,11 +133,13 @@ def verify_bundle(bundle: Mapping[str, Any]) -> dict[str, Any]:
             raise EvidenceError('duplicate certificate hash in bundle')
         seen.add(cert_hash)
         rows.append(result)
-    input_file = bundle.get('input_file')
-    if not isinstance(input_file, Mapping):
-        raise EvidenceError('input_file digest record is required')
-    if not isinstance(input_file.get('name'), str) or not isinstance(input_file.get('sha256'), str):
-        raise EvidenceError('input_file requires name and sha256 strings')
+    input_file = checked_object(
+        bundle.get('input_file'), 'input_file', {'name', 'sha256'},
+    )
+    text(input_file.get('name'), 'input_file.name')
+    recorded_digest = sha256(input_file.get('sha256'), 'input_file.sha256')
+    if input_file['sha256'] != recorded_digest:
+        raise EvidenceError('input_file.sha256: expected lowercase SHA-256')
     return {
         'schema_version': 'editmark-certificate-verification',
         'requested_claim': requested,

@@ -47,7 +47,7 @@ def bundle(document, claim='positive_decision_change'):
     certificate = certify_analysis(analyze(document), claim)
     return {
         'schema_version': CERTIFICATE_BUNDLE_SCHEMA,
-        'input_file': {'name': 'counts.json', 'sha256': ''},
+        'input_file': {'name': 'counts.json', 'sha256': '0' * 64},
         'requested_claim': claim,
         'certificates': [certificate],
     }
