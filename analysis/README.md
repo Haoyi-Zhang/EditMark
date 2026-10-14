@@ -1,5 +1,3 @@
-Current interpretation and provenance: see `../docs/review/CLAIM_EVIDENCE.md`. This directory includes earlier derived outputs; current cross-release results are in `round3/`.
-
 # Frozen-evidence audit
 
 Read-only static inventory and arithmetic checks of frozen aggregates; no experiment rerun

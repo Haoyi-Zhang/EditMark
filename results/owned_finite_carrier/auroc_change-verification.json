@@ -1,0 +1,21 @@
+{
+  "basis_file": {
+    "name": "pairs.jsonl",
+    "sha256": "be23ee4c031d35e3cc10be834b7e17666355b0ab6008e7f4a6458339ee51f5db"
+  },
+  "basis_kind": "raw_pairs",
+  "basis_verified": true,
+  "certificates": [
+    {
+      "basis_verified": true,
+      "certificate_sha256": "3d4444b7ddc0b619adce265f203bb610b81e1112055191dd8c152551c0f5b474",
+      "decision": "not_admissible",
+      "embedded_facts_verified": true,
+      "requested_claim": "auroc_change"
+    }
+  ],
+  "certificates_verified": 1,
+  "raw_pair_membership_rederived": true,
+  "requested_claim": "auroc_change",
+  "schema_version": "editmark-certificate-verification"
+}

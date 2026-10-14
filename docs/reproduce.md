@@ -38,3 +38,17 @@ editmark-verify /tmp/certs.json --basis /tmp/counts.json
 ```
 
 These examples are software fixtures, not experimental evidence.
+
+For raw-pair source-basis regeneration, use fresh outputs:
+
+```bash
+python -B -m editmark_audit.certificate examples/synthetic_count_basis.jsonl --claim detection_survival --out NEW_CERTIFICATE.json
+python -B -m editmark_audit.verify NEW_CERTIFICATE.json --basis examples/synthetic_count_basis.jsonl --out NEW_VERIFICATION.json
+```
+
+The separate opt-in command `scripts/measure_owned_carrier.py --out NEW_DIRECTORY`
+executes only its exact owner-authored finite Python source set. Its four tests
+use `python -B -m unittest discover -s regressions -p check_owned_carrier.py -v`.
+The retained raw measurement and source/environment bindings are in
+`results/owned_finite_carrier/`. Neither this fixture nor direct arithmetic on
+its pairs supplies the missing independent benchmark observations.

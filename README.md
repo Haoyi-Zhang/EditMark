@@ -27,19 +27,12 @@ This command runs the evidence-contract tests, rebuilds the machine-readable fac
 
 The retained Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
 
-`summarize` retains admitted immutable pairs during its existing eligibility
-traversal and sorts that invocation-local list for the cohort fingerprint.
-Public exclusion precedence and all three selection modes remain unchanged.
-Four supplementary tests in `regressions/` independently specify eligibility
-truth tables, enumerate missing-decision completions, and check exact hash
-payloads and certificate round trips. `make test` and the scientific workflow
-run them as a separate mandatory stage. The retained 203-test transcript is
-unchanged; the current source inventory contains 209 contract-test methods,
-including an author-order regression and five missing-decision mathematical-bound
-regressions. Neither these additions nor the four supplementary regressions are
-retroactively attributed to that archived run. This is a
-bounded implementation correctness change, not measured speedup or new
-watermark observations.
+The current model-free suite runs 209 contract methods and 23 supplementary
+methods separately. It checks eligibility truth tables, missing-decision
+completions, typed certificate commitments, source-basis consistency, exact
+fingerprints and exclusive publication. The archived 203-method Ubuntu
+transcript remains separate. The opt-in authored native fixture has four
+additional checks and is not executed by default test discovery.
 
 To rebuild the figure and paper:
 
@@ -87,9 +80,14 @@ editmark-verify /tmp/editmark-certificate.json \
   --out /tmp/editmark-verification.json
 ```
 
-Standalone verification checks the canonical certificate hash and re-derives every semantic field from embedded sufficient facts. With `--basis`, the verifier also checks the source-file digest and regenerates the complete certificate bundle. It does not treat a cohort fingerprint as proof that an experiment was honestly executed.
+Standalone verification checks the canonical certificate hash and re-derives every semantic field from embedded sufficient facts. With `--basis`, it checks the source-file digest, regenerates the complete certificate bundle and rechecks that digest. A basis changed during regeneration is rejected. Normalized raw pairs can be supplied directly:
 
-The verifier is a separate entrypoint but shares the analyzer and certifier code; it is not an independent arithmetic implementation. A pair report is supplied evidence, not raw-record membership authentication, so both certificate routes retain `membership_verified=false` and `cohort_membership_authenticated=false`. Count-report re-derivation distinguishes JSON Booleans from exact integer fields, and verification outputs use the same exclusive, non-overwriting publication routine as the other reports.
+```bash
+python -B -m editmark_audit.certificate examples/synthetic_count_basis.jsonl --claim detection_survival --out NEW_CERTIFICATE.json
+python -B -m editmark_audit.verify NEW_CERTIFICATE.json --basis examples/synthetic_count_basis.jsonl --out NEW_VERIFICATION.json
+```
+
+The verifier is a separate entrypoint but shares the analyzer and certifier code; it is not an independent arithmetic implementation. Raw-pair basis mode reparses source identities, conflicting duplicates, eligibility and transitions and reports `raw_pair_membership_rederived=true`. A supplied pair report does not reconstruct raw membership. Neither mode authenticates external origin or execution, so certificates retain `membership_verified=false` and `cohort_membership_authenticated=false`. Typed canonical commitments distinguish Booleans from exact integer fields; verification uses the same exclusive publication routine as other reports.
 
 All files under `examples/` are explicitly synthetic software fixtures, not experimental observations.
 
@@ -115,18 +113,42 @@ different guarantees; this is not a speedup or new detector-performance result.
 The archived non-finite EWD summary literal is flagged and preserved, not turned
 into a measured zero. No real paired effect is recoverable from this inventory.
 
-Bundle verification now enforces the declared bundle fields and a nonempty
+Bundle verification enforces the declared bundle fields and a nonempty
 input name plus a lowercase 64-hex input digest. A syntactically valid digest
-still does not authenticate the basis in standalone mode. Twelve new
-supplementary regression methods cover these checks and the diagnostic; they
-are not attributed to the retained Ubuntu test transcript.
+still does not authenticate the basis in standalone mode.
+
+## Opt-in owned source-to-certificate measurement
+
+`fixtures/owned_finite_carrier.py` declares all eight three-bit comment states,
+one fixed threshold and an `x + 1` contract on five integer inputs. A neutral
+review footer preserves the carrier. The runner accepts only 16 exact approved
+source versions, not arbitrary programs or benchmark task code:
+
+```bash
+python -B scripts/measure_owned_carrier.py --out NEW_DIRECTORY
+python -B -m unittest discover -s regressions -p check_owned_carrier.py -v
+```
+
+The actual run and raw inputs are in `results/owned_finite_carrier/`: eight
+pairs, 80 CPython fixture calls, transitions (4,0,0,4), net change 0 and joint
+survival 1. Same-cohort marginals alone yield survival [0,1]. Direct arithmetic
+on the same paired inputs agrees exactly; selection/detection gain is zero.
+All five bundles are verified against the raw JSONL, with FPR/AUROC/posterior
+requests still denied. Origin stays `synthetic_test`; this is an authored
+native fixture integration check, not independently sourced study evidence or
+validation of KGW/SWEET/STONE/EWD. Default model-free commands do not execute it.
+
+OpenAI Codex assisted in generating this fixture/measurement code, the raw-pair
+workflow and regressions, and the corresponding manuscript exposition. Formal
+disclosure appears in the manuscript acknowledgments; no independent human
+review or empirical novelty is inferred from these checks.
 
 ## Repository map
 
 | Path | Purpose |
 |---|---|
 | `../paper/tosem/` (full package) | ACM journal manuscript, bibliography, figures, and generated table fragments |
-| `editmark_audit/` | Typed pair parser, eligibility gate, exact-count analysis, certificates, and independent verification |
+| `editmark_audit/` | Typed pair parser, eligibility gate, exact-count analysis, certificates, and separate verification with shared arithmetic |
 | `schemas/` | Local JSON Schemas for pairs, sufficient counts, and certificates |
 | `tests/contract/` | Model-free unit, exhaustive-enumeration, mutation, and file-safety tests |
 | `analysis/` | Frozen case-study facts, exact figure inputs, exclusions, controls, and checker outputs |

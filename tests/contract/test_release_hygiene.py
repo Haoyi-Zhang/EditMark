@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.verify_release_hygiene import verify
+from scripts.verify_release_hygiene import verify, EXPECTED_AUTHORS
 
 
 class ReleaseHygieneTests(unittest.TestCase):
@@ -14,7 +14,7 @@ class ReleaseHygieneTests(unittest.TestCase):
         (paper / "sections").mkdir(parents=True)
         (paper / "main.tex").write_text(r"\input{authors}\input{sections/body}", encoding="utf-8")
         (paper / "authors.tex").write_text(
-            "\\author{Huaijin Ran}\n\\author{Haoyi Zhang}\n\\author{Xunzhu Tang}\n",
+            "".join("\\author{" + name + "}\n" for name in EXPECTED_AUTHORS),
             encoding="utf-8",
         )
         (paper / "sections" / "body.tex").write_text("body\n", encoding="utf-8")
@@ -42,7 +42,8 @@ class ReleaseHygieneTests(unittest.TestCase):
             root.mkdir()
             self.fixture(root)
             (root.parent / "paper" / "tosem" / "authors.tex").write_text(
-                "\\author{Haoyi Zhang}\n\\author{Huaijin Ran}\n\\author{Xunzhu Tang}\n",
+                "".join("\\author{" + name + "}\n" for name in
+                        (EXPECTED_AUTHORS[1], EXPECTED_AUTHORS[0], *EXPECTED_AUTHORS[2:])),
                 encoding="utf-8",
             )
             self.assertTrue(any("author list" in item for item in verify(root)))

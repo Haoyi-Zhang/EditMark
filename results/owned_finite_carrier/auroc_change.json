@@ -1,0 +1,74 @@
+{
+  "certificates": [
+    {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 8,
+      "certificate_sha256": "3d4444b7ddc0b619adce265f203bb610b81e1112055191dd8c152551c0f5b474",
+      "claim_id": "stratum-1",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "83e6bc3d481c0e2926552e70f0abb527ee88c0898072f1cbb460f0616265187f",
+      "counts": {
+        "after_positive": 4,
+        "before_positive": 4,
+        "n": 8
+      },
+      "decision": "not_admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "owned-finite-carrier:779f0ac8df956b6c60853d8c0401ac86acba6c148f29ed597109f50d165972e5",
+        "threshold": 2.0
+      },
+      "estimate": null,
+      "evidence_kind": "synthetic_test",
+      "first_exclusion_counts": {},
+      "identification": "missing_score_distributions_and_controls",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "auroc_change",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "neutral-review-annotation",
+        "experiment_id": "OWNED-FINITE-CARRIER",
+        "language": "python",
+        "method": "authored-three-bit-carrier",
+        "model": "none",
+        "source_group": "authored-finite-integration-fixture",
+        "variant_id": "fixed-footer"
+      },
+      "supported_statement": "AUROC change requires before/after score distributions for both positive and negative cohorts. Thresholded positive counts are insufficient.",
+      "synthetic_warning": "NOT AN EMPIRICAL RESULT",
+      "transitions": {
+        "n00": 4,
+        "n01": 0,
+        "n10": 0,
+        "n11": 4
+      }
+    }
+  ],
+  "input_file": {
+    "name": "pairs.jsonl",
+    "sha256": "be23ee4c031d35e3cc10be834b7e17666355b0ab6008e7f4a6458339ee51f5db"
+  },
+  "requested_claim": "auroc_change",
+  "schema_version": "editmark-claim-certificate-bundle"
+}

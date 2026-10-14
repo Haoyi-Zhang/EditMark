@@ -1,0 +1,713 @@
+{
+  "analyzer_agrees": true,
+  "attack_workflow_execution": false,
+  "claim_outcomes": {
+    "auroc_change": {
+      "basis_kind": "raw_pairs",
+      "decision": "not_admissible",
+      "exit_code": 3,
+      "raw_pair_membership_rederived": true
+    },
+    "detection_survival": {
+      "basis_kind": "raw_pairs",
+      "decision": "admissible",
+      "exit_code": 0,
+      "raw_pair_membership_rederived": true
+    },
+    "edited_false_positive_rate": {
+      "basis_kind": "raw_pairs",
+      "decision": "not_admissible",
+      "exit_code": 3,
+      "raw_pair_membership_rederived": true
+    },
+    "positive_decision_change": {
+      "basis_kind": "raw_pairs",
+      "decision": "admissible",
+      "exit_code": 0,
+      "raw_pair_membership_rederived": true
+    },
+    "post_edit_provenance_probability": {
+      "basis_kind": "raw_pairs",
+      "decision": "not_admissible",
+      "exit_code": 3,
+      "raw_pair_membership_rederived": true
+    }
+  },
+  "contract_spec": {
+    "entrypoint": "step",
+    "expected": [
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "inputs": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "scope": "finite integer domain only"
+  },
+  "detector_spec": {
+    "carrier": "three-bit comment",
+    "comparator": "ge",
+    "key": null,
+    "score": "number of one bits",
+    "threshold": 2
+  },
+  "environment": {
+    "argv": [
+      "scripts/measure_owned_carrier.py",
+      "--out",
+      "D:/CodexProjects/2026-07-13/new-chat-4/completion_workspace/library_review/private/substantive_library_completion/P032/owned-run"
+    ],
+    "executable": "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "finished_utc": "2026-10-13T22:50:48.072506+00:00",
+    "platform": "Windows-11-10.0.28000-SP0",
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "started_utc": "2026-10-13T22:50:47.986292+00:00"
+  },
+  "evidence_kind": "synthetic_test",
+  "executions": [
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 0,
+          "side": "original",
+          "source_sha256": "89bb9fa7b286c33f8f420210618ac45a51dbb4e423f3e4fbf85c1d6ea8429836"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 0,
+          "side": "edited",
+          "source_sha256": "009a32f577480d2c66155d0a7c0ff74cb67c8d5244d1bb4aaa13c963ed4137a7"
+        }
+      ],
+      "sample_id": "000"
+    },
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 1,
+          "side": "original",
+          "source_sha256": "44c4e790f93f15717f8ffedc522bb05c5c65688081a919d75f974c52bab1843d"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 1,
+          "side": "edited",
+          "source_sha256": "f2637733ddb9e3b5cb991955fab1eade3f8f00cf8e06bc9c2f8641626102f29b"
+        }
+      ],
+      "sample_id": "001"
+    },
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 1,
+          "side": "original",
+          "source_sha256": "8e2aa43ced5eafef0e8ba102e1731990716a0662c5868a5940fff397167c6592"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 1,
+          "side": "edited",
+          "source_sha256": "a1bda4029038d4f856b021df90d25ec4040304bf6dc39d1da0e456f7aeecbafe"
+        }
+      ],
+      "sample_id": "010"
+    },
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 2,
+          "side": "original",
+          "source_sha256": "13233996268ecdb12ab3dcbac75d2fd20508d9d89c9b629573e49b29a31971b3"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 2,
+          "side": "edited",
+          "source_sha256": "c039dd6c34ce2951f9ea8f993056943c23292d909cfae338d409459d3baa889e"
+        }
+      ],
+      "sample_id": "011"
+    },
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 1,
+          "side": "original",
+          "source_sha256": "4d61c31cf28fb7b4ece2dc00dea98c5cbbc703a16e3a768176a55a2a021fcd21"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": false,
+          "detector_score": 1,
+          "side": "edited",
+          "source_sha256": "89d14e80845ec3d5747228755b2e71254311b24a9ac4425051365ab88df3b998"
+        }
+      ],
+      "sample_id": "100"
+    },
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 2,
+          "side": "original",
+          "source_sha256": "479108d77da13675164f772ad0d5dc5daffafa91557a4738bdee3ac390c4ab61"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 2,
+          "side": "edited",
+          "source_sha256": "88dce2d8f6089c3907dae11055cc08281c38bad79b889799705479aa8f1203b0"
+        }
+      ],
+      "sample_id": "101"
+    },
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 2,
+          "side": "original",
+          "source_sha256": "1d9a3ac10eff09f194fac65eb7757c54fe98f4ded2665dcf49d3325fc39141d6"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 2,
+          "side": "edited",
+          "source_sha256": "ab389fb2bc84ed0be4a0c8daf6e5d9ec59e4c6234dfc0b56029b3ba6b0b9f45a"
+        }
+      ],
+      "sample_id": "110"
+    },
+    {
+      "native_observations": [
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 3,
+          "side": "original",
+          "source_sha256": "a738023fd699a49bb995c7b0c1a58ae19c0cf9fafcf164e25fcb97d429899163"
+        },
+        {
+          "calls": [
+            {
+              "actual": -1,
+              "expected": -1,
+              "input": -2
+            },
+            {
+              "actual": 0,
+              "expected": 0,
+              "input": -1
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "input": 0
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "input": 1
+            },
+            {
+              "actual": 3,
+              "expected": 3,
+              "input": 2
+            }
+          ],
+          "detector_decision": true,
+          "detector_score": 3,
+          "side": "edited",
+          "source_sha256": "5c8b713a2a359419f020e9d5086d525b47de7037bea8484353f60977d9feb2b3"
+        }
+      ],
+      "sample_id": "111"
+    }
+  ],
+  "finite_contract_calls": 80,
+  "interpretation": "Observed zero change and joint survival 1 on this authored fixture. Same-cohort marginals give [0,1] survival; direct arithmetic on the same pairs has exactly the same answers. No FPR/AUROC/posterior, security, novelty or deployment claim.",
+  "native_python_fixture_execution": true,
+  "native_source_versions": 16,
+  "pair_count": 8,
+  "same_information_direct": {
+    "after_positive": 4,
+    "before_positive": 4,
+    "change": [
+      0,
+      1
+    ],
+    "marginal_survival_bounds": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "n": 8,
+    "survival": [
+      1,
+      1
+    ],
+    "transitions": {
+      "n00": 4,
+      "n01": 0,
+      "n10": 0,
+      "n11": 4
+    }
+  },
+  "scope": "Owner-authored finite integration fixture; not an independent study or upstream watermark evaluation",
+  "selection_or_detection_gain": 0,
+  "source_bindings": [
+    {
+      "path": "fixtures/owned_finite_carrier.py",
+      "sha256": "779f0ac8df956b6c60853d8c0401ac86acba6c148f29ed597109f50d165972e5"
+    },
+    {
+      "path": "scripts/measure_owned_carrier.py",
+      "sha256": "32acf1b903634d7fa442f33dce3a815f173b062680983f595c3f7ba070da78df"
+    },
+    {
+      "path": "editmark_audit/records.py",
+      "sha256": "0e010c65a499b428070deb6d93d725d0125966c22836ac54638630d9539601b2"
+    },
+    {
+      "path": "editmark_audit/analysis.py",
+      "sha256": "c41508b975185645e565fff3a8f972cbf359dc5c459ca6d4a93bd5a400339094"
+    },
+    {
+      "path": "editmark_audit/aggregates.py",
+      "sha256": "48c49ed4caf095d0f8cc8bd85af23e8ec192dc40c94c8d72d0babbf7cdb9dec1"
+    },
+    {
+      "path": "editmark_audit/certificate.py",
+      "sha256": "c414383d81b363eba7a0a4001aa1f7970cd828f2cf683902f684c3ffaeb18dfe"
+    },
+    {
+      "path": "editmark_audit/verify.py",
+      "sha256": "3ce54e7befad764c3c6bc5904683fd65bfad66d8f047e7ecaaba689dc2c6126a"
+    }
+  ],
+  "source_origin": "Authored exact eight-state source set in owned_finite_carrier.py",
+  "third_party_target_access": false,
+  "upstream_native_or_model_execution": false
+}

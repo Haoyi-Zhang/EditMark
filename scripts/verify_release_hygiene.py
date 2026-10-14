@@ -10,14 +10,36 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.verify_manuscript import source_graph
+from scripts.verify_manuscript import source_graph, strip_comments
 
 FORBIDDEN_SEGMENT = re.compile(
     r"^(?:v\d+(?:[._-]\d+)*|final(?:[-_].*)?|reviewed(?:[-_].*)?|working(?:[-_].*)?|"
     r"draft(?:[-_].*)?|round\d*|history|old|backup|previous|superseded)$",
     re.IGNORECASE,
 )
-EXPECTED_AUTHORS = ("Huaijin Ran", "Haoyi Zhang", "Xunzhu Tang")
+EXPECTED_AUTHORS = ("Haoyi Zhang", "Huaijin Ran", "Xunzhu Tang", "Kisub Kim",
+                    r"Tegawend\'{e} F. Bissyand\'{e}")
+
+
+def author_names(source: str) -> tuple[str, ...]:
+    """Read balanced author arguments without truncating TeX accent groups."""
+    source = strip_comments(source)
+    names = []
+    for match in re.finditer(r"\\author\s*\{", source):
+        start = index = match.end()
+        depth = 1
+        while index < len(source) and depth:
+            char = source[index]
+            if char == "\\" and index + 1 < len(source) and source[index + 1] in "{}":
+                index += 2
+                continue
+            depth += (char == "{") - (char == "}")
+            index += 1
+        if depth:
+            names.append("<unclosed-author-argument>")
+        else:
+            names.append(source[start:index - 1])
+    return tuple(names)
 
 
 def verify(root: Path) -> list[str]:
@@ -65,7 +87,7 @@ def verify(root: Path) -> list[str]:
         errors.append("missing paper/tosem/authors.tex")
     else:
         text = authors_path.read_text(encoding="utf-8")
-        found = tuple(re.findall(r"\\author\{([^}]+)\}", text))
+        found = author_names(text)
         if found != EXPECTED_AUTHORS:
             errors.append(f"author list is {found!r}, expected {EXPECTED_AUTHORS!r}")
         if re.search(r"placeholder|to be confirmed|future author|author slot", text, re.I):

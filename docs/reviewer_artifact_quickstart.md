@@ -31,3 +31,10 @@ The examples are explicitly synthetic. The workflow checks arithmetic, cohort/ru
 - It does not treat a certificate hash as trusted execution attestation or authorship proof.
 
 The central technical object is a verifiable claim package: a structured claim, named population, eligibility gate, fixed detector rule, sufficient statistics, exclusion partition, identification result, generated supported statement, and prohibited interpretations.
+
+Normalized raw pairs can also be given directly to certificate generation and
+`--basis` verification. That path rederives source-bound cohort membership,
+not execution authenticity. The opt-in authored finite source measurement in
+`results/owned_finite_carrier/` has zero detection change/gain and agrees with
+ordinary direct arithmetic. It executes known fixture texts only; the default
+model-free path above does not run it or any archived attack/model pipeline.

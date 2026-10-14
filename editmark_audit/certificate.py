@@ -14,11 +14,13 @@ from pathlib import Path
 import sys
 from typing import Any, Iterable, Mapping
 from .aggregates import analyze as analyze_counts, from_pair_stratum
+from .analysis import report as analyze_pairs
 from .constants import (
     CERTIFICATE_BUNDLE_SCHEMA, CERTIFICATE_SCHEMA, COUNT_ANALYSIS_SCHEMA, COUNT_REPORT_SCHEMA,
-    COUNT_SCHEMA, PAIR_REPORT_SCHEMA,
+    COUNT_SCHEMA, PAIR_REPORT_SCHEMA, PAIR_SCHEMA,
 )
 from .io import EvidenceError, digest, load_rows, loads, write_new_json
+from .records import Pair
 
 CLAIMS = (
     'positive_decision_change',
@@ -241,16 +243,33 @@ def certificates_from_pair_report(
     return certificates
 
 
+def certificates_from_raw_pairs(
+    documents: Iterable[Mapping[str, Any]], requested_claim: str
+) -> list[dict[str, Any]]:
+    """Reconstruct membership, source identities and eligibility from supplied rows.
+
+    Parsing does not execute source or authenticate the observations. The same
+    strict analysis and certificate arithmetic are used, not a new estimand.
+    """
+    return certificates_from_pair_report(
+        analyze_pairs([Pair.parse(document) for document in documents]), requested_claim)
+
+
 def _load_input(path: Path) -> tuple[str, list[Mapping[str, Any]] | Mapping[str, Any]]:
     if path.suffix.lower() == '.jsonl':
         rows = load_rows(path)
-        return 'counts', rows
+        kind = 'raw_pairs' if rows[0].get('schema_version') == PAIR_SCHEMA else 'counts'
+        return kind, rows
     document = loads(path.read_text(encoding='utf-8-sig'))
     if isinstance(document, list):
-        return 'counts', document
+        kind = ('raw_pairs' if document and isinstance(document[0], Mapping)
+                and document[0].get('schema_version') == PAIR_SCHEMA else 'counts')
+        return kind, document
     if not isinstance(document, Mapping):
         raise EvidenceError('Expected a JSON object, a list of count objects, or JSONL count objects')
     schema = document.get('schema_version')
+    if schema == PAIR_SCHEMA:
+        return 'raw_pairs', [document]
     if schema == PAIR_REPORT_SCHEMA:
         return 'pair_report', document
     if schema == COUNT_REPORT_SCHEMA:
@@ -258,7 +277,7 @@ def _load_input(path: Path) -> tuple[str, list[Mapping[str, Any]] | Mapping[str,
     if schema == COUNT_SCHEMA:
         return 'counts', [document]
     raise EvidenceError(
-        f'Unsupported input schema {schema!r}; expected pair report or exact cohort counts')
+        f'Unsupported input schema {schema!r}; expected normalized pairs, pair report or exact cohort counts')
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -273,6 +292,8 @@ def main(argv: list[str] | None = None) -> int:
         kind, value = _load_input(args.input)
         if kind == 'pair_report':
             certificates = certificates_from_pair_report(value, args.claim)  # type: ignore[arg-type]
+        elif kind == 'raw_pairs':
+            certificates = certificates_from_raw_pairs(value, args.claim)  # type: ignore[arg-type]
         elif kind == 'analyses':
             certificates = [certify_analysis(item, args.claim) for item in value]  # type: ignore[arg-type]
         else:

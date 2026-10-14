@@ -23,6 +23,7 @@ from .certificate import (
     canonical_hash,
     certificates_from_count_documents,
     certificates_from_pair_report,
+    certificates_from_raw_pairs,
     certify_analysis,
     _load_input,
 )
@@ -153,6 +154,8 @@ def _regenerate_from_basis(basis: Path, requested_claim: str) -> list[dict[str, 
     kind, value = _load_input(basis)
     if kind == 'pair_report':
         return certificates_from_pair_report(value, requested_claim)  # type: ignore[arg-type]
+    if kind == 'raw_pairs':
+        return certificates_from_raw_pairs(value, requested_claim)  # type: ignore[arg-type]
     if kind == 'analyses':
         return [certify_analysis(item, requested_claim) for item in value]  # type: ignore[arg-type]
     return certificates_from_count_documents(value, requested_claim)  # type: ignore[arg-type]
@@ -167,10 +170,17 @@ def verify_bundle_against_basis(
     if actual_digest != recorded['sha256']:
         raise EvidenceError('basis file SHA-256 does not match the bundle input digest')
     regenerated = _regenerate_from_basis(basis, str(bundle['requested_claim']))
+    if digest(basis) != actual_digest:
+        raise EvidenceError('Input basis changed during verification')
     if regenerated != bundle['certificates']:
         raise EvidenceError('bundle certificates do not match regeneration from the supplied basis')
     result['basis_verified'] = True
     result['basis_file'] = {'name': basis.name, 'sha256': actual_digest}
+    kind, _ = _load_input(basis)
+    if digest(basis) != actual_digest:
+        raise EvidenceError('Input basis changed during verification')
+    result['basis_kind'] = kind
+    result['raw_pair_membership_rederived'] = kind == 'raw_pairs'
     for row in result['certificates']:
         row['basis_verified'] = True
     return result
