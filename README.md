@@ -161,10 +161,7 @@ requests still denied. Origin stays `synthetic_test`; this is an authored
 native fixture integration check, not independently sourced study evidence or
 validation of KGW/SWEET/STONE/EWD. Default model-free commands do not execute it.
 
-OpenAI Codex assisted in generating this fixture/measurement code, the raw-pair
-workflow and regressions, and the corresponding manuscript exposition. Formal
-disclosure appears in the manuscript acknowledgments; no independent human
-review or empirical novelty is inferred from these checks.
+No independent human review or empirical novelty is inferred from these checks.
 
 ## Repository map
 
@@ -188,7 +185,6 @@ The included aggregate evidence supports an audit of measurement and reporting. 
 - Haoyi Zhang, Xi'an Jiaotong-Liverpool University — `hyeliozhang@gmail.com`
 - Huaijin Ran, Nanyang Technological University — `huaijin003@e.ntu.edu.sg`
 - Xunzhu Tang, University of Luxembourg — `realdanieltang@gmail.com`
-
 
 ## Safety
 
