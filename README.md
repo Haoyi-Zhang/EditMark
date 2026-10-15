@@ -11,13 +11,18 @@ This code repository contains the archived benchmark implementation and summarie
 
 ## One-minute verification
 
-Python 3.10 or later is sufficient for the core checks. With this directory as the working directory, the code-only test entrypoint is:
+Python 3.10 or later is sufficient for the core checks; no model/runtime
+dependencies or package installation are needed when running from this
+directory. The portable code-only test commands are:
 
 ```bash
-make test
+python -B -m unittest discover -s tests/contract -v
+python -B -m unittest discover -s regressions -v
 ```
 
-The full package checks also require the sibling `../paper/tosem/` sources:
+With GNU Make and a POSIX shell, `make test` runs the same two suites.
+The full package checks also require those tools and the sibling
+`../paper/tosem/` sources:
 
 ```bash
 make check
@@ -83,10 +88,16 @@ keep the original schema. See `docs/claim_certificates.md` for the record contra
 ### 4. Certificate verification
 
 ```bash
-editmark-verify /tmp/editmark-certificate.json \
+python -m editmark_audit.verify /tmp/editmark-certificate.json \
   --basis /tmp/editmark-count-report.json \
   --out /tmp/editmark-verification.json
 ```
+
+For use outside this directory, install the core package in an activated
+environment with `python -m pip install .`; this also provides the
+`editmark-pairs`, `editmark-counts`, `editmark-certificate` and `editmark-verify`
+console commands. Report output paths must be new; existing files are never
+overwritten.
 
 Standalone verification checks the canonical certificate hash and re-derives every semantic field from embedded sufficient facts. With `--basis`, it checks the source-file digest, regenerates the complete certificate bundle and rechecks that digest. A basis changed during regeneration is rejected. Normalized raw pairs can be supplied directly:
 
