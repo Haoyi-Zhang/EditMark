@@ -28,27 +28,32 @@ def fraction(value):
     return [value.numerator, value.denominator]
 
 
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
 def direct_observed(rows):
     """Separately written same-information arithmetic and literal admission."""
     counts = dict(n00=0, n01=0, n10=0, n11=0)
     for row in rows:
         before, after = row["original"], row["edited"]
-        assert row["supported"] is True
-        assert digest_text(before["source"]) != digest_text(after["source"])
-        assert all(p["source_sha256"] == digest_text(p["source"]) for p in (before, after))
-        assert before["validation"] == after["validation"]
-        assert before["validation"]["available"] is True
-        assert before["validation"]["passed"] is True
-        assert before["validation"]["contract_id"]
-        assert all(p["detection"]["available"] is True and p["detection"]["rule_id"]
-                   for p in (before, after))
-        assert all(before["detection"][k] == after["detection"][k]
-                   for k in ("rule_id", "threshold", "comparator"))
+        require(row["supported"] is True, "owned comparison requires supported pairs")
+        require(digest_text(before["source"]) != digest_text(after["source"]), "owned pair must change source")
+        require(all(p["source_sha256"] == digest_text(p["source"]) for p in (before, after)), "source fingerprint mismatch")
+        require(before["validation"] == after["validation"], "functional contracts differ")
+        require(before["validation"]["available"] is True, "functional observation unavailable")
+        require(before["validation"]["passed"] is True, "functional validation failed")
+        require(bool(before["validation"]["contract_id"]), "functional contract absent")
+        require(all(p["detection"]["available"] is True and p["detection"]["rule_id"]
+                    for p in (before, after)), "detector observations unavailable")
+        require(all(before["detection"][k] == after["detection"][k]
+                    for k in ("rule_id", "threshold", "comparator")), "detector rules differ")
         b, a = before["detection"]["detected"], after["detection"]["detected"]
-        assert type(b) is bool and type(a) is bool
-        assert all(p["detection"]["detected"] ==
-                   (p["detection"]["score"] >= p["detection"]["threshold"])
-                   for p in (before, after))
+        require(type(b) is bool and type(a) is bool, "detector decisions must be Boolean")
+        require(all(p["detection"]["detected"] ==
+                    (p["detection"]["score"] >= p["detection"]["threshold"])
+                    for p in (before, after)), "detector score and decision disagree")
         counts[f"n{int(b)}{int(a)}"] += 1
     n = sum(counts.values())
     b, a = counts["n10"] + counts["n11"], counts["n01"] + counts["n11"]
@@ -95,14 +100,13 @@ def run(output):
     paired = report([Pair.parse(row) for row in rows])
     counts = from_pair_stratum(paired["strata"][0], "synthetic_test")
     exact = analyze(counts)
-    assert direct["transitions"] == counts["transitions"]
-    assert direct["change"] == [exact["net_detection_change"][k] for k in ("numerator", "denominator")]
-    assert direct["survival"] == [exact["survival"][k] for k in ("numerator", "denominator")]
+    require(direct["transitions"] == counts["transitions"], "direct transitions disagree with analyzer")
+    require(direct["change"] == [exact["net_detection_change"][k] for k in ("numerator", "denominator")], "net change disagrees")
+    require(direct["survival"] == [exact["survival"][k] for k in ("numerator", "denominator")], "survival disagrees")
     marginal = dict(counts); marginal.pop("transitions")
     coarse = analyze(marginal)
-    assert direct["marginal_survival_bounds"] == [[coarse["survival_bounds"][side][k]
-                                                  for k in ("numerator", "denominator")]
-                                                 for side in ("lower", "upper")]
+    require(direct["marginal_survival_bounds"] == [[coarse["survival_bounds"][side][k]
+             for k in ("numerator", "denominator")] for side in ("lower", "upper")], "marginal survival bounds disagree")
     output.mkdir(parents=True, exist_ok=False)
     raw = output / "pairs.jsonl"
     with raw.open("x", encoding="utf-8", newline="\n") as stream:
@@ -122,7 +126,7 @@ def run(output):
                            "basis_kind": checked["basis_kind"],
                            "raw_pair_membership_rederived": checked["raw_pair_membership_rederived"]}
     reread = load_rows(raw)
-    assert reread == rows
+    require(reread == rows, "serialized paired observations differ on reread")
     bindings = [{"path": name, "sha256": digest(ROOT / name)} for name in (
         "fixtures/owned_finite_carrier.py", "scripts/measure_owned_carrier.py",
         "editmark_audit/records.py", "editmark_audit/analysis.py",

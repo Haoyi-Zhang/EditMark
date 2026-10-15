@@ -27,12 +27,15 @@ This command runs the evidence-contract tests, rebuilds the machine-readable fac
 
 The retained Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
 
-The current model-free suite runs 209 contract methods and 23 supplementary
+The current model-free suite runs 230 contract methods and 23 supplementary
 methods separately. It checks eligibility truth tables, missing-decision
 completions, typed certificate commitments, source-basis consistency, exact
 fingerprints and exclusive publication. The archived 203-method Ubuntu
-transcript remains separate. The opt-in authored native fixture has four
-additional checks and is not executed by default test discovery.
+execution remains separate. The opt-in finite source fixture has six regression
+methods, including admission and direct/analyzer agreement gates that remain
+active under optimized Python. Its programs are restricted to the exact
+owner-authored carrier set and are not executed by default model-free test
+discovery.
 
 To rebuild the figure and paper:
 
@@ -72,6 +75,11 @@ python -m editmark_audit.certificate /tmp/editmark-count-report.json \
 
 The certificate records whether a requested sentence is identified, only bounded, or not admissible. Positive pairs can support same-rule decision change. They cannot establish edited false-positive rate, AUROC change, calibration, source prevalence, or posterior provenance probability without additional evidence.
 
+Pair exports retain missing-only strata as explicit non-admissible coverage
+records, without an admitted-cohort hash, point estimate or metric denominator.
+Bundles containing them use the v2 schema; complete-only and exact-count bundles
+keep the original schema. See `docs/claim_certificates.md` for the record contract.
+
 ### 4. Certificate verification
 
 ```bash
@@ -88,6 +96,10 @@ python -B -m editmark_audit.verify NEW_CERTIFICATE.json --basis examples/synthet
 ```
 
 The verifier is a separate entrypoint but shares the analyzer and certifier code; it is not an independent arithmetic implementation. Raw-pair basis mode reparses source identities, conflicting duplicates, eligibility and transitions and reports `raw_pair_membership_rederived=true`. A supplied pair report does not reconstruct raw membership. Neither mode authenticates external origin or execution, so certificates retain `membership_verified=false` and `cohort_membership_authenticated=false`. Typed canonical commitments distinguish Booleans from exact integer fields; verification uses the same exclusive publication routine as other reports.
+
+V2 basis verification requires every stratum record. Legacy v1 cohort bundles
+remain verifiable, but omitted strata are returned as `unidentified_strata` with
+`basis_coverage_complete=false`; basis agreement alone is not full coverage.
 
 All files under `examples/` are explicitly synthetic software fixtures, not experimental observations.
 

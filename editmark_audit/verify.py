@@ -3,8 +3,9 @@
 Standalone verification checks the certificate hash and re-derives every
 reported decision, estimate, interval, and generated statement from the exact
 facts embedded in the certificate.  Supplying ``--basis`` additionally checks
-the recorded input digest and regenerates the complete certificate bundle from
-the pair report or exact-count disclosure that produced it.
+the recorded input digest and regenerates the certificate records from their
+raw-pair, pair-report or exact-count basis. V2 requires full stratum coverage;
+legacy v1 retains its cohort contract and explicitly reports omitted strata.
 
 This verifier checks integrity and logical sufficiency.  It does not attest that
 an experiment was executed honestly, that task oracles are correct, or that a
@@ -25,12 +26,16 @@ from .certificate import (
     certificates_from_pair_report,
     certificates_from_raw_pairs,
     certify_analysis,
+    certify_unidentified_stratum,
+    UNIDENTIFIED_FACT_FIELDS,
     _load_input,
 )
 from .constants import (
     CERTIFICATE_BUNDLE_SCHEMA,
     CERTIFICATE_SCHEMA,
     COUNT_SCHEMA,
+    COVERAGE_BUNDLE_SCHEMA,
+    UNIDENTIFIED_STRATUM_SCHEMA,
 )
 from .io import EvidenceError, digest, loads, write_new_json
 from .records import checked_object, text
@@ -78,18 +83,29 @@ def verify_certificate(certificate: Mapping[str, Any]) -> dict[str, Any]:
     or was regenerated from a supplied basis.  This function performs the
     former; :func:`verify_bundle_against_basis` performs the latter.
     """
-    if certificate.get('schema_version') != CERTIFICATE_SCHEMA:
+    schema = certificate.get('schema_version')
+    if schema not in (CERTIFICATE_SCHEMA, UNIDENTIFIED_STRATUM_SCHEMA):
         raise EvidenceError(f'expected {CERTIFICATE_SCHEMA!r}')
     _core_hash(certificate)
-    analysis = analyze_counts(_count_document(certificate))
     if certificate.get('membership_verified') is not False:
         raise EvidenceError('Supplied certificates do not authenticate cohort membership')
-    expected = certify_analysis(
-        analysis,
-        str(certificate.get('requested_claim', '')),
-        claim_id=str(certificate.get('claim_id', '')),
-        claim_text=str(certificate.get('claim_text', '')),
-    )
+    if schema == UNIDENTIFIED_STRATUM_SCHEMA:
+        missing = set(UNIDENTIFIED_FACT_FIELDS) - set(certificate)
+        if missing:
+            raise EvidenceError(f'unidentified record missing embedded facts: {sorted(missing)!r}')
+        expected = certify_unidentified_stratum(
+            {key: certificate[key] for key in UNIDENTIFIED_FACT_FIELDS},
+            certificate.get('requested_claim', ''),
+            claim_id=certificate.get('claim_id', ''), claim_text=certificate.get('claim_text', ''),
+        )
+    else:
+        analysis = analyze_counts(_count_document(certificate))
+        expected = certify_analysis(
+            analysis,
+            str(certificate.get('requested_claim', '')),
+            claim_id=str(certificate.get('claim_id', '')),
+            claim_text=str(certificate.get('claim_text', '')),
+        )
     if dict(certificate) != expected:
         mismatched = sorted(
             key for key in set(certificate) | set(expected)
@@ -113,7 +129,8 @@ def verify_bundle(bundle: Mapping[str, Any]) -> dict[str, Any]:
         bundle, 'certificate_bundle',
         {'schema_version', 'input_file', 'requested_claim', 'certificates'},
     )
-    if bundle.get('schema_version') != CERTIFICATE_BUNDLE_SCHEMA:
+    schema = bundle.get('schema_version')
+    if schema not in (CERTIFICATE_BUNDLE_SCHEMA, COVERAGE_BUNDLE_SCHEMA):
         raise EvidenceError(f'expected {CERTIFICATE_BUNDLE_SCHEMA!r}')
     certificates = bundle.get('certificates')
     if not isinstance(certificates, list) or not certificates:
@@ -128,6 +145,9 @@ def verify_bundle(bundle: Mapping[str, Any]) -> dict[str, Any]:
             raise EvidenceError('each certificate must be an object')
         if certificate.get('requested_claim') != requested:
             raise EvidenceError('bundle and certificate requested_claim values disagree')
+        if (schema == CERTIFICATE_BUNDLE_SCHEMA
+                and certificate.get('schema_version') != CERTIFICATE_SCHEMA):
+            raise EvidenceError('unidentified stratum records require the v2 bundle schema')
         result = verify_certificate(certificate)
         cert_hash = result['certificate_sha256']
         if cert_hash in seen:
@@ -172,9 +192,20 @@ def verify_bundle_against_basis(
     regenerated = _regenerate_from_basis(basis, str(bundle['requested_claim']))
     if digest(basis) != actual_digest:
         raise EvidenceError('Input basis changed during verification')
-    if regenerated != bundle['certificates']:
+    # v1 promised complete nonempty-cohort certificates, not a record for every
+    # stratum. Preserve that historical contract, but expose its omitted strata.
+    omitted = []
+    expected = regenerated
+    if bundle['schema_version'] == CERTIFICATE_BUNDLE_SCHEMA:
+        omitted = [item for item in regenerated
+                   if item['schema_version'] == UNIDENTIFIED_STRATUM_SCHEMA]
+        expected = [item for item in regenerated
+                    if item['schema_version'] == CERTIFICATE_SCHEMA]
+    if expected != bundle['certificates']:
         raise EvidenceError('bundle certificates do not match regeneration from the supplied basis')
     result['basis_verified'] = True
+    result['basis_coverage_complete'] = not omitted
+    result['unidentified_strata'] = omitted
     result['basis_file'] = {'name': basis.name, 'sha256': actual_digest}
     kind, _ = _load_input(basis)
     if digest(basis) != actual_digest:
@@ -203,8 +234,12 @@ def main(argv: list[str] | None = None) -> int:
         if args.out is not None:
             write_new_json(args.out, result)
         mode = 'basis+certificate' if result['basis_verified'] else 'certificate'
+        coverage = (
+            f' stratum_coverage=incomplete omitted={len(result["unidentified_strata"])}'
+            if result.get('basis_coverage_complete') is False else ''
+        )
         print(
-            f'CERTIFICATES_VERIFIED count={result["certificates_verified"]} mode={mode}'
+            f'CERTIFICATES_VERIFIED count={result["certificates_verified"]} mode={mode}{coverage}'
         )
         return 0
     except (EvidenceError, OSError, UnicodeError, ValueError, KeyError, TypeError) as exc:

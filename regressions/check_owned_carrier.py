@@ -8,10 +8,30 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from fixtures import owned_finite_carrier as owned
-from scripts.measure_owned_carrier import run
+from scripts.measure_owned_carrier import direct_observed, digest_text, run
 
 
 class OwnedCarrierTests(unittest.TestCase):
+    def test_direct_admission_guard_survives_optimized_python(self):
+        programs = []
+        for edited in (False, True):
+            source = owned.source_for(7, edited)
+            programs.append({"source": source, "source_sha256": digest_text(source),
+                "validation": {"available": True, "passed": True, "contract_id": owned.CONTRACT_ID},
+                "detection": {"available": True, "rule_id": "owned-fixed-rule", "score": 3,
+                              "threshold": 2, "comparator": "ge", "detected": True}})
+        with self.assertRaisesRegex(ValueError, "supported pairs"):
+            direct_observed([{"supported": False, "original": programs[0], "edited": programs[1]}])
+
+    def test_direct_disagreement_refuses_before_result_publication(self):
+        wrong = {"transitions": {"n00": 0, "n01": 0, "n10": 0, "n11": 8}}
+        with tempfile.TemporaryDirectory() as temporary:
+            target = Path(temporary) / "must-not-publish"
+            with patch("scripts.measure_owned_carrier.direct_observed", return_value=wrong):
+                with self.assertRaisesRegex(ValueError, "direct transitions"):
+                    run(target)
+            self.assertFalse(target.exists())
+
     def test_complete_predeclared_carrier_population_and_domain(self):
         decisions = []
         for bits in range(8):

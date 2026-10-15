@@ -2,7 +2,10 @@
 import json
 from pathlib import Path
 import unittest
-from editmark_audit.schemas import pair_schema,count_schema,certificate_schema,certificate_bundle_schema
+from editmark_audit.schemas import (
+    pair_schema, count_schema, certificate_schema, certificate_bundle_schema,
+    unidentified_stratum_schema,
+)
 from editmark_audit.aggregates import analyze
 from editmark_audit.records import Pair
 from editmark_audit.io import EvidenceError, load_rows
@@ -14,6 +17,8 @@ class SchemaTests(unittest.TestCase):
         self.assertEqual(json.loads((ROOT/'schemas/cohort_counts.schema.json').read_text()),count_schema())
         self.assertEqual(json.loads((ROOT/'schemas/claim_certificate.schema.json').read_text()),certificate_schema())
         self.assertEqual(json.loads((ROOT/'schemas/claim_certificate_bundle.schema.json').read_text()),certificate_bundle_schema())
+    def test_shipped_unidentified_schema_matches_export(self):
+        self.assertEqual(json.loads((ROOT/'schemas/unidentified_stratum.schema.json').read_text()),unidentified_stratum_schema())
     def test_pair_example_is_explicitly_synthetic(self):
         self.assertEqual({Pair.parse(d).evidence_kind for d in load_rows(ROOT/'examples/synthetic_pairs.jsonl')},{'synthetic_test'})
     def test_count_example_is_explicitly_synthetic(self):

@@ -13,14 +13,17 @@ import json
 from pathlib import Path
 import sys
 from typing import Any, Iterable, Mapping
-from .aggregates import analyze as analyze_counts, from_pair_stratum
+from .aggregates import (
+    EXCLUSIONS, STRATA, analyze as analyze_counts, count, from_pair_stratum, sha256,
+)
 from .analysis import report as analyze_pairs
 from .constants import (
     CERTIFICATE_BUNDLE_SCHEMA, CERTIFICATE_SCHEMA, COUNT_ANALYSIS_SCHEMA, COUNT_REPORT_SCHEMA,
-    COUNT_SCHEMA, PAIR_REPORT_SCHEMA, PAIR_SCHEMA,
+    COUNT_SCHEMA, COVERAGE_BUNDLE_SCHEMA, PAIR_REPORT_SCHEMA, PAIR_SCHEMA,
+    STRICT_CONTRACT, UNIDENTIFIED_STRATUM_SCHEMA,
 )
 from .io import EvidenceError, digest, load_rows, loads, write_new_json
-from .records import Pair
+from .records import COMPARATORS, KINDS, Pair, checked_object, number, text
 
 CLAIMS = (
     'positive_decision_change',
@@ -28,6 +31,12 @@ CLAIMS = (
     'edited_false_positive_rate',
     'auroc_change',
     'post_edit_provenance_probability',
+)
+
+UNIDENTIFIED_FACT_FIELDS = (
+    'evidence_kind', 'analysis_contract', 'stratum', 'decision_rule',
+    'attempted_pairs', 'eligible_target_pairs', 'admitted_pairs',
+    'cohort_sha256', 'known_target_sha256', 'first_exclusion_counts',
 )
 
 
@@ -222,6 +231,99 @@ def certificates_from_count_documents(
     return [certify_analysis(analyze_counts(document), requested_claim) for document in documents]
 
 
+def certify_unidentified_stratum(
+    facts: Mapping[str, Any], requested_claim: str,
+    claim_id: str = '', claim_text: str = '',
+) -> dict[str, Any]:
+    """Retain an empty admitted stratum without creating a count disclosure.
+
+    Attempted/target counts describe observed coverage, not a metric denominator.
+    Neither a target fingerprint nor a missing record is an admitted cohort.
+    """
+    if requested_claim not in CLAIMS:
+        raise EvidenceError(f'requested_claim must be one of {CLAIMS}')
+    facts = checked_object(facts, 'unidentified_stratum', set(UNIDENTIFIED_FACT_FIELDS))
+    if set(facts) != set(UNIDENTIFIED_FACT_FIELDS):
+        raise EvidenceError('unidentified stratum requires all embedded coverage facts')
+    if facts['analysis_contract'] != STRICT_CONTRACT or facts['evidence_kind'] not in KINDS:
+        raise EvidenceError('unidentified stratum requires a strict, explicitly typed evidence kind')
+    if not isinstance(claim_id, str) or not isinstance(claim_text, str):
+        raise EvidenceError('claim_id and claim_text must be strings')
+    raw_stratum = checked_object(facts['stratum'], 'stratum', set(STRATA))
+    stratum = {key: text(raw_stratum.get(key), 'stratum.' + key) for key in STRATA}
+    raw_rule = checked_object(
+        facts['decision_rule'], 'decision_rule', {'rule_id', 'threshold', 'comparator'})
+    if set(raw_rule) != {'rule_id', 'threshold', 'comparator'}:
+        raise EvidenceError('unidentified stratum requires the recorded rule fields, including unknowns')
+    rule = {
+        'rule_id': text(raw_rule['rule_id'], 'rule_id', True),
+        'threshold': number(raw_rule['threshold'], 'threshold'),
+        'comparator': text(raw_rule['comparator'], 'comparator', True),
+    }
+    if rule['comparator'] and rule['comparator'] not in COMPARATORS:
+        raise EvidenceError('unknown decision comparator')
+    attempted = count(facts['attempted_pairs'], 'attempted_pairs')
+    target = count(facts['eligible_target_pairs'], 'eligible_target_pairs')
+    admitted = count(facts['admitted_pairs'], 'admitted_pairs')
+    if attempted == 0 or admitted != 0 or facts['cohort_sha256'] is not None:
+        raise EvidenceError('unidentified stratum must have attempts, no admitted pairs and no cohort hash')
+    raw_exclusions = checked_object(
+        facts['first_exclusion_counts'], 'first_exclusion_counts', set(EXCLUSIONS))
+    exclusions = {
+        key: count(value, 'exclusion.' + key) for key, value in sorted(raw_exclusions.items())
+    }
+    if sum(exclusions.values()) != attempted:
+        raise EvidenceError('unidentified attempted pairs must equal first-exclusion counts')
+    missing = sum(exclusions.get(key, 0) for key in (
+        'original_decision_unavailable', 'edited_decision_unavailable'))
+    if target != missing:
+        raise EvidenceError('eligible empty-cohort targets must match missing-decision exclusions')
+    target_hash = facts['known_target_sha256']
+    if target:
+        target_hash = sha256(target_hash, 'known_target_sha256')
+        if not rule['rule_id'] or rule['threshold'] is None or not rule['comparator']:
+            raise EvidenceError('eligible targets require a complete fixed decision rule')
+    elif target_hash is not None:
+        raise EvidenceError('no eligible target means no known-target fingerprint')
+    result = {
+        'schema_version': UNIDENTIFIED_STRATUM_SCHEMA,
+        'claim_id': claim_id, 'claim_text': claim_text, 'requested_claim': requested_claim,
+        'population': 'watermarked_positive', 'analysis_contract': STRICT_CONTRACT,
+        'evidence_kind': facts['evidence_kind'], 'stratum': stratum, 'decision_rule': rule,
+        'attempted_pairs': attempted, 'eligible_target_pairs': target, 'admitted_pairs': 0,
+        'cohort_sha256': None, 'known_target_sha256': target_hash,
+        'first_exclusion_counts': exclusions, 'analysis_status': 'undefined_empty_cohort',
+        'decision': 'not_admissible',
+        'identification': ('unidentified_missing_decisions' if target
+                           else 'undefined_no_eligible_target'),
+        'estimate': None, 'membership_verified': False, 'claim_text_verified': False,
+        'supported_statement': (
+            'No complete same-rule decision pair is admitted. Missing decisions remain '
+            'unobserved; this record supplies no point estimate or metric denominator.'
+            if target else
+            'No jointly valid changed same-rule target is established. This record retains '
+            'the exclusions and supplies no point estimate or metric denominator.'
+        ),
+        'prohibited_interpretations': [
+            'An unavailable decision or eligibility check is not a negative observation.',
+            'A known-target fingerprint is not an admitted-cohort fingerprint or execution authentication.',
+            'A verified coverage record does not make the requested claim admissible.',
+            'The generated supported_statement is authoritative; claim_text is unverified metadata.',
+        ],
+        'synthetic_warning': ('NOT AN EMPIRICAL RESULT'
+                              if facts['evidence_kind'] == 'synthetic_test' else None),
+    }
+    result['certificate_sha256'] = canonical_hash(result)
+    return result
+
+
+def bundle_schema_for(certificates: Iterable[Mapping[str, Any]]) -> str:
+    """Use v2 only when a bundle contains the new, non-count coverage record."""
+    return (COVERAGE_BUNDLE_SCHEMA if any(
+        item.get('schema_version') == UNIDENTIFIED_STRATUM_SCHEMA for item in certificates
+    ) else CERTIFICATE_BUNDLE_SCHEMA)
+
+
 def certificates_from_pair_report(
     report: Mapping[str, Any], requested_claim: str
 ) -> list[dict[str, Any]]:
@@ -231,7 +333,28 @@ def certificates_from_pair_report(
     certificates = []
     for index, stratum in enumerate(report.get('strata', []), 1):
         estimate = stratum.get('estimates', {}).get('changed_only', {})
-        if not estimate.get('admitted_pairs'):
+        admitted = count(estimate.get('admitted_pairs'), 'admitted_pairs')
+        if admitted == 0:
+            if any(count(estimate.get(key), key) != 0
+                   for key in ('n00', 'n01', 'n10', 'n11')):
+                raise EvidenceError('empty admitted stratum cannot contain transition observations')
+            if estimate.get('analysis_contract') != STRICT_CONTRACT:
+                raise EvidenceError('unidentified export requires the strict analysis contract')
+            facts = {
+                'evidence_kind': evidence_kind, 'analysis_contract': STRICT_CONTRACT,
+                'stratum': {key: stratum[key] for key in STRATA},
+                'decision_rule': {
+                    'rule_id': stratum['original_rule_id'],
+                    'threshold': stratum['original_threshold'],
+                    'comparator': stratum['original_comparator'],
+                },
+                **{key: estimate[key] for key in (
+                    'attempted_pairs', 'eligible_target_pairs', 'admitted_pairs',
+                    'cohort_sha256', 'known_target_sha256', 'first_exclusion_counts',
+                )},
+            }
+            certificates.append(certify_unidentified_stratum(
+                facts, requested_claim, claim_id=f'stratum-{index}'))
             continue
         document = from_pair_stratum(stratum, evidence_kind)
         analysis = analyze_counts(document)
@@ -301,14 +424,14 @@ def main(argv: list[str] | None = None) -> int:
         if digest(args.input) != input_hash:
             raise EvidenceError('Input changed during certification')
         if not certificates:
-            raise EvidenceError('No nonempty cohort is available for certification')
+            raise EvidenceError('No cohort or stratum coverage record is available for certification')
         if args.require_observations and any(
             certificate.get('evidence_kind') != 'saved_observation'
             for certificate in certificates
         ):
             raise EvidenceError('Synthetic evidence cannot be certified as saved observations')
         bundle = {
-            'schema_version': CERTIFICATE_BUNDLE_SCHEMA,
+            'schema_version': bundle_schema_for(certificates),
             'input_file': {'name': args.input.name, 'sha256': input_hash},
             'requested_claim': args.claim,
             'certificates': certificates,

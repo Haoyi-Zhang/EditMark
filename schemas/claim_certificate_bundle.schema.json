@@ -1,213 +1,706 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": false,
-  "properties": {
-    "certificates": {
-      "items": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "additionalProperties": false,
-        "properties": {
-          "analysis_contract": {
-            "type": "string"
+  "title": "EditMark claim-certificate bundle",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "editmark-claim-certificate-bundle"
+        },
+        "input_file": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
           },
-          "analysis_status": {
-            "type": "string"
-          },
-          "attempted_pairs": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "bounds": {
-            "type": "object"
-          },
-          "certificate_sha256": {
-            "pattern": "^[a-f0-9]{64}$",
-            "type": "string"
-          },
-          "claim_id": {
-            "type": "string"
-          },
-          "claim_text": {
-            "type": "string"
-          },
-          "claim_text_verified": {
-            "const": false
-          },
-          "cohort_sha256": {
-            "pattern": "^[a-f0-9]{64}$",
-            "type": "string"
-          },
-          "counts": {
-            "type": "object"
-          },
-          "decision": {
-            "enum": [
-              "admissible",
-              "partially_admissible",
-              "not_admissible"
-            ]
-          },
-          "decision_rule": {
-            "type": "object"
-          },
-          "estimand": {
-            "type": "string"
-          },
-          "estimate": {
-            "additionalProperties": false,
+          "required": [
+            "name",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "requested_claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "certificates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "EditMark claim certificate",
+            "type": "object",
             "properties": {
-              "decimal": {
-                "type": "number"
+              "schema_version": {
+                "const": "editmark-claim-certificate"
               },
-              "denominator": {
-                "minimum": 1,
-                "type": "integer"
+              "claim_id": {
+                "type": "string"
               },
-              "numerator": {
-                "type": "integer"
+              "claim_text": {
+                "type": "string"
+              },
+              "requested_claim": {
+                "type": "string"
+              },
+              "decision": {
+                "enum": [
+                  "admissible",
+                  "partially_admissible",
+                  "not_admissible"
+                ]
+              },
+              "identification": {
+                "type": "string"
+              },
+              "population": {
+                "type": "string"
+              },
+              "analysis_contract": {
+                "type": "string"
+              },
+              "cohort_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "stratum": {
+                "type": "object"
+              },
+              "decision_rule": {
+                "type": "object"
+              },
+              "counts": {
+                "type": "object"
+              },
+              "transitions": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "n00": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "n01": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "n10": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "n11": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "attempted_pairs": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "first_exclusion_counts": {
+                "type": "object"
+              },
+              "analysis_status": {
+                "type": "string"
+              },
+              "membership_verified": {
+                "type": "boolean"
+              },
+              "claim_text_verified": {
+                "const": false
+              },
+              "requirements": {
+                "type": "object"
+              },
+              "prohibited_interpretations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "estimand": {
+                "type": "string"
+              },
+              "estimate": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "numerator": {
+                    "type": "integer"
+                  },
+                  "denominator": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "decimal": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "numerator",
+                  "denominator",
+                  "decimal"
+                ],
+                "additionalProperties": false
+              },
+              "bounds": {
+                "type": "object"
+              },
+              "supported_statement": {
+                "type": "string"
+              },
+              "evidence_kind": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "synthetic_warning": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "certificate_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
               }
             },
             "required": [
-              "numerator",
-              "denominator",
-              "decimal"
+              "schema_version",
+              "requested_claim",
+              "decision",
+              "identification",
+              "population",
+              "analysis_contract",
+              "cohort_sha256",
+              "stratum",
+              "decision_rule",
+              "counts",
+              "transitions",
+              "attempted_pairs",
+              "first_exclusion_counts",
+              "analysis_status",
+              "membership_verified",
+              "claim_text_verified",
+              "requirements",
+              "prohibited_interpretations",
+              "supported_statement",
+              "certificate_sha256"
             ],
-            "type": [
-              "object",
-              "null"
-            ]
-          },
-          "evidence_kind": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "first_exclusion_counts": {
-            "type": "object"
-          },
-          "identification": {
-            "type": "string"
-          },
-          "membership_verified": {
-            "type": "boolean"
-          },
-          "population": {
-            "type": "string"
-          },
-          "prohibited_interpretations": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "requested_claim": {
-            "type": "string"
-          },
-          "requirements": {
-            "type": "object"
-          },
-          "schema_version": {
-            "const": "editmark-claim-certificate"
-          },
-          "stratum": {
-            "type": "object"
-          },
-          "supported_statement": {
-            "type": "string"
-          },
-          "synthetic_warning": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "transitions": {
-            "additionalProperties": false,
-            "properties": {
-              "n00": {
-                "minimum": 0,
-                "type": "integer"
-              },
-              "n01": {
-                "minimum": 0,
-                "type": "integer"
-              },
-              "n10": {
-                "minimum": 0,
-                "type": "integer"
-              },
-              "n11": {
-                "minimum": 0,
-                "type": "integer"
-              }
-            },
-            "type": [
-              "object",
-              "null"
-            ]
+            "additionalProperties": false
           }
-        },
-        "required": [
-          "schema_version",
-          "requested_claim",
-          "decision",
-          "identification",
-          "population",
-          "analysis_contract",
-          "cohort_sha256",
-          "stratum",
-          "decision_rule",
-          "counts",
-          "transitions",
-          "attempted_pairs",
-          "first_exclusion_counts",
-          "analysis_status",
-          "membership_verified",
-          "claim_text_verified",
-          "requirements",
-          "prohibited_interpretations",
-          "supported_statement",
-          "certificate_sha256"
-        ],
-        "title": "EditMark claim certificate",
-        "type": "object"
-      },
-      "minItems": 1,
-      "type": "array"
-    },
-    "input_file": {
-      "additionalProperties": false,
-      "properties": {
-        "name": {
-          "minLength": 1,
-          "type": "string"
-        },
-        "sha256": {
-          "pattern": "^[a-f0-9]{64}$",
-          "type": "string"
         }
       },
       "required": [
-        "name",
-        "sha256"
+        "schema_version",
+        "input_file",
+        "requested_claim",
+        "certificates"
       ],
-      "type": "object"
+      "additionalProperties": false
     },
-    "requested_claim": {
-      "minLength": 1,
-      "type": "string"
-    },
-    "schema_version": {
-      "const": "editmark-claim-certificate-bundle"
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "editmark-claim-certificate-bundle-v2"
+        },
+        "input_file": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "name",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "requested_claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "certificates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "title": "EditMark claim certificate",
+                "type": "object",
+                "properties": {
+                  "schema_version": {
+                    "const": "editmark-claim-certificate"
+                  },
+                  "claim_id": {
+                    "type": "string"
+                  },
+                  "claim_text": {
+                    "type": "string"
+                  },
+                  "requested_claim": {
+                    "type": "string"
+                  },
+                  "decision": {
+                    "enum": [
+                      "admissible",
+                      "partially_admissible",
+                      "not_admissible"
+                    ]
+                  },
+                  "identification": {
+                    "type": "string"
+                  },
+                  "population": {
+                    "type": "string"
+                  },
+                  "analysis_contract": {
+                    "type": "string"
+                  },
+                  "cohort_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "stratum": {
+                    "type": "object"
+                  },
+                  "decision_rule": {
+                    "type": "object"
+                  },
+                  "counts": {
+                    "type": "object"
+                  },
+                  "transitions": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "n00": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "n01": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "n10": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "n11": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "attempted_pairs": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "first_exclusion_counts": {
+                    "type": "object"
+                  },
+                  "analysis_status": {
+                    "type": "string"
+                  },
+                  "membership_verified": {
+                    "type": "boolean"
+                  },
+                  "claim_text_verified": {
+                    "const": false
+                  },
+                  "requirements": {
+                    "type": "object"
+                  },
+                  "prohibited_interpretations": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "estimand": {
+                    "type": "string"
+                  },
+                  "estimate": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "numerator": {
+                        "type": "integer"
+                      },
+                      "denominator": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "decimal": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "numerator",
+                      "denominator",
+                      "decimal"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "bounds": {
+                    "type": "object"
+                  },
+                  "supported_statement": {
+                    "type": "string"
+                  },
+                  "evidence_kind": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "synthetic_warning": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "certificate_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                },
+                "required": [
+                  "schema_version",
+                  "requested_claim",
+                  "decision",
+                  "identification",
+                  "population",
+                  "analysis_contract",
+                  "cohort_sha256",
+                  "stratum",
+                  "decision_rule",
+                  "counts",
+                  "transitions",
+                  "attempted_pairs",
+                  "first_exclusion_counts",
+                  "analysis_status",
+                  "membership_verified",
+                  "claim_text_verified",
+                  "requirements",
+                  "prohibited_interpretations",
+                  "supported_statement",
+                  "certificate_sha256"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "title": "EditMark unidentified-stratum coverage record",
+                "$comment": "Runtime verification rederives the denial and checks the exact exclusion partition. Coverage counts and target identity do not supply a metric denominator or cohort.",
+                "type": "object",
+                "properties": {
+                  "schema_version": {
+                    "const": "editmark-unidentified-stratum"
+                  },
+                  "claim_id": {
+                    "type": "string"
+                  },
+                  "claim_text": {
+                    "type": "string"
+                  },
+                  "requested_claim": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "population": {
+                    "const": "watermarked_positive"
+                  },
+                  "analysis_contract": {
+                    "const": "same-rule-changed-pairs"
+                  },
+                  "evidence_kind": {
+                    "enum": [
+                      "saved_observation",
+                      "synthetic_test"
+                    ]
+                  },
+                  "stratum": {
+                    "type": "object",
+                    "properties": {
+                      "experiment_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "method": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "model": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "source_group": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "language": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "edit": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "variant_id": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "experiment_id",
+                      "method",
+                      "model",
+                      "source_group",
+                      "language",
+                      "edit",
+                      "variant_id"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "decision_rule": {
+                    "type": "object",
+                    "properties": {
+                      "rule_id": {
+                        "type": "string"
+                      },
+                      "threshold": {
+                        "type": [
+                          "number",
+                          "null"
+                        ]
+                      },
+                      "comparator": {
+                        "enum": [
+                          "",
+                          "ge",
+                          "gt",
+                          "le",
+                          "lt"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "rule_id",
+                      "threshold",
+                      "comparator"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "attempted_pairs": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "eligible_target_pairs": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "admitted_pairs": {
+                    "type": "integer",
+                    "const": 0
+                  },
+                  "cohort_sha256": {
+                    "type": "null"
+                  },
+                  "known_target_sha256": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      }
+                    ]
+                  },
+                  "first_exclusion_counts": {
+                    "type": "object",
+                    "properties": {
+                      "unsupported": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "support_unknown": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "unchanged": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "change_unknown": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "source_identity_missing": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "original_validation_unavailable": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "original_checks_failed": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "original_checks_unknown": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "edited_validation_unavailable": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "edited_checks_failed": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "edited_checks_unknown": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "check_contract_unknown": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "check_contract_changed": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "decision_rule_unknown": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "decision_rule_changed": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "original_decision_unavailable": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "edited_decision_unavailable": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [],
+                    "additionalProperties": false
+                  },
+                  "analysis_status": {
+                    "const": "undefined_empty_cohort"
+                  },
+                  "decision": {
+                    "const": "not_admissible"
+                  },
+                  "identification": {
+                    "enum": [
+                      "unidentified_missing_decisions",
+                      "undefined_no_eligible_target"
+                    ]
+                  },
+                  "estimate": {
+                    "type": "null"
+                  },
+                  "membership_verified": {
+                    "const": false
+                  },
+                  "claim_text_verified": {
+                    "const": false
+                  },
+                  "supported_statement": {
+                    "type": "string"
+                  },
+                  "prohibited_interpretations": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "synthetic_warning": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "certificate_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                },
+                "required": [
+                  "schema_version",
+                  "claim_id",
+                  "claim_text",
+                  "requested_claim",
+                  "population",
+                  "analysis_contract",
+                  "evidence_kind",
+                  "stratum",
+                  "decision_rule",
+                  "attempted_pairs",
+                  "eligible_target_pairs",
+                  "admitted_pairs",
+                  "cohort_sha256",
+                  "known_target_sha256",
+                  "first_exclusion_counts",
+                  "analysis_status",
+                  "decision",
+                  "identification",
+                  "estimate",
+                  "membership_verified",
+                  "claim_text_verified",
+                  "supported_statement",
+                  "prohibited_interpretations",
+                  "synthetic_warning",
+                  "certificate_sha256"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "input_file",
+        "requested_claim",
+        "certificates"
+      ],
+      "additionalProperties": false
     }
-  },
-  "required": [
-    "schema_version",
-    "input_file",
-    "requested_claim",
-    "certificates"
-  ],
-  "title": "EditMark claim-certificate bundle",
-  "type": "object"
+  ]
 }

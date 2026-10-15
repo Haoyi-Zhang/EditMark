@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EditMark unidentified-stratum coverage record",
+  "$comment": "Runtime verification rederives the denial and checks the exact exclusion partition. Coverage counts and target identity do not supply a metric denominator or cohort.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "editmark-unidentified-stratum"
+    },
+    "claim_id": {
+      "type": "string"
+    },
+    "claim_text": {
+      "type": "string"
+    },
+    "requested_claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "population": {
+      "const": "watermarked_positive"
+    },
+    "analysis_contract": {
+      "const": "same-rule-changed-pairs"
+    },
+    "evidence_kind": {
+      "enum": [
+        "saved_observation",
+        "synthetic_test"
+      ]
+    },
+    "stratum": {
+      "type": "object",
+      "properties": {
+        "experiment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "edit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "variant_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "experiment_id",
+        "method",
+        "model",
+        "source_group",
+        "language",
+        "edit",
+        "variant_id"
+      ],
+      "additionalProperties": false
+    },
+    "decision_rule": {
+      "type": "object",
+      "properties": {
+        "rule_id": {
+          "type": "string"
+        },
+        "threshold": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "comparator": {
+          "enum": [
+            "",
+            "ge",
+            "gt",
+            "le",
+            "lt"
+          ]
+        }
+      },
+      "required": [
+        "rule_id",
+        "threshold",
+        "comparator"
+      ],
+      "additionalProperties": false
+    },
+    "attempted_pairs": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "eligible_target_pairs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "admitted_pairs": {
+      "type": "integer",
+      "const": 0
+    },
+    "cohort_sha256": {
+      "type": "null"
+    },
+    "known_target_sha256": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      ]
+    },
+    "first_exclusion_counts": {
+      "type": "object",
+      "properties": {
+        "unsupported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "support_unknown": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unchanged": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "change_unknown": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_identity_missing": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "original_validation_unavailable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "original_checks_failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "original_checks_unknown": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edited_validation_unavailable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edited_checks_failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edited_checks_unknown": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "check_contract_unknown": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "check_contract_changed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decision_rule_unknown": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decision_rule_changed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "original_decision_unavailable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edited_decision_unavailable": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "analysis_status": {
+      "const": "undefined_empty_cohort"
+    },
+    "decision": {
+      "const": "not_admissible"
+    },
+    "identification": {
+      "enum": [
+        "unidentified_missing_decisions",
+        "undefined_no_eligible_target"
+      ]
+    },
+    "estimate": {
+      "type": "null"
+    },
+    "membership_verified": {
+      "const": false
+    },
+    "claim_text_verified": {
+      "const": false
+    },
+    "supported_statement": {
+      "type": "string"
+    },
+    "prohibited_interpretations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "synthetic_warning": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "certificate_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "claim_id",
+    "claim_text",
+    "requested_claim",
+    "population",
+    "analysis_contract",
+    "evidence_kind",
+    "stratum",
+    "decision_rule",
+    "attempted_pairs",
+    "eligible_target_pairs",
+    "admitted_pairs",
+    "cohort_sha256",
+    "known_target_sha256",
+    "first_exclusion_counts",
+    "analysis_status",
+    "decision",
+    "identification",
+    "estimate",
+    "membership_verified",
+    "claim_text_verified",
+    "supported_statement",
+    "prohibited_interpretations",
+    "synthetic_warning",
+    "certificate_sha256"
+  ],
+  "additionalProperties": false
+}

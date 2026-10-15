@@ -5,7 +5,10 @@ integer semantics, duplicate identities, and arithmetic partitions.
 """
 from __future__ import annotations
 from .aggregates import SCHEMA as COUNT_SCHEMA, STRATA, EXCLUSIONS
-from .constants import CERTIFICATE_BUNDLE_SCHEMA, CERTIFICATE_SCHEMA, STRICT_CONTRACT
+from .constants import (
+    CERTIFICATE_BUNDLE_SCHEMA, CERTIFICATE_SCHEMA, COVERAGE_BUNDLE_SCHEMA,
+    STRICT_CONTRACT, UNIDENTIFIED_STRATUM_SCHEMA,
+)
 from .records import SCHEMA as PAIR_SCHEMA, KINDS, COMPARATORS
 
 
@@ -183,27 +186,76 @@ def certificate_schema():
 
 
 
+def unidentified_stratum_schema():
+    """A coverage/denial record, not a zero-count admitted-cohort disclosure."""
+    integer = {'type': 'integer', 'minimum': 0}
+    nullable_hash = {
+        'anyOf': [{'type': 'null'}, {'type': 'string', 'pattern': '^[a-f0-9]{64}$'}],
+    }
+    properties = {
+        'schema_version': {'const': UNIDENTIFIED_STRATUM_SCHEMA},
+        'claim_id': {'type': 'string'}, 'claim_text': {'type': 'string'},
+        'requested_claim': {'type': 'string', 'minLength': 1},
+        'population': {'const': 'watermarked_positive'},
+        'analysis_contract': {'const': STRICT_CONTRACT},
+        'evidence_kind': {'enum': list(KINDS)},
+        'stratum': object_schema(
+            {key: {'type': 'string', 'minLength': 1} for key in STRATA}, STRATA),
+        'decision_rule': object_schema({
+            'rule_id': {'type': 'string'}, 'threshold': {'type': ['number', 'null']},
+            'comparator': {'enum': ['', *COMPARATORS]},
+        }, ('rule_id', 'threshold', 'comparator')),
+        'attempted_pairs': {'type': 'integer', 'minimum': 1},
+        'eligible_target_pairs': integer,
+        'admitted_pairs': {'type': 'integer', 'const': 0},
+        'cohort_sha256': {'type': 'null'}, 'known_target_sha256': nullable_hash,
+        'first_exclusion_counts': object_schema({key: integer for key in EXCLUSIONS}),
+        'analysis_status': {'const': 'undefined_empty_cohort'},
+        'decision': {'const': 'not_admissible'},
+        'identification': {'enum': [
+            'unidentified_missing_decisions', 'undefined_no_eligible_target',
+        ]},
+        'estimate': {'type': 'null'}, 'membership_verified': {'const': False},
+        'claim_text_verified': {'const': False},
+        'supported_statement': {'type': 'string'},
+        'prohibited_interpretations': {'type': 'array', 'items': {'type': 'string'}},
+        'synthetic_warning': {'type': ['string', 'null']},
+        'certificate_sha256': {'type': 'string', 'pattern': '^[a-f0-9]{64}$'},
+    }
+    return {
+        '$schema': 'https://json-schema.org/draft/2020-12/schema',
+        'title': 'EditMark unidentified-stratum coverage record',
+        '$comment': (
+            'Runtime verification rederives the denial and checks the exact exclusion partition. '
+            'Coverage counts and target identity do not supply a metric denominator or cohort.'
+        ),
+        **object_schema(properties, properties),
+    }
+
+
 def certificate_bundle_schema():
+    properties = {
+        'schema_version': {'const': CERTIFICATE_BUNDLE_SCHEMA},
+        'input_file': object_schema(
+            {
+                'name': {'type': 'string', 'minLength': 1},
+                'sha256': {'type': 'string', 'pattern': '^[a-f0-9]{64}$'},
+            },
+            ('name', 'sha256'),
+        ),
+        'requested_claim': {'type': 'string', 'minLength': 1},
+        'certificates': {'type': 'array', 'minItems': 1, 'items': certificate_schema()},
+    }
+    coverage = {
+        **properties,
+        'schema_version': {'const': COVERAGE_BUNDLE_SCHEMA},
+        'certificates': {
+            'type': 'array', 'minItems': 1,
+            'items': {'oneOf': [certificate_schema(), unidentified_stratum_schema()]},
+        },
+    }
     return {
         '$schema': 'https://json-schema.org/draft/2020-12/schema',
         'title': 'EditMark claim-certificate bundle',
-        **object_schema(
-            {
-                'schema_version': {'const': CERTIFICATE_BUNDLE_SCHEMA},
-                'input_file': object_schema(
-                    {
-                        'name': {'type': 'string', 'minLength': 1},
-                        'sha256': {'type': 'string', 'pattern': '^[a-f0-9]{64}$'},
-                    },
-                    ('name', 'sha256'),
-                ),
-                'requested_claim': {'type': 'string', 'minLength': 1},
-                'certificates': {
-                    'type': 'array',
-                    'minItems': 1,
-                    'items': certificate_schema(),
-                },
-            },
-            ('schema_version', 'input_file', 'requested_claim', 'certificates'),
-        ),
+        'oneOf': [object_schema(properties, properties), object_schema(coverage, coverage)],
     }
