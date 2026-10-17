@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce two vector manuscript plots from retained audit exports only."""
+"""Draw the evidence contract and two vector plots from retained exports."""
 from __future__ import annotations
 
 import argparse
@@ -11,6 +11,7 @@ import shutil
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle, FancyArrowPatch
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -89,6 +90,55 @@ def figure_data(root: Path = ROOT) -> tuple[list[str], dict, dict]:
     return order, passes, coverage
 
 
+def build_contract(root: Path = ROOT, font_dir: Path | None = None) -> list[Path]:
+    """Draw the four-stage explanatory diagram, without measured quantities."""
+    configure_fonts(font_dir)
+    output = root / "figures"
+    output.mkdir(parents=True, exist_ok=True)
+    paper = root.parent / "paper/tosem/figures"
+    fig = plt.figure(figsize=(342 / 72, 80 / 72))
+    ax = fig.add_axes([0, 0, 1, 1], xlim=(0, 342), ylim=(0, 80))
+    ax.axis("off")
+    centers = [38.5 + 88.2 * i for i in range(4)]
+    labels = [
+        ("1. Typed\nobservation", "raw pairs / counts\ntest contract\ndetector rule"),
+        ("2. Eligibility gate", "supported\nand changed\nboth checks pass\nsame rule"),
+        ("3. Sufficient facts", "n00, n01, n10, n11\nexclusion partition\ncohort fingerprint"),
+        ("4. Claim\ncertificate", "identified / bounded\nnot admissible\nbasis re-derivation"),
+    ]
+    artists = []
+    for x, (title, facts) in zip(centers, labels):
+        ax.add_patch(Rectangle((x - 38, 1.5), 76, 77,
+                               facecolor="white", edgecolor="black", linewidth=.6))
+        artists.append(ax.text(x, 63, title, ha="center", va="center",
+                               fontsize=8.5, linespacing=1.1))
+        artists.append(ax.text(x, 30, facts, ha="center", va="center",
+                               fontsize=8.5, linespacing=1.15))
+    for a, b in zip(centers, centers[1:]):
+        ax.add_patch(FancyArrowPatch((a + 38, 40), (b - 38, 40),
+                                    arrowstyle="-|>", mutation_scale=7,
+                                    linewidth=.6, color="black", shrinkA=0, shrinkB=0))
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    for artist in artists:
+        box = artist.get_window_extent(renderer).transformed(ax.transData.inverted())
+        x = artist.get_position()[0]
+        if box.x0 < x - 36 or box.x1 > x + 36 or box.y0 < 3 or box.y1 > 77:
+            raise ValueError("Contract label does not fit: " + artist.get_text())
+    assets = []
+    for suffix in ("pdf", "png"):
+        path = output / ("evidence_contract." + suffix)
+        metadata = {"Creator": None, "Producer": None, "CreationDate": None,
+                    "ModDate": None} if suffix == "pdf" else None
+        fig.savefig(path, dpi=300, metadata=metadata)
+        if paper.parent.is_dir():
+            paper.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(path, paper / path.name)
+        assets.append(path)
+    plt.close(fig)
+    return assets
+
+
 def build_figures(root: Path = ROOT, font_dir: Path | None = None) -> list[Path]:
     configure_fonts(font_dir)
     order, passes, coverage = figure_data(root)
@@ -97,7 +147,7 @@ def build_figures(root: Path = ROOT, font_dir: Path | None = None) -> list[Path]
     output.mkdir(parents=True, exist_ok=True)
     if paper.parent.is_dir():
         paper.mkdir(parents=True, exist_ok=True)
-    assets = []
+    assets = build_contract(root, font_dir)
     specs = [
         ("edit_functionality", passes, (0, 13.5), list(range(0, 14, 2)),
          "Edited-program test-pass fraction in method-edit export (%)"),
@@ -141,8 +191,11 @@ def build_figures(root: Path = ROOT, font_dir: Path | None = None) -> list[Path]
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--font-dir", type=Path)
+    parser.add_argument("--contract-only", action="store_true",
+                        help="redraw only the explanatory contract diagram")
     args = parser.parse_args()
-    for path in build_figures(font_dir=args.font_dir):
+    producer = build_contract if args.contract_only else build_figures
+    for path in producer(font_dir=args.font_dir):
         print("FIGURE_OK", path)
 
 

@@ -7,7 +7,7 @@ python scripts/plot_figures.py
 ```
 
 Plotting requires Matplotlib (with its NumPy dependency); it does not require
-TeX or the scientific experiment dependencies. The two dot plots read the retained method/edit CSV and applicability audit JSON. They keep the reported descriptive denominators and do not infer a paired effect.
+TeX or the scientific experiment dependencies. The two dot plots read the retained method/edit CSV and applicability audit JSON. They keep the reported descriptive denominators and do not infer a paired effect. The same producer draws the four-stage evidence-contract schematic; `--contract-only` redraws that explanatory figure without reading experiment exports.
 
 The native outputs are the PDFs in this directory. When the sibling paper
 directory is present, the producer copies identical PDF bytes into its figures
