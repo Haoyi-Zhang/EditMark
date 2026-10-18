@@ -185,6 +185,8 @@ The included aggregate evidence supports an audit of measurement and reporting. 
 - Haoyi Zhang, Xi'an Jiaotong-Liverpool University — `hyeliozhang@gmail.com`
 - Huaijin Ran, Nanyang Technological University — `huaijin003@e.ntu.edu.sg`
 - Xunzhu Tang, University of Luxembourg — `realdanieltang@gmail.com`
+- Kisub Kim, Daegu Gyeongbuk Institute of Science and Technology — `kisub.kim@dgist.ac.kr`
+- Tegawendé F. Bissyandé, University of Luxembourg — `tegawende.bissyande@uni.lu`
 
 ## Safety
 
