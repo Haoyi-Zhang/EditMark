@@ -11,8 +11,8 @@ def test_removed_api_provider_configs_fail_with_explicit_message() -> None:
             "provider": {
                 "mode": "openai_compatible",
                 "parameters": {
-                    "base_url": "https://api.openai.com/v1",
-                    "model": "gpt-5.4-mini",
+                    "base_url": "https://example.invalid/v1",
+                    "model": "fixture-model",
                 },
             },
             "watermark": {"scheme": "kgw", "strength": 0.5},
@@ -27,7 +27,7 @@ def test_removed_api_provider_configs_fail_with_explicit_message() -> None:
 def test_removed_provider_summary_is_explicit() -> None:
     summary = summarize_provider_configuration(
         "openai_compatible",
-        {"base_url": "https://api.openai.com", "model": "gpt-5.4-mini"},
+        {"base_url": "https://example.invalid", "model": "fixture-model"},
     )
     assert summary["provider_removed"] is True
     assert "API support removed" in summary["provider_note"]
@@ -35,7 +35,7 @@ def test_removed_provider_summary_is_explicit() -> None:
 
 def test_build_provider_rejects_removed_api_mode() -> None:
     try:
-        build_provider("openai_compatible", {"model": "gpt-5.4-mini"})
+        build_provider("openai_compatible", {"model": "fixture-model"})
     except KeyError as exc:
         assert "API support removed" in str(exc)
     else:  # pragma: no cover - defensive
