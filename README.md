@@ -189,3 +189,7 @@ The included aggregate evidence supports an audit of measurement and reporting. 
 ## Safety
 
 The evidence-contract tools treat source code as text and never execute it. The experimental pipeline can execute generated programs and is not a security sandbox. Read `docs/runtime_safety.md` before using any runtime command.
+
+## Portable path notation
+
+Published execution records use `<PYTHON_ROOT>`, `<NODE_ROOT>`, `<RUNTIME_ROOT>` and `<PROJECTS_ROOT>` for machine-local installation and workspace prefixes. These are path aliases, not literal directories; substitute the corresponding local roots when replaying a command. Recorded interpreter and dependency versions, inputs, measurements and outcomes are unchanged. File inventories bind the published portable serializations; any `recorded_` identity denotes the pre-normalization bytes.
