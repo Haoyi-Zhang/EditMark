@@ -109,7 +109,7 @@ manifest = {
     'no_experiment_execution': True,
     'assets': [file_entry(path) for path in tracked],
 }
-(G / 'asset_manifest.json').write_text(
+(A / 'manuscript_assets.json').write_text(
     json.dumps(manifest, indent=2, sort_keys=True) + '\n', encoding='utf-8'
 )
 print('PAPER_ASSETS_OK')

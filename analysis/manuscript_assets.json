@@ -1,0 +1,72 @@
+{
+  "assets": [
+    {
+      "bytes": 594,
+      "path": "paper/tosem/generated/release_facts.tex",
+      "sha256": "29d8b8170bbf1f59d2ef7fc73ef44684056634baeb06378cda4488a768d54cd3"
+    },
+    {
+      "bytes": 1214,
+      "path": "paper/tosem/generated/mutation_rows.tex",
+      "sha256": "37c52bbb1c7b44a0a571199afa9e22d854518ec7fd79fd7e2c9341dfa0faf607"
+    },
+    {
+      "bytes": 338,
+      "path": "paper/tosem/generated/source_rows.tex",
+      "sha256": "615c45b40ba1cbd1394e0319f5553250f5a3091dc4d52763c9c6b0a91409e787"
+    },
+    {
+      "bytes": 193,
+      "path": "paper/tosem/generated/profile_rows.tex",
+      "sha256": "2f01da2049ca5093f9196560a85d617b130cdca21061b51423690f3ac9107ead"
+    },
+    {
+      "bytes": 128,
+      "path": "paper/tosem/generated/witness_rows.tex",
+      "sha256": "f907c229fb8e98590a20bbd82d8c392467b8d0b7b3081d6c5ce00db942c29df1"
+    },
+    {
+      "bytes": 22312,
+      "path": "paper/tosem/figures/evidence_contract.pdf",
+      "sha256": "418690b6fa91362a084eb5de70c3acc9da3bd7bb21008a83e0dc4735e6490b73"
+    },
+    {
+      "bytes": 67114,
+      "path": "paper/tosem/figures/evidence_contract.png",
+      "sha256": "44c148b6043770de42863e7e822ff6484f79f63f440158f039b2a29122923031"
+    },
+    {
+      "bytes": 19866,
+      "path": "paper/tosem/figures/edit_functionality.pdf",
+      "sha256": "190837a815783d36cc08b7028f4ff89de3cfd3af21eb779ab2cf27ffcccf0dc5"
+    },
+    {
+      "bytes": 70293,
+      "path": "paper/tosem/figures/edit_functionality.png",
+      "sha256": "9ef015d15b3219ed10d53a9c14f3457e25f48642339318728c0ad12a1bb7d21e"
+    },
+    {
+      "bytes": 21041,
+      "path": "paper/tosem/figures/application_coverage.pdf",
+      "sha256": "2ab6c6e9d5701d90d5377415c8e042da9e87e43350374d3a07ebdf3d08aa0fa4"
+    },
+    {
+      "bytes": 70983,
+      "path": "paper/tosem/figures/application_coverage.png",
+      "sha256": "cf2bbf3cb3c72322601402b1e042a9c9c758ad821828d8c8d7aaa5a2585ee3ca"
+    },
+    {
+      "bytes": 463,
+      "path": "artifact/analysis/release_facts.json",
+      "sha256": "66972b6c9e85704bffbcc91992b4159415ecc87cc6da668659576e1595217de4"
+    }
+  ],
+  "basis": [
+    "analysis/frozen_audit.json",
+    "analysis/source_inventory.json",
+    "analysis/method_profiles.json",
+    "analysis/edit_component_audit.json",
+    "results/tables/suite_all_models_methods/method_attack_summary.csv"
+  ],
+  "no_experiment_execution": true
+}

@@ -18,7 +18,7 @@ class AssetManifestTests(unittest.TestCase):
             asset.write_bytes(b'synthetic row\n')
             with patch.object(builder, 'ROOT', root):
                 builder.manifest([asset])
-            value = json.loads((asset.parent / 'asset_manifest.json').read_text())
+            value = json.loads((root / 'analysis/manuscript_assets.json').read_text())
             self.assertEqual(value['assets'], [{
                 'path': 'paper/tosem/generated/row.tex', 'bytes': 14,
                 'sha256': hashlib.sha256(asset.read_bytes()).hexdigest(),
@@ -31,8 +31,9 @@ class AssetManifestTests(unittest.TestCase):
             asset = root.parent / 'paper/tosem/generated/row.tex'
             asset.parent.mkdir(parents=True)
             asset.write_bytes(b'synthetic row\n')
-            manifest = asset.parent / 'asset_manifest.json'
+            manifest = root / 'analysis/manuscript_assets.json'
             retained = {'path': 'paper/tosem/figures/retained.pdf', 'bytes': 10, 'sha256': 'a'*64}
+            manifest.parent.mkdir(parents=True, exist_ok=True)
             manifest.write_text(json.dumps({'basis': ['supplied-summary.json'], 'assets': [retained]}))
             with patch.object(builder, 'ROOT', root):
                 builder.manifest([asset])

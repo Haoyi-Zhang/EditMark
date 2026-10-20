@@ -272,7 +272,7 @@ def build_figure():
 
 
 def manifest(paths):
-    output = ROOT.parent / 'paper/tosem/generated/asset_manifest.json'
+    output = ROOT / 'analysis/manuscript_assets.json'
     result = json.loads(output.read_text(encoding='utf-8')) if output.exists() else {'assets': []}
     if not isinstance(result, dict):
         raise EvidenceError('Expected an asset manifest object')
