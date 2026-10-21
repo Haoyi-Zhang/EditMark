@@ -19,15 +19,30 @@ def format_errors(active: str) -> list[str]:
     """Check the ACM submission interface and accessibility hooks."""
     clean = strip_comments(active)
     errors: list[str] = []
-    if not re.search(
-        r"\\documentclass\[(?=[^\]]*\bmanuscript\b)(?=[^\]]*\breview\b)[^\]]*\]\{acmart\}",
-        clean,
-    ):
+    declaration = re.search(r"\\documentclass\[([^\]]*)\]\{acmart\}", clean)
+    options = {}
+    if declaration:
+        for item in declaration.group(1).split(','):
+            key, _, value = item.strip().partition('=')
+            options[key] = value.strip() if value else 'true'
+    submission = options.get('manuscript') == 'true' and options.get('review') == 'true'
+    if not submission:
         errors.append('main document must use acmart manuscript,review mode')
     if r'\acmJournal{TOSEM}' not in clean:
         errors.append('manuscript must declare TOSEM')
-    if 'printacmref=true' not in clean.replace(' ', ''):
-        errors.append('ACM reference block must remain enabled')
+    # Respect the current unassigned review copy, not a fabricated published
+    # citation built from acmart's default volume/issue/date. Production metadata
+    # must not use this narrowly scoped submission exception.
+    assigned = re.search(
+        r"\\(?:acmDOI|acmISBN|acmVolume|acmNumber|acmArticle|acmYear|acmMonth)\s*\{\s*[^}\s][^}]*\}", clean)
+    unassigned_review = (submission and not assigned
+        and bool(re.search(r"\\setcopyright\s*\{none\}", clean))
+        and bool(re.search(r"\\acmDOI\s*\{\s*\}", clean))
+        and bool(re.search(r"\\acmISBN\s*\{\s*\}", clean)))
+    settings = [value for block in re.findall(r"\\settopmatter\s*\{([^}]*)\}", clean)
+                for value in re.findall(r"\bprintacmref\s*=\s*(true|false)\b", block)]
+    if settings and settings[-1] == 'false' and not unassigned_review:
+        errors.append('ACM reference block may be suppressed only for an unassigned manuscript,review copy')
     forbidden_patterns = {
         'geometry package': r"\\usepackage(?:\[[^\]]*\])?\{geometry\}",
         'manual geometry': r"\\geometry\s*\{",

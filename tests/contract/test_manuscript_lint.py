@@ -57,3 +57,17 @@ class FormatTests(unittest.TestCase):
     def test_missing_description_rejected(self):
         text = self.BASE.replace(r'x\Description{accessible}', 'x')
         self.assertTrue(any('missing an ACM Description' in item for item in format_errors(text)))
+
+    def test_unassigned_review_topmatter_is_not_production_metadata(self):
+        submission = self.BASE.replace(r'\settopmatter{printacmref=true}',
+            r'\setcopyright{none}\acmDOI{}\acmISBN{}\settopmatter{printacmref=false}')
+        self.assertEqual(format_errors(submission), [])
+
+    def test_published_metadata_cannot_hide_reference_block(self):
+        submission = self.BASE.replace('printacmref=true', 'printacmref=false')
+        submission += r'\setcopyright{none}\acmDOI{10.1145/assigned}\acmISBN{}'
+        self.assertTrue(any('reference block' in e for e in format_errors(submission)))
+
+    def test_review_false_cannot_take_submission_exception(self):
+        text = self.BASE.replace('review,manuscript', 'review=false,manuscript')
+        self.assertTrue(any('manuscript,review' in e for e in format_errors(text)))

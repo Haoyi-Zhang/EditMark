@@ -22,6 +22,12 @@ make assets
 make paper
 ```
 
+`paper` requires `assets`, including seven optional finite figure-consumer tests.
+All quantitative PDFs and PNGs are rebuilt together from the included CSV/audit
+exports. The build fails on missing dependencies, missing/duplicate cells,
+non-finite or out-of-range consumed rates and coverage/count contradictions.
+No cached preview substitutes for a missing or invalid input.
+
 The generated files have deterministic numerical inputs. PDF metadata can differ across TeX installations, so verification should compare extracted text and rendered layout rather than raw PDF bytes.
 
 ## Experimental runtime
@@ -47,7 +53,7 @@ python -B -m editmark_audit.verify NEW_CERTIFICATE.json --basis examples/synthet
 ```
 
 The separate opt-in command `scripts/measure_owned_carrier.py --out NEW_DIRECTORY`
-executes only its exact owner-authored finite Python source set. Its four tests
+executes only its exact owner-authored finite Python source set. Its six current tests
 use `python -B -m unittest discover -s regressions -p check_owned_carrier.py -v`.
 The retained raw measurement and source/environment bindings are in
 `results/owned_finite_carrier/`. Neither this fixture nor direct arithmetic on

@@ -241,34 +241,8 @@ def build_certificate_example():
 
 
 def build_figure():
-    import matplotlib
-    matplotlib.use('Agg')
-    import matplotlib.pyplot as plt
-    matplotlib.rcParams.update({'pdf.fonttype': 42, 'ps.fonttype': 42})
-    from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
-    figure,axis=plt.subplots(figsize=(9.4,3.2))
-    axis.set_xlim(0,10);axis.set_ylim(0,4);axis.axis('off')
-    boxes=[
-        (0.2,1.05,2.0,2.0,'1. Typed observation','source hash\ntest contract\ndetector rule'),
-        (2.8,1.05,2.0,2.0,'2. Eligibility gate','supported + changed\nboth checks pass\nsame rule'),
-        (5.4,1.05,2.0,2.0,'3. Sufficient facts','n00, n01, n10, n11\nexclusion partition\ncohort fingerprint'),
-        (8.0,1.05,1.8,2.0,'4. Claim certificate','identified\nbounded\nnot admissible'),
-    ]
-    fills=['#eef3f7','#edf6f2','#f7f3e8','#f5eef6']
-    for (x,y,w,h,title,body),fill in zip(boxes,fills):
-        patch=FancyBboxPatch((x,y),w,h,boxstyle='round,pad=0.08',facecolor=fill,edgecolor='#4a4a4a',linewidth=1.1)
-        axis.add_patch(patch)
-        axis.text(x+w/2,y+h-.34,title,ha='center',va='center',fontsize=10,fontweight='bold')
-        axis.text(x+w/2,y+.75,body,ha='center',va='center',fontsize=9,linespacing=1.35)
-    for x1,x2 in ((2.2,2.8),(4.8,5.4),(7.4,8.0)):
-        axis.add_patch(FancyArrowPatch((x1,2.05),(x2,2.05),arrowstyle='-|>',mutation_scale=14,linewidth=1.2,color='#555555'))
-    axis.text(5,0.55,'The certificate limits the sentence as well as the number.',ha='center',fontsize=10,fontweight='bold')
-    axis.text(5,0.18,'Positive pairs can certify same-rule decision change; they cannot certify edited FPR, AUROC change, or posterior provenance.',ha='center',fontsize=8.5)
-    figure.tight_layout(pad=.2)
-    out=ROOT.parent / 'paper/tosem/figures';out.mkdir(parents=True,exist_ok=True)
-    figure.savefig(out/'evidence_contract.pdf',bbox_inches='tight')
-    figure.savefig(out/'evidence_contract.png',dpi=220,bbox_inches='tight')
-    plt.close(figure)
+    from scripts.plot_figures import build_contract
+    build_contract(ROOT)
 
 
 def manifest(paths):

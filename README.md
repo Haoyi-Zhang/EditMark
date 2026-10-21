@@ -32,7 +32,7 @@ This command runs the evidence-contract tests, rebuilds the machine-readable fac
 
 The retained Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
 
-The current model-free suite runs 230 contract methods and 23 supplementary
+The current model-free suite runs 247 contract methods and 23 supplementary
 methods separately. It checks eligibility truth tables, missing-decision
 completions, typed certificate commitments, source-basis consistency, exact
 fingerprints and exclusive publication. The archived 203-method Ubuntu
@@ -49,6 +49,12 @@ python -m pip install '.[figures]'
 make assets
 make paper
 ```
+
+`make paper` depends on `assets`: it rebuilds the real-data vector PDFs and PNG
+previews and runs seven finite plotting-consumer tests. `make assets` can also be
+used on its own. Missing plotting dependencies or malformed consumed data fail
+nonzero; no old PNG is a successful fallback. The default `make check` remains
+model-free and does not require plotting dependencies.
 
 ## Three analysis interfaces and one verifier
 
@@ -69,6 +75,12 @@ python -m editmark_audit.aggregates examples/synthetic_cohort_counts.json \
 ```
 
 Exact integer counts can identify net decision change without releasing source text. A joint transition table identifies survival; marginals alone produce sharp finite-cohort bounds. Rounded percentages and broad composite scores are rejected.
+
+Every count, certificate and basis-regeneration route uses one batch check.
+Within a cohort/stratum, the rule, counts, optional transitions and exclusion
+partition must agree. Identical normalized facts contribute once (idempotently);
+conflicts or mixed synthetic/saved kinds fail before publication. Distinct
+cohorts remain separate and are never pooled.
 
 ### 3. Claim certificates
 

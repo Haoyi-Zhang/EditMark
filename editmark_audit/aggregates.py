@@ -7,10 +7,11 @@ support.
 """
 from __future__ import annotations
 import argparse
+import json
 from fractions import Fraction
 from pathlib import Path
 import sys
-from typing import Any, Mapping
+from typing import Any, Iterable, Mapping
 from .bounds import intersection_bounds
 from .constants import (
     COUNT_ANALYSIS_SCHEMA, COUNT_REPORT_SCHEMA, COUNT_SCHEMA, STRICT_CONTRACT,
@@ -209,6 +210,27 @@ def from_pair_stratum(stratum: Mapping[str, Any], evidence_kind: str) -> dict[st
     return document
 
 
+def analyze_batch(documents: Iterable[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    """Validate all facts before publication; exact repeats get one cohort vote.
+
+    A cohort/stratum identity cannot name different rules, counts, transitions
+    or exclusion partitions. No counts are summed and no missing facts merged.
+    """
+    unique = {}
+    kinds = set()
+    for document in documents:
+        analysis = analyze(document)
+        kinds.add(analysis['evidence_kind'])
+        key = (analysis['cohort_sha256'], tuple(analysis['stratum'][k] for k in STRATA))
+        canonical = json.dumps(analysis, sort_keys=True, separators=(',', ':'), allow_nan=False)
+        if key in unique and canonical != unique[key][0]:
+            raise EvidenceError('Conflicting cohort/stratum facts: rule, counts, transitions or partition')
+        unique.setdefault(key, (canonical, analysis))
+    if len(kinds) != 1:
+        raise EvidenceError('A nonempty batch of one evidence kind is required; synthetic and saved counts cannot be mixed')
+    return [value[1] for value in unique.values()]
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('input', type=Path)
@@ -219,7 +241,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         input_hash = digest(args.input)
         documents = load_rows(args.input)
-        analyses = [analyze(document) for document in documents]
+        analyses = analyze_batch(documents)
         if digest(args.input) != input_hash:
             raise EvidenceError('Input changed during analysis')
         kinds = {analysis['evidence_kind'] for analysis in analyses}
@@ -227,12 +249,6 @@ def main(argv: list[str] | None = None) -> int:
             raise EvidenceError('Synthetic and saved counts cannot be mixed')
         if args.require_observations and kinds != {'saved_observation'}:
             raise EvidenceError('Synthetic counts cannot be reported as saved observations')
-        keys = [
-            (analysis['cohort_sha256'], tuple(analysis['stratum'][key] for key in STRATA))
-            for analysis in analyses
-        ]
-        if len(keys) != len(set(keys)):
-            raise EvidenceError('Repeated cohort/stratum; no silent deduplication or pooling')
         result = {
             'schema_version': COUNT_REPORT_SCHEMA,
             'input_files': [{'name': args.input.name, 'sha256': input_hash}],

@@ -41,6 +41,10 @@ def file_entry(path: Path) -> dict[str, object]:
 
 
 methods = ['KGW', 'SWEET', 'STONE', 'EWD']
+from plot_figures import build_figures, figure_data
+
+# Reject invalid consumed cells before publishing tables or refreshing figures.
+figure_data(ROOT)
 source_labels = {
     'public_humaneval_plus': 'HumanEval+',
     'public_mbpp_plus': 'MBPP+',
@@ -79,10 +83,12 @@ for method in methods:
     )
 (G / 'profile_rows.tex').write_text('\n'.join(rows) + '\n' + r'\bottomrule' + '\n', encoding='utf-8')
 
-from plot_figures import build_figures
-
 # Reuse the standalone vector producer; it reads the same retained audit exports.
-build_figures(ROOT)
+generated_figures = build_figures(ROOT)
+expected_figures = {f'{name}.{suffix}' for name in
+    ('evidence_contract', 'edit_functionality', 'application_coverage') for suffix in ('pdf', 'png')}
+if {path.name for path in generated_figures} != expected_figures:
+    raise ValueError('The figure producer did not regenerate every PDF/PNG consumer')
 
 
 # Remove manuscript assets that are no longer referenced.

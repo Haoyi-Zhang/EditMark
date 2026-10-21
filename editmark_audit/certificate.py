@@ -14,7 +14,7 @@ from pathlib import Path
 import sys
 from typing import Any, Iterable, Mapping
 from .aggregates import (
-    EXCLUSIONS, STRATA, analyze as analyze_counts, count, from_pair_stratum, sha256,
+    EXCLUSIONS, STRATA, analyze as analyze_counts, analyze_batch, count, from_pair_stratum, sha256,
 )
 from .analysis import report as analyze_pairs
 from .constants import (
@@ -228,7 +228,40 @@ def certify_analysis(
 def certificates_from_count_documents(
     documents: Iterable[Mapping[str, Any]], requested_claim: str
 ) -> list[dict[str, Any]]:
-    return [certify_analysis(analyze_counts(document), requested_claim) for document in documents]
+    return [certify_analysis(analysis, requested_claim) for analysis in analyze_batch(documents)]
+
+
+def checked_certificate_batch(certificates: Iterable[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    """Apply the same count batch gate to every producer and verifier route.
+
+    Callers still check each certificate's semantics before using this helper.
+    Duplicate normalized count facts keep the first certificate, never pool.
+    Unidentified coverage records retain their separate non-count contract.
+    """
+    certificates = list(certificates)
+    kinds = {c.get('evidence_kind') for c in certificates}
+    if len(kinds) > 1:
+        raise EvidenceError('Synthetic and saved counts cannot be mixed')
+    documents = []
+    for item in certificates:
+        if item.get('schema_version') == CERTIFICATE_SCHEMA:
+            document = {key: item[key] for key in (
+                'population', 'evidence_kind', 'analysis_contract', 'cohort_sha256',
+                'stratum', 'decision_rule', 'counts', 'attempted_pairs', 'first_exclusion_counts')}
+            document.update(schema_version=COUNT_SCHEMA, transitions=item.get('transitions'))
+            documents.append(document)
+    if documents:
+        analyze_batch(documents)
+    seen = set()
+    result = []
+    for item in certificates:
+        if item.get('schema_version') == CERTIFICATE_SCHEMA:
+            key = (item['cohort_sha256'], tuple(item['stratum'][k] for k in STRATA))
+            if key in seen:
+                continue
+            seen.add(key)
+        result.append(dict(item))
+    return result
 
 
 def certify_unidentified_stratum(
@@ -363,7 +396,7 @@ def certificates_from_pair_report(
             claim_id=f'stratum-{index}',
         )
         certificates.append(certificate)
-    return certificates
+    return checked_certificate_batch(certificates)
 
 
 def certificates_from_raw_pairs(
@@ -421,6 +454,7 @@ def main(argv: list[str] | None = None) -> int:
             certificates = [certify_analysis(item, args.claim) for item in value]  # type: ignore[arg-type]
         else:
             certificates = certificates_from_count_documents(value, args.claim)  # type: ignore[arg-type]
+        certificates = checked_certificate_batch(certificates)
         if digest(args.input) != input_hash:
             raise EvidenceError('Input changed during certification')
         if not certificates:

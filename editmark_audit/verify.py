@@ -22,6 +22,7 @@ from typing import Any
 from .aggregates import analyze as analyze_counts, sha256
 from .certificate import (
     canonical_hash,
+    checked_certificate_batch,
     certificates_from_count_documents,
     certificates_from_pair_report,
     certificates_from_raw_pairs,
@@ -138,8 +139,7 @@ def verify_bundle(bundle: Mapping[str, Any]) -> dict[str, Any]:
     requested = bundle.get('requested_claim')
     if not isinstance(requested, str) or not requested:
         raise EvidenceError('requested_claim is required')
-    seen: set[str] = set()
-    rows = []
+    rows_by_hash = {}
     for certificate in certificates:
         if not isinstance(certificate, Mapping):
             raise EvidenceError('each certificate must be an object')
@@ -150,10 +150,11 @@ def verify_bundle(bundle: Mapping[str, Any]) -> dict[str, Any]:
             raise EvidenceError('unidentified stratum records require the v2 bundle schema')
         result = verify_certificate(certificate)
         cert_hash = result['certificate_sha256']
-        if cert_hash in seen:
+        if cert_hash in rows_by_hash and certificate.get('schema_version') == UNIDENTIFIED_STRATUM_SCHEMA:
             raise EvidenceError('duplicate certificate hash in bundle')
-        seen.add(cert_hash)
-        rows.append(result)
+        rows_by_hash[cert_hash] = result
+    unique = checked_certificate_batch(certificates)
+    rows = [rows_by_hash[c['certificate_sha256']] for c in unique]
     input_file = checked_object(
         bundle.get('input_file'), 'input_file', {'name', 'sha256'},
     )
@@ -177,7 +178,8 @@ def _regenerate_from_basis(basis: Path, requested_claim: str) -> list[dict[str, 
     if kind == 'raw_pairs':
         return certificates_from_raw_pairs(value, requested_claim)  # type: ignore[arg-type]
     if kind == 'analyses':
-        return [certify_analysis(item, requested_claim) for item in value]  # type: ignore[arg-type]
+        return checked_certificate_batch(
+            [certify_analysis(item, requested_claim) for item in value])  # type: ignore[arg-type]
     return certificates_from_count_documents(value, requested_claim)  # type: ignore[arg-type]
 
 
@@ -201,7 +203,7 @@ def verify_bundle_against_basis(
                    if item['schema_version'] == UNIDENTIFIED_STRATUM_SCHEMA]
         expected = [item for item in regenerated
                     if item['schema_version'] == CERTIFICATE_SCHEMA]
-    if expected != bundle['certificates']:
+    if expected != checked_certificate_batch(bundle['certificates']):
         raise EvidenceError('bundle certificates do not match regeneration from the supplied basis')
     result['basis_verified'] = True
     result['basis_coverage_complete'] = not omitted

@@ -1,9 +1,9 @@
 {
   "assets": [
     {
-      "bytes": 594,
+      "bytes": 595,
       "path": "paper/tosem/generated/release_facts.tex",
-      "sha256": "29d8b8170bbf1f59d2ef7fc73ef44684056634baeb06378cda4488a768d54cd3"
+      "sha256": "8744feb30d3219d2c9a791ee147ad6240176b518c8f52675a7865a580f0227c0"
     },
     {
       "bytes": 1214,
@@ -36,29 +36,24 @@
       "sha256": "44c148b6043770de42863e7e822ff6484f79f63f440158f039b2a29122923031"
     },
     {
-      "bytes": 19866,
+      "bytes": 24898,
       "path": "paper/tosem/figures/edit_functionality.pdf",
-      "sha256": "190837a815783d36cc08b7028f4ff89de3cfd3af21eb779ab2cf27ffcccf0dc5"
+      "sha256": "b7c4d32248ad99d65138c9f58309143bbe18a66fda72f806a06072a0efbf69da"
     },
     {
-      "bytes": 70293,
+      "bytes": 86787,
       "path": "paper/tosem/figures/edit_functionality.png",
-      "sha256": "9ef015d15b3219ed10d53a9c14f3457e25f48642339318728c0ad12a1bb7d21e"
+      "sha256": "14451fc47b31c66706d4cd6bad283437be0453442d5d83233a5d728a78158f9c"
     },
     {
-      "bytes": 21041,
+      "bytes": 23186,
       "path": "paper/tosem/figures/application_coverage.pdf",
-      "sha256": "2ab6c6e9d5701d90d5377415c8e042da9e87e43350374d3a07ebdf3d08aa0fa4"
+      "sha256": "65f7d6ff83188b83544f8bb035e9d1071610736de4d6ddd7b652093368253818"
     },
     {
-      "bytes": 70983,
+      "bytes": 84511,
       "path": "paper/tosem/figures/application_coverage.png",
-      "sha256": "cf2bbf3cb3c72322601402b1e042a9c9c758ad821828d8c8d7aaa5a2585ee3ca"
-    },
-    {
-      "bytes": 463,
-      "path": "artifact/analysis/release_facts.json",
-      "sha256": "66972b6c9e85704bffbcc91992b4159415ecc87cc6da668659576e1595217de4"
+      "sha256": "0204fea001629dcffc75ea5bd7151e68eb5b53658ba012fa2c516704e7e0bd47"
     }
   ],
   "basis": [

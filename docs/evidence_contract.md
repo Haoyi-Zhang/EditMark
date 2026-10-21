@@ -26,6 +26,11 @@ Net change is identified by exact cohort size and before/after positive marginal
 
 These are finite-cohort identification bounds, not confidence intervals.
 
+A batch does not pool cohorts. All count/certificate producers and basis
+verifiers reject conflicting facts under the same cohort/stratum identity.
+Identical normalized disclosures are idempotent, with one cohort contribution;
+the detector rule, transitions and exclusion partition must also be identical.
+
 For target pairs with missing decisions, the analyzer uses only each observed Boolean or null; it does not infer a missing Boolean from a retained score. The reported change and loss intervals are sharp over unrestricted completions of that coarsened projection. They may be conservative relative to all supplied facts when a score, threshold, and comparator determine a missing decision. Recorded availability and complete-cohort membership remain unchanged.
 
 ## Unsupported inferences

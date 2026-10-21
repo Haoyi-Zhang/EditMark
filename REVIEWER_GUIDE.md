@@ -12,6 +12,12 @@ editmark-verify /tmp/certificates.json --basis /tmp/counts.json
 
 The examples are explicitly synthetic. The workflow checks arithmetic, cohort/rule identities, certificate integrity, and deterministic regeneration; it does not create watermark observations.
 
+The count-to-certificate-to-basis chain shares batch identity checks: identical
+normalized disclosures contribute once, while conflicting rules, counts,
+transitions or exclusions reject the batch without publishing an output.
+Optional `make test-figures` checks clean-cache PDF/PNG reconstruction and invalid
+data/dependency failures; `make paper` runs that check through its `assets` prerequisite.
+
 ## What to inspect
 
 1. `../paper/tosem/main.pdf` for the argument, theory, and read-only artifact case study. A code-only checkout can run `make test`; `make check` additionally requires the manuscript sources.

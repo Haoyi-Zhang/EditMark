@@ -13,6 +13,14 @@ A claim certificate is a canonical JSON document for a structured claim request.
 
 The checker returns `admissible`, `partially_admissible`, or `not_admissible`. Free-form `claim_text` is metadata and is never treated as verified prose; the generated `supported_statement` is authoritative.
 
+Counts, count reports, pair reports and raw-pair producers share the same batch
+cohort/stratum check, also used by standalone verification and every basis
+regeneration route. A repeated identity must have identical normalized rule,
+counts, optional transitions and exclusion partition. Exact repeats retain one
+certificate, without summing counts or merging missing facts; conflicting facts
+and mixed evidence kinds reject the entire batch before output publication.
+An unchanged single-cohort disclosure keeps its certificate content and digest.
+
 `editmark-verify` has two modes. Standalone mode checks the canonical digest and deterministically re-derives every semantic field from the embedded sufficient facts, using the same analyzer/certifier implementation. Basis mode checks and rechecks the source-file digest and regenerates from normalized raw pairs, a pair report or exact counts. Raw pairs rederive membership under the recorded gate and are distinguished from a supplied report; neither authenticates the flags, execution or external origin. A coordinated change to both basis and all dependent digests still requires an external trust anchor, such as a signed release or trusted execution record.
 
 ## Strata without complete decision pairs

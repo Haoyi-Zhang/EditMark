@@ -5,14 +5,15 @@ PYTHON ?= python
 LATEXMK ?= latexmk
 BIBTEX ?= $(shell command -v bibtex 2>/dev/null || command -v bibtex.original 2>/dev/null)
 
-.PHONY: help test facts assets lint hygiene paper check full-check clean
+.PHONY: help test test-figures facts assets lint hygiene paper check full-check clean
 .DEFAULT_GOAL := help
 
 help:
 	@printf '%s\n' \
 	  'test       Run the offline evidence-contract test suite.' \
 	  'facts      Regenerate machine-readable facts and synthetic checker outputs.' \
-	  'assets     Regenerate facts plus the manuscript figure.' \
+	  'assets     Test and regenerate every data-driven PDF/PNG figure and paper fact.' \
+	  'test-figures Run finite plotting-consumer tests (requires the figures extra).' \
 	  'lint       Check the active LaTeX source graph, citations, labels, and draft markers.' \
 	  'hygiene    Reject superseded manuscript trees and unresolved author metadata.' \
 	  'paper      Build the ACM journal manuscript.' \
@@ -26,8 +27,10 @@ test:
 facts:
 	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/build_contract_artifacts.py --skip-figure
 
-assets:
-	MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/build_contract_artifacts.py
+test-figures:
+	MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m unittest discover -s tests/figures -v
+
+assets: facts test-figures
 	MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/build_paper_assets.py
 
 lint:
@@ -36,7 +39,7 @@ lint:
 hygiene:
 	PYTHONDONTWRITEBYTECODE=1 $(PYTHON) scripts/verify_release_hygiene.py .
 
-paper:
+paper: assets
 	@test -n "$(BIBTEX)" || { echo 'A BibTeX executable is required.' >&2; exit 2; }
 	cd ../paper/tosem && $(LATEXMK) -e '$$bibtex="$(BIBTEX) %O %B"' -xelatex -interaction=nonstopmode -halt-on-error main.tex
 

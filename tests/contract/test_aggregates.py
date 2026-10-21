@@ -106,4 +106,7 @@ class AggregateCLITests(unittest.TestCase):
     def test_cli_mixed_evidence_rejected(self):
         a,b=counts(),counts();b['evidence_kind']='saved_observation'
         self.assertEqual(self.call([a,b])[:2],(2,False))
-    def test_cli_duplicate_cohort_rejected(self):self.assertEqual(self.call([counts(),counts()])[:2],(2,False))
+    def test_cli_identical_cohort_is_idempotent(self):
+        status, exists, result = self.call([counts(),counts()])
+        self.assertEqual((status,exists),(0,True))
+        self.assertEqual(len(result['analyses']),1)

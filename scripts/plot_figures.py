@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 from pathlib import Path
 import shutil
 
@@ -73,20 +74,37 @@ def figure_data(root: Path = ROOT) -> tuple[list[str], dict, dict]:
         if len(matches) != 1:
             raise ValueError(f"Unexpected attack names: {sorted(present)!r}")
         order[-1] = matches[0]
-    passes = {
-        (row["method"], row["attack"]): 100.0 * float(row["attacked_test_pass_rate"])
-        for row in rows
-    }
+    expected = {(method, edit) for method in METHODS for edit in order}
+    def rate(value, field):
+        if isinstance(value, bool):
+            raise ValueError(f'{field}: a finite rate in [0,1] is required')
+        number = float(value)
+        if not math.isfinite(number) or not 0 <= number <= 1:
+            raise ValueError(f'{field}: a finite rate in [0,1] is required')
+        return number
+    passes = {}
+    for row in rows:
+        key = (row['method'], row['attack'])
+        if key in passes:
+            raise ValueError(f'Duplicate retained method/edit cell: {key}')
+        passes[key] = 100 * rate(row['attacked_test_pass_rate'], 'attacked_test_pass_rate')
     components = json.loads((root / "analysis/edit_component_audit.json")
                             .read_text(encoding="utf-8"))
-    coverage = {
-        (row["method"], row["edit"]): 100.0 * row["application_coverage"]
-        for row in components
-    }
-    for method in METHODS:
-        for edit in order:
-            if (method, edit) not in passes or (method, edit) not in coverage:
-                raise ValueError(f"Missing retained method/edit cell: {method}/{edit}")
+    coverage = {}
+    for row in components:
+        key = (row['method'], row['edit'])
+        if key in coverage:
+            raise ValueError(f'Duplicate retained method/edit cell: {key}')
+        total, supported = row['total_rows'], row['supported_rows']
+        if (type(total) is not int or type(supported) is not int
+                or total <= 0 or not 0 <= supported <= total):
+            raise ValueError(f'Invalid coverage integer counts: {key}')
+        value = rate(row['application_coverage'], 'application_coverage')
+        if not math.isclose(value, supported / total, rel_tol=0, abs_tol=1e-12):
+            raise ValueError(f'application coverage disagrees with retained counts: {key}')
+        coverage[key] = 100 * value
+    if set(passes) != expected or set(coverage) != expected:
+        raise ValueError('Missing or unexpected retained method/edit cells')
     return order, passes, coverage
 
 
@@ -167,8 +185,10 @@ def build_figures(root: Path = ROOT, font_dir: Path | None = None) -> list[Path]
                 color=COLORS[j], markerfacecolor="white" if j == 3 else COLORS[j],
                 markeredgewidth=0.45, label=method,
             )
-        ax.set(xlim=xlim, ylim=(6.45, -0.45), xlabel=xlabel)
-        ax.set_xticks(xticks)
+        upper = max(xlim[1], max(values.values()) * 1.03)
+        ax.set(xlim=(xlim[0], upper), ylim=(6.45, -0.45), xlabel=xlabel)
+        if upper == xlim[1]:
+            ax.set_xticks(xticks)
         ax.set_yticks(range(7), EDIT_LABELS)
         ax.tick_params(direction="in", pad=3, labelsize=8.47)
         ax.xaxis.label.set_size(8.47)
@@ -178,13 +198,15 @@ def build_figures(root: Path = ROOT, font_dir: Path | None = None) -> list[Path]
         ax.legend(ncol=4, loc="lower center", bbox_to_anchor=(0.5, 1.014),
                   frameon=False, borderaxespad=0, handletextpad=0.35,
                   columnspacing=0.8, handlelength=1.1, fontsize=8.47)
-        path = output / f"{name}.pdf"
-        fig.savefig(path, metadata={"Creator": None, "Producer": None,
-                                    "CreationDate": None, "ModDate": None})
+        for suffix in ('pdf', 'png'):
+            path = output / f'{name}.{suffix}'
+            metadata = {"Creator": None, "Producer": None,
+                        "CreationDate": None, "ModDate": None} if suffix == 'pdf' else None
+            fig.savefig(path, dpi=300, metadata=metadata)
+            if paper.is_dir():
+                shutil.copyfile(path, paper / path.name)
+            assets.append(path)
         plt.close(fig)
-        if paper.is_dir():
-            shutil.copyfile(path, paper / path.name)
-        assets.append(path)
     return assets
 
 
