@@ -56,6 +56,11 @@ used on its own. Missing plotting dependencies or malformed consumed data fail
 nonzero; no old PNG is a successful fallback. The default `make check` remains
 model-free and does not require plotting dependencies.
 
+The full packet's `paper/tosem/Makefile` also regenerates all three actual
+PDF/PNG figure consumers and table fragments before TeX, through the same
+`build_paper_assets.py` entrypoint. Its standalone paper target does not refresh
+only the contract diagram while accepting cached data plots.
+
 ## Three analysis interfaces and one verifier
 
 ### 1. Pair observations

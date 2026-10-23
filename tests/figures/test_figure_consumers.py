@@ -45,6 +45,13 @@ class FigureConsumerTests(unittest.TestCase):
             writer=csv.DictWriter(stream,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
 
     def test_clean_cache_rebuilds_every_actual_pdf_png_consumer(self):
+        # The full-packet standalone entry must refresh measured plots too.
+        standalone = ROOT.parent / 'paper/tosem/Makefile'
+        if standalone.is_file():
+            recipe = standalone.read_text(encoding='utf-8')
+            self.assertIn('paper: assets', recipe)
+            self.assertIn('$(PYTHON) ../../artifact/scripts/build_paper_assets.py', recipe)
+            self.assertNotIn('--contract-only', recipe)
         with tempfile.TemporaryDirectory() as td:
             root,_=self.fixture(td)
             result=self.build(root);self.assertEqual(result.returncode,0,result.stderr)
