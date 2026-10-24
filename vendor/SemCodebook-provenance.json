@@ -1,0 +1,115 @@
+{
+  "repository": "Haoyi-Zhang/SemCodebook",
+  "commit": "f2434164a4bd022099d98e5fa6236cd04e01968a",
+  "tree": "c15d03d7dcc6139edc410ee41157aded32d60e04",
+  "url": "https://github.com/Haoyi-Zhang/SemCodebook/tree/f2434164a4bd022099d98e5fa6236cd04e01968a",
+  "author_relationship": "Existing author-owned repository, not independent study evidence",
+  "license": "No LICENSE or COPYING file was present in the fetched recursive tree. No additional license is asserted for these original sources.",
+  "files": [
+    {
+      "path": "project/src/semcodebook/adaptive_ecc.py",
+      "git_blob": "f70646e663aa2de5899d6092a20465d109e5d2a2",
+      "bytes": 2340
+    },
+    {
+      "path": "project/src/semcodebook/applicability.py",
+      "git_blob": "d7fdc5fecd6c567d5bd73ef44319bfe1fe4487c9",
+      "bytes": 2543
+    },
+    {
+      "path": "project/src/semcodebook/ast_rewrites.py",
+      "git_blob": "c575fd06d239d1ed71b08facabc7f43b78622d44",
+      "bytes": 6121
+    },
+    {
+      "path": "project/src/semcodebook/carriers.py",
+      "git_blob": "b488aa14b83577ca3015de157edd664caaefaf12",
+      "bytes": 3994
+    },
+    {
+      "path": "project/src/semcodebook/cfg_analysis.py",
+      "git_blob": "54cbeb7ddf0c980f52bf0b2e2e2094a52b867cd7",
+      "bytes": 4276
+    },
+    {
+      "path": "project/src/semcodebook/cfg_rewrites.py",
+      "git_blob": "b2017fabea8bc1cbcbf6451d5cfa7a4c11b7bd12",
+      "bytes": 7252
+    },
+    {
+      "path": "project/src/semcodebook/channel.py",
+      "git_blob": "a51711234cbfe417ef552a10a973589c008a88d8",
+      "bytes": 2868
+    },
+    {
+      "path": "project/src/semcodebook/commitments.py",
+      "git_blob": "6352c8c52ecf7854e5a243eb291a25db3d7b7610",
+      "bytes": 2651
+    },
+    {
+      "path": "project/src/semcodebook/detector.py",
+      "git_blob": "1b8d104b321acff7c0c665b97b4a464287bdf0ef",
+      "bytes": 23751
+    },
+    {
+      "path": "project/src/semcodebook/ecc.py",
+      "git_blob": "248be41414bc70854cc2f7c0fd75e1b4f94cf2d8",
+      "bytes": 5982
+    },
+    {
+      "path": "project/src/semcodebook/inference.py",
+      "git_blob": "f12762a153577388c2132f9ff479870a082796c5",
+      "bytes": 216722
+    },
+    {
+      "path": "project/src/semcodebook/languages.py",
+      "git_blob": "96e0fccaeff7a5f9d3c5ef3af38f61f1c1f8f9da",
+      "bytes": 907
+    },
+    {
+      "path": "project/src/semcodebook/negative_controls.py",
+      "git_blob": "362b70113edc529ca46fefb58c2b1d743ad8b707",
+      "bytes": 14570
+    },
+    {
+      "path": "project/src/semcodebook/pl_analysis.py",
+      "git_blob": "3882028265a64fb2404afa6cb279f16a3b106462",
+      "bytes": 2582
+    },
+    {
+      "path": "project/src/semcodebook/protocol.py",
+      "git_blob": "c462f99a463567943aaa7fb9ede621a5d809e006",
+      "bytes": 8493
+    },
+    {
+      "path": "project/src/semcodebook/rewrite_certificates.py",
+      "git_blob": "8030c88d520e65bf2ba8bd10ea9cea62305ce81b",
+      "bytes": 2010
+    },
+    {
+      "path": "project/src/semcodebook/semantic_validator.py",
+      "git_blob": "c9f3b4d66deb6e5b42e024f4c760980b54d20117",
+      "bytes": 13839
+    },
+    {
+      "path": "project/src/semcodebook/ssa_analysis.py",
+      "git_blob": "6dab974f6b1c42c9894237c7d482ea002312788a",
+      "bytes": 10067
+    },
+    {
+      "path": "project/src/semcodebook/ssa_rewrites.py",
+      "git_blob": "7d6df77e08c090a96b00d0691a072afc3c8852c0",
+      "bytes": 6673
+    },
+    {
+      "path": "project/src/semcodebook/typed_ast.py",
+      "git_blob": "f8a94aac26b73097c2d86d2e89736e6c935b118c",
+      "bytes": 16259
+    },
+    {
+      "path": "project/src/semcodebook/variant_pool.py",
+      "git_blob": "dcd3751169cd26e1e701301b659ba1089684497b",
+      "bytes": 28347
+    }
+  ]
+}

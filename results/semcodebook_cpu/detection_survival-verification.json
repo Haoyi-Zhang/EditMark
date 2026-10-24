@@ -1,0 +1,30 @@
+{
+  "basis_coverage_complete": true,
+  "basis_file": {
+    "name": "pairs.jsonl",
+    "sha256": "a6c5f0e2b43bc9d800c370b3372495e2e081ab063761f893daa03c22fee35975"
+  },
+  "basis_kind": "raw_pairs",
+  "basis_verified": true,
+  "certificates": [
+    {
+      "basis_verified": true,
+      "certificate_sha256": "6c678797befae061bc37a2ab91da2910012d984d68b79b7b9651ea9b160cb357",
+      "decision": "admissible",
+      "embedded_facts_verified": true,
+      "requested_claim": "detection_survival"
+    },
+    {
+      "basis_verified": true,
+      "certificate_sha256": "dc6be05da4c57f7ffa5ad4595482bdc6d3995fea525bcc802f21941ee7372fbe",
+      "decision": "admissible",
+      "embedded_facts_verified": true,
+      "requested_claim": "detection_survival"
+    }
+  ],
+  "certificates_verified": 2,
+  "raw_pair_membership_rederived": true,
+  "requested_claim": "detection_survival",
+  "schema_version": "editmark-certificate-verification",
+  "unidentified_strata": []
+}

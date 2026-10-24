@@ -180,6 +180,51 @@ validation of KGW/SWEET/STONE/EWD. Default model-free commands do not execute it
 
 No independent human review or empirical novelty is inferred from these checks.
 
+## Opt-in existing SemCodebook CPU measurement
+
+The source-pinned, author-owned SemCodebook case runs the existing
+`rule_based_generate` encoder and unchanged native detector. This is the
+bootstrap rule-based operating mode, not model inference, blind schedule
+reconstruction, an independent study, or a claim of publication.
+
+```bash
+python -B scripts/measure_semcodebook_cpu.py --out NEW_DIRECTORY
+python -B -m unittest discover -s regressions -p check_semcodebook_cpu.py -v
+```
+
+The retained result is `results/semcodebook_cpu/`. All 16 four-bit payload
+attempts are kept, including misses and wrong recovered values. There is one
+authored arithmetic task, four distinct before texts, nine distinct texts
+overall, and two source-authored edits: a comment footer and an `any`/`sum`
+refactor. Every one of the 32 pairs passes the same exhaustive 156-input finite
+contract (9,984 function calls, zero failures). The population is payload
+configurations, not independent programs.
+
+The original generation schedule is registered by sample ID and held fixed on
+both sides. The rule ID binds that entire registry, the upstream commit, key,
+native threshold 0.5 and adapter bytes. The recorded Boolean is the native
+`is_watermarked`; its confidence is not substituted for a scalar decision
+score. Abstain/reject are observed false for that Boolean, with all native
+three-state outputs retained. A hit does not imply correct payload recovery:
+payload 13 remains a hit after refactoring but recovers 12.
+
+The comment transitions are (1,0,0,15), change 0 and survival 1.
+The refactor transitions are (1,0,8,7), change -1/2 and survival 7/15;
+marginals alone bound the latter survival by [2/5,7/15]. Separately written
+direct arithmetic on the same rows agrees exactly. All five claim bundles
+are re-derived against source-linked raw JSONL. FPR, AUROC and posterior
+requests remain denied; there is no selection or detection gain from EditMark.
+
+Only five reviewed arithmetic texts and four fixed comment variants may be
+executed. Upstream Git blob identities are checked before measurement; encoder
+replay must reproduce the frozen generations before their code is accepted.
+The vendor provenance file identifies commit
+`f2434164a4bd022099d98e5fa6236cd04e01968a` and every included original file.
+No LICENSE/COPYING file was present in that source tree; no new license or
+independent authorship is asserted for the included owner-provided source.
+Training, model loading, attack workflows and public benchmark execution are
+not invoked. Default model-free discovery does not execute this opt-in case.
+
 ## Hand-worked arithmetic examples
 
 Run `python -B scripts/check_hand_calculations.py` for four short authored
@@ -207,7 +252,7 @@ execution authenticity, or arbitrary prose.
 
 ## Evidence boundary
 
-The included aggregate evidence supports an audit of measurement and reporting. It does not contain the joint real-program observations needed to estimate a corrected post-edit detector effect. The paper therefore does not publish a replacement method ranking or fabricate missing records. It contributes a reusable contract, formal identification results, claim certificates, and an executable checker that make future post-edit claims auditable.
+The archived aggregate evidence supports an audit of measurement and reporting, but not a corrected four-method paired effect. The separate SemCodebook CPU case supplies actual source-linked observations from an existing author-owned implementation under a finite controlled task contract. It does not supply independent validation, a replacement method ranking, or missing observations for the original summary population. The contribution is a reusable contract, identification results, claim certificates, and an executable checker for auditable post-edit claims.
 
 ## Authors
 

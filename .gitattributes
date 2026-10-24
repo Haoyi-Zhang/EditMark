@@ -1,3 +1,5 @@
 * text=auto eol=lf
 *.png binary
 results/figures/** -text
+# Original method sources are consumed by exact Git-blob checks.
+vendor/semcodebook/*.py -text

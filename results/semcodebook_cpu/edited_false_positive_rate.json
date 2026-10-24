@@ -1,0 +1,138 @@
+{
+  "certificates": [
+    {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 16,
+      "certificate_sha256": "d6402dc966b3a5bd0930e8cae98f5daecb81730fef00c2e891e90b711d756c92",
+      "claim_id": "stratum-1",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "7e859a366e75ddd2bb62357d138541a2c7acdff540f7d0e8a6fb8c9658e1c156",
+      "counts": {
+        "after_positive": 7,
+        "before_positive": 15,
+        "n": 16
+      },
+      "decision": "not_admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "semcodebook-registered-schedule:c45a53b31b393b01eea6856b22554bc2e2a3a95d78b020bdba319a0a8ffd22ee",
+        "threshold": 0.5
+      },
+      "estimate": null,
+      "evidence_kind": "saved_observation",
+      "first_exclusion_counts": {},
+      "identification": "missing_negative_cohort",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "edited_false_positive_rate",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "builtin-sum-refactor",
+        "experiment_id": "SEMCODEBOOK-CPU-CONTROLLED",
+        "language": "python",
+        "method": "SemCodebook-bootstrap-rule-based",
+        "model": "none",
+        "source_group": "author-owned-integer-sum-controlled",
+        "variant_id": "fixed-source-edit"
+      },
+      "supported_statement": "An edited false-positive rate requires an edited unwatermarked control cohort evaluated under the same rule; this disclosure contains positive pairs only.",
+      "synthetic_warning": null,
+      "transitions": {
+        "n00": 1,
+        "n01": 0,
+        "n10": 8,
+        "n11": 7
+      }
+    },
+    {
+      "analysis_contract": "same-rule-changed-pairs",
+      "analysis_status": "identified",
+      "attempted_pairs": 16,
+      "certificate_sha256": "55f03d11a7e455b89df1fe5de014ff53034912081481fe2c87745712dc7d3bb0",
+      "claim_id": "stratum-2",
+      "claim_text": "",
+      "claim_text_verified": false,
+      "cohort_sha256": "5af83a40b597796574e61e9b2d50528847a089180294b6ef7c4c43117cfc2937",
+      "counts": {
+        "after_positive": 15,
+        "before_positive": 15,
+        "n": 16
+      },
+      "decision": "not_admissible",
+      "decision_rule": {
+        "comparator": "ge",
+        "rule_id": "semcodebook-registered-schedule:c45a53b31b393b01eea6856b22554bc2e2a3a95d78b020bdba319a0a8ffd22ee",
+        "threshold": 0.5
+      },
+      "estimate": null,
+      "evidence_kind": "saved_observation",
+      "first_exclusion_counts": {},
+      "identification": "missing_negative_cohort",
+      "membership_verified": false,
+      "population": "watermarked_positive",
+      "prohibited_interpretations": [
+        "This positive-only certificate does not establish an edited false-positive rate.",
+        "It does not establish AUROC change because negative cohorts and score distributions are absent.",
+        "It does not establish a posterior probability of provenance because prevalence and calibration are absent.",
+        "The cohort fingerprint checks identity consistency, not execution authenticity or authorship.",
+        "The generated supported_statement is authoritative; free-form claim_text is unverified metadata."
+      ],
+      "requested_claim": "edited_false_positive_rate",
+      "requirements": {
+        "clean_negative_controls_present": false,
+        "cohort_fingerprint_present": true,
+        "cohort_membership_authenticated": false,
+        "edited_negative_controls_present": false,
+        "exact_integer_counts_present": true,
+        "exclusion_partition_present": true,
+        "fixed_decision_rule_present": true,
+        "nonempty_admitted_cohort": true,
+        "positive_cohort_named": true
+      },
+      "schema_version": "editmark-claim-certificate",
+      "stratum": {
+        "edit": "review-comment",
+        "experiment_id": "SEMCODEBOOK-CPU-CONTROLLED",
+        "language": "python",
+        "method": "SemCodebook-bootstrap-rule-based",
+        "model": "none",
+        "source_group": "author-owned-integer-sum-controlled",
+        "variant_id": "fixed-source-edit"
+      },
+      "supported_statement": "An edited false-positive rate requires an edited unwatermarked control cohort evaluated under the same rule; this disclosure contains positive pairs only.",
+      "synthetic_warning": null,
+      "transitions": {
+        "n00": 1,
+        "n01": 0,
+        "n10": 0,
+        "n11": 15
+      }
+    }
+  ],
+  "input_file": {
+    "name": "pairs.jsonl",
+    "sha256": "a6c5f0e2b43bc9d800c370b3372495e2e081ab063761f893daa03c22fee35975"
+  },
+  "requested_claim": "edited_false_positive_rate",
+  "schema_version": "editmark-claim-certificate-bundle"
+}
