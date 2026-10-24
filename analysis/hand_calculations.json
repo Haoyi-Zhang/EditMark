@@ -1,0 +1,106 @@
+{
+  "evidence_kind": "synthetic_test",
+  "meaning": "Hand arithmetic and implementation agreement; no source authenticity claim.",
+  "cases": [
+    {
+      "case": "loss",
+      "decisions": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "complete_pairs": 3,
+      "target_pairs": 3,
+      "complete_change": "-1/3",
+      "survival": "1/2",
+      "target_change_bounds": [
+        "-1/3",
+        "-1/3"
+      ],
+      "survival_decision": "admissible"
+    },
+    {
+      "case": "gain",
+      "decisions": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "complete_pairs": 3,
+      "target_pairs": 3,
+      "complete_change": "1/3",
+      "survival": "0",
+      "target_change_bounds": [
+        "1/3",
+        "1/3"
+      ],
+      "survival_decision": "admissible"
+    },
+    {
+      "case": "missing-after",
+      "decisions": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          null
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "complete_pairs": 2,
+      "target_pairs": 3,
+      "complete_change": "0",
+      "survival": "1",
+      "target_change_bounds": [
+        "-1/3",
+        "0"
+      ],
+      "survival_decision": "admissible"
+    },
+    {
+      "case": "no-initial-positive",
+      "decisions": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "complete_pairs": 2,
+      "target_pairs": 2,
+      "complete_change": "1/2",
+      "survival": null,
+      "target_change_bounds": [
+        "1/2",
+        "1/2"
+      ],
+      "survival_decision": "not_admissible"
+    }
+  ]
+}

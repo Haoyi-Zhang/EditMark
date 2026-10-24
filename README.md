@@ -180,6 +180,18 @@ validation of KGW/SWEET/STONE/EWD. Default model-free commands do not execute it
 
 No independent human review or empirical novelty is inferred from these checks.
 
+## Hand-worked arithmetic examples
+
+Run `python -B scripts/check_hand_calculations.py` for four short authored
+Boolean lists with predeclared exact answers. The examples cover negative and
+positive net change, a missing after-decision, and zero initial positives.
+Expected arithmetic is separate from the production analyzer and verifier.
+The retained output is `analysis/hand_calculations.json`; Appendix A consumes
+the same explicit lists and fractions. These are synthetic arithmetic examples,
+not independent watermark experiments. Successful verification establishes
+consistency of structured statements with the supplied facts, not source truth,
+execution authenticity, or arbitrary prose.
+
 ## Repository map
 
 | Path | Purpose |
