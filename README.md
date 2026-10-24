@@ -144,7 +144,7 @@ python -B -m unittest discover -s regressions -v
 ```
 
 The output path must be new and within `results/repair_diagnostic/`. The retained
-`information-v3.json` records nine synthetic pair cases, the exact-count
+`information.json` records nine synthetic pair cases, the exact-count
 comparison, all 28 rounded component checks, 142 serialized-file inventory
 entries, and local processing costs. The costs include a separately measured
 fresh-process/durable-publication workflow, not just arithmetic time. Direct
