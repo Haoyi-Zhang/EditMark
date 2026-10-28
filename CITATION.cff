@@ -7,28 +7,59 @@ authors:
   given-names: Haoyi
   email: hyeliozhang@gmail.com
   affiliation: Xi'an Jiaotong-Liverpool University
+  orcid: https://orcid.org/0009-0009-3693-786X
 - family-names: Ran
   given-names: Huaijin
   email: huaijin003@e.ntu.edu.sg
   affiliation: Nanyang Technological University
-- family-names: Tang
-  given-names: Xunzhu
-  email: realdanieltang@gmail.com
-  affiliation: University of Luxembourg
+  orcid: https://orcid.org/0009-0009-2482-2344
+- family-names: Shi
+  given-names: Jieke
+  email: jiekeshi@smu.edu.sg
+  affiliation: Singapore Management University
+- family-names: Sun
+  given-names: Yuqiang
+  email: yuqiang.sun@ntu.edu.sg
+  affiliation: Nanyang Technological University
+- family-names: Yu
+  given-names: Jiongchi
+  email: jiongchiyu@acm.org
+  affiliation: Nanyang Technological University
+- family-names: Lo
+  given-names: David
+  email: davidlo@smu.edu.sg
+  affiliation: Singapore Management University
+  orcid: https://orcid.org/0000-0002-4367-7201
 repository-code: https://github.com/Haoyi-Zhang/EditMark
 license: MIT
 preferred-citation:
   type: unpublished
-  title: 'EditMark: Machine-Checkable Evidence Contracts for Evaluating Code Watermarks After Software
-    Edits'
+  title: 'EditMark: Machine-Checkable Evidence Contracts for Evaluating Code Watermarks After Software Edits'
   authors:
   - family-names: Zhang
     given-names: Haoyi
+    email: hyeliozhang@gmail.com
+    affiliation: Xi'an Jiaotong-Liverpool University
+    orcid: https://orcid.org/0009-0009-3693-786X
   - family-names: Ran
     given-names: Huaijin
-  - family-names: Tang
-    given-names: Xunzhu
-  - family-names: Kim
-    given-names: Kisub
-  - family-names: Bissyandé
-    given-names: Tegawendé F.
+    email: huaijin003@e.ntu.edu.sg
+    affiliation: Nanyang Technological University
+    orcid: https://orcid.org/0009-0009-2482-2344
+  - family-names: Shi
+    given-names: Jieke
+    email: jiekeshi@smu.edu.sg
+    affiliation: Singapore Management University
+  - family-names: Sun
+    given-names: Yuqiang
+    email: yuqiang.sun@ntu.edu.sg
+    affiliation: Nanyang Technological University
+  - family-names: Yu
+    given-names: Jiongchi
+    email: jiongchiyu@acm.org
+    affiliation: Nanyang Technological University
+  - family-names: Lo
+    given-names: David
+    email: davidlo@smu.edu.sg
+    affiliation: Singapore Management University
+    orcid: https://orcid.org/0000-0002-4367-7201

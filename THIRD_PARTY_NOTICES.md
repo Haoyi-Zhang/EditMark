@@ -1,7 +1,6 @@
 # Third-Party Notices
 
-This repository is the anonymous review artifact for the submitted benchmark. It records
-third-party provenance needed to inspect the benchmark while avoiding accidental
+This artifact records third-party provenance needed for inspection while avoiding accidental
 redistribution of upstream source trees whose license status has not been
 verified for bundling.
 
@@ -28,7 +27,7 @@ comparisons.
 
 ## Benchmark Sources And Models
 
-The anonymous artifact contains normalized benchmark inputs under
+The packaged artifact contains normalized benchmark inputs under
 [`data/release/sources/`](data/release/sources). The repository does not
 redistribute Hugging Face model weights. Full Level 3 reruns require external
 availability of the exact model identifiers and snapshot revisions listed in
