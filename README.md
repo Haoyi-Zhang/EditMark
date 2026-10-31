@@ -225,6 +225,26 @@ independent authorship is asserted for the included owner-provided source.
 Training, model loading, attack workflows and public benchmark execution are
 not invoked. Default model-free discovery does not execute this opt-in case.
 
+## Independent bounded certificate arithmetic
+
+`python -B -m editmark_audit.reference results/semcodebook_cpu/detection_survival.json --basis results/semcodebook_cpu/pairs.jsonl`
+uses only the standard library and no analyzer, certifier, pair parser, detector
+or bound helpers. It enumerates feasible joint tables for n <= 10,000 and checks
+arithmetic, claim status and numeric statements. The optional raw recount is
+limited to complete, source-linked, score-null Boolean pairs. Other schemas,
+missing observations and full denial prose still require the main verifier.
+It also reports configuration pairs, distinct original source texts and declared
+clusters separately; none is promoted to an independent sample count. It does
+not authenticate source origin or execute the supplied programs.
+The raw path independently reconstructs the membership-tuple fingerprint, not
+just the counts. A changed cohort identity with the same arithmetic rejects.
+Bundle claims must agree with every certificate; conflicting cohort facts and
+mixed evidence kinds reject, while exact repeat disclosures count once.
+
+Run `python -B -m unittest discover -s regressions -p check_independent_reference.py -v`
+for retained-basis, rehashed arithmetic, forbidden-claim and source-substitution
+controls. These are software checks, not new watermark observations.
+
 ## Hand-worked arithmetic examples
 
 Run `python -B scripts/check_hand_calculations.py` for four short authored
