@@ -13,10 +13,6 @@ authors:
   email: huaijin003@e.ntu.edu.sg
   affiliation: Nanyang Technological University
   orcid: https://orcid.org/0009-0009-2482-2344
-- family-names: Shi
-  given-names: Jieke
-  email: jiekeshi@smu.edu.sg
-  affiliation: Singapore Management University
 - family-names: Sun
   given-names: Yuqiang
   email: yuqiang.sun@ntu.edu.sg
@@ -25,11 +21,6 @@ authors:
   given-names: Jiongchi
   email: jiongchiyu@acm.org
   affiliation: Nanyang Technological University
-- family-names: Lo
-  given-names: David
-  email: davidlo@smu.edu.sg
-  affiliation: Singapore Management University
-  orcid: https://orcid.org/0000-0002-4367-7201
 repository-code: https://github.com/Haoyi-Zhang/EditMark
 license: MIT
 preferred-citation:
@@ -46,10 +37,6 @@ preferred-citation:
     email: huaijin003@e.ntu.edu.sg
     affiliation: Nanyang Technological University
     orcid: https://orcid.org/0009-0009-2482-2344
-  - family-names: Shi
-    given-names: Jieke
-    email: jiekeshi@smu.edu.sg
-    affiliation: Singapore Management University
   - family-names: Sun
     given-names: Yuqiang
     email: yuqiang.sun@ntu.edu.sg
@@ -58,8 +45,3 @@ preferred-citation:
     given-names: Jiongchi
     email: jiongchiyu@acm.org
     affiliation: Nanyang Technological University
-  - family-names: Lo
-    given-names: David
-    email: davidlo@smu.edu.sg
-    affiliation: Singapore Management University
-    orcid: https://orcid.org/0000-0002-4367-7201

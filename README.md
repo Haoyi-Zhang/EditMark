@@ -258,10 +258,8 @@ The archived aggregate evidence supports an audit of measurement and reporting, 
 
 - Haoyi Zhang, Xi'an Jiaotong-Liverpool University — `hyeliozhang@gmail.com`
 - Huaijin Ran, Nanyang Technological University — `huaijin003@e.ntu.edu.sg`
-- Jieke Shi, School of Computing and Information Systems, Singapore Management University — `jiekeshi@smu.edu.sg`
 - Yuqiang Sun, Nanyang Technological University — `yuqiang.sun@ntu.edu.sg`
 - Jiongchi Yu, Nanyang Technological University — `jiongchiyu@acm.org`
-- David Lo, School of Computing and Information Systems, Singapore Management University — `davidlo@smu.edu.sg` (corresponding author)
 
 ## Safety
 
