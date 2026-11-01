@@ -1,0 +1,10 @@
+{
+  "executed_driver_sha256": "7368acf378e2a18008ca9c6564fe0889d0e3c7c88475b653865dd2fa1de892df",
+  "executed_driver_snapshot": "execution-source.py.gz",
+  "raw_observations_sha256": "dffce184bbab4422db12ea0b7d37461c4b4a6727755423abe59ff78850a6e964",
+  "registered_inputs_unchanged": true,
+  "source_program_processes": 72,
+  "interpretation": "The saved execution is immutable. Current analysis derives four separate key strata from the same raw observations; no cross-key detector rate is published.",
+  "new_model_calls": 0,
+  "tool_internals_modified": false
+}

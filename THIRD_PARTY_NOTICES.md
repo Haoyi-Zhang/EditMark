@@ -38,3 +38,12 @@ The packaged repository is sufficient for Level 1 artifact inspection and for
 regenerating the included summary tables and figures. It is not a redistribution
 vehicle for all external model weights or every third-party baseline source
 tree.
+## SEW released-method case
+
+The optional released-method runner uses the unmodified public implementation
+at https://github.com/suhanmen/SEW, pinned by the complete file identities in
+`data/released-style/tool.json`. The implementation is MIT-licensed; its notice
+is retained in `third_party/SEW-LICENSE.txt`. No upstream model or CodeContests
+dataset is redistributed or executed. Only eight owner-authored functional
+probes and their source-bound observations are included here.
+

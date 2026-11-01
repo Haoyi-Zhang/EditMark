@@ -11,14 +11,14 @@
       "sha256": "37c52bbb1c7b44a0a571199afa9e22d854518ec7fd79fd7e2c9341dfa0faf607"
     },
     {
-      "bytes": 347,
+      "bytes": 338,
       "path": "paper/tosem/generated/source_rows.tex",
-      "sha256": "92c0bb26ad4d2b484ecb525b7d19465494542ad01e5aa8af7efb1c1adafadeea"
+      "sha256": "615c45b40ba1cbd1394e0319f5553250f5a3091dc4d52763c9c6b0a91409e787"
     },
     {
-      "bytes": 198,
+      "bytes": 193,
       "path": "paper/tosem/generated/profile_rows.tex",
-      "sha256": "a253bbf60f19368f2a34ff76fac8fe0a75f12c9171899954892b21f8d7af77ae"
+      "sha256": "2f01da2049ca5093f9196560a85d617b130cdca21061b51423690f3ac9107ead"
     },
     {
       "bytes": 128,
@@ -26,34 +26,39 @@
       "sha256": "f907c229fb8e98590a20bbd82d8c392467b8d0b7b3081d6c5ce00db942c29df1"
     },
     {
-      "bytes": 22312,
+      "bytes": 116,
+      "path": "paper/tosem/generated/released_style_rows.tex",
+      "sha256": "5b96c6513ef19aa2556d9688b2c6959cd3393085385fe140face858af5caed82"
+    },
+    {
+      "bytes": 17461,
       "path": "paper/tosem/figures/evidence_contract.pdf",
-      "sha256": "418690b6fa91362a084eb5de70c3acc9da3bd7bb21008a83e0dc4735e6490b73"
+      "sha256": "7118c6ed2333684c6dad5bca04f16e3e33be8d7df7db9e32fccf1e6de2dc7081"
     },
     {
-      "bytes": 67114,
+      "bytes": 81446,
       "path": "paper/tosem/figures/evidence_contract.png",
-      "sha256": "44c148b6043770de42863e7e822ff6484f79f63f440158f039b2a29122923031"
+      "sha256": "c6d51e994dbcb96ad0957fc139e6e98d037557ec4ce54b2c8c922eac21d511e0"
     },
     {
-      "bytes": 24898,
+      "bytes": 19868,
       "path": "paper/tosem/figures/edit_functionality.pdf",
-      "sha256": "b7c4d32248ad99d65138c9f58309143bbe18a66fda72f806a06072a0efbf69da"
+      "sha256": "1c54a42b2b273859e6b1075ad69c452c843d7e269b32fccd92a5de0503398cb2"
     },
     {
-      "bytes": 86787,
+      "bytes": 102508,
       "path": "paper/tosem/figures/edit_functionality.png",
-      "sha256": "14451fc47b31c66706d4cd6bad283437be0453442d5d83233a5d728a78158f9c"
+      "sha256": "b55387f46e061e36afc8931277757f1b73f15d36af483132fc23d7561da7b4d2"
     },
     {
-      "bytes": 23186,
+      "bytes": 21043,
       "path": "paper/tosem/figures/application_coverage.pdf",
-      "sha256": "65f7d6ff83188b83544f8bb035e9d1071610736de4d6ddd7b652093368253818"
+      "sha256": "86da5017e6595a87da226fd955251a4d544d15bc57f26c858772586a9a7b8ddd"
     },
     {
-      "bytes": 84511,
+      "bytes": 95858,
       "path": "paper/tosem/figures/application_coverage.png",
-      "sha256": "0204fea001629dcffc75ea5bd7151e68eb5b53658ba012fa2c516704e7e0bd47"
+      "sha256": "76366e7dd8c2dec6dd0f05527ad28af7a9c9f91042fe0bcdc2121558213f45bc"
     }
   ],
   "basis": [
@@ -61,7 +66,8 @@
     "analysis/source_inventory.json",
     "analysis/method_profiles.json",
     "analysis/edit_component_audit.json",
-    "results/tables/suite_all_models_methods/method_attack_summary.csv"
+    "results/tables/suite_all_models_methods/method_attack_summary.csv",
+    "results/released-style/rows.json"
   ],
   "no_experiment_execution": true
 }

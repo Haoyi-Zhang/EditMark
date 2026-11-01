@@ -1,0 +1,10 @@
+{
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "dependencies": {
+    "tree-sitter": "0.23.2",
+    "tree-sitter-python": "0.23.6",
+    "tree-sitter-java": "0.23.5",
+    "tree-sitter-cpp": "0.23.4"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "tool_revision": "3c873186a56033e73347391b7aedebce1f7f71d0",
+  "fixture_source_sha256": "6404754f481054def647d1de973647d7c5015736d800887a1b9a0b2c7bca769f",
+  "fixtures": [
+    "integer_update",
+    "floating_update",
+    "list_alias",
+    "inplace_overload",
+    "asymmetric_comparison",
+    "shadowed_range",
+    "shadowed_list",
+    "shadowed_pow"
+  ],
+  "keys": [
+    "00000000000000000000000000000000",
+    "01010101010101010101010101010101",
+    "02020202020202020202020202020202",
+    "03030303030303030303030303030303"
+  ],
+  "selection": "All eight authored cases and all four fixed keys; no outcome filtering or adaptive key search",
+  "edit": "Python AST unparse, with the same fixed probe contract before and after",
+  "maximum_pairs": 32,
+  "maximum_program_processes": 72,
+  "per_process_wall_seconds": 4,
+  "wall_cap_seconds": 120,
+  "independent_natural_program_sample": false,
+  "model_calls": 0,
+  "security_or_exploit_testing": false
+}

@@ -63,6 +63,43 @@ only the contract diagram while accepting cached data plots.
 
 ## Three analysis interfaces and one verifier
 
+### Complete released-method boundary case
+
+The additional `results/released-style/` evidence executes the unmodified,
+MIT-licensed public SEW embedder and detector on eight authored Python boundary
+programs and four fixed keys. It uses no generating model or model API. The
+complete 32 attempts remain present: four marked programs fail their fixed
+functional probe, involving in-place addition or comparison overloading. These
+are counterexamples under the supplied Python objects, not a fault-prevalence
+estimate or a replication of the upstream CodeContests evaluation.
+
+After a fixed AST-normalization edit, the four separate key strata admit
+6, 7, 4 and 5 pairs. They exclude failing source programs, no-op edits and
+unavailable decisions before calculating a claim. Keys remain different detector
+rules; no pooled cross-key TPR, FPR or survival estimate is published. A native
+`Insufficient evidence` result is missing evidence here, not an observed false.
+Ordinary same-information eligibility checks admit exactly the same pairs.
+
+Data-only checking requires no external tool or parser installation:
+
+```sh
+python -B scripts/check_released_style.py
+python -B -m unittest discover -s regressions -p test_released_style.py -v
+```
+
+For a new explicitly opted-in execution, obtain the exact upstream snapshot
+bound in `data/released-style/tool.json`, use its four pinned tree-sitter
+dependencies, and run:
+
+```sh
+python -B scripts/released_style_case.py --tool-root /path/to/SEW --out /fresh/released-style
+```
+
+This command executes only the reviewed authored probes in bounded child
+processes. It never runs a model. The archived driver source is consumed by
+the execution provenance; current analysis is key-stratified and does not
+relabel or rerun the saved observations.
+
 ### 1. Pair observations
 
 ```bash

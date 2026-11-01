@@ -1,0 +1,3794 @@
+[
+  {
+    "case": "integer_update",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    x = 5\n    x += 3\n    return x\n",
+    "marked_source": "def  probe():\n    x = 5\n    x += 3\n    return  x\n",
+    "edited_source": "def probe():\n    x = 5\n    x += 3\n    return x\n",
+    "source_identities": [
+      "a82d00ed174eb26531e62b0ef70f58d81fae10656c6d80d8a433f37bb79cb6bc",
+      "cf0f0e7642524cb2196174fe682223bfa67f722fe4d48ccbd4e04ff22b08462d",
+      "a82d00ed174eb26531e62b0ef70f58d81fae10656c6d80d8a433f37bb79cb6bc"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.24488830000000006,
+      "p_all": 0.12244415000000003,
+      "p_syntax": 0.95,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00021280000000000024,
+      "p_all": 0.00010640000000000012,
+      "p_syntax": 0.95,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.24488830000000006,
+      "p_all": 0.12244415000000003,
+      "p_syntax": 0.95,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "integer_update",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "integer_update",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x = 5\n    x += 3\n    return  x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00021280000000000024,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 5\n    x += 3\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.24488830000000006,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "integer_update",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 3,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    x = 5\n    x += 3\n    return x\n",
+    "marked_source": "def  probe():\n    x = 5\n    x = x + 3\n    return x",
+    "edited_source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+    "source_identities": [
+      "a82d00ed174eb26531e62b0ef70f58d81fae10656c6d80d8a433f37bb79cb6bc",
+      "db45e5ae7211642711e3b7c9fd16bdd7e123fca263ed8582001c892adf8f8ffd",
+      "e208e817f3500a9bcb886ae11b0a9eaddde692212298025dc9046121db6d2529"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9888023499999997,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.0040432,
+      "p_all": 0.0020216,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.1,
+      "p_all": 0.8261208499999997,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "integer_update",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "integer_update",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x = 5\n    x = x + 3\n    return x",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.0040432,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.1,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "integer_update",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 1,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    x = 5\n    x += 3\n    return x\n",
+    "marked_source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+    "edited_source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+    "source_identities": [
+      "a82d00ed174eb26531e62b0ef70f58d81fae10656c6d80d8a433f37bb79cb6bc",
+      "e208e817f3500a9bcb886ae11b0a9eaddde692212298025dc9046121db6d2529",
+      "e208e817f3500a9bcb886ae11b0a9eaddde692212298025dc9046121db6d2529"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.15857970000000005,
+      "p_all": 0.07928985000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 4,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.004043200000000003,
+      "p_all": 0.0020216000000000014,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.004043200000000003,
+      "p_all": 0.0020216000000000014,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "integer_update",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "integer_update",
+      "supported": true,
+      "changed": false,
+      "original": {
+        "source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.004043200000000003,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.004043200000000003,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "integer_update",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 5,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    x = 5\n    x += 3\n    return x\n",
+    "marked_source": "def  probe():\n    x=5\n    x = x + 3\n    return x",
+    "edited_source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+    "source_identities": [
+      "a82d00ed174eb26531e62b0ef70f58d81fae10656c6d80d8a433f37bb79cb6bc",
+      "3902cfbc37af0165c3fa6cf0b1c15b8f7607ab37e2d3b01b11210faf9595430f",
+      "e208e817f3500a9bcb886ae11b0a9eaddde692212298025dc9046121db6d2529"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9979783999999998,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 1,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00046929999999999997,
+      "p_all": 0.00023464999999999998,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.1,
+      "p_all": 0.9207101499999998,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "integer_update",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "integer_update",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x=5\n    x = x + 3\n    return x",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00046929999999999997,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 5\n    x = x + 3\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:integer_update:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.1,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  },
+  {
+    "case": "floating_update",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": 3.5,
+    "unmarked_source": "def probe():\n    x = 1.5\n    x += 2.0\n    return x\n",
+    "marked_source": "def  probe():\n    x = 1.5\n    x += 2.0\n    return  x\n",
+    "edited_source": "def probe():\n    x = 1.5\n    x += 2.0\n    return x\n",
+    "source_identities": [
+      "4a615d448a07777f1c1149fe9a05446e607e43a90dfec07d8d4b3e3d82f81a53",
+      "90eeb942aecda8ded7da702ecfcbf0901835ae35e8273c5d391c6815681803f8",
+      "4a615d448a07777f1c1149fe9a05446e607e43a90dfec07d8d4b3e3d82f81a53"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.24488830000000006,
+      "p_all": 0.12244415000000003,
+      "p_syntax": 0.95,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00021280000000000024,
+      "p_all": 0.00010640000000000012,
+      "p_syntax": 0.95,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.24488830000000006,
+      "p_all": 0.12244415000000003,
+      "p_syntax": 0.95,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "floating_update",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "floating_update",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x = 1.5\n    x += 2.0\n    return  x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00021280000000000024,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 1.5\n    x += 2.0\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.24488830000000006,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "floating_update",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 3,
+      "iterations": 1
+    },
+    "expected": 3.5,
+    "unmarked_source": "def probe():\n    x = 1.5\n    x += 2.0\n    return x\n",
+    "marked_source": "def  probe():\n    x = 1.5\n    x = x + 2.0\n    return x",
+    "edited_source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+    "source_identities": [
+      "4a615d448a07777f1c1149fe9a05446e607e43a90dfec07d8d4b3e3d82f81a53",
+      "e597325a68c15f975c8542e8d286605b88bd8f4025f8d062f1b63fcdf90915c1",
+      "ce5f83cf69ddda559306144117b01440f44c3664eb17326e61e8e1608ffc9f35"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9888023499999997,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.0040432,
+      "p_all": 0.0020216,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.1,
+      "p_all": 0.8261208499999997,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "floating_update",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "floating_update",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x = 1.5\n    x = x + 2.0\n    return x",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.0040432,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.1,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "floating_update",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 1,
+      "iterations": 1
+    },
+    "expected": 3.5,
+    "unmarked_source": "def probe():\n    x = 1.5\n    x += 2.0\n    return x\n",
+    "marked_source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+    "edited_source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+    "source_identities": [
+      "4a615d448a07777f1c1149fe9a05446e607e43a90dfec07d8d4b3e3d82f81a53",
+      "ce5f83cf69ddda559306144117b01440f44c3664eb17326e61e8e1608ffc9f35",
+      "ce5f83cf69ddda559306144117b01440f44c3664eb17326e61e8e1608ffc9f35"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.15857970000000005,
+      "p_all": 0.07928985000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 4,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.004043200000000003,
+      "p_all": 0.0020216000000000014,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.004043200000000003,
+      "p_all": 0.0020216000000000014,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "floating_update",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "floating_update",
+      "supported": true,
+      "changed": false,
+      "original": {
+        "source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.004043200000000003,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.004043200000000003,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "floating_update",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 5,
+      "iterations": 1
+    },
+    "expected": 3.5,
+    "unmarked_source": "def probe():\n    x = 1.5\n    x += 2.0\n    return x\n",
+    "marked_source": "def  probe():\n    x=1.5\n    x = x + 2.0\n    return x",
+    "edited_source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+    "source_identities": [
+      "4a615d448a07777f1c1149fe9a05446e607e43a90dfec07d8d4b3e3d82f81a53",
+      "13e7c2c96947097a0ca8416881c3de8605e6e076f79cd376c758863a538524ea",
+      "ce5f83cf69ddda559306144117b01440f44c3664eb17326e61e8e1608ffc9f35"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 3.5,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9979783999999998,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 1,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00046929999999999997,
+      "p_all": 0.00023464999999999998,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.1,
+      "p_all": 0.9207101499999998,
+      "p_syntax": 0.05,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "floating_update",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "floating_update",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x=1.5\n    x = x + 2.0\n    return x",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00046929999999999997,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = 1.5\n    x = x + 2.0\n    return x\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:floating_update:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.1,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  },
+  {
+    "case": "list_alias",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 6,
+      "n_grades": 4,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": [
+      1,
+      2
+    ],
+    "unmarked_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "marked_source": "def  probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return  alias\n",
+    "edited_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "source_identities": [
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95",
+      "730833ac004b68d749d41736a9f6811800bd884b57f2084d7b100d286c3501ff",
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.2570920000000001,
+      "p_all": 0.12854600000000005,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "marked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.0002240000000000002,
+      "p_all": 0.0001120000000000001,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "edited_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.2570920000000001,
+      "p_all": 0.12854600000000005,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "list_alias",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "list_alias",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return  alias\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "list_alias",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 6,
+      "n_grades": 4,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": [
+      1,
+      2
+    ],
+    "unmarked_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "marked_source": "def  probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias",
+    "edited_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "source_identities": [
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95",
+      "21867f5af4d383820a1fee78c27cd02b69de548722bbb2e61170f8f8c5e5f5b2",
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 1.0,
+      "p_all": 0.9882259999999999,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "marked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.080864,
+      "p_all": 0.040432,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "edited_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 1.0,
+      "p_all": 0.9882259999999999,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "list_alias",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "list_alias",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "list_alias",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 6,
+      "n_grades": 4,
+      "n_edits": 0,
+      "iterations": 0
+    },
+    "expected": [
+      1,
+      2
+    ],
+    "unmarked_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "marked_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "edited_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "source_identities": [
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95",
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95",
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.08086400000000006,
+      "p_all": 0.04043200000000003,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "marked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.08086400000000006,
+      "p_all": 0.04043200000000003,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "edited_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.08086400000000006,
+      "p_all": 0.04043200000000003,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "list_alias",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "list_alias",
+      "supported": true,
+      "changed": false,
+      "original": {
+        "source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "list_alias",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 6,
+      "n_grades": 4,
+      "n_edits": 8,
+      "iterations": 1
+    },
+    "expected": [
+      1,
+      2
+    ],
+    "unmarked_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "marked_source": "def  probe():\n    x=[1]\n    alias=x\n    x+=[2]\n    return alias",
+    "edited_source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+    "source_identities": [
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95",
+      "a2336ed73e429bc50493f39c8d783c040efd380d0b0b3efd042891df8e0fa66f",
+      "9d11cb333267a37109ca8fd935134bb63bbffbbcf9f3ee2e48b94c4973737f95"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [
+        1,
+        2
+      ],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 1.0,
+      "p_all": 0.9978719999999999,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 1,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "marked_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 0.009386,
+      "p_all": 0.004693,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "edited_detection": {
+      "verdict": "Insufficient evidence",
+      "p": 1.0,
+      "p_all": 0.9978719999999999,
+      "p_syntax": 1.0,
+      "n_grades": 4,
+      "k_grades": 1,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 6
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "list_alias",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "list_alias",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    x=[1]\n    alias=x\n    x+=[2]\n    return alias",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n    x = [1]\n    alias = x\n    x += [2]\n    return alias\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:list_alias:3a316d6d3226f84c1e46e4447fa8d5fd800bff4a1bc6498152523cd4a602b69b"
+        },
+        "detection": {
+          "available": false,
+          "detected": null,
+          "score": null,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  },
+  {
+    "case": "inplace_overload",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 18,
+      "n_grades": 11,
+      "n_edits": 9,
+      "iterations": 1
+    },
+    "expected": 2,
+    "unmarked_source": "class Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n    def __add__(self, other):\n        return Number(self.value + other)\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+    "marked_source": "class  Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return  self\n    def __add__(self, other):\n        return  Number(self.value+other)\ndef probe():\n    x=Number(1)\n    alias=x\n    x += 1\n    return alias.value\n",
+    "edited_source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+    "source_identities": [
+      "9c0ef8020ee459c6c412f26dd2f38ce90d810fe8a2f19451df782042fab0bd50",
+      "8b7c3c86e3ab8d347bccea6a9beae86997acee7a18bc13c34299afb4bbb23c72",
+      "8e7514b4b64256e1b42c5011a4cf7ac84dc63252daf23295db8ce6b7299191e6"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.218673089752646,
+      "p_all": 0.109336544876323,
+      "p_syntax": 0.95,
+      "n_grades": 11,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 18
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 7.398174291289606e-07,
+      "p_all": 3.699087145644803e-07,
+      "p_syntax": 0.95,
+      "n_grades": 11,
+      "k_grades": 11,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 18
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.7127375556584301,
+      "p_syntax": 0.95,
+      "n_grades": 12,
+      "k_grades": 6,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 19
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "inplace_overload",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "inplace_overload",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class  Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return  self\n    def __add__(self, other):\n        return  Number(self.value+other)\ndef probe():\n    x=Number(1)\n    alias=x\n    x += 1\n    return alias.value\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 7.398174291289606e-07,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "inplace_overload",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 18,
+      "n_grades": 11,
+      "n_edits": 4,
+      "iterations": 1
+    },
+    "expected": 2,
+    "unmarked_source": "class Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n    def __add__(self, other):\n        return Number(self.value + other)\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+    "marked_source": "class  Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n    def __add__(self, other):\n        return Number(self.value + other)\ndef  probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return  alias.value",
+    "edited_source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+    "source_identities": [
+      "9c0ef8020ee459c6c412f26dd2f38ce90d810fe8a2f19451df782042fab0bd50",
+      "d6d0ab4c6a99d1be1b102b2a8b9ac0eac8858e3830c8460c639191a611eca857",
+      "8e7514b4b64256e1b42c5011a4cf7ac84dc63252daf23295db8ce6b7299191e6"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.7422638120882089,
+      "p_syntax": 0.95,
+      "n_grades": 11,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 18
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 5.4912839236648965e-05,
+      "p_all": 2.7456419618324482e-05,
+      "p_syntax": 0.95,
+      "n_grades": 11,
+      "k_grades": 11,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 18
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.8198650912354072,
+      "p_syntax": 0.95,
+      "n_grades": 12,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 19
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "inplace_overload",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "inplace_overload",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class  Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n    def __add__(self, other):\n        return Number(self.value + other)\ndef  probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return  alias.value",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 5.4912839236648965e-05,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "inplace_overload",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 18,
+      "n_grades": 11,
+      "n_edits": 10,
+      "iterations": 1
+    },
+    "expected": 2,
+    "unmarked_source": "class Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n    def __add__(self, other):\n        return Number(self.value + other)\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+    "marked_source": "class Number:\n    def  __init__(self, value):\n        self.value = value\n    def  __iadd__(self, other):\n        self.value = self.value + other\n        return  self\n    def  __add__(self, other):\n        return  Number(self.value+other)\ndef  probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return  alias.value\n",
+    "edited_source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return alias.value\n",
+    "source_identities": [
+      "9c0ef8020ee459c6c412f26dd2f38ce90d810fe8a2f19451df782042fab0bd50",
+      "a9bbd6ce0c76769af89083912aa8f75bfa731a0fc934f2cdd66c7bfdd16e907a",
+      "f6d1fea44ba6fa3028afa0a121e47f24ea007f67abc0934b5315dcb224c1f269"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": false
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": false
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.26029956250186964,
+      "p_all": 0.13014978125093482,
+      "p_syntax": 1.0,
+      "n_grades": 11,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 18
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 9.29262530560001e-10,
+      "p_all": 4.646312652800005e-10,
+      "p_syntax": 0.05,
+      "n_grades": 11,
+      "k_grades": 11,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 18
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.1,
+      "p_all": 0.35176428453062897,
+      "p_syntax": 0.05,
+      "n_grades": 12,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 19
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "inplace_overload",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "inplace_overload",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class Number:\n    def  __init__(self, value):\n        self.value = value\n    def  __iadd__(self, other):\n        self.value = self.value + other\n        return  self\n    def  __add__(self, other):\n        return  Number(self.value+other)\ndef  probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return  alias.value\n",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 9.29262530560001e-10,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return alias.value\n",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.1,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "inplace_overload",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 18,
+      "n_grades": 11,
+      "n_edits": 12,
+      "iterations": 1
+    },
+    "expected": 2,
+    "unmarked_source": "class Number:\n    def __init__(self, value):\n        self.value = value\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n    def __add__(self, other):\n        return Number(self.value + other)\ndef probe():\n    x = Number(1)\n    alias = x\n    x += 1\n    return alias.value\n",
+    "marked_source": "class Number:\n    def  __init__(self, value):\n        self.value=value\n    def  __iadd__(self, other):\n        self.value=self.value+other\n        return self\n    def  __add__(self, other):\n        return Number(self.value + other)\ndef probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return  alias.value",
+    "edited_source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return alias.value\n",
+    "source_identities": [
+      "9c0ef8020ee459c6c412f26dd2f38ce90d810fe8a2f19451df782042fab0bd50",
+      "7773aaf93a3809339a4af7ff94ea105f4b101c57435c929987811b71305f6515",
+      "f6d1fea44ba6fa3028afa0a121e47f24ea007f67abc0934b5315dcb224c1f269"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 2,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": false
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": false
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.8095745807607914,
+      "p_syntax": 1.0,
+      "n_grades": 11,
+      "k_grades": 6,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 18
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 6.3738116971110395e-06,
+      "p_all": 3.1869058485555197e-06,
+      "p_syntax": 0.05,
+      "n_grades": 11,
+      "k_grades": 11,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 18
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.1,
+      "p_all": 0.9102804137135274,
+      "p_syntax": 0.05,
+      "n_grades": 12,
+      "k_grades": 6,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 19
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "inplace_overload",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "inplace_overload",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class Number:\n    def  __init__(self, value):\n        self.value=value\n    def  __iadd__(self, other):\n        self.value=self.value+other\n        return self\n    def  __add__(self, other):\n        return Number(self.value + other)\ndef probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return  alias.value",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 6.3738116971110395e-06,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "class Number:\n\n    def __init__(self, value):\n        self.value = value\n\n    def __iadd__(self, other):\n        self.value = self.value + other\n        return self\n\n    def __add__(self, other):\n        return Number(self.value + other)\n\ndef probe():\n    x = Number(1)\n    alias = x\n    x = x + 1\n    return alias.value\n",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:inplace_overload:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.1,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  },
+  {
+    "case": "asymmetric_comparison",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 11,
+      "n_grades": 9,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": true,
+    "unmarked_source": "class Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef probe():\n    a = Ordered()\n    b = Ordered()\n    return a < b\n",
+    "marked_source": "class Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef probe():\n    a, b = Ordered(), Ordered()\n    return b > a\n",
+    "edited_source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return b > a\n",
+    "source_identities": [
+      "080321ec766b7c26ac382d729e882d8591713b9bc2dc6f9cbbb9e050ec9c1202",
+      "3389b6808dd9eb24d63b9f6cb4faf589b9b6fe5d6eacffa553c6254a565657cd",
+      "18446859794b03cc3b3ec27c8b17ddf0b1878dd4f901624ec110e9c68d9e85d3"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": false,
+      "passed": false
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": false,
+      "passed": false
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.5091139155786019,
+      "p_all": 0.25455695778930093,
+      "p_syntax": 1.0,
+      "n_grades": 9,
+      "k_grades": 7,
+      "n_syntax": 2,
+      "k_syntax": 0,
+      "n_sites": 11
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00341923375123389,
+      "p_all": 0.001709616875616945,
+      "p_syntax": 0.11786784,
+      "n_grades": 9,
+      "k_grades": 9,
+      "n_syntax": 2,
+      "k_syntax": 2,
+      "n_sites": 11
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.8324,
+      "p_all": 0.4314227934881366,
+      "p_syntax": 0.4162,
+      "n_grades": 10,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 12
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "asymmetric_comparison",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "asymmetric_comparison",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef probe():\n    a, b = Ordered(), Ordered()\n    return b > a\n",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00341923375123389,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return b > a\n",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.8324,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "asymmetric_comparison",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 11,
+      "n_grades": 9,
+      "n_edits": 7,
+      "iterations": 1
+    },
+    "expected": true,
+    "unmarked_source": "class Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef probe():\n    a = Ordered()\n    b = Ordered()\n    return a < b\n",
+    "marked_source": "class Ordered:\n    def  __lt__(self, other):\n        return  True\n    def  __gt__(self, other):\n        return  False\ndef  probe():\n    a, b = Ordered(), Ordered()\n    return a < b",
+    "edited_source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return a < b\n",
+    "source_identities": [
+      "080321ec766b7c26ac382d729e882d8591713b9bc2dc6f9cbbb9e050ec9c1202",
+      "7fbbc592f89521addd40a51d4bb3f031ddb72503732653a611cd7e2cbac618a6",
+      "ec53379e1f2aaa6915483eaa660eecefe6f33dabdd484fdec57248e53dcf4755"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.7794829626871589,
+      "p_syntax": 0.70166784,
+      "n_grades": 9,
+      "k_grades": 4,
+      "n_syntax": 2,
+      "k_syntax": 1,
+      "n_sites": 11
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 1.3285674397233002e-05,
+      "p_all": 6.642837198616501e-06,
+      "p_syntax": 0.16533216,
+      "n_grades": 9,
+      "k_grades": 9,
+      "n_syntax": 2,
+      "k_syntax": 2,
+      "n_sites": 11
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9871221556460494,
+      "p_syntax": 0.5838,
+      "n_grades": 10,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 12
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "asymmetric_comparison",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "asymmetric_comparison",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class Ordered:\n    def  __lt__(self, other):\n        return  True\n    def  __gt__(self, other):\n        return  False\ndef  probe():\n    a, b = Ordered(), Ordered()\n    return a < b",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 1.3285674397233002e-05,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return a < b\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "asymmetric_comparison",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 11,
+      "n_grades": 9,
+      "n_edits": 4,
+      "iterations": 1
+    },
+    "expected": true,
+    "unmarked_source": "class Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef probe():\n    a = Ordered()\n    b = Ordered()\n    return a < b\n",
+    "marked_source": "class  Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef  probe():\n    a, b = Ordered(), Ordered()\n    return  a < b\n",
+    "edited_source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return a < b\n",
+    "source_identities": [
+      "080321ec766b7c26ac382d729e882d8591713b9bc2dc6f9cbbb9e050ec9c1202",
+      "cb8598506aacaf37721651de9e676f56b010cc7ebdad567f81dd8e817bf23bcb",
+      "ec53379e1f2aaa6915483eaa660eecefe6f33dabdd484fdec57248e53dcf4755"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.2283216856491121,
+      "p_all": 0.11416084282455605,
+      "p_syntax": 0.70166784,
+      "n_grades": 9,
+      "k_grades": 5,
+      "n_syntax": 2,
+      "k_syntax": 1,
+      "n_sites": 11
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 6.992460209070007e-07,
+      "p_all": 3.4962301045350037e-07,
+      "p_syntax": 0.16533216,
+      "n_grades": 9,
+      "k_grades": 9,
+      "n_syntax": 2,
+      "k_syntax": 2,
+      "n_sites": 11
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.534427675055532,
+      "p_syntax": 0.5838,
+      "n_grades": 10,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 12
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "asymmetric_comparison",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "asymmetric_comparison",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class  Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef  probe():\n    a, b = Ordered(), Ordered()\n    return  a < b\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 6.992460209070007e-07,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return a < b\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "asymmetric_comparison",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 11,
+      "n_grades": 9,
+      "n_edits": 9,
+      "iterations": 1
+    },
+    "expected": true,
+    "unmarked_source": "class Ordered:\n    def __lt__(self, other):\n        return True\n    def __gt__(self, other):\n        return False\ndef probe():\n    a = Ordered()\n    b = Ordered()\n    return a < b\n",
+    "marked_source": "class  Ordered:\n    def  __lt__(self, other):\n        return  True\n\n    def  __gt__(self, other):\n        return  False\ndef probe():\n    a, b = Ordered(), Ordered()\n    return  b > a\n",
+    "edited_source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return b > a\n",
+    "source_identities": [
+      "080321ec766b7c26ac382d729e882d8591713b9bc2dc6f9cbbb9e050ec9c1202",
+      "842ff327f4491c08e0b1291bc5a354f77377f8f968c8de2599e2b572ac027241",
+      "18446859794b03cc3b3ec27c8b17ddf0b1878dd4f901624ec110e9c68d9e85d3"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": true,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": false,
+      "passed": false
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": false,
+      "passed": false
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.8601635075314374,
+      "p_syntax": 1.0,
+      "n_grades": 9,
+      "k_grades": 2,
+      "n_syntax": 2,
+      "k_syntax": 0,
+      "n_sites": 11
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 4.3747017153000054e-08,
+      "p_all": 2.1873508576500027e-08,
+      "p_syntax": 0.11786784,
+      "n_grades": 9,
+      "k_grades": 9,
+      "n_syntax": 2,
+      "k_syntax": 2,
+      "n_sites": 11
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.052897275018166795,
+      "p_all": 0.026448637509083398,
+      "p_syntax": 0.4162,
+      "n_grades": 10,
+      "k_grades": 6,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 12
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "asymmetric_comparison",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "asymmetric_comparison",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "class  Ordered:\n    def  __lt__(self, other):\n        return  True\n\n    def  __gt__(self, other):\n        return  False\ndef probe():\n    a, b = Ordered(), Ordered()\n    return  b > a\n",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 4.3747017153000054e-08,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "class Ordered:\n\n    def __lt__(self, other):\n        return True\n\n    def __gt__(self, other):\n        return False\n\ndef probe():\n    a, b = (Ordered(), Ordered())\n    return b > a\n",
+        "validation": {
+          "available": true,
+          "passed": false,
+          "contract_id": "fixed-probe:asymmetric_comparison:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.052897275018166795,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_range",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 3,
+      "iterations": 1
+    },
+    "expected": 1,
+    "unmarked_source": "def probe():\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "marked_source": "def probe():\n    def  range(*args):\n        return  len(args)\n    return  range(5)\n",
+    "edited_source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "source_identities": [
+      "becb23311a1d16a829c8af44e68f575f4940ddc9161e07d6d09644952883e261",
+      "584ecccb6d59469cc383502e6898496d085c96a78c14f5b8fc2ae20a38384288",
+      "722b661d4fa2117db4df47c0be62427b9d7be20834a2ce4eb5748616462ebd4c"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.35384000000000004,
+      "p_all": 0.17692000000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 1.1875000000000013e-05,
+      "p_all": 5.937500000000006e-06,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.35384000000000004,
+      "p_all": 0.17692000000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_range",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_range",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def  range(*args):\n        return  len(args)\n    return  range(5)\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 1.1875000000000013e-05,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.35384000000000004,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_range",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 3,
+      "iterations": 1
+    },
+    "expected": 1,
+    "unmarked_source": "def probe():\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "marked_source": "def probe():\n    def  range(*args):\n        return  len(args)\n    return range(5)",
+    "edited_source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "source_identities": [
+      "becb23311a1d16a829c8af44e68f575f4940ddc9161e07d6d09644952883e261",
+      "0f52f8c8821274ee3539e4d0639f1468f892f2b6b6aac0041969c650f47e5ed6",
+      "722b661d4fa2117db4df47c0be62427b9d7be20834a2ce4eb5748616462ebd4c"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9934450000000001,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.004286875000000001,
+      "p_all": 0.0021434375000000004,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9934450000000001,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_range",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_range",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def  range(*args):\n        return  len(args)\n    return range(5)",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.004286875000000001,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_range",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 4,
+      "iterations": 1
+    },
+    "expected": 1,
+    "unmarked_source": "def probe():\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "marked_source": "def  probe():\n    def range(*args):\n        return  len(args)\n    return  range(5)",
+    "edited_source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "source_identities": [
+      "becb23311a1d16a829c8af44e68f575f4940ddc9161e07d6d09644952883e261",
+      "4f28262253365ae2670d5ee296096789b66551c02b247e047c576226c3fc5678",
+      "722b661d4fa2117db4df47c0be62427b9d7be20834a2ce4eb5748616462ebd4c"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9978565625,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 1,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00022562500000000005,
+      "p_all": 0.00011281250000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9978565625,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 1,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_range",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_range",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    def range(*args):\n        return  len(args)\n    return  range(5)",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00022562500000000005,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_range",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 1,
+      "iterations": 1
+    },
+    "expected": 1,
+    "unmarked_source": "def probe():\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "marked_source": "def probe():\n    def range(*args):\n        return  len(args)\n    return range(5)\n",
+    "edited_source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+    "source_identities": [
+      "becb23311a1d16a829c8af44e68f575f4940ddc9161e07d6d09644952883e261",
+      "8973258b115b4f6b52edc6548b66d873ae4c5b2dc56102df12518b60c999162a",
+      "722b661d4fa2117db4df47c0be62427b9d7be20834a2ce4eb5748616462ebd4c"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 1,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.16786500000000004,
+      "p_all": 0.08393250000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.004286875000000003,
+      "p_all": 0.0021434375000000017,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.16786500000000004,
+      "p_all": 0.08393250000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 4,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_range",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_range",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def range(*args):\n        return  len(args)\n    return range(5)\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.004286875000000003,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def range(*args):\n        return len(args)\n    return range(5)\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_range:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.16786500000000004,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_list",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": [],
+    "unmarked_source": "def probe():\n    def list():\n        return [99]\n    return []\n",
+    "marked_source": "def probe():\n    def  list():\n        return  [99]\n    return []\n",
+    "edited_source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+    "source_identities": [
+      "e9e01c4b25d4bbcbc8f53fe915fe57af64148850cdd938a66c583b9195454f61",
+      "7d70d578ea29abea276a41773624e7a85c0ad2ccf45bc2c69bc4fed79322d83c",
+      "027596c4184cad2a8ced86f20df5dfb40f7de7d607fefbb857091f113c78d9c7"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.2588162500000001,
+      "p_all": 0.12940812500000004,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00022562500000000024,
+      "p_all": 0.00011281250000000012,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.2588162500000001,
+      "p_all": 0.12940812500000004,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_list",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_list",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def  list():\n        return  [99]\n    return []\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00022562500000000024,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.2588162500000001,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_list",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 3,
+      "iterations": 1
+    },
+    "expected": [],
+    "unmarked_source": "def probe():\n    def list():\n        return [99]\n    return []\n",
+    "marked_source": "def  probe():\n    def list():\n        return  [99]\n    return []",
+    "edited_source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+    "source_identities": [
+      "e9e01c4b25d4bbcbc8f53fe915fe57af64148850cdd938a66c583b9195454f61",
+      "89ee5279274b98ac741bf4ca56f2a3acac3d847231fdd4199ee8939e9de2726e",
+      "027596c4184cad2a8ced86f20df5dfb40f7de7d607fefbb857091f113c78d9c7"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9934450000000001,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.004286875000000001,
+      "p_all": 0.0021434375000000004,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9934450000000001,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 2,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_list",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_list",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    def list():\n        return  [99]\n    return []",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.004286875000000001,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_list",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 4,
+      "iterations": 1
+    },
+    "expected": [],
+    "unmarked_source": "def probe():\n    def list():\n        return [99]\n    return []\n",
+    "marked_source": "def probe():\n    def  list():\n        return  [99]\n    return  []",
+    "edited_source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+    "source_identities": [
+      "e9e01c4b25d4bbcbc8f53fe915fe57af64148850cdd938a66c583b9195454f61",
+      "d15dd0fd55670230749b17e946545cba14b7d87f4becd9139015a1e067c9406d",
+      "027596c4184cad2a8ced86f20df5dfb40f7de7d607fefbb857091f113c78d9c7"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9978565625,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 1,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00022562500000000005,
+      "p_all": 0.00011281250000000002,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9978565625,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 1,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_list",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_list",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def  list():\n        return  [99]\n    return  []",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00022562500000000005,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_list",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 5,
+      "n_grades": 5,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": [],
+    "unmarked_source": "def probe():\n    def list():\n        return [99]\n    return []\n",
+    "marked_source": "def probe():\n    def list():\n        return  [99]\n    return  []\n",
+    "edited_source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+    "source_identities": [
+      "e9e01c4b25d4bbcbc8f53fe915fe57af64148850cdd938a66c583b9195454f61",
+      "3dcb55d332e94b0163263721e2e73f502b2a4a48becace34335836aabf1bc619",
+      "027596c4184cad2a8ced86f20df5dfb40f7de7d607fefbb857091f113c78d9c7"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": [],
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.25881625,
+      "p_all": 0.129408125,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.0002256250000000002,
+      "p_all": 0.0001128125000000001,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 5,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.25881625,
+      "p_all": 0.129408125,
+      "p_syntax": 1.0,
+      "n_grades": 5,
+      "k_grades": 3,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 5
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_list",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_list",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def list():\n        return  [99]\n    return  []\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.0002256250000000002,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def list():\n        return [99]\n    return []\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_list:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.25881625,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_pow",
+    "key": 0,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 7,
+      "n_grades": 7,
+      "n_edits": 2,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "marked_source": "def  probe():\n    def pow(a, b):\n        return  -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "edited_source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "source_identities": [
+      "f7b6200a138456329ada9b5b3d99ba052bfe2022f9cd52400058ffbee4e33917",
+      "a1fc200fc4049066bf581eb38180920797c4c78021a128c11e94d874340b6e3d",
+      "642d517350a00075eca184f41c48fc7b3e18331f16b97e50c219c79ec89cb345"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.17053604612000006,
+      "p_all": 0.08526802306000003,
+      "p_syntax": 0.7168,
+      "n_grades": 7,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00014490828800000014,
+      "p_all": 7.245414400000007e-05,
+      "p_syntax": 0.7168,
+      "n_grades": 7,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.17053604612000006,
+      "p_all": 0.08526802306000003,
+      "p_syntax": 0.7168,
+      "n_grades": 7,
+      "k_grades": 5,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key0",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_pow",
+      "replicate_id": "key0",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_pow",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    def pow(a, b):\n        return  -123\n    x = 2\n    y = 3\n    return x ** y\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00014490828800000014,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.17053604612000006,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=00000000000000000000000000000000"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_pow",
+    "key": 1,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 7,
+      "n_grades": 7,
+      "n_edits": 5,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "marked_source": "def probe():\n    def  pow(a, b):\n        return  -123\n    x, y = 2, 3\n    return x**y\n",
+    "edited_source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x, y = (2, 3)\n    return x ** y\n",
+    "source_identities": [
+      "f7b6200a138456329ada9b5b3d99ba052bfe2022f9cd52400058ffbee4e33917",
+      "9f1875c89e3fcb11d1d233c0baf4e0c058e2211d9f0b08a5e32e9d5f1508901f",
+      "9e1da13cc4061a45eb9e2d31fb93c7c2d0f22799b80734640ea685e7e776bb70"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.8264844613199999,
+      "p_all": 0.41324223065999993,
+      "p_syntax": 1.0,
+      "n_grades": 7,
+      "k_grades": 3,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 7
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 6.645288000000006e-06,
+      "p_all": 3.322644000000003e-06,
+      "p_syntax": 0.2832,
+      "n_grades": 7,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.5708187954000001,
+      "p_all": 0.28540939770000007,
+      "p_syntax": 1.0,
+      "n_grades": 7,
+      "k_grades": 3,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 7
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key1",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_pow",
+      "replicate_id": "key1",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_pow",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def  pow(a, b):\n        return  -123\n    x, y = 2, 3\n    return x**y\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 6.645288000000006e-06,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x, y = (2, 3)\n    return x ** y\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.5708187954000001,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=01010101010101010101010101010101"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_pow",
+    "key": 2,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 7,
+      "n_grades": 7,
+      "n_edits": 6,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "marked_source": "def  probe():\n    def pow(a, b):\n        return  -123\n    x, y = 2, 3\n    return x**y",
+    "edited_source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x, y = (2, 3)\n    return x ** y\n",
+    "source_identities": [
+      "f7b6200a138456329ada9b5b3d99ba052bfe2022f9cd52400058ffbee4e33917",
+      "c12e0924ccaa214ff62a7ca70fc33417acd3646f27179e4a1397612aee4a31b0",
+      "9e1da13cc4061a45eb9e2d31fb93c7c2d0f22799b80734640ea685e7e776bb70"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9957529971839999,
+      "p_syntax": 1.0,
+      "n_grades": 7,
+      "k_grades": 2,
+      "n_syntax": 1,
+      "k_syntax": 0,
+      "n_sites": 7
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.00012626047199999998,
+      "p_all": 6.313023599999999e-05,
+      "p_syntax": 0.2832,
+      "n_grades": 7,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 1.0,
+      "p_all": 0.9825973632,
+      "p_syntax": 1.0,
+      "n_grades": 7,
+      "k_grades": 3,
+      "n_syntax": 0,
+      "k_syntax": 0,
+      "n_sites": 7
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key2",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_pow",
+      "replicate_id": "key2",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_pow",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def  probe():\n    def pow(a, b):\n        return  -123\n    x, y = 2, 3\n    return x**y",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.00012626047199999998,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x, y = (2, 3)\n    return x ** y\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 1.0,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=02020202020202020202020202020202"
+        }
+      }
+    }
+  },
+  {
+    "case": "shadowed_pow",
+    "key": 3,
+    "tool_status": {
+      "status": "ok",
+      "n_sites": 7,
+      "n_grades": 7,
+      "n_edits": 1,
+      "iterations": 1
+    },
+    "expected": 8,
+    "unmarked_source": "def probe():\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "marked_source": "def probe():\n    def pow(a, b):\n        return  -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "edited_source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+    "source_identities": [
+      "f7b6200a138456329ada9b5b3d99ba052bfe2022f9cd52400058ffbee4e33917",
+      "5ab1db00e5653d3e9106b591abd8b04ef9268b30a4a2f305a12e34f8841a6a69",
+      "642d517350a00075eca184f41c48fc7b3e18331f16b97e50c219c79ec89cb345"
+    ],
+    "unmarked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "marked_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "edited_observation": {
+      "status": "returned",
+      "value": 8,
+      "passed": true
+    },
+    "unmarked_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.10921912332800003,
+      "p_all": 0.054609561664000016,
+      "p_syntax": 0.7168,
+      "n_grades": 7,
+      "k_grades": 6,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "marked_detection": {
+      "verdict": "Watermark detected",
+      "p": 0.002753257472000002,
+      "p_all": 0.001376628736000001,
+      "p_syntax": 0.7168,
+      "n_grades": 7,
+      "k_grades": 7,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "edited_detection": {
+      "verdict": "No watermark evidence",
+      "p": 0.10921912332800003,
+      "p_all": 0.054609561664000016,
+      "p_syntax": 0.7168,
+      "n_grades": 7,
+      "k_grades": 6,
+      "n_syntax": 1,
+      "k_syntax": 1,
+      "n_sites": 7
+    },
+    "pair": {
+      "schema_version": "editmark-pair",
+      "population": "watermarked_positive",
+      "evidence_kind": "saved_observation",
+      "experiment_id": "released-style-boundaries",
+      "method": "SEW/key3",
+      "model": "none",
+      "source_group": "authored-language-boundaries",
+      "language": "python",
+      "sample_id": "shadowed_pow",
+      "replicate_id": "key3",
+      "edit": "ast-unparse",
+      "variant_id": "normalized",
+      "cluster_id": "shadowed_pow",
+      "supported": true,
+      "changed": true,
+      "original": {
+        "source": "def probe():\n    def pow(a, b):\n        return  -123\n    x = 2\n    y = 3\n    return x ** y\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": true,
+          "score": 0.002753257472000002,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      },
+      "edited": {
+        "source": "def probe():\n\n    def pow(a, b):\n        return -123\n    x = 2\n    y = 3\n    return x ** y\n",
+        "validation": {
+          "available": true,
+          "passed": true,
+          "contract_id": "fixed-probe:shadowed_pow:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+        },
+        "detection": {
+          "available": true,
+          "detected": false,
+          "score": 0.10921912332800003,
+          "threshold": 0.01,
+          "comparator": "lt",
+          "rule_id": "SEW:3c873186a56033e73347391b7aedebce1f7f71d0:calibrated:alpha=0.01:key=03030303030303030303030303030303"
+        }
+      }
+    }
+  }
+]

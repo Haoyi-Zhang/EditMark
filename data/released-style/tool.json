@@ -1,0 +1,123 @@
+{
+  "repository": "https://github.com/suhanmen/SEW",
+  "revision": "3c873186a56033e73347391b7aedebce1f7f71d0",
+  "URL": "https://codeload.github.com/suhanmen/SEW/zip/3c873186a56033e73347391b7aedebce1f7f71d0",
+  "archive_sha256": "ae11565835b2b200edecdbdd541828411b3721657b9fc081df60901f002cb496",
+  "license": "MIT",
+  "files": {
+    "LICENSE": {
+      "size": 1067,
+      "sha256": "9c7dab0685e569162046de1b8e6259661720e91ce0917c6c1f1b6405796783a8"
+    },
+    "README.md": {
+      "size": 17715,
+      "sha256": "518deb0c825117cb0545dba002edaca027d4523aafb4a61d47ab9e1acbfba52d"
+    },
+    "environment/environment.yaml": {
+      "size": 887,
+      "sha256": "114e528dde0012288b603ade78c0b9ad45c6fa5cf47a407fde0976b18fb75c28"
+    },
+    "sew/__init__.py": {
+      "size": 136,
+      "sha256": "9c0af1ae7b7235647710e8f82b29f0ad7c7c08dc26b37e7bdc0f3dd4be4fa72a"
+    },
+    "sew/config.py": {
+      "size": 234,
+      "sha256": "2c7938ad9472beca5a23fb1a13909b6b3d135aa3fd6a90d5d4c000dac80bb57e"
+    },
+    "sew/detect.py": {
+      "size": 1611,
+      "sha256": "77adcbe952a84ba7a6e9e632cc7510dc9194be0dc73285037a2e45fb96b5531e"
+    },
+    "sew/embed.py": {
+      "size": 1989,
+      "sha256": "98c0b756651665360aa11447595e15a7be6ca75b5eebb3d687c0372257dc8431"
+    },
+    "sew/keying.py": {
+      "size": 229,
+      "sha256": "518ff1f670e5b787609406ffde172f1918f9bee1b6c4617a9a5d63c347291b2e"
+    },
+    "sew/q_table.json": {
+      "size": 1128,
+      "sha256": "9df523e008ce4252784ef4a684e1dc07ef269676880201c79673b2a5558bc1cf"
+    },
+    "sew/rules/__init__.py": {
+      "size": 783,
+      "sha256": "dccaf55886ae0fca7d87d659f36a11087c7faa0916bf1266d2f54c3a89b35dd9"
+    },
+    "sew/rules/base.py": {
+      "size": 3751,
+      "sha256": "05172be0f107657a24de06abaa99ecc68a010a76669afde6f95acdb7cd5630a6"
+    },
+    "sew/rules/c_family_rules.py": {
+      "size": 35142,
+      "sha256": "d6c741d38e8866fb28b89c93466f8af26c81a00cfd97582c2f0bde5763ce1726"
+    },
+    "sew/rules/c_family_rules_control.py": {
+      "size": 11741,
+      "sha256": "00fc1c941d50b10af46ede0b469f943e3eca25c76494ad96e079884fc402e8b5"
+    },
+    "sew/rules/c_family_rules_format.py": {
+      "size": 10536,
+      "sha256": "3d40963d5c7f26e9c4b54542f3d5db81842e1c1d1558d33718e7013b1c5d3a7f"
+    },
+    "sew/rules/python_rules.py": {
+      "size": 11378,
+      "sha256": "e66955351d547776faa9f431b9e630acd44c7a7786b05ab175515100ec7154c5"
+    },
+    "sew/rules/python_rules_control.py": {
+      "size": 5478,
+      "sha256": "2e8877bf3b83c5a87ef258532345cd12ae043371891928519b050bc6d82f48af"
+    },
+    "sew/rules/python_rules_extra.py": {
+      "size": 33748,
+      "sha256": "dae6e68eb9777771623d56037697cc087cb47c5b1560ef78a7082377f653dd00"
+    },
+    "sew/rules/python_rules_format.py": {
+      "size": 7463,
+      "sha256": "9e9df841c13650847dafb71c45810c929ed12dba6f30fd3608f44e379e363b58"
+    },
+    "sew/rules/python_rules_idiom.py": {
+      "size": 20966,
+      "sha256": "bf40d71881a003ea65ccc97ce3680010adf6e0567d442249b52b2311e7dd1074"
+    },
+    "sew/sites/__init__.py": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sew/sites/ctx.py": {
+      "size": 1341,
+      "sha256": "280b546dea8f19b7f0b57fba99eaf82a13828123cd10f3bcb83557cd3ba1e6cc"
+    },
+    "sew/sites/discovery.py": {
+      "size": 1833,
+      "sha256": "48901d5588a8c9286adebe4014729881143c356947570e6bfb1b02567db031dd"
+    },
+    "sew/sites/siteid.py": {
+      "size": 2387,
+      "sha256": "31d25ffd399fa7b1507086c4a8d75747a54aefcf053004f93f5c31b1489930a5"
+    },
+    "sew/sites/typeinfo.py": {
+      "size": 6183,
+      "sha256": "31cc6e32a6cedf7cf01f2d0652b0c8413a7fc27a41cc6572f28c33268f83125b"
+    },
+    "sew/stats.py": {
+      "size": 692,
+      "sha256": "89e6b177820e84d5273af4750e2292ce5143270e819dc12d526adda437195bde"
+    },
+    "sew_cli.py": {
+      "size": 1537,
+      "sha256": "c91a5e5ec56cadb837d5437ebe71168389ffaa52e9efa967691e39ada8434bdf"
+    }
+  },
+  "API_calls": 0,
+  "code_not_modified": true,
+  "execution_scope": "Complete public embed/detect entrypoints; authored Python probes only; no model generation",
+  "source": "https://arxiv.org/abs/2609.39414",
+  "minimal_dependencies": {
+    "tree-sitter": "0.23.2",
+    "tree-sitter-python": "0.23.6",
+    "tree-sitter-java": "0.23.5",
+    "tree-sitter-cpp": "0.23.4"
+  }
+}

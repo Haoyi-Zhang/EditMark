@@ -99,9 +99,12 @@ for name in ('utility_vs_pass.pdf', 'utility_vs_pass.png',
     if path.exists():
         path.unlink()
 
+from render_released_style_table import render as render_released_style
+render_released_style(G / 'released_style_rows.tex')
+
 tracked = [
     G / 'release_facts.tex', G / 'mutation_rows.tex', G / 'source_rows.tex',
-    G / 'profile_rows.tex', G / 'witness_rows.tex',
+    G / 'profile_rows.tex', G / 'witness_rows.tex', G / 'released_style_rows.tex',
     F / 'evidence_contract.pdf', F / 'evidence_contract.png',
     F / 'edit_functionality.pdf', F / 'edit_functionality.png',
     F / 'application_coverage.pdf', F / 'application_coverage.png',
@@ -111,6 +114,7 @@ manifest = {
         'analysis/frozen_audit.json', 'analysis/source_inventory.json',
         'analysis/method_profiles.json', 'analysis/edit_component_audit.json',
         'results/tables/suite_all_models_methods/method_attack_summary.csv',
+        'results/released-style/rows.json',
     ],
     'no_experiment_execution': True,
     'assets': [file_entry(path) for path in tracked],
