@@ -180,9 +180,44 @@ def analyze(document: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def strict_pair_estimate(stratum: Mapping[str, Any]) -> Mapping[str, Any]:
+    """Validate the declared strict cohort before exporting any claim.
+
+    A slot name does not establish eligibility. These checks reject contradictory
+    report metadata; like count disclosures, they do not authenticate membership.
+    """
+    if not isinstance(stratum, Mapping) or not isinstance(stratum.get('estimates'), Mapping):
+        raise EvidenceError('pair stratum requires estimates')
+    estimate = stratum['estimates'].get('changed_only')
+    if not isinstance(estimate, Mapping):
+        raise EvidenceError('strict pair estimate required')
+    if estimate.get('mode') != 'changed_only' or estimate.get('analysis_contract') != STRICT_CONTRACT:
+        raise EvidenceError('pair export requires changed_only mode and the strict analysis contract')
+    attempted = count(estimate.get('attempted_pairs'), 'attempted_pairs')
+    target = count(estimate.get('eligible_target_pairs'), 'eligible_target_pairs')
+    admitted = count(estimate.get('admitted_pairs'), 'admitted_pairs')
+    if not 0 <= admitted <= target <= attempted:
+        raise EvidenceError('pair cohort sizes contradict strict eligibility')
+    marginal = estimate.get('marginal_coverage')
+    if not isinstance(marginal, Mapping):
+        raise EvidenceError('pair report requires marginal cohort coverage')
+    coverage = {key: count(marginal.get(key), 'marginal_coverage.' + key)
+                for key in ('supported', 'support_unknown', 'changed', 'unchanged', 'change_unknown')}
+    if (coverage['changed'] + coverage['unchanged'] + coverage['change_unknown'] != attempted
+            or coverage['supported'] + coverage['support_unknown'] > attempted
+            or target > min(coverage['supported'], coverage['changed'])):
+        raise EvidenceError('strict pair cohort contradicts marginal coverage')
+    exclusions = checked_object(estimate.get('first_exclusion_counts'), 'first_exclusion_counts', set(EXCLUSIONS))
+    exclusions = {key: count(value, 'exclusion.' + key) for key, value in exclusions.items()}
+    missing = sum(exclusions.get(key, 0) for key in ('original_decision_unavailable', 'edited_decision_unavailable'))
+    if attempted != admitted + sum(exclusions.values()) or target != admitted + missing:
+        raise EvidenceError('strict pair cohort contradicts exclusion partition')
+    return estimate
+
+
 def from_pair_stratum(stratum: Mapping[str, Any], evidence_kind: str) -> dict[str, Any]:
     """Export sufficient counts from one nonempty strict pair-analysis stratum."""
-    estimate = stratum['estimates']['changed_only']
+    estimate = strict_pair_estimate(stratum)
     if not estimate['admitted_pairs'] or not estimate['cohort_sha256']:
         raise EvidenceError('An empty pair cohort has no established cohort fingerprint to export')
     document = {

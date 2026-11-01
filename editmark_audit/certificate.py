@@ -15,6 +15,7 @@ import sys
 from typing import Any, Iterable, Mapping
 from .aggregates import (
     EXCLUSIONS, STRATA, analyze as analyze_counts, analyze_batch, count, from_pair_stratum, sha256,
+    strict_pair_estimate,
 )
 from .analysis import report as analyze_pairs
 from .constants import (
@@ -365,7 +366,7 @@ def certificates_from_pair_report(
     evidence_kind = report.get('evidence_kind')
     certificates = []
     for index, stratum in enumerate(report.get('strata', []), 1):
-        estimate = stratum.get('estimates', {}).get('changed_only', {})
+        estimate = strict_pair_estimate(stratum)
         admitted = count(estimate.get('admitted_pairs'), 'admitted_pairs')
         if admitted == 0:
             if any(count(estimate.get(key), key) != 0

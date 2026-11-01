@@ -61,3 +61,10 @@ admissible empirical claim. `--require-observations` still rejects synthetic inp
 an empty admitted cohort. The analyzer's existing Boolean/null completion bounds
 are unchanged and remain in the pair report; this coverage record neither invents
 a point estimate nor replaces those bounds with zero.
+Pair-report conversion accepts only an explicitly declared `changed_only`
+estimate under the strict contract. It cross-checks target/admitted counts,
+change/support marginals and the exclusion partition before issuing a
+certificate. Moving a diagnostic estimate into the strict slot, or retaining
+no-op marginals under strict labels, is rejected. This is consistency checking,
+not external membership or execution authentication.
+
