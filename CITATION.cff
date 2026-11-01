@@ -3,16 +3,16 @@ message: Please cite the manuscript in preferred-citation when using this artifa
 title: 'EditMark: Machine-Checkable Evidence Contracts for Evaluating Code Watermarks After Software Edits'
 type: software
 authors:
-- family-names: Zhang
-  given-names: Haoyi
-  email: hyeliozhang@gmail.com
-  affiliation: Xi'an Jiaotong-Liverpool University
-  orcid: https://orcid.org/0009-0009-3693-786X
 - family-names: Ran
   given-names: Huaijin
   email: huaijin003@e.ntu.edu.sg
   affiliation: Nanyang Technological University
   orcid: https://orcid.org/0009-0009-2482-2344
+- family-names: Zhang
+  given-names: Haoyi
+  email: hyeliozhang@gmail.com
+  affiliation: Xi'an Jiaotong-Liverpool University
+  orcid: https://orcid.org/0009-0009-3693-786X
 - family-names: Sun
   given-names: Yuqiang
   orcid: https://orcid.org/0000-0003-4340-3371
@@ -29,16 +29,16 @@ preferred-citation:
   type: unpublished
   title: 'EditMark: Machine-Checkable Evidence Contracts for Evaluating Code Watermarks After Software Edits'
   authors:
-  - family-names: Zhang
-    given-names: Haoyi
-    email: hyeliozhang@gmail.com
-    affiliation: Xi'an Jiaotong-Liverpool University
-    orcid: https://orcid.org/0009-0009-3693-786X
   - family-names: Ran
     given-names: Huaijin
     email: huaijin003@e.ntu.edu.sg
     affiliation: Nanyang Technological University
     orcid: https://orcid.org/0009-0009-2482-2344
+  - family-names: Zhang
+    given-names: Haoyi
+    email: hyeliozhang@gmail.com
+    affiliation: Xi'an Jiaotong-Liverpool University
+    orcid: https://orcid.org/0009-0009-3693-786X
   - family-names: Sun
     given-names: Yuqiang
     orcid: https://orcid.org/0000-0003-4340-3371
