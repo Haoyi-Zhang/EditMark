@@ -331,8 +331,11 @@ configurations, not an independent sampled program population.
 
 The ordinary `results/owned-controls/evidence.zip` retains the complete native
 observations, source registry, frozen protocol/selection, all exclusions and a
-separate score consumer. Its read-only verifier reconstructs every original byte,
-recomputes scores and checks AUC through separate rank-sum arithmetic:
+separate score consumer. Host-local paths in three administrative records use
+the portable `<WORK_ROOT>` alias, declared in the archive manifest; measurements,
+source preimages, resource limits and outcomes retain their original bytes.
+Its read-only verifier validates every supplied member, recomputes scores and
+checks AUC through separate rank-sum arithmetic:
 
 ```sh
 python -B examples/owned-controls/verify_evidence_archive.py results/owned-controls/evidence.zip /owned/new-audit-directory

@@ -76,7 +76,7 @@ def verify(archive,out):
         z.extractall(out)  # ordinary stdlib extraction after path/type/size checks
     for rel,expected in files.items():
         p=out/rel
-        need(p.stat().st_size==expected['bytes'] and sha(p)==expected['sha256'],'Original bytes differ: '+rel)
+        need(p.stat().st_size==expected['bytes'] and sha(p)==expected['sha256'],'Supplied member bytes differ: '+rel)
     original_hashes={rel:sha(out/rel) for rel in files}
     recalculated=out/'verification-recomputed-result.json'
     command=[sys.executable,'-B',str(out/'candidate/score_consumer.py'),'report',
@@ -88,10 +88,11 @@ def verify(archive,out):
     need(recalculated.read_bytes()==(out/'run_001/result.json').read_bytes(),'Score result not byte-identical')
     ranks=independent_recount(out)
     need(all(sha(out/rel)==value for rel,value in original_hashes.items()),'Original member mutated during scoring')
-    value={'status':'LOSSLESS_EXTRACTION_AND_SCORE_VALIDATION_PASSED','archive_sha256':sha(archive),
-        'manifest_sha256':sha(out/'MANIFEST.json'),'original_files_checked':len(files),
-        'original_bytes_checked':sum(x['bytes'] for x in files.values()),
-        'all_original_bytes_identical':True,'scoring_result_byte_identical':True,
+    value={'status':'EXTRACTION_AND_SCORE_VALIDATION_PASSED','archive_sha256':sha(archive),
+        'manifest_sha256':sha(out/'MANIFEST.json'),'member_files_checked':len(files),
+        'member_bytes_checked':sum(x['bytes'] for x in files.values()),
+        'all_supplied_member_bytes_identical':True,'scoring_result_byte_identical':True,
+        'path_representation':manifest.get('path_representation'),
         'scoring_result_sha256':sha(recalculated),'scoring_command':command,
         'independent_rank_sum_and_fpr_checks':ranks,'native_execution_repeated':False,
         'scope':'Integrity/membership/arithmetic rederivation from supplied observations, not external execution attestation'}
@@ -103,4 +104,4 @@ def verify(archive,out):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__); p.add_argument('archive',type=Path); p.add_argument('out',type=Path)
     a=p.parse_args(); result=verify(a.archive,a.out)
-    print(json.dumps({k:result[k] for k in ('status','original_files_checked','original_bytes_checked','archive_sha256')}))
+    print(json.dumps({k:result[k] for k in ('status','member_files_checked','member_bytes_checked','archive_sha256')}))
