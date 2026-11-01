@@ -38,32 +38,81 @@ def verify_archive(path):
             if adjacent.is_file() and adjacent.read_bytes()!=raw:raise ValueError('Readable metadata differs from raw activity')
 
 def task_validation(value,baseline):
+    for task in (baseline,value):
+        if task.get('status')=='completed':verify_task_events(task)
     available=baseline.get('status')=='completed' and value.get('status')=='completed' and baseline.get('passed') is True
     stable=available and value['test_ids']==baseline['test_ids'] and sorted(r['id'] for r in value['outcomes'] if r['status']=='skipped')==sorted(r['id'] for r in baseline['outcomes'] if r['status']=='skipped')
     return dict(available=available,passed=bool(value.get('passed') and stable) if available else None,
         contract_id='CPython-upstream-python-tests:'+value['module']+':'+sha(json.dumps(baseline.get('test_ids',[])).encode()))
 
+def verify_task_events(value):
+    """Check RecordedResult callbacks, not merely absence of recorded failures.
+
+    Successful subtests have no event. A failed subtest uses its parent's ID and
+    a detail; a skipped subtest uses the child's ID and a reason. Failure/error
+    callbacks can repeat (test, teardown and cleanups), and subtests can repeat
+    identical parameter descriptions. The collector has no callback sequence ID,
+    so such repeated non-success events cannot be distinguished from duplicates.
+    They must never be mistaken for an additional passing test.
+    """
+    if not isinstance(value,dict):raise ValueError('Task observation must be an object')
+    required={'test_ids','started_tests','outcomes','tests_scheduled','tests_run',
+              'failures','errors','skipped','expected_failures','unexpected_successes','passed'}
+    if not required<=set(value):raise ValueError('Incomplete test outcome observation')
+    ids=value['test_ids'];started=value['started_tests'];events=value['outcomes']
+    if (not isinstance(ids,list) or not ids
+            or any(not isinstance(i,str) or not i for i in ids)
+            or len(ids)!=len(set(ids)) or not isinstance(started,list) or ids!=started
+            or not isinstance(events,list)):
+        raise ValueError('Upstream test identity/accounting differs')
+    for key,expected in (('tests_scheduled',len(ids)),('tests_run',len(started))):
+        if type(value[key]) is not int or value[key]!=expected:raise ValueError('Upstream test identity/accounting differs')
+    by_id={i:[] for i in ids};counts=Counter()
+    allowed={'passed','failed','error','skipped','expected_failure','unexpected_success','subtest_failure'}
+    for event in events:
+        if not isinstance(event,dict) or not isinstance(event.get('status'),str) or event['status'] not in allowed:raise ValueError('Unknown test outcome status')
+        status=event['status'];identity=event.get('id')
+        fields={'id','status'}|({'detail'} if status=='subtest_failure' else {'reason'} if status=='skipped' else set())
+        if set(event)!=fields or not isinstance(identity,str):raise ValueError('Malformed test outcome event')
+        for key in fields-{'id','status'}:
+            if not isinstance(event[key],str):raise ValueError('Malformed test outcome detail')
+        parent=identity
+        if parent not in by_id:
+            # unittest._SubTest.id() appends a space and its []/() description.
+            parents=[i for i in ids if identity.startswith(i+' ') and identity[len(i)+1:].startswith(('(','[')) and identity.endswith((')',']'))]
+            if status!='skipped' or len(parents)!=1:raise ValueError('Outcome outside registered test set')
+            parent=parents[0]
+        by_id[parent].append(event);counts[status]+=1
+    for callbacks in by_id.values():
+        if not callbacks:raise ValueError('Started upstream test has no outcome')
+        successful=[e for e in callbacks if e['status'] in ('passed','expected_failure','unexpected_success')]
+        if successful and len(callbacks)!=1:raise ValueError('Conflicting or duplicate terminal test outcomes')
+    for key in ('failures','errors','skipped','expected_failures','unexpected_successes'):
+        if type(value[key]) is not int or value[key]<0:raise ValueError('Test summary requires nonnegative integer counts')
+    # Subtest failures omit the exception kind, so only the combined count can
+    # be rederived from this collector's events. Both kinds block admission.
+    if (value['failures']+value['errors']!=counts['failed']+counts['error']+counts['subtest_failure']
+            or value['skipped']!=counts['skipped'] or value['expected_failures']!=counts['expected_failure']
+            or value['unexpected_successes']!=counts['unexpected_success']):
+        raise ValueError('Raw test outcomes disagree with summary')
+    if type(value['passed']) is not bool:raise ValueError('Task pass status must be Boolean')
+    successful=not (counts['failed'] or counts['error'] or counts['subtest_failure'] or counts['unexpected_success'])
+    if value['passed'] and (not successful or len(started)<=counts['skipped']):
+        raise ValueError('Task pass status not supported by test outcomes')
+    return counts
+
 def verify_task(value,source,probe='line'):
+    if probe not in ('line','call'):raise ValueError('Unknown task provenance probe')
+    if value.get('status') not in ('completed','unavailable','process_failed','process_timeout'):raise ValueError('Unknown task execution status')
     if value.get('status')!='completed':
         if value.get('passed') is not False:raise ValueError('Unavailable execution cannot pass')
         return
     digest=sha(source.encode())
     if value['source_sha256']!=digest:raise ValueError('Executed source identity differs')
     if not value['bound_modules'] or any(r['source_sha256']!=digest for r in value['bound_modules']):raise ValueError('Unbound module copy')
-    ids=value['test_ids'];started=value['started_tests'];events=value['outcomes']
-    if len(ids)!=len(set(ids)) or ids!=started or value['tests_scheduled']!=len(ids) or value['tests_run']!=len(started):raise ValueError('Upstream test identity/accounting differs')
-    for event in events:
-        if event['id'] not in ids:raise ValueError('Outcome outside registered test set')
-    failures=sum(e['status']=='failed' for e in events)
-    errors=sum(e['status']=='error' for e in events)
-    subtest_failures=sum(e['status']=='subtest_failure' for e in events)
-    skipped=sum(e['status']=='skipped' for e in events)
-    unexpected=sum(e['status']=='unexpected_success' for e in events)
-    # A subtest event records non-success but does not separately encode an
-    # assertion failure versus another exception; both must block admission.
-    if value['failures']+value['errors']!=failures+errors+subtest_failures or (value['skipped'],value['unexpected_successes'])!=(skipped,unexpected):raise ValueError('Raw test outcomes disagree with summary')
+    counts=verify_task_events(value)
     observed=value.get('executed_lines',[]) if probe=='line' else value.get('entered_python_functions',[])
-    expected=not (failures or errors or subtest_failures or unexpected) and len(started)>skipped and bool(observed)
+    expected=not any(counts[s] for s in ('failed','error','subtest_failure','unexpected_success')) and len(value['started_tests'])>counts['skipped'] and bool(observed)
     if value['passed']!=expected:raise ValueError('Task pass status not supported')
     if probe=='line' and any(type(n) is not int or n<1 or n>len(source.splitlines()) for n in observed):raise ValueError('Invalid source coverage')
     if probe=='call' and (not all(isinstance(n,str) and n for n in observed) or value['provenance_kind']!='function-entry calls; not statement coverage'):raise ValueError('Invalid function-entry provenance')

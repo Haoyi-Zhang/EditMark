@@ -15,7 +15,7 @@ import sys
 from typing import Any, Iterable, Mapping
 from .aggregates import (
     EXCLUSIONS, STRATA, analyze as analyze_counts, analyze_batch, count, from_pair_stratum, sha256,
-    strict_pair_estimate,
+    strict_pair_estimate, validate_pair_report,
 )
 from .analysis import report as analyze_pairs
 from .constants import (
@@ -361,11 +361,10 @@ def bundle_schema_for(certificates: Iterable[Mapping[str, Any]]) -> str:
 def certificates_from_pair_report(
     report: Mapping[str, Any], requested_claim: str
 ) -> list[dict[str, Any]]:
-    if report.get('schema_version') != PAIR_REPORT_SCHEMA:
-        raise EvidenceError(f'Expected {PAIR_REPORT_SCHEMA!r}')
+    report = validate_pair_report(report)
     evidence_kind = report.get('evidence_kind')
     certificates = []
-    for index, stratum in enumerate(report.get('strata', []), 1):
+    for index, stratum in enumerate(report['strata'], 1):
         estimate = strict_pair_estimate(stratum)
         admitted = count(estimate.get('admitted_pairs'), 'admitted_pairs')
         if admitted == 0:

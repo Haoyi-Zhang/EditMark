@@ -19,7 +19,7 @@ from pathlib import Path
 import sys
 from typing import Any
 
-from .aggregates import analyze as analyze_counts, sha256
+from .aggregates import analyze as analyze_counts, sha256, validate_pair_report
 from .certificate import (
     canonical_hash,
     checked_certificate_batch,
@@ -174,7 +174,9 @@ def verify_bundle(bundle: Mapping[str, Any]) -> dict[str, Any]:
 def _regenerate_from_basis(basis: Path, requested_claim: str) -> list[dict[str, Any]]:
     kind, value = _load_input(basis)
     if kind == 'pair_report':
-        return certificates_from_pair_report(value, requested_claim)  # type: ignore[arg-type]
+        # Validate declared report coverage before either bundle version can
+        # interpret regeneration equality as complete supplied-basis coverage.
+        return certificates_from_pair_report(validate_pair_report(value), requested_claim)  # type: ignore[arg-type]
     if kind == 'raw_pairs':
         return certificates_from_raw_pairs(value, requested_claim)  # type: ignore[arg-type]
     if kind == 'analyses':

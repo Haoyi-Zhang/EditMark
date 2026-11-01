@@ -115,11 +115,14 @@ class BatchConsistencyTests(unittest.TestCase):
 
     def test_identical_counts_and_reports_are_idempotent(self):
         a=counts()
-        for value in ([a,a], count_report([a,a]), pair_report(duplicate=True)):
+        for value in ([a,a], count_report([a,a])):
             status, exists, bundle = self.certify(value)
             self.assertEqual((status, exists), (0, True))
             self.assertEqual(len(bundle['certificates']), 1)
             self.assertEqual(verify.verify_bundle(bundle)['certificates_verified'], 1)
+
+    def test_repeated_pair_report_stratum_is_not_a_second_partition_member(self):
+        self.assertEqual(self.certify(pair_report(duplicate=True))[:2], (2, False))
 
     def test_identical_bundle_and_basis_are_idempotent(self):
         with tempfile.TemporaryDirectory() as td:

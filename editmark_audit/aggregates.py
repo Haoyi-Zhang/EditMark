@@ -13,8 +13,9 @@ from pathlib import Path
 import sys
 from typing import Any, Iterable, Mapping
 from .bounds import intersection_bounds
+from .analysis import MODES, exact_fraction, rate
 from .constants import (
-    COUNT_ANALYSIS_SCHEMA, COUNT_REPORT_SCHEMA, COUNT_SCHEMA, STRICT_CONTRACT,
+    COUNT_ANALYSIS_SCHEMA, COUNT_REPORT_SCHEMA, COUNT_SCHEMA, PAIR_REPORT_SCHEMA, STRICT_CONTRACT,
 )
 from .io import EvidenceError, digest, load_rows, write_new_json
 from .records import KINDS, COMPARATORS, checked_object, text, number
@@ -180,39 +181,223 @@ def analyze(document: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def strict_pair_estimate(stratum: Mapping[str, Any]) -> Mapping[str, Any]:
-    """Validate the declared strict cohort before exporting any claim.
+def _required_object(value: Any, label: str, fields: Iterable[str]) -> Mapping[str, Any]:
+    fields = set(fields)
+    if not isinstance(value, Mapping):
+        raise EvidenceError(f'{label}: expected an object')
+    result = checked_object(value, label, fields)
+    if set(result) != fields:
+        raise EvidenceError(f'{label}: missing fields {sorted(fields - set(result))!r}')
+    return result
 
-    A slot name does not establish eligibility. These checks reject contradictory
-    report metadata; like count disclosures, they do not authenticate membership.
-    """
-    if not isinstance(stratum, Mapping) or not isinstance(stratum.get('estimates'), Mapping):
-        raise EvidenceError('pair stratum requires estimates')
-    estimate = stratum['estimates'].get('changed_only')
-    if not isinstance(estimate, Mapping):
-        raise EvidenceError('strict pair estimate required')
-    if estimate.get('mode') != 'changed_only' or estimate.get('analysis_contract') != STRICT_CONTRACT:
-        raise EvidenceError('pair export requires changed_only mode and the strict analysis contract')
+
+def _require_json_value(observed: Any, expected: Any, label: str) -> None:
+    """Do not let Python's True == 1 or 1 == 1.0 hide a stale report."""
+    try:
+        equal = json.dumps(observed, sort_keys=True, allow_nan=False) == json.dumps(
+            expected, sort_keys=True, allow_nan=False)
+    except (TypeError, ValueError) as exc:
+        raise EvidenceError(f'{label}: invalid JSON value') from exc
+    if not equal:
+        raise EvidenceError(f'{label}: contradicts rederived pair-report facts')
+
+
+def _pair_stratum(stratum: Mapping[str, Any]) -> Mapping[str, Any]:
+    value = _required_object(stratum, 'pair stratum', (
+        *STRATA, 'original_rule_id', 'original_threshold', 'original_comparator', 'estimates'))
+    for key in STRATA:
+        text(value[key], 'stratum.' + key)
+    for key in ('original_rule_id', 'original_comparator'):
+        if not isinstance(value[key], str):
+            raise EvidenceError(f'{key}: expected a string, including an empty unknown')
+        text(value[key], key, True)
+    if value['original_comparator'] not in ('', *COMPARATORS):
+        raise EvidenceError('unknown original comparator')
+    number(value['original_threshold'], 'original_threshold')
+    _required_object(value['estimates'], 'pair estimates', MODES)
+    return value
+
+
+def _pair_estimate(estimate: Mapping[str, Any], mode: str) -> Mapping[str, Any]:
+    estimate = _required_object(estimate, 'pair estimate', (
+        'analysis_contract', 'mode', 'status', 'attempted_pairs', 'eligible_target_pairs',
+        'admitted_pairs', 'cohort_sha256', 'known_target_sha256', 'first_exclusion_counts',
+        'n00', 'n01', 'n10', 'n11', 'tpr_before', 'tpr_after', 'net_detection_change',
+        'net_detection_change_exact', 'net_detection_loss', 'loss', 'survival',
+        'survival_denominator', 'marginal_coverage', 'distinct_originals',
+        'functional_preservation', 'missing_decision_change_bounds', 'missing_decision_bounds'))
+    contract = STRICT_CONTRACT if mode == 'changed_only' else mode
+    if estimate['mode'] != mode or estimate['analysis_contract'] != contract:
+        raise EvidenceError('pair export requires the declared mode and analysis contract')
     attempted = count(estimate.get('attempted_pairs'), 'attempted_pairs')
     target = count(estimate.get('eligible_target_pairs'), 'eligible_target_pairs')
     admitted = count(estimate.get('admitted_pairs'), 'admitted_pairs')
     if not 0 <= admitted <= target <= attempted:
         raise EvidenceError('pair cohort sizes contradict strict eligibility')
-    marginal = estimate.get('marginal_coverage')
-    if not isinstance(marginal, Mapping):
-        raise EvidenceError('pair report requires marginal cohort coverage')
+    marginal = _required_object(estimate['marginal_coverage'], 'marginal coverage', (
+        'supported', 'support_unknown', 'changed', 'unchanged', 'change_unknown'))
     coverage = {key: count(marginal.get(key), 'marginal_coverage.' + key)
                 for key in ('supported', 'support_unknown', 'changed', 'unchanged', 'change_unknown')}
     if (coverage['changed'] + coverage['unchanged'] + coverage['change_unknown'] != attempted
             or coverage['supported'] + coverage['support_unknown'] > attempted
-            or target > min(coverage['supported'], coverage['changed'])):
+            or target > coverage['supported']
+            or (mode == 'changed_only' and target > coverage['changed'])):
         raise EvidenceError('strict pair cohort contradicts marginal coverage')
-    exclusions = checked_object(estimate.get('first_exclusion_counts'), 'first_exclusion_counts', set(EXCLUSIONS))
+    if not isinstance(estimate['first_exclusion_counts'], Mapping):
+        raise EvidenceError('first_exclusion_counts: explicit object required')
+    exclusions = checked_object(estimate['first_exclusion_counts'], 'first_exclusion_counts', set(EXCLUSIONS))
     exclusions = {key: count(value, 'exclusion.' + key) for key, value in exclusions.items()}
     missing = sum(exclusions.get(key, 0) for key in ('original_decision_unavailable', 'edited_decision_unavailable'))
     if attempted != admitted + sum(exclusions.values()) or target != admitted + missing:
         raise EvidenceError('strict pair cohort contradicts exclusion partition')
+    unsupported = attempted - coverage['supported'] - coverage['support_unknown']
+    if (exclusions.get('unsupported', 0) != unsupported
+            or exclusions.get('support_unknown', 0) != coverage['support_unknown']):
+        raise EvidenceError('marginal coverage contradicts support exclusion partition')
+    # Support is the first gate. Any unchanged/unknown-change members not excluded
+    # at the next gate must fit entirely in the already unsupported population.
+    remainder = 0
+    for field, active in (('unchanged', mode == 'changed_only'),
+                          ('change_unknown', mode != 'all_supported')):
+        excluded = exclusions.get(field, 0)
+        if (not active and excluded) or excluded > coverage[field]:
+            raise EvidenceError('marginal coverage contradicts change exclusion partition')
+        if active:
+            remainder += coverage[field] - excluded
+    if remainder > attempted - coverage['supported']:
+        raise EvidenceError('marginal coverage contradicts ordered change gate')
+    if mode == 'all_supported' and exclusions.get('source_identity_missing', 0):
+        raise EvidenceError('all_supported does not exclude missing source identities')
+
+    joint = {key: count(estimate[key], key) for key in ('n00', 'n01', 'n10', 'n11')}
+    if sum(joint.values()) != admitted:
+        raise EvidenceError('pair transitions contradict admitted_pairs')
+    for key, size in (('cohort_sha256', admitted), ('known_target_sha256', target)):
+        value = estimate[key]
+        if size:
+            _require_json_value(value, sha256(value, key), key)
+        elif value is not None:
+            raise EvidenceError(f'{key}: empty population requires null fingerprint')
+    if target == admitted and estimate['known_target_sha256'] != estimate['cohort_sha256']:
+        raise EvidenceError('complete target and admitted cohort fingerprints disagree')
+    before = joint['n10'] + joint['n11']
+    after = joint['n01'] + joint['n11']
+    derived = {
+        'status': 'identified' if admitted else 'undefined_empty_cohort',
+        'tpr_before': rate(before, admitted), 'tpr_after': rate(after, admitted),
+        'net_detection_change': rate(after - before, admitted),
+        'net_detection_change_exact': exact_fraction(after - before, admitted),
+        'net_detection_loss': rate(before - after, admitted), 'loss': rate(before - after, admitted),
+        'survival': rate(joint['n11'], before), 'survival_denominator': before,
+    }
+    for key, expected in derived.items():
+        _require_json_value(estimate[key], expected, key)
+
+    original = _required_object(estimate['distinct_originals'], 'distinct_originals', (
+        'count', 'known_check_results', 'passing', 'pass_rate'))
+    distinct, known, passing = (count(original[k], 'distinct_originals.' + k)
+                                for k in ('count', 'known_check_results', 'passing'))
+    # One fixed edit/variant stratum has one deduplicated pair per original key.
+    if not target <= passing <= known <= distinct == attempted:
+        raise EvidenceError('inconsistent distinct-original counts')
+    if (exclusions.get('original_checks_failed', 0) > known - passing
+            or exclusions.get('original_validation_unavailable', 0)
+            + exclusions.get('original_checks_unknown', 0) > attempted - known):
+        raise EvidenceError('original-check exclusions contradict original coverage')
+    _require_json_value(original['pass_rate'], rate(passing, known), 'original pass_rate')
+    functional = _required_object(estimate['functional_preservation'], 'functional_preservation', (
+        'numerator', 'denominator', 'rate'))
+    num, den = (count(functional[k], 'functional_preservation.' + k)
+                for k in ('numerator', 'denominator'))
+    if not target <= num <= den <= min(coverage['supported'], passing):
+        raise EvidenceError('functional preservation contradicts eligible target coverage')
+    functional_passes = target + sum(exclusions.get(k, 0) for k in (
+        'decision_rule_unknown', 'decision_rule_changed'))
+    if num != functional_passes or den > num + exclusions.get('edited_checks_failed', 0):
+        raise EvidenceError('functional preservation contradicts ordered validation exclusions')
+    if mode == 'changed_only' and den > coverage['changed']:
+        raise EvidenceError('functional preservation exceeds changed coverage')
+    _require_json_value(functional['rate'], rate(num, den), 'functional preservation rate')
+
+    bound_fields = ('target_pairs', 'complete_pairs', 'lower_numerator', 'upper_numerator',
+                    'denominator', 'lower', 'upper', 'estimand', 'interpretation')
+    loss_bounds = _required_object(estimate['missing_decision_bounds'], 'loss bounds', bound_fields)
+    lo, hi = loss_bounds['lower_numerator'], loss_bounds['upper_numerator']
+    if type(lo) is not int or type(hi) is not int:
+        raise EvidenceError('missing-bound numerators require exact signed integers')
+    complete_loss = before - after
+    if not (complete_loss - missing <= lo <= complete_loss <= hi <= complete_loss + missing
+            and missing <= hi - lo <= 2 * missing):
+        raise EvidenceError('missing-decision bounds contradict complete transitions and missingness')
+    for key, lower, upper, estimand in (
+        ('missing_decision_bounds', lo, hi, 'net_detection_loss'),
+        ('missing_decision_change_bounds', -hi, -lo, 'net_detection_change'),
+    ):
+        bounds = _required_object(estimate[key], key, bound_fields)
+        expected = dict(target_pairs=target, complete_pairs=admitted, denominator=target,
+                        lower_numerator=lower, upper_numerator=upper, lower=rate(lower, target),
+                        upper=rate(upper, target), estimand=estimand)
+        for field, value in expected.items():
+            _require_json_value(bounds[field], value, key + '.' + field)
+        text(bounds['interpretation'], key + '.interpretation')
     return estimate
+
+
+def strict_pair_estimate(stratum: Mapping[str, Any]) -> Mapping[str, Any]:
+    """Check all strict report facts before reducing them to a count disclosure."""
+    stratum = _pair_stratum(stratum)
+    estimate = _pair_estimate(stratum['estimates']['changed_only'], 'changed_only')
+    if estimate['eligible_target_pairs'] and (
+            not stratum['original_rule_id'] or stratum['original_threshold'] is None
+            or not stratum['original_comparator']):
+        raise EvidenceError('eligible pair targets require a complete original decision rule')
+    return estimate
+
+
+def validate_pair_report(report: Mapping[str, Any]) -> Mapping[str, Any]:
+    """Shared producer/basis gate, independent of v1/v2 certificate presentation.
+
+    These are checks on supplied report consistency, not raw membership or truth.
+    """
+    report = _required_object(report, 'pair report', (
+        'schema_version', 'evidence_kind', 'input_pair_count', 'unique_pair_count',
+        'identical_duplicates_removed', 'stratum_count', 'strata', 'policy',
+        'claim_boundary', 'synthetic_warning'))
+    if report['schema_version'] != PAIR_REPORT_SCHEMA:
+        raise EvidenceError(f'Expected {PAIR_REPORT_SCHEMA!r}')
+    total, unique, duplicates, size = (count(report[k], k) for k in (
+        'input_pair_count', 'unique_pair_count', 'identical_duplicates_removed', 'stratum_count'))
+    strata = report['strata']
+    if (not isinstance(strata, list) or size != len(strata) or total != unique + duplicates
+            or (not unique and total)):
+        raise EvidenceError('pair report cohort/stratum top-level partition disagrees')
+    if report['evidence_kind'] not in (KINDS if unique else ('empty',)):
+        raise EvidenceError('pair report evidence kind disagrees with population')
+    _require_json_value(report['synthetic_warning'],
+                        'NOT AN EMPIRICAL RESULT' if report['evidence_kind'] == 'synthetic_test' else None,
+                        'synthetic_warning')
+    text(report['policy'], 'policy'); text(report['claim_boundary'], 'claim_boundary')
+    seen = set()
+    attempted = 0
+    for stratum in strata:
+        stratum = _pair_stratum(stratum)
+        identity = tuple(stratum[k] for k in STRATA) + (
+            stratum['original_rule_id'], number(stratum['original_threshold'], 'original_threshold'),
+            stratum['original_comparator'])
+        if identity in seen:
+            raise EvidenceError('duplicate pair report cohort/stratum identity')
+        seen.add(identity)
+        estimate = strict_pair_estimate(stratum)
+        if not estimate['attempted_pairs']:
+            raise EvidenceError('pair report stratum must retain at least one attempt')
+        attempted += estimate['attempted_pairs']
+        for mode in MODES[1:]:
+            diagnostic = _pair_estimate(stratum['estimates'][mode], mode)
+            for key in ('attempted_pairs', 'marginal_coverage', 'distinct_originals'):
+                _require_json_value(diagnostic[key], estimate[key], mode + '.' + key)
+    if attempted != unique:
+        raise EvidenceError('pair report cohort/stratum attempted coverage disagrees with unique_pair_count')
+    return report
 
 
 def from_pair_stratum(stratum: Mapping[str, Any], evidence_kind: str) -> dict[str, Any]:
