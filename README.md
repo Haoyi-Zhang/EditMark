@@ -225,6 +225,33 @@ independent authorship is asserted for the included owner-provided source.
 Training, model loading, attack workflows and public benchmark execution are
 not invoked. Default model-free discovery does not execute this opt-in case.
 
+## Owned edited-control extension
+
+A separately frozen extension adds six constructed integer-list task families,
+three held out, and true unembedded controls under the same registered schedules
+as actual embedding outputs. It retains 96 attempted before/after pairs,
+12 unchanged-embedding exclusions and 29,952 finite-contract calls with zero
+failures. On held-out comment cases the native registered rule hits 2/12 controls
+and 5/9 eligible embedding contexts. The score AUC is 68/81 on nine positive
+and nine matched-negative contexts; within-context AUC is 7/9. Equivalent
+reimplementation creates nine identical-text origin collisions and both AUCs
+are 1/2. The development-only zero-FP rule selects the reject-all 9/8 threshold,
+not a useful calibrated detector. These are related authored tasks and dependent
+configurations, not an independent sampled program population.
+
+The ordinary `results/owned-controls/evidence.zip` retains the complete native
+observations, source registry, frozen protocol/selection, all exclusions and a
+separate score consumer. Its read-only verifier reconstructs every original byte,
+recomputes scores and checks AUC through separate rank-sum arithmetic:
+
+```sh
+python -B examples/owned-controls/verify_evidence_archive.py results/owned-controls/evidence.zip /owned/new-audit-directory
+```
+
+This does not rerun native generation/detection, reset a budget, or change the
+old positive-only certificate schemas. `summary.json` is the exact retained
+consumer output, not a replacement for the archived observations.
+
 ## Independent bounded certificate arithmetic
 
 `python -B -m editmark_audit.reference results/semcodebook_cpu/detection_survival.json --basis results/semcodebook_cpu/pairs.jsonl`

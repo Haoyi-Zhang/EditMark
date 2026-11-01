@@ -1,0 +1,1101 @@
+{
+  "counts": {
+    "attempted_pairs": 96,
+    "external_native_detector_calls": 384,
+    "native_encoder_calls": 24,
+    "validation_calls": 29952
+  },
+  "interpretation": "Scores rank native gate support conditional on a supplied task/payload schedule. Threshold selection is not probabilistic calibration. Native Boolean FPR is distinct from selected score FPR. Same-text collisions limit origin discrimination. No posterior prevalence or blind provenance follows.",
+  "kind": "DESCRIPTIVE_EDITED_ORIGIN_CONTROLS",
+  "metrics": {
+    "development": [
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "count_even": {
+            "edited_native_control_hits": 1,
+            "edited_native_positive_hits": 2,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "guarded_sum": {
+            "edited_native_control_hits": 1,
+            "edited_native_positive_hits": 3,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "product": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 2,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 8
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 8
+        },
+        "edit": "review-footer",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 6,
+            "numerator": 1
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 9,
+            "numerator": 7
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 10,
+              "watermarked": 2
+            },
+            "1": {
+              "abstain": 2,
+              "watermarked": 7
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 56,
+            "ties": 21,
+            "value": {
+              "denominator": 162,
+              "numerator": 133
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 2,
+            "value": {
+              "denominator": 9,
+              "numerator": 7
+            },
+            "wins": 6
+          }
+        },
+        "edited_same_text_origin_collisions": 0,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 6,
+            "numerator": 1
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 9,
+            "numerator": 7
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 10,
+              "watermarked": 2
+            },
+            "1": {
+              "abstain": 2,
+              "watermarked": 7
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 56,
+            "ties": 21,
+            "value": {
+              "denominator": 162,
+              "numerator": 133
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 2,
+            "value": {
+              "denominator": 9,
+              "numerator": 7
+            },
+            "wins": 6
+          }
+        },
+        "represented_tasks": [
+          "count_even",
+          "guarded_sum",
+          "product"
+        ],
+        "rule": "registered",
+        "same_matched_population_auc_change": {
+          "denominator": 1,
+          "numerator": 0
+        }
+      },
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "count_even": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "guarded_sum": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "product": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 3
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 8
+        },
+        "edit": "reference-reimplementation",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 12
+            },
+            "1": {
+              "abstain": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 27,
+            "ties": 27,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 9,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            },
+            "wins": 0
+          }
+        },
+        "edited_same_text_origin_collisions": 9,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 6,
+            "numerator": 1
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 9,
+            "numerator": 7
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 10,
+              "watermarked": 2
+            },
+            "1": {
+              "abstain": 2,
+              "watermarked": 7
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 56,
+            "ties": 21,
+            "value": {
+              "denominator": 162,
+              "numerator": 133
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 2,
+            "value": {
+              "denominator": 9,
+              "numerator": 7
+            },
+            "wins": 6
+          }
+        },
+        "represented_tasks": [
+          "count_even",
+          "guarded_sum",
+          "product"
+        ],
+        "rule": "registered",
+        "same_matched_population_auc_change": {
+          "denominator": 81,
+          "numerator": -26
+        }
+      },
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "count_even": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "guarded_sum": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "product": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 8
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 8
+        },
+        "edit": "review-footer",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 12
+            },
+            "1": {
+              "abstain": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 0,
+            "ties": 45,
+            "value": {
+              "denominator": 18,
+              "numerator": 5
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 5,
+            "value": {
+              "denominator": 18,
+              "numerator": 5
+            },
+            "wins": 0
+          }
+        },
+        "edited_same_text_origin_collisions": 0,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 12
+            },
+            "1": {
+              "abstain": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 0,
+            "ties": 45,
+            "value": {
+              "denominator": 18,
+              "numerator": 5
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 5,
+            "value": {
+              "denominator": 18,
+              "numerator": 5
+            },
+            "wins": 0
+          }
+        },
+        "represented_tasks": [
+          "count_even",
+          "guarded_sum",
+          "product"
+        ],
+        "rule": "reconstructed",
+        "same_matched_population_auc_change": {
+          "denominator": 1,
+          "numerator": 0
+        }
+      },
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "count_even": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "guarded_sum": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "product": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 3
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 8
+        },
+        "edit": "reference-reimplementation",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 4,
+              "reject": 8
+            },
+            "1": {
+              "abstain": 3,
+              "reject": 6
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 27,
+            "ties": 27,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 9,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            },
+            "wins": 0
+          }
+        },
+        "edited_same_text_origin_collisions": 9,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 12
+            },
+            "1": {
+              "abstain": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 0,
+            "ties": 45,
+            "value": {
+              "denominator": 18,
+              "numerator": 5
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 5,
+            "value": {
+              "denominator": 18,
+              "numerator": 5
+            },
+            "wins": 0
+          }
+        },
+        "represented_tasks": [
+          "count_even",
+          "guarded_sum",
+          "product"
+        ],
+        "rule": "reconstructed",
+        "same_matched_population_auc_change": {
+          "denominator": 9,
+          "numerator": 2
+        }
+      }
+    ],
+    "holdout": [
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "adjacent_rises": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 2,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "maximum_prefix": {
+            "edited_native_control_hits": 1,
+            "edited_native_positive_hits": 2,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "sum_squares": {
+            "edited_native_control_hits": 1,
+            "edited_native_positive_hits": 1,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 7
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 7
+        },
+        "edit": "review-footer",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 6,
+            "numerator": 1
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 9,
+            "numerator": 5
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 10,
+              "watermarked": 2
+            },
+            "1": {
+              "abstain": 4,
+              "watermarked": 5
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 63,
+            "ties": 10,
+            "value": {
+              "denominator": 81,
+              "numerator": 68
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 0,
+            "value": {
+              "denominator": 9,
+              "numerator": 7
+            },
+            "wins": 7
+          }
+        },
+        "edited_same_text_origin_collisions": 0,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 6,
+            "numerator": 1
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 9,
+            "numerator": 5
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 10,
+              "watermarked": 2
+            },
+            "1": {
+              "abstain": 4,
+              "watermarked": 5
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 63,
+            "ties": 10,
+            "value": {
+              "denominator": 81,
+              "numerator": 68
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 0,
+            "value": {
+              "denominator": 9,
+              "numerator": 7
+            },
+            "wins": 7
+          }
+        },
+        "represented_tasks": [
+          "adjacent_rises",
+          "maximum_prefix",
+          "sum_squares"
+        ],
+        "rule": "registered",
+        "same_matched_population_auc_change": {
+          "denominator": 1,
+          "numerator": 0
+        }
+      },
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "adjacent_rises": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "maximum_prefix": {
+            "edited_native_control_hits": 2,
+            "edited_native_positive_hits": 2,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "sum_squares": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 3
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 7
+        },
+        "edit": "reference-reimplementation",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 6,
+            "numerator": 1
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 9,
+            "numerator": 2
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 10,
+              "watermarked": 2
+            },
+            "1": {
+              "abstain": 7,
+              "watermarked": 2
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 29,
+            "ties": 23,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 9,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            },
+            "wins": 0
+          }
+        },
+        "edited_same_text_origin_collisions": 9,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 6,
+            "numerator": 1
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 9,
+            "numerator": 5
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 10,
+              "watermarked": 2
+            },
+            "1": {
+              "abstain": 4,
+              "watermarked": 5
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 63,
+            "ties": 10,
+            "value": {
+              "denominator": 81,
+              "numerator": 68
+            }
+          },
+          "selected_score_fpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "selected_score_tpr": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 0,
+            "value": {
+              "denominator": 9,
+              "numerator": 7
+            },
+            "wins": 7
+          }
+        },
+        "represented_tasks": [
+          "adjacent_rises",
+          "maximum_prefix",
+          "sum_squares"
+        ],
+        "rule": "registered",
+        "same_matched_population_auc_change": {
+          "denominator": 162,
+          "numerator": -55
+        }
+      },
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "adjacent_rises": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "maximum_prefix": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "sum_squares": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 7
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 7
+        },
+        "edit": "review-footer",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 12
+            },
+            "1": {
+              "abstain": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 9,
+            "ties": 36,
+            "value": {
+              "denominator": 3,
+              "numerator": 1
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 2,
+            "value": {
+              "denominator": 3,
+              "numerator": 1
+            },
+            "wins": 2
+          }
+        },
+        "edited_same_text_origin_collisions": 0,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 12
+            },
+            "1": {
+              "abstain": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 9,
+            "ties": 36,
+            "value": {
+              "denominator": 3,
+              "numerator": 1
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 2,
+            "value": {
+              "denominator": 3,
+              "numerator": 1
+            },
+            "wins": 2
+          }
+        },
+        "represented_tasks": [
+          "adjacent_rises",
+          "maximum_prefix",
+          "sum_squares"
+        ],
+        "rule": "reconstructed",
+        "same_matched_population_auc_change": {
+          "denominator": 1,
+          "numerator": 0
+        }
+      },
+      {
+        "admitted_pairs": 21,
+        "attempted_pairs": 24,
+        "by_task": {
+          "adjacent_rises": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "maximum_prefix": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          },
+          "sum_squares": {
+            "edited_native_control_hits": 0,
+            "edited_native_positive_hits": 0,
+            "eligible_controls": 4,
+            "eligible_positive_contexts": 3
+          }
+        },
+        "distinct_edited_texts_by_label": {
+          "0": 3,
+          "1": 3
+        },
+        "distinct_original_texts_by_label": {
+          "0": 3,
+          "1": 7
+        },
+        "edit": "reference-reimplementation",
+        "edited": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "reject": 12
+            },
+            "1": {
+              "reject": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 27,
+            "ties": 27,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 9,
+            "value": {
+              "denominator": 2,
+              "numerator": 1
+            },
+            "wins": 0
+          }
+        },
+        "edited_same_text_origin_collisions": 9,
+        "eligible_controls": 12,
+        "eligible_embedding_event_positives": 9,
+        "first_exclusions": {
+          "encoder_unchanged_for_positive": 3
+        },
+        "matched_contexts": 9,
+        "original": {
+          "native_boolean_fpr_all_eligible_controls": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_boolean_tpr_all_eligible_embedding_positives": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "native_status_by_label": {
+            "0": {
+              "abstain": 12
+            },
+            "1": {
+              "abstain": 9
+            }
+          },
+          "pooled_score_auc_matched_population": {
+            "comparisons": 81,
+            "strict_wins": 9,
+            "ties": 36,
+            "value": {
+              "denominator": 3,
+              "numerator": 1
+            }
+          },
+          "within_context_auc": {
+            "contexts": 9,
+            "ties": 2,
+            "value": {
+              "denominator": 3,
+              "numerator": 1
+            },
+            "wins": 2
+          }
+        },
+        "represented_tasks": [
+          "adjacent_rises",
+          "maximum_prefix",
+          "sum_squares"
+        ],
+        "rule": "reconstructed",
+        "same_matched_population_auc_change": {
+          "denominator": 6,
+          "numerator": 1
+        }
+      }
+    ]
+  },
+  "old_certificate_interface": "Unchanged: old positive-only inputs still cannot certify new negative/score claims.",
+  "population_boundary": "Six constructed related task families, three held out; four payload schedules per task are dependent configurations. guarded_sum repeats the old task semantics. No independent sampling or population confidence interval.",
+  "raw_sha256": {
+    "development": "d1e1ee3cf2fee5d05f5844bb16a90380ea3e42df77a5c0663a6ae60c7bec0d90",
+    "holdout": "899fbec684171d199bc1037ce6ded51e4bc16d0a4ed99bbc997ad157d28de450"
+  },
+  "selection": {
+    "comparator": "ge",
+    "development_fpr": {
+      "denominator": 1,
+      "numerator": 0
+    },
+    "development_negative_contexts": 12,
+    "development_positive_contexts": 9,
+    "development_raw_sha256": "d1e1ee3cf2fee5d05f5844bb16a90380ea3e42df77a5c0663a6ae60c7bec0d90",
+    "development_tpr": {
+      "denominator": 1,
+      "numerator": 0
+    },
+    "freeze_sha256": "09f8a55a595b194d288ace224992e1df33d237ebdccc5220bb6bece9a811dffa",
+    "holdout_seen": false,
+    "kind": "DEVELOPMENT_OPERATING_POINT_SELECTION",
+    "score": "native positive_support_score",
+    "selection_scope": "registered review-footer; empirical zero-FP constraint, maximize TPR then highest threshold",
+    "threshold": {
+      "denominator": 8,
+      "numerator": 9
+    }
+  }
+}

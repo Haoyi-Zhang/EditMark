@@ -34,6 +34,7 @@ jobs:
           python -B -m unittest discover -s tests/contract -v
           python -B -m unittest discover -s regressions -v
           python -B regressions/check_semcodebook_cpu.py
+          python -B examples/owned-controls/verify_evidence_archive.py results/owned-controls/evidence.zip "$CHECK_OUTPUT/owned-controls"
           python -B scripts/audit_frozen_evidence.py --out "$CHECK_OUTPUT/audit"
           python -B scripts/verify_release_integrity.py
           CHECKS
