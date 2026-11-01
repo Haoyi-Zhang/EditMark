@@ -15,10 +15,12 @@ authors:
   orcid: https://orcid.org/0009-0009-2482-2344
 - family-names: Sun
   given-names: Yuqiang
+  orcid: https://orcid.org/0000-0003-4340-3371
   email: yuqiang.sun@ntu.edu.sg
   affiliation: Nanyang Technological University
 - family-names: Yu
   given-names: Jiongchi
+  orcid: https://orcid.org/0000-0002-2888-4499
   email: jiongchiyu@acm.org
   affiliation: Nanyang Technological University
 repository-code: https://github.com/Haoyi-Zhang/EditMark
@@ -39,9 +41,11 @@ preferred-citation:
     orcid: https://orcid.org/0009-0009-2482-2344
   - family-names: Sun
     given-names: Yuqiang
+    orcid: https://orcid.org/0000-0003-4340-3371
     email: yuqiang.sun@ntu.edu.sg
     affiliation: Nanyang Technological University
   - family-names: Yu
     given-names: Jiongchi
+    orcid: https://orcid.org/0000-0002-2888-4499
     email: jiongchiyu@acm.org
     affiliation: Nanyang Technological University
