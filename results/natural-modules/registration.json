@@ -1,0 +1,206 @@
+{
+  "driver_source_sha256": "d2578c101de34b2f7a8cef662f3771c9b218eead083ee051060229b050f471df",
+  "note": "Registration written before any outcome; keys and module cohort are fixed",
+  "protocol": {
+    "archive_bytes": 20625068,
+    "archive_sha256": "56bfef1fdfc1221ce6720e43a661e3eb41785dd914ce99698d8c7896af4bdaa1",
+    "budget": {
+      "maximum_pairs": 32,
+      "maximum_suite_processes": 72,
+      "model_API_calls": 0,
+      "no_key_or_module_selection_after_outcomes": true,
+      "per_suite_CPU_seconds": 20,
+      "per_suite_address_space_bytes": 1073741824,
+      "per_suite_wall_seconds": 30,
+      "whole_wall_seconds": 900
+    },
+    "edit": "AST unparse using the fixed host interpreter; unchanged upstream tests",
+    "executed": false,
+    "input_archive_sha256": "2cbb68ff0ced032b40cd6e8d9b2b7494e94ee0515a7225824187ef7d5fc1b68e",
+    "keys": [
+      "00000000000000000000000000000000",
+      "01010101010101010101010101010101",
+      "02020202020202020202020202020202",
+      "03030303030303030303030303030303"
+    ],
+    "official_archive_selected_sources_match_tag": true,
+    "official_url": "https://www.python.org/ftp/python/3.12.3/Python-3.12.3.tar.xz",
+    "oracle": "Unmodified upstream unittest assertions, same source/test/runtime contract before and after; fixed random seed; actual candidate-module provenance required",
+    "release": "3.12.3",
+    "repository": "https://github.com/python/cpython",
+    "scope": "One independently maintained upstream project and eight preselected natural modules, not eight independent projects or a population sample",
+    "selected_modules": [
+      "bisect",
+      "calendar",
+      "colorsys",
+      "fnmatch",
+      "heapq",
+      "shlex",
+      "statistics",
+      "textwrap"
+    ],
+    "selection": "Eight predetermined standard-library algorithms/utilities, before any watermark outcome; one upstream project, not eight projects",
+    "source_files": {
+      "LICENSE": {
+        "bytes": 13936,
+        "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+      },
+      "Lib/bisect.py": {
+        "bytes": 3423,
+        "sha256": "f1cf7b85fc36b5da249813fc5ab97d9464f8cc1bc817f7146206fa2713e35999"
+      },
+      "Lib/calendar.py": {
+        "bytes": 25418,
+        "sha256": "fb3fbcc0a0c8f33941153c425e5c39aedae687c86fcb001bf3a9526a9584459c"
+      },
+      "Lib/colorsys.py": {
+        "bytes": 4062,
+        "sha256": "d9800f8e81d46e63ca6f2e7d6ac5f344d85afb92c3cf6d103b5f977f1ad66ac2"
+      },
+      "Lib/fnmatch.py": {
+        "bytes": 5999,
+        "sha256": "6683da36e47af523f3f41e18ad244d837783e19e98911cc0b7415dea81494ebc"
+      },
+      "Lib/heapq.py": {
+        "bytes": 23024,
+        "sha256": "6d43277e5c76fc0f073cd388fcff852d14d068f6bb6d4886c340f8b75a1229a9"
+      },
+      "Lib/shlex.py": {
+        "bytes": 13353,
+        "sha256": "f927227de5ba5b1b2bdd75e3d9c8cb72b602b3bba3cc8edbf8fb554de0dc1fd7"
+      },
+      "Lib/statistics.py": {
+        "bytes": 50227,
+        "sha256": "b9ef01a757de37e9fbf13d32beeb9530c8271582cabec4998226dcb7e0613cd0"
+      },
+      "Lib/test/__init__.py": {
+        "bytes": 47,
+        "sha256": "836cdb388117cf81e78d9fa2a141cca1b14b0179733322e710067749a1b16fe9"
+      },
+      "Lib/test/support/__init__.py": {
+        "bytes": 80010,
+        "sha256": "b83a63661be2ab77e0034fa2ef7bb42fb4c881d8f38d5eff1ed4ab8d089f83db"
+      },
+      "Lib/test/support/_hypothesis_stubs/__init__.py": {
+        "bytes": 2444,
+        "sha256": "6addb9fbd5d9007e5d50c40c4af5710d73bd62a5c1192b6d067a35cf580be219"
+      },
+      "Lib/test/support/_hypothesis_stubs/_helpers.py": {
+        "bytes": 1298,
+        "sha256": "7d1d2fc87b9cbaf744af1ed8e31a96947b13da28bf2e7a0358996af9c195e380"
+      },
+      "Lib/test/support/_hypothesis_stubs/strategies.py": {
+        "bytes": 1857,
+        "sha256": "1fd24490e10dec6271a006fc01014adcccf9d486b7c201dde975092927246b68"
+      },
+      "Lib/test/support/ast_helper.py": {
+        "bytes": 1828,
+        "sha256": "5c72e61f5972cec7e2f830aa0bcdd6c8f3d56c7736a8e78af679d994aa7af84e"
+      },
+      "Lib/test/support/asynchat.py": {
+        "bytes": 11602,
+        "sha256": "67f2619c60c171d03b091931851b658f7a92446e131ac261a3352eb0ccc1b17e"
+      },
+      "Lib/test/support/asyncore.py": {
+        "bytes": 20381,
+        "sha256": "4cc554dcb58d602bd9d557b2aa497fe9a325d9e021d97a95c0358e907291a47a"
+      },
+      "Lib/test/support/bytecode_helper.py": {
+        "bytes": 4999,
+        "sha256": "fb67d0e9f8e7869235e94949b06313e412be59c29ad1f089f323019f0f3a0e49"
+      },
+      "Lib/test/support/hashlib_helper.py": {
+        "bytes": 1907,
+        "sha256": "19924c427e33c86284ef2a41f76ab6937ab36f12e3d1ef4e617cdbf616a8fc12"
+      },
+      "Lib/test/support/hypothesis_helper.py": {
+        "bytes": 1383,
+        "sha256": "0cbf55d49bdb78c5a93446d44dfe0bf247a408ae159813989285f7e8c87fd469"
+      },
+      "Lib/test/support/import_helper.py": {
+        "bytes": 10735,
+        "sha256": "8466c98fbe5fc76e145a86bf16ef64596aff5f93d1ac943b4079392f7b4b6925"
+      },
+      "Lib/test/support/interpreters.py": {
+        "bytes": 5808,
+        "sha256": "b74464655baa283d2de961e223e0853b498ca51f0889cb790267c8554ac79c92"
+      },
+      "Lib/test/support/logging_helper.py": {
+        "bytes": 916,
+        "sha256": "be1927e654180fcf6d84257be161fe6fa59796774e862c89b6b78adb656738f3"
+      },
+      "Lib/test/support/os_helper.py": {
+        "bytes": 24286,
+        "sha256": "927aa94e0831b09c237b129749e06bb355deb007be0e1fd63dc0cdf4ef5c265d"
+      },
+      "Lib/test/support/pty_helper.py": {
+        "bytes": 3052,
+        "sha256": "d724296e344278ce3ffb39962c5761dd04b19e987f8068a09fff02cab7418cc2"
+      },
+      "Lib/test/support/script_helper.py": {
+        "bytes": 11721,
+        "sha256": "4548165a86eecd536d0231efea5adf656cbfec33371e62a7679724af19a5e204"
+      },
+      "Lib/test/support/smtpd.py": {
+        "bytes": 30733,
+        "sha256": "00599762dd76cb7f6e0763238079c436f96f6a50331abaf2511cad8f0169ae40"
+      },
+      "Lib/test/support/socket_helper.py": {
+        "bytes": 13794,
+        "sha256": "482196211cee77253034cb6b85b50bffb302fde20f083a5e888f34af603ea4ec"
+      },
+      "Lib/test/support/testcase.py": {
+        "bytes": 1047,
+        "sha256": "3181376673273db26aa634b690c176d9b5cc176351f5f0d0d5f5a480d6fa0ece"
+      },
+      "Lib/test/support/threading_helper.py": {
+        "bytes": 8049,
+        "sha256": "7f191895d8e33cb8b36645d0ef197096c459c6f63450366114753a85eaa8c113"
+      },
+      "Lib/test/support/warnings_helper.py": {
+        "bytes": 6853,
+        "sha256": "515c10201568a2fcb868d1c34ffe9d7f04e3f617a2cb61d587167359a83b09ec"
+      },
+      "Lib/test/test_bisect.py": {
+        "bytes": 17024,
+        "sha256": "96d0763f8218c9177bf1cf4dd0e27c69f898aad4cd34d4d773c8b4d86eccdb19"
+      },
+      "Lib/test/test_calendar.py": {
+        "bytes": 52475,
+        "sha256": "ce4f93891c8940452c1696e9f18b1cca9a8c4c61ffd7f1cea777a1efc8aa6de7"
+      },
+      "Lib/test/test_colorsys.py": {
+        "bytes": 4370,
+        "sha256": "f7ea1907f751f0201ea69a0bc368cdb2b24e7c7f958d8df659a8ff84142bfb93"
+      },
+      "Lib/test/test_fnmatch.py": {
+        "bytes": 10939,
+        "sha256": "8b1705a63c0947192afcb8f3cba1b6b02819eb69e9fbea82e337bcc22022bf33"
+      },
+      "Lib/test/test_heapq.py": {
+        "bytes": 16816,
+        "sha256": "ab72726259119159f060aa80274efb33e53a5455636bd5aa16f923535375b348"
+      },
+      "Lib/test/test_shlex.py": {
+        "bytes": 13713,
+        "sha256": "32ce66232ba3885b36e739fabac3ae55d6c9b336e0ed65aafba2ef5b0e55c6df"
+      },
+      "Lib/test/test_statistics.py": {
+        "bytes": 122905,
+        "sha256": "024934b977d355a6439f874a559e59b52049e419dca8516f7cd743160a87c6f5"
+      },
+      "Lib/test/test_textwrap.py": {
+        "bytes": 42891,
+        "sha256": "72e5da91dbb14d19811eb3daf529abe62e7ccbab3bc3bb313fbe3cd08f4e9a0f"
+      },
+      "Lib/textwrap.py": {
+        "bytes": 19718,
+        "sha256": "62867e40cdea6669b361f72af4d7daf0359f207c92cbeddfc7c7506397c1f31c"
+      }
+    },
+    "test_policy": "All upstream in-process Python tests; exclude C-only classes, documentation-only tests and calendar subprocess CLI by declared class policy, retain every excluded ID",
+    "tool_manifest": "data/released-style/tool.json"
+  },
+  "suite_source_sha256": "cd7fff8fe19156e61ade8b221d04afed0693b00c65175338d26a98af47414e0b",
+  "tool_manifest_sha256": "98809d152dac4e73a1cdd4c3f0325d8614b33e9b924468d6de5001486be95c5c"
+}

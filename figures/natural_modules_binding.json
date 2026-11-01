@@ -1,0 +1,65 @@
+{
+  "source": "results/natural-modules/evidence.zip",
+  "source_sha256": "44d5d9aa016e102cf9e95cea62325f41f4d9e5b24eb1aba1a6675f3fe861d2df",
+  "matrix": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      3,
+      0
+    ],
+    [
+      2,
+      2,
+      2,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "modules": [
+    "bisect",
+    "calendar",
+    "colorsys",
+    "fnmatch",
+    "heapq",
+    "shlex",
+    "statistics",
+    "textwrap"
+  ],
+  "interpretation": "Fixed attempt classifications, not independent-project counts or a population failure estimate"
+}

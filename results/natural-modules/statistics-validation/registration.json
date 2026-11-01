@@ -1,0 +1,51 @@
+{
+  "design": "All nine previously fixed original/marked/edited sources; same upstream test selection and single-process limits. Function-entry profiling replaces line tracing. No watermark call, source retuning or repetition of the original activity.",
+  "driver_sha256": "927a6cd8a66916f0343d344da91a84e2c339cf1eb01eb290223c283bf951f5aa",
+  "model_calls": 0,
+  "no_original_budget_reset": true,
+  "per_process_CPU_seconds": 20,
+  "per_process_wall_seconds": 30,
+  "process_limit": 9,
+  "shared_test_policy_sha256": "cd7fff8fe19156e61ade8b221d04afed0693b00c65175338d26a98af47414e0b",
+  "source_rows_sha256": "3514b759e4953445767422f943cf35812a3712e725293c4774660651820ca5eb",
+  "sources": [
+    {
+      "label": "original",
+      "sha256": "b9ef01a757de37e9fbf13d32beeb9530c8271582cabec4998226dcb7e0613cd0"
+    },
+    {
+      "label": "0-marked",
+      "sha256": "8147549337154e629b5f3fdbaed423ebf05da376d6c32a6886fdbd840986ed29"
+    },
+    {
+      "label": "0-edited",
+      "sha256": "203999dcd1ea5bcf2cc56ff5dc1166bd7e0d3bac59ca989a76f7ed7906752057"
+    },
+    {
+      "label": "1-marked",
+      "sha256": "e9e0a00ed206ece644772ba31098536d9f43b8fa3835de7b48bf679d2a5769f6"
+    },
+    {
+      "label": "1-edited",
+      "sha256": "f570673004b55826e4ac4f530410ecbde6fa68caa7d81a80cbc2fb0d00d1403b"
+    },
+    {
+      "label": "2-marked",
+      "sha256": "8d3d4b53256d0bcbd07014a2dfafc95b247c58424706181b8db4223f0d93227a"
+    },
+    {
+      "label": "2-edited",
+      "sha256": "1b89de7688872a58bc0a0ac2be7f06cd2ca16141c749a6f76c79d69a72e921d8"
+    },
+    {
+      "label": "3-marked",
+      "sha256": "ed73fe10bd9e1497dd1b175950335b0d24b89cad3bf77871276325fb3fe96302"
+    },
+    {
+      "label": "3-edited",
+      "sha256": "f3a757ba95174cb9eae0714370990b4923bc3aa8d8942ae134a770df6749b36f"
+    }
+  ],
+  "validator_sha256": "a61220eb65b74cc30df0b4683bc81c468d58a7cd176b50cc993f0ae8c3fb6f32",
+  "whole_wall_seconds": 240
+}

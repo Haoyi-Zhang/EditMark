@@ -1,0 +1,14 @@
+{
+  "observations.json": {
+    "bytes": 1584390,
+    "sha256": "c9b26e4715cb0252a59a602fe0c2b4934f3c0cc25dc598e6c17536cb1dae1fd4"
+  },
+  "registration.json": {
+    "bytes": 1923,
+    "sha256": "fe118474576345de4d289eac94ff7ad6b53870b5888ca0ee4084e1df8561b3f2"
+  },
+  "summary.json": {
+    "bytes": 198,
+    "sha256": "a9bac668967cc77427fa798b96f998cac226b8303bb7297e6181253dd19cacb1"
+  }
+}

@@ -63,6 +63,59 @@ only the contract diagram while accepting cached data plots.
 
 ## Three analysis interfaces and one verifier
 
+### Natural modules and unchanged upstream test oracles
+
+The separate `results/natural-modules/` activity attempts all eight predetermined
+CPython modules under four fixed keys. It runs 72 bounded upstream suite
+processes. Seven original modules pass; the statistics baseline is unavailable
+under the registered limits, so its four attempts are not silently dropped or
+called functional failures. Thirty-one embeddings return success, but four
+outputs fail upstream tests while remaining watermark-positive. The four
+key-specific rules admit 5, 5, 6 and 7 pairs, exactly matching same-information
+direct admission. This is one independently maintained upstream project, not
+eight independent projects or a population estimate.
+
+A separately registered function-entry follow-up keeps the same source bytes,
+upstream test membership and per-process limits, while removing statement-trace
+overhead. Its original statistics module and all eight fixed marked/edited
+variants pass the same 346 upstream methods. Those four additional validated
+pairs have their own record and validation contract. The original line-trace
+activity's unknowns are not relabelled; statement coverage is not claimed by
+the follow-up. The complete observations are in `statistics-validation/`.
+
+Every test-created module copy is bound to the actual candidate, with exact
+test membership, skips and executed Python-source lines retained. C-only,
+documentation-only and subprocess-CLI tests are outside this declared
+in-process contract; all excluded IDs remain in the records. A separate
+post-hoc diagnostic restores one implicated expression in each of the four
+failing outputs; all four then pass the same upstream contract. The released
+embedder and original cohort are unchanged, and this is not a general method
+repair or evidence that tests establish full semantic equivalence.
+
+Data-only verification requires no upstream tool or parser installation:
+
+```sh
+python -B scripts/check_natural_modules.py
+python -B -m unittest discover -s regressions -p test_natural_modules.py -v
+```
+
+`evidence.zip` losslessly retains all raw process observations, before/after
+sources, complete pair records, test identities, exclusions and the separate
+rollback activity. `data/natural-modules/inputs.zip` retains the exact original
+source/test/support files and Python license. The released tool identity is the
+existing `data/released-style/tool.json`. To opt into a fresh execution, acquire
+that exact source and use the existing four pinned parser dependencies:
+
+```sh
+python -B scripts/natural_module_case.py --tool-root /path/to/SEW --out /fresh/natural-study
+python -B scripts/natural_counterfactual.py --data /fresh/natural-study --out /fresh/attribution
+```
+
+The second command is a failure-attribution diagnostic with its own fixed
+four-case budget, not a repeat of the original cohort. Neither command calls a
+model API or contacts an external service. Run only trusted licensed sources;
+process/resource limits do not make this a hostile-code sandbox.
+
 ### Complete released-method boundary case
 
 The additional `results/released-style/` evidence executes the unmodified,

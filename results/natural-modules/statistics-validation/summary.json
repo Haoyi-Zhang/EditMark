@@ -1,0 +1,8 @@
+{
+  "elapsed_wall_seconds": 77.55128977100003,
+  "original_activity_unknowns_unchanged": true,
+  "passed": 9,
+  "source_programs": 9,
+  "statement_coverage_claimed": false,
+  "status": "COMPLETE"
+}

@@ -1,0 +1,296 @@
+{
+  "API_calls": 0,
+  "accepted_embeddings": 31,
+  "baseline_modules_passed": 7,
+  "edited_task_failures": 4,
+  "elapsed_wall_seconds": 220.86368737700002,
+  "key_strata": {
+    "0": {
+      "admitted_pairs": 5,
+      "analysis_contract": "same-rule-changed-pairs",
+      "attempted_pairs": 8,
+      "cohort_sha256": "1d30b3ebe5da17d005b049cc487eba5a8beacb77e50e353781a7c0e89e533d3c",
+      "distinct_originals": {
+        "count": 8,
+        "known_check_results": 7,
+        "pass_rate": 0.7142857142857143,
+        "passing": 5
+      },
+      "eligible_target_pairs": 5,
+      "first_exclusion_counts": {
+        "original_checks_failed": 2,
+        "original_validation_unavailable": 1
+      },
+      "functional_preservation": {
+        "denominator": 5,
+        "numerator": 5,
+        "rate": 1.0
+      },
+      "known_target_sha256": "1d30b3ebe5da17d005b049cc487eba5a8beacb77e50e353781a7c0e89e533d3c",
+      "loss": 0.4,
+      "marginal_coverage": {
+        "change_unknown": 0,
+        "changed": 8,
+        "support_unknown": 0,
+        "supported": 8,
+        "unchanged": 0
+      },
+      "missing_decision_bounds": {
+        "complete_pairs": 5,
+        "denominator": 5,
+        "estimand": "net_detection_loss",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. This is the sign-reversed form of missing_decision_change_bounds.",
+        "lower": 0.4,
+        "lower_numerator": 2,
+        "target_pairs": 5,
+        "upper": 0.4,
+        "upper_numerator": 2
+      },
+      "missing_decision_change_bounds": {
+        "complete_pairs": 5,
+        "denominator": 5,
+        "estimand": "net_detection_change",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. Only jointly valid, same-rule pairs eligible under the selected analysis mode form this target; unknown validation remains outside it.",
+        "lower": -0.4,
+        "lower_numerator": -2,
+        "target_pairs": 5,
+        "upper": -0.4,
+        "upper_numerator": -2
+      },
+      "mode": "changed_only",
+      "n00": 0,
+      "n01": 0,
+      "n10": 2,
+      "n11": 3,
+      "net_detection_change": -0.4,
+      "net_detection_change_exact": {
+        "decimal": -0.4,
+        "denominator": 5,
+        "numerator": -2
+      },
+      "net_detection_loss": 0.4,
+      "status": "identified",
+      "survival": 0.6,
+      "survival_denominator": 5,
+      "tpr_after": 0.6,
+      "tpr_before": 1.0
+    },
+    "1": {
+      "admitted_pairs": 5,
+      "analysis_contract": "same-rule-changed-pairs",
+      "attempted_pairs": 8,
+      "cohort_sha256": "ed7acf95e8f8914104a6cf41124f54633bc48ad3b74df1b79f2db6479ca91417",
+      "distinct_originals": {
+        "count": 8,
+        "known_check_results": 7,
+        "pass_rate": 0.7142857142857143,
+        "passing": 5
+      },
+      "eligible_target_pairs": 5,
+      "first_exclusion_counts": {
+        "original_checks_failed": 2,
+        "original_validation_unavailable": 1
+      },
+      "functional_preservation": {
+        "denominator": 5,
+        "numerator": 5,
+        "rate": 1.0
+      },
+      "known_target_sha256": "ed7acf95e8f8914104a6cf41124f54633bc48ad3b74df1b79f2db6479ca91417",
+      "loss": 0.2,
+      "marginal_coverage": {
+        "change_unknown": 0,
+        "changed": 8,
+        "support_unknown": 0,
+        "supported": 8,
+        "unchanged": 0
+      },
+      "missing_decision_bounds": {
+        "complete_pairs": 5,
+        "denominator": 5,
+        "estimand": "net_detection_loss",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. This is the sign-reversed form of missing_decision_change_bounds.",
+        "lower": 0.2,
+        "lower_numerator": 1,
+        "target_pairs": 5,
+        "upper": 0.2,
+        "upper_numerator": 1
+      },
+      "missing_decision_change_bounds": {
+        "complete_pairs": 5,
+        "denominator": 5,
+        "estimand": "net_detection_change",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. Only jointly valid, same-rule pairs eligible under the selected analysis mode form this target; unknown validation remains outside it.",
+        "lower": -0.2,
+        "lower_numerator": -1,
+        "target_pairs": 5,
+        "upper": -0.2,
+        "upper_numerator": -1
+      },
+      "mode": "changed_only",
+      "n00": 0,
+      "n01": 0,
+      "n10": 1,
+      "n11": 4,
+      "net_detection_change": -0.2,
+      "net_detection_change_exact": {
+        "decimal": -0.2,
+        "denominator": 5,
+        "numerator": -1
+      },
+      "net_detection_loss": 0.2,
+      "status": "identified",
+      "survival": 0.8,
+      "survival_denominator": 5,
+      "tpr_after": 0.8,
+      "tpr_before": 1.0
+    },
+    "2": {
+      "admitted_pairs": 6,
+      "analysis_contract": "same-rule-changed-pairs",
+      "attempted_pairs": 8,
+      "cohort_sha256": "5fb028dd666649d5fb87c72951981db3512e2a866e31d114fa404f0de874e0ce",
+      "distinct_originals": {
+        "count": 8,
+        "known_check_results": 7,
+        "pass_rate": 1.0,
+        "passing": 7
+      },
+      "eligible_target_pairs": 6,
+      "first_exclusion_counts": {
+        "original_validation_unavailable": 1,
+        "unsupported": 1
+      },
+      "functional_preservation": {
+        "denominator": 6,
+        "numerator": 6,
+        "rate": 1.0
+      },
+      "known_target_sha256": "5fb028dd666649d5fb87c72951981db3512e2a866e31d114fa404f0de874e0ce",
+      "loss": 0.16666666666666666,
+      "marginal_coverage": {
+        "change_unknown": 0,
+        "changed": 8,
+        "support_unknown": 0,
+        "supported": 7,
+        "unchanged": 0
+      },
+      "missing_decision_bounds": {
+        "complete_pairs": 6,
+        "denominator": 6,
+        "estimand": "net_detection_loss",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. This is the sign-reversed form of missing_decision_change_bounds.",
+        "lower": 0.16666666666666666,
+        "lower_numerator": 1,
+        "target_pairs": 6,
+        "upper": 0.16666666666666666,
+        "upper_numerator": 1
+      },
+      "missing_decision_change_bounds": {
+        "complete_pairs": 6,
+        "denominator": 6,
+        "estimand": "net_detection_change",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. Only jointly valid, same-rule pairs eligible under the selected analysis mode form this target; unknown validation remains outside it.",
+        "lower": -0.16666666666666666,
+        "lower_numerator": -1,
+        "target_pairs": 6,
+        "upper": -0.16666666666666666,
+        "upper_numerator": -1
+      },
+      "mode": "changed_only",
+      "n00": 0,
+      "n01": 0,
+      "n10": 1,
+      "n11": 5,
+      "net_detection_change": -0.16666666666666666,
+      "net_detection_change_exact": {
+        "decimal": -0.16666666666666666,
+        "denominator": 6,
+        "numerator": -1
+      },
+      "net_detection_loss": 0.16666666666666666,
+      "status": "identified",
+      "survival": 0.8333333333333334,
+      "survival_denominator": 6,
+      "tpr_after": 0.8333333333333334,
+      "tpr_before": 1.0
+    },
+    "3": {
+      "admitted_pairs": 7,
+      "analysis_contract": "same-rule-changed-pairs",
+      "attempted_pairs": 8,
+      "cohort_sha256": "57615facadb666a9b178c4c982e7aef4757014aad73e8b27dd77aee94d893074",
+      "distinct_originals": {
+        "count": 8,
+        "known_check_results": 7,
+        "pass_rate": 1.0,
+        "passing": 7
+      },
+      "eligible_target_pairs": 7,
+      "first_exclusion_counts": {
+        "original_validation_unavailable": 1
+      },
+      "functional_preservation": {
+        "denominator": 7,
+        "numerator": 7,
+        "rate": 1.0
+      },
+      "known_target_sha256": "57615facadb666a9b178c4c982e7aef4757014aad73e8b27dd77aee94d893074",
+      "loss": 0.14285714285714285,
+      "marginal_coverage": {
+        "change_unknown": 0,
+        "changed": 8,
+        "support_unknown": 0,
+        "supported": 8,
+        "unchanged": 0
+      },
+      "missing_decision_bounds": {
+        "complete_pairs": 7,
+        "denominator": 7,
+        "estimand": "net_detection_loss",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. This is the sign-reversed form of missing_decision_change_bounds.",
+        "lower": 0.14285714285714285,
+        "lower_numerator": 1,
+        "target_pairs": 7,
+        "upper": 0.14285714285714285,
+        "upper_numerator": 1
+      },
+      "missing_decision_change_bounds": {
+        "complete_pairs": 7,
+        "denominator": 7,
+        "estimand": "net_detection_change",
+        "interpretation": "Finite-target interval sharp relative to unrestricted completion of the coarsened observed-Boolean/null projection, not a confidence interval. Retained scores are not used to infer missing decisions; the interval can be conservative relative to supplied score/rule information. Only jointly valid, same-rule pairs eligible under the selected analysis mode form this target; unknown validation remains outside it.",
+        "lower": -0.14285714285714285,
+        "lower_numerator": -1,
+        "target_pairs": 7,
+        "upper": -0.14285714285714285,
+        "upper_numerator": -1
+      },
+      "mode": "changed_only",
+      "n00": 0,
+      "n01": 0,
+      "n10": 1,
+      "n11": 6,
+      "net_detection_change": -0.14285714285714285,
+      "net_detection_change_exact": {
+        "decimal": -0.14285714285714285,
+        "denominator": 7,
+        "numerator": -1
+      },
+      "net_detection_loss": 0.14285714285714285,
+      "status": "identified",
+      "survival": 0.8571428571428571,
+      "survival_denominator": 7,
+      "tpr_after": 0.8571428571428571,
+      "tpr_before": 1.0
+    }
+  },
+  "marked_task_failures": 4,
+  "module_cohort": 8,
+  "pairs": 32,
+  "pooled_population_estimate": false,
+  "raw_suite_processes_retained": 72,
+  "status": "PASS_COMPLETE_ACTIVITY",
+  "suite_processes": 72,
+  "upstream_projects": 1
+}
