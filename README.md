@@ -33,7 +33,7 @@ This command runs the evidence-contract tests, rebuilds the machine-readable fac
 The retained Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
 
 <!-- BEGIN GENERATED SOURCE TEST COUNTS -->
-The current model-free source selection contains 280 contract
+The current model-free source selection contains 284 contract
 methods and 30 supplementary methods. These counts describe
 the current source, not a newly executed or archived test run.
 <!-- END GENERATED SOURCE TEST COUNTS -->

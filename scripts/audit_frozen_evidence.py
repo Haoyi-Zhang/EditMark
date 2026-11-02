@@ -192,7 +192,7 @@ def audit(root: Path, out: Path) -> dict[str, Any]:
         'posteditbench/attacks/implementations.py','posteditbench/crafted_benchmarks.py','posteditbench/crafted_templates.py'])
     write_json(out/'input_hashes.json', {str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(used)})
     lines = ['# Frozen-evidence audit','',result['basis'],'',
-        f"Inventory: **{result['release_records']}** source records; canonical executed design: **{result['canonical_source_records']}**; excluded overlay: **{result['excluded_source_records']}**.",
+        f"Inventory: **{result['release_records']}** source records; configured canonical design: **{result['canonical_source_records']}**; excluded overlay: **{result['excluded_source_records']}**.",
         f"MBXP canonical Go records: **{result['mbxp_canonical_go_records']}**. Run inventory: **{len(inv)}**.", '',
         '## What the exported scores mean','',
         'D is clean AUROC. R is a composite of a clipped detector-score ratio, an edited-pass-conditioned detection rate, and an unpaired test-pass-rate ratio. **D - R is not a detector-evidence loss.**', '',

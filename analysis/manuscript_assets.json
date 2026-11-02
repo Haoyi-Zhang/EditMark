@@ -3,7 +3,7 @@
     {
       "bytes": 637,
       "path": "paper/tosem/generated/release_facts.tex",
-      "sha256": "d1df60e989edd08bd9c02f0aaec5f135bd6b1442371a6a7805cb0916bd9bedd8"
+      "sha256": "41fb99df356def32bbfbcc9e0819daca601c85866305219339bbf54005fd1237"
     },
     {
       "bytes": 1214,
@@ -63,7 +63,7 @@
     {
       "bytes": 499,
       "path": "artifact/analysis/release_facts.json",
-      "sha256": "fdb968a227fe547ee3b4f24bc7c960eff80379be7f4a648dedf3de435017deda"
+      "sha256": "a71f94f804b84c7497cf468562fd9449a114ae4f19fca1fa8340a57cdb840650"
     },
     {
       "bytes": 359,

@@ -181,12 +181,14 @@ def analyze(document: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _required_object(value: Any, label: str, fields: Iterable[str]) -> Mapping[str, Any]:
+def _required_object(
+    value: Any, label: str, fields: Iterable[str], optional: Iterable[str] = (),
+) -> Mapping[str, Any]:
     fields = set(fields)
     if not isinstance(value, Mapping):
         raise EvidenceError(f'{label}: expected an object')
-    result = checked_object(value, label, fields)
-    if set(result) != fields:
+    result = checked_object(value, label, fields | set(optional))
+    if not fields <= set(result):
         raise EvidenceError(f'{label}: missing fields {sorted(fields - set(result))!r}')
     return result
 
@@ -354,6 +356,58 @@ def strict_pair_estimate(stratum: Mapping[str, Any]) -> Mapping[str, Any]:
     return estimate
 
 
+def _nested_pair_estimates(
+    narrow: Mapping[str, Any], broad: Mapping[str, Any], removed_gates: set[str],
+) -> None:
+    """A relaxed gate can add rows, never rewrite an existing observation.
+
+    Check the disclosed partitions and nested sufficient facts, not external
+    membership. Unknown Boolean completion intervals must also extend by only
+    the newly eligible rows' contributions.
+    """
+    for key in ('attempted_pairs', 'marginal_coverage', 'distinct_originals'):
+        _require_json_value(broad[key], narrow[key], broad['mode'] + '.' + key)
+    for key in EXCLUSIONS:
+        if key not in removed_gates and (
+                broad['first_exclusion_counts'].get(key, 0)
+                < narrow['first_exclusion_counts'].get(key, 0)):
+            raise EvidenceError('relaxed pair mode loses an existing exclusion observation: ' + key)
+    for key in ('n00', 'n01', 'n10', 'n11', 'eligible_target_pairs', 'admitted_pairs'):
+        if broad[key] < narrow[key]:
+            raise EvidenceError('relaxed pair mode loses an existing cohort observation: ' + key)
+    for size, fingerprint in (('admitted_pairs', 'cohort_sha256'),
+                              ('eligible_target_pairs', 'known_target_sha256')):
+        if broad[size] == narrow[size]:
+            _require_json_value(broad[fingerprint], narrow[fingerprint], 'nested ' + fingerprint)
+        elif broad[fingerprint] == narrow[fingerprint]:
+            raise EvidenceError('nested cohort sizes disagree under one fingerprint')
+    nf, bf = narrow['functional_preservation'], broad['functional_preservation']
+    if (bf['numerator'] < nf['numerator'] or bf['denominator'] < nf['denominator']
+            or bf['denominator'] - bf['numerator'] < nf['denominator'] - nf['numerator']):
+        raise EvidenceError('relaxed pair mode rewrites existing functional outcomes')
+    added_failures = (broad['first_exclusion_counts'].get('edited_checks_failed', 0)
+                      - narrow['first_exclusion_counts'].get('edited_checks_failed', 0))
+    if ((bf['denominator'] - bf['numerator']) - (nf['denominator'] - nf['numerator'])
+            > added_failures):
+        raise EvidenceError('relaxed pair mode invents functional checks on existing rows')
+    before_missing = (broad['first_exclusion_counts'].get('original_decision_unavailable', 0)
+                      - narrow['first_exclusion_counts'].get('original_decision_unavailable', 0))
+    after_missing = (broad['first_exclusion_counts'].get('edited_decision_unavailable', 0)
+                     - narrow['first_exclusion_counts'].get('edited_decision_unavailable', 0))
+    missing = before_missing + after_missing
+    complete_loss = (broad['n10'] - narrow['n10']) - (broad['n01'] - narrow['n01'])
+    nb, bb = narrow['missing_decision_bounds'], broad['missing_decision_bounds']
+    low = bb['lower_numerator'] - nb['lower_numerator'] - complete_loss
+    high = bb['upper_numerator'] - nb['upper_numerator'] - complete_loss
+    # Each newly missing row contributes width one, or width two when both
+    # decisions are missing (which belongs to the original-unavailable bucket).
+    both_missing = high - low - missing
+    if (not 0 <= both_missing <= before_missing
+            or not -missing <= low <= -both_missing
+            or not both_missing <= high <= missing):
+        raise EvidenceError('relaxed pair mode rewrites existing missing-decision contributions')
+
+
 def validate_pair_report(report: Mapping[str, Any]) -> Mapping[str, Any]:
     """Shared producer/basis gate, independent of v1/v2 certificate presentation.
 
@@ -362,7 +416,16 @@ def validate_pair_report(report: Mapping[str, Any]) -> Mapping[str, Any]:
     report = _required_object(report, 'pair report', (
         'schema_version', 'evidence_kind', 'input_pair_count', 'unique_pair_count',
         'identical_duplicates_removed', 'stratum_count', 'strata', 'policy',
-        'claim_boundary', 'synthetic_warning'))
+        'claim_boundary', 'synthetic_warning'), optional=('input_files',))
+    if 'input_files' in report:
+        inputs = report['input_files']
+        if not isinstance(inputs, list) or not inputs:
+            raise EvidenceError('input_files: a nonempty array of file identities is required')
+        for item in inputs:
+            item = _required_object(item, 'input_files entry', ('name', 'sha256'))
+            text(item['name'], 'input_files.name')
+            _require_json_value(item['sha256'], sha256(item['sha256'], 'input_files.sha256'),
+                                'input_files.sha256')
     if report['schema_version'] != PAIR_REPORT_SCHEMA:
         raise EvidenceError(f'Expected {PAIR_REPORT_SCHEMA!r}')
     total, unique, duplicates, size = (count(report[k], k) for k in (
@@ -391,10 +454,16 @@ def validate_pair_report(report: Mapping[str, Any]) -> Mapping[str, Any]:
         if not estimate['attempted_pairs']:
             raise EvidenceError('pair report stratum must retain at least one attempt')
         attempted += estimate['attempted_pairs']
-        for mode in MODES[1:]:
+        previous = estimate
+        removed = ({'unchanged'}, {'change_unknown', 'source_identity_missing'})
+        for mode, removed_gates in zip(MODES[1:], removed):
             diagnostic = _pair_estimate(stratum['estimates'][mode], mode)
-            for key in ('attempted_pairs', 'marginal_coverage', 'distinct_originals'):
-                _require_json_value(diagnostic[key], estimate[key], mode + '.' + key)
+            if diagnostic['eligible_target_pairs'] and (
+                    not stratum['original_rule_id'] or stratum['original_threshold'] is None
+                    or not stratum['original_comparator']):
+                raise EvidenceError('eligible targets in every mode require a complete original rule')
+            _nested_pair_estimates(previous, diagnostic, removed_gates)
+            previous = diagnostic
     if attempted != unique:
         raise EvidenceError('pair report cohort/stratum attempted coverage disagrees with unique_pair_count')
     return report

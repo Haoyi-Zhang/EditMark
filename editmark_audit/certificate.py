@@ -237,13 +237,16 @@ def checked_certificate_batch(certificates: Iterable[Mapping[str, Any]]) -> list
 
     Callers still check each certificate's semantics before using this helper.
     Duplicate normalized count facts keep the first certificate, never pool.
-    Unidentified coverage records retain their separate non-count contract.
+    Unidentified records retain their non-count contract and unique stratum/rule
+    identity. A different label or hash cannot create another coverage vote.
     """
     certificates = list(certificates)
     kinds = {c.get('evidence_kind') for c in certificates}
     if len(kinds) > 1:
         raise EvidenceError('Synthetic and saved counts cannot be mixed')
     documents = []
+    coverage = set()
+    targets = set()
     for item in certificates:
         if item.get('schema_version') == CERTIFICATE_SCHEMA:
             document = {key: item[key] for key in (
@@ -251,6 +254,18 @@ def checked_certificate_batch(certificates: Iterable[Mapping[str, Any]]) -> list
                 'stratum', 'decision_rule', 'counts', 'attempted_pairs', 'first_exclusion_counts')}
             document.update(schema_version=COUNT_SCHEMA, transitions=item.get('transitions'))
             documents.append(document)
+        elif item.get('schema_version') == UNIDENTIFIED_STRATUM_SCHEMA:
+            stratum = canonical_hash(item['stratum'])
+            identity = (stratum, canonical_hash(item['decision_rule']))
+            if identity in coverage:
+                raise EvidenceError('Duplicate or conflicting unidentified stratum/rule coverage')
+            coverage.add(identity)
+            target = item['known_target_sha256']
+            if target is not None:
+                identity = (stratum, target)
+                if identity in targets:
+                    raise EvidenceError('Conflicting unidentified target identity across rules')
+                targets.add(identity)
     if documents:
         analyze_batch(documents)
     seen = set()

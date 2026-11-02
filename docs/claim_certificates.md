@@ -68,3 +68,28 @@ certificate. Moving a diagnostic estimate into the strict slot, or retaining
 no-op marginals under strict labels, is rejected. This is consistency checking,
 not external membership or execution authentication.
 
+The public pair command's optional `input_files` provenance is accepted by the
+report consumer as a nonempty array of exact `name`/lowercase SHA-256 records.
+Malformed entries and undeclared fields reject; reports created directly by the
+analysis API may still omit this metadata. Names and digests describe supplied
+files, not authenticated execution.
+
+Diagnostic modes must describe the same observations with only eligibility
+relaxed. Existing transitions, exclusions at gates that remain active,
+functional outcomes and Boolean-completion contributions cannot disappear or
+change. Equal nested cohort sizes require equal fingerprints. These checks do
+not pool the diagnostic populations or promote them to a changed-only claim.
+
+An unidentified record has one stratum/rule coverage identity, not a new identity
+for each `claim_id` or certificate hash. Duplicate or conflicting records for
+that identity reject, including metadata-only repeats. Reusing a known-target
+identity under a different rule also rejects; genuinely distinct rule strata
+remain separate. Missing-only records still supply denials, not admitted counts.
+
+The default `tests/contract` discovery includes these receiving-contract
+regressions. To check the same boundary controls with Python assertions disabled:
+
+```sh
+python -O -B -m unittest tests.contract.test_receiving_contracts tests.contract.test_report_consistency -v
+```
+
