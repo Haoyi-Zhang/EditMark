@@ -6,6 +6,8 @@ import itertools
 import json
 import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -31,7 +33,34 @@ def basis():
     return report(rows)
 
 
+def original_check_basis(reason):
+    """Two synthetic identities: one admitted, one stopped at the named gate."""
+    raw = fixture('excluded')
+    side, field, changes = {
+        'original_validation_unavailable': (
+            'original', 'validation', dict(available=False, passed=None)),
+        'original_checks_unknown': ('original', 'validation', dict(passed=None)),
+        'original_checks_failed': ('original', 'validation', dict(passed=False)),
+        'edited_validation_unavailable': (
+            'edited', 'validation', dict(available=False, passed=None)),
+        'edited_checks_failed': ('edited', 'validation', dict(passed=False)),
+        'edited_checks_unknown': ('edited', 'validation', dict(passed=None)),
+        'check_contract_unknown': ('edited', 'validation', dict(contract_id=None)),
+        'check_contract_changed': ('edited', 'validation', dict(contract_id='other')),
+        'decision_rule_unknown': ('edited', 'detection', dict(rule_id=None)),
+        'decision_rule_changed': ('edited', 'detection', dict(rule_id='other')),
+    }[reason]
+    raw[side][field].update(changes)
+    return report([Pair.parse(fixture('admitted')), Pair.parse(raw)])
+
+
 class PairReportConsistencyTests(unittest.TestCase):
+    def run_cli(self, module, *args):
+        return subprocess.run(
+            [sys.executable, '-B', '-m', module, *map(str, args)],
+            cwd=ROOT, env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'},
+            capture_output=True, text=True, timeout=30)
+
     def reject_both_routes(self, value):
         with self.assertRaises(EvidenceError):
             certificate.certificates_from_pair_report(value, CLAIM)
@@ -191,16 +220,135 @@ class PairReportConsistencyTests(unittest.TestCase):
         self.assertEqual([v['decision'] for v in values], ['admissible', 'not_admissible', 'not_admissible'])
         for value in values: verify.verify_certificate(value)
 
+    def test_later_exclusions_require_passing_original_checks_in_every_mode(self):
+        reasons = (
+            'edited_validation_unavailable', 'edited_checks_failed', 'edited_checks_unknown',
+            'check_contract_unknown', 'check_contract_changed',
+            'decision_rule_unknown', 'decision_rule_changed',
+        )
+        for reason in reasons:
+            valid = original_check_basis(reason)
+            aggregates.validate_pair_report(valid)
+            for estimate in valid['strata'][0]['estimates'].values():
+                self.assertEqual(estimate['first_exclusion_counts'], {reason: 1})
+                self.assertEqual(estimate['distinct_originals'], dict(
+                    count=2, known_check_results=2, passing=2, pass_rate=1.0))
+            # Mirror the contradiction in all modes so nesting is not the gate
+            # that rejects it. Exercise missing and falsely failed disclosures.
+            for known in (1, 2):
+                bad = copy.deepcopy(valid)
+                for mode, estimate in bad['strata'][0]['estimates'].items():
+                    estimate['distinct_originals'].update(
+                        known_check_results=known, passing=1, pass_rate=1 / known)
+                    with self.subTest(reason=reason, known=known, mode=mode):
+                        with self.assertRaisesRegex(EvidenceError, 'original-check'):
+                            aggregates._pair_estimate(estimate, mode)
+                with self.subTest(reason=reason, known=known):
+                    with self.assertRaises(EvidenceError):
+                        aggregates.validate_pair_report(bad)
+                    self.reject_both_routes(bad)
+
+    def test_original_checks_missing_unknown_or_failed_remain_excluded(self):
+        for reason in ('original_validation_unavailable', 'original_checks_unknown',
+                       'original_checks_failed'):
+            value = original_check_basis(reason)
+            aggregates.validate_pair_report(value)
+            known = 2 if reason == 'original_checks_failed' else 1
+            for estimate in value['strata'][0]['estimates'].values():
+                self.assertEqual(estimate['first_exclusion_counts'], {reason: 1})
+                self.assertEqual(estimate['distinct_originals'], dict(
+                    count=2, known_check_results=known, passing=1, pass_rate=1 / known))
+            with self.subTest(reason=reason), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / 'synthetic-report.json'
+                path.write_text(json.dumps(value), encoding='utf-8')
+                bundle, result = Path(directory) / 'bundle.json', Path(directory) / 'verify.json'
+                created = self.run_cli('editmark_audit.certificate', path, '--claim', CLAIM,
+                                       '--out', bundle)
+                self.assertEqual(created.returncode, 0, created.stderr)
+                checked = self.run_cli('editmark_audit.verify', bundle, '--basis', path,
+                                       '--out', result)
+                self.assertEqual(checked.returncode, 0, checked.stderr)
+                self.assertTrue(loads(result.read_text(encoding='utf-8'))['basis_verified'])
+
+    def test_original_check_contradictions_reject_real_cli_and_both_basis_bundles(self):
+        valid = original_check_basis('edited_validation_unavailable')
+        certificates = certificate.certificates_from_pair_report(valid, CLAIM)
+        for known in (1, 2):
+            bad = copy.deepcopy(valid)
+            for estimate in bad['strata'][0]['estimates'].values():
+                estimate['distinct_originals'].update(
+                    known_check_results=known, passing=1, pass_rate=1 / known)
+            with self.subTest(known=known), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                path = root / 'synthetic-inconsistent-report.json'
+                path.write_text(json.dumps(bad), encoding='utf-8')
+                output = root / 'must-not-certify.json'
+                created = self.run_cli('editmark_audit.certificate', path, '--claim', CLAIM,
+                                       '--out', output)
+                self.assertEqual(created.returncode, 2, created.stderr)
+                self.assertIn('original-check', created.stderr)
+                self.assertFalse(output.exists())
+                for schema in (CERTIFICATE_BUNDLE_SCHEMA, COVERAGE_BUNDLE_SCHEMA):
+                    bundle = dict(schema_version=schema,
+                                  input_file=dict(name=path.name, sha256=digest(path)),
+                                  requested_claim=CLAIM, certificates=certificates)
+                    # A matching input digest must not hide invalid report facts.
+                    self.assertEqual(verify.verify_bundle(bundle)['certificates_verified'], 1)
+                    with self.assertRaises(EvidenceError):
+                        verify.verify_bundle_against_basis(bundle, path)
+                    source, result = root / (schema + '.json'), root / 'must-not-verify.json'
+                    source.write_text(json.dumps(bundle), encoding='utf-8')
+                    checked = self.run_cli('editmark_audit.verify', source, '--basis', path,
+                                           '--out', result)
+                    self.assertEqual(checked.returncode, 2, checked.stderr)
+                    self.assertIn('original-check', checked.stderr)
+                    self.assertFalse(result.exists())
+
+    def test_reused_originals_are_counted_per_stratum_not_per_report_or_hash(self):
+        raw = fixture('shared')
+        rows = [Pair.parse(raw), Pair.parse(raw)]  # An identical duplicate is removed.
+        for field, replacement in (('edit', 'another'), ('variant_id', 'v1'),
+                                   ('replicate_id', 'r1')):
+            reused = copy.deepcopy(raw); reused[field] = replacement
+            rows.append(Pair.parse(reused))
+        self.assertEqual(len({pair.original_key for pair in rows}), 2)
+        self.assertEqual(len({pair.original.source_sha256 for pair in rows}), 1)
+        value = report(rows)
+        aggregates.validate_pair_report(value)
+        self.assertEqual((value['input_pair_count'], value['unique_pair_count'],
+                          value['stratum_count']), (5, 4, 3))
+        for stratum in value['strata']:
+            for estimate in stratum['estimates'].values():
+                self.assertEqual(estimate['distinct_originals']['count'],
+                                 estimate['attempted_pairs'])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); path = root / 'synthetic-reuse-report.json'
+            path.write_text(json.dumps(value), encoding='utf-8')
+            bundle, result = root / 'bundle.json', root / 'verify.json'
+            created = self.run_cli('editmark_audit.certificate', path, '--claim', CLAIM,
+                                   '--out', bundle)
+            self.assertEqual(created.returncode, 0, created.stderr)
+            checked = self.run_cli('editmark_audit.verify', bundle, '--basis', path,
+                                   '--out', result)
+            self.assertEqual(checked.returncode, 0, checked.stderr)
+            verified = loads(result.read_text(encoding='utf-8'))
+            self.assertTrue(verified['basis_verified'])
+            self.assertEqual(verified['certificates_verified'], 3)
+
     def test_retained_certificates_keep_exact_content(self):
         claims = certificate.CLAIMS
         for directory in ('semcodebook_cpu', 'owned_finite_carrier'):
             root = ROOT / 'results' / directory
             raw = load_rows(root / 'pairs.jsonl')
+            retained_report = loads((root / 'pair-report.json').read_text(encoding='utf-8'))
+            aggregates.validate_pair_report(retained_report)
             for claim in claims:
                 saved = loads((root / (claim + '.json')).read_text(encoding='utf-8'))
                 current = certificate.certificates_from_raw_pairs(raw, claim)
                 with self.subTest(directory=directory, claim=claim):
                     self.assertEqual(current, saved['certificates'])
+                    self.assertEqual(certificate.certificates_from_pair_report(retained_report, claim),
+                                     saved['certificates'])
                     self.assertTrue(verify.verify_bundle_against_basis(saved, root / 'pairs.jsonl')['basis_verified'])
 
     def test_retained_owned_source_inventory_requires_exact_live_or_preimage_bytes(self):

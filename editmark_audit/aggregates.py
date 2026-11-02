@@ -299,9 +299,22 @@ def _pair_estimate(estimate: Mapping[str, Any], mode: str) -> Mapping[str, Any]:
         'count', 'known_check_results', 'passing', 'pass_rate'))
     distinct, known, passing = (count(original[k], 'distinct_originals.' + k)
                                 for k in ('count', 'known_check_results', 'passing'))
-    # One fixed edit/variant stratum has one deduplicated pair per original key.
+    # report() deduplicates Pair.key = original_key + (edit, variant_id), then
+    # groups by a stratum fixing edit/variant. Thus this equality is local to
+    # one stratum, not a claim about originals reused across edits or variants.
     if not target <= passing <= known <= distinct == attempted:
         raise EvidenceError('inconsistent distinct-original counts')
+    # precondition() checks original availability/pass before every edited
+    # validation, contract and rule gate. Targets and these disjoint later
+    # exclusions therefore require known passing originals, even when edited
+    # validation is unavailable. Earlier exclusions may also have passing
+    # originals, so this is a lower bound, not an imputation or an equality.
+    original_passes = target + sum(exclusions.get(key, 0) for key in (
+        'edited_validation_unavailable', 'edited_checks_failed', 'edited_checks_unknown',
+        'check_contract_unknown', 'check_contract_changed',
+        'decision_rule_unknown', 'decision_rule_changed'))
+    if passing < original_passes:
+        raise EvidenceError('original-check coverage contradicts ordered validation exclusions')
     if (exclusions.get('original_checks_failed', 0) > known - passing
             or exclusions.get('original_validation_unavailable', 0)
             + exclusions.get('original_checks_unknown', 0) > attempted - known):
