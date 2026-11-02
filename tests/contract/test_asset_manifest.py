@@ -45,6 +45,24 @@ class AssetManifestTests(unittest.TestCase):
         value = json.loads((builder.ROOT / 'analysis/release_facts.json').read_text())
         self.assertEqual(value['contract_test_count'], builder.count_test_methods())
 
+    def test_supplementary_count_matches_current_discovery_selection(self):
+        value = json.loads((builder.ROOT / 'analysis/release_facts.json').read_text())
+        self.assertEqual(value['supplementary_test_count'], builder.count_test_methods('regressions'))
+
+    def test_both_generated_counts_are_consumed_without_relabeling_history(self):
+        root = builder.ROOT
+        facts = json.loads((root / 'analysis/release_facts.json').read_text())
+        macros = (root.parent / 'paper/tosem/generated/release_facts.tex')
+        if macros.is_file():
+            text = macros.read_text(encoding='utf-8')
+            for command, key in (('ContractTestCount', 'contract_test_count'),
+                                 ('SupplementaryTestCount', 'supplementary_test_count')):
+                self.assertIn('\\newcommand{\\' + command + '}{' + str(facts[key]) + '}', text)
+        readme = (root / 'README.md').read_text(encoding='utf-8')
+        self.assertIn(str(facts['contract_test_count']) + ' contract', readme)
+        self.assertIn(str(facts['supplementary_test_count']) + ' supplementary', readme)
+        self.assertIn('203 contract test methods', readme)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -32,8 +32,12 @@ This command runs the evidence-contract tests, rebuilds the machine-readable fac
 
 The retained Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
 
-The current model-free suite runs 247 contract methods and 23 supplementary
-methods separately. It checks eligibility truth tables, missing-decision
+<!-- BEGIN GENERATED SOURCE TEST COUNTS -->
+The current model-free source selection contains 280 contract
+methods and 30 supplementary methods. These counts describe
+the current source, not a newly executed or archived test run.
+<!-- END GENERATED SOURCE TEST COUNTS -->
+The model-free checks cover eligibility truth tables, missing-decision
 completions, typed certificate commitments, source-basis consistency, exact
 fingerprints and exclusive publication. The archived 203-method Ubuntu
 execution remains separate. The opt-in finite source fixture has six regression
@@ -51,15 +55,22 @@ make paper
 ```
 
 `make paper` depends on `assets`: it rebuilds the real-data vector PDFs and PNG
-previews and runs seven finite plotting-consumer tests. `make assets` can also be
+previews and runs the finite plotting-consumer tests. `make assets` can also be
 used on its own. Missing plotting dependencies or malformed consumed data fail
 nonzero; no old PNG is a successful fallback. The default `make check` remains
 model-free and does not require plotting dependencies.
 
-The full packet's `paper/tosem/Makefile` also regenerates all three actual
+The full packet's `paper/tosem/Makefile` also regenerates all four actual
 PDF/PNG figure consumers and table fragments before TeX, through the same
 `build_paper_assets.py` entrypoint. Its standalone paper target does not refresh
 only the contract diagram while accepting cached data plots.
+
+The same producer verifies the retained natural-module activity, rollback and
+separate statistics follow-up, regenerates their two TeX fragments and audit
+matrix PDF/PNG, and tracks the consumed archives/manifests and display hashes.
+Missing or corrupt retained natural evidence fails the build even if cached
+figures exist. This is saved-data verification and rendering only: no upstream
+test suites, embedding, detector calls or new measurements are run.
 
 ## Three analysis interfaces and one verifier
 

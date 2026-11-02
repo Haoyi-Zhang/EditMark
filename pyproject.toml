@@ -10,9 +10,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [
-  {name = "Haoyi Zhang", email = "hyeliozhang@gmail.com"},
   {name = "Huaijin Ran", email = "huaijin003@e.ntu.edu.sg"},
-  {name = "Xunzhu Tang", email = "realdanieltang@gmail.com"},
+  {name = "Haoyi Zhang", email = "hyeliozhang@gmail.com"},
+  {name = "Yuqiang Sun", email = "yuqiang.sun@ntu.edu.sg"},
+  {name = "Jiongchi Yu", email = "jiongchiyu@acm.org"},
 ]
 keywords = ["code-watermarking", "measurement", "software-edits", "reproducibility", "claim-certificates"]
 dependencies = []

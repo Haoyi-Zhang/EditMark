@@ -5,7 +5,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.verify_release_hygiene import verify, EXPECTED_AUTHORS
+from scripts.verify_release_hygiene import verify, author_names
+
+# Independent literal release contract, not a fixture derived from the gate.
+CURRENT_AUTHORS = ("Huaijin Ran", "Haoyi Zhang", "Yuqiang Sun", "Jiongchi Yu")
 
 
 class ReleaseHygieneTests(unittest.TestCase):
@@ -14,7 +17,7 @@ class ReleaseHygieneTests(unittest.TestCase):
         (paper / "sections").mkdir(parents=True)
         (paper / "main.tex").write_text(r"\input{authors}\input{sections/body}", encoding="utf-8")
         (paper / "authors.tex").write_text(
-            "".join("\\author{" + name + "}\n" for name in EXPECTED_AUTHORS),
+            "".join("\\author{" + name + "}\n" for name in CURRENT_AUTHORS),
             encoding="utf-8",
         )
         (paper / "sections" / "body.tex").write_text("body\n", encoding="utf-8")
@@ -43,10 +46,35 @@ class ReleaseHygieneTests(unittest.TestCase):
             self.fixture(root)
             (root.parent / "paper" / "tosem" / "authors.tex").write_text(
                 "".join("\\author{" + name + "}\n" for name in
-                        (EXPECTED_AUTHORS[1], EXPECTED_AUTHORS[0], *EXPECTED_AUTHORS[2:])),
+                        (CURRENT_AUTHORS[1], CURRENT_AUTHORS[0], *CURRENT_AUTHORS[2:])),
                 encoding="utf-8",
             )
             self.assertTrue(any("author list" in item for item in verify(root)))
+
+    def test_missing_current_author_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "artifact"
+            root.mkdir()
+            self.fixture(root)
+            (root.parent / "paper/tosem/authors.tex").write_text(
+                "".join("\\author{" + name + "}\n" for name in CURRENT_AUTHORS[:-1]),
+                encoding="utf-8")
+            self.assertTrue(any("author list" in item for item in verify(root)))
+
+    def test_obsolete_literal_roster_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "artifact"
+            root.mkdir()
+            self.fixture(root)
+            (root.parent / "paper/tosem/authors.tex").write_text(
+                "\\author{Haoyi Zhang}\n\\author{Huaijin Ran}\n\\author{Xunzhu Tang}\n"
+                "\\author{Kisub Kim}\n" + r"\author{Tegawend\'{e} F. Bissyand\'{e}}" + "\n",
+                encoding="utf-8")
+            self.assertTrue(any("author list" in item for item in verify(root)))
+
+    def test_author_parser_preserves_nested_accents(self):
+        name = r"Tegawend\'{e} F. Bissyand\'{e}"
+        self.assertEqual(author_names("\\author{" + name + "}"), (name,))
 
     def test_inactive_manuscript_source_is_rejected(self):
         with tempfile.TemporaryDirectory() as td:

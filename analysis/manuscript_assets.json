@@ -1,9 +1,9 @@
 {
   "assets": [
     {
-      "bytes": 595,
+      "bytes": 637,
       "path": "paper/tosem/generated/release_facts.tex",
-      "sha256": "d51e53c41a6b514d6b16d0c1815adf4ccd264cd4277bb370cb1c4773c35cbd5e"
+      "sha256": "d1df60e989edd08bd9c02f0aaec5f135bd6b1442371a6a7805cb0916bd9bedd8"
     },
     {
       "bytes": 1214,
@@ -61,9 +61,44 @@
       "sha256": "76366e7dd8c2dec6dd0f05527ad28af7a9c9f91042fe0bcdc2121558213f45bc"
     },
     {
-      "bytes": 464,
+      "bytes": 499,
       "path": "artifact/analysis/release_facts.json",
-      "sha256": "a482aeefb110f11a489221194df0eb393a97bd8ed5e68e76279df64f78ee294f"
+      "sha256": "fdb968a227fe547ee3b4f24bc7c960eff80379be7f4a648dedf3de435017deda"
+    },
+    {
+      "bytes": 359,
+      "path": "paper/tosem/generated/natural_module_values.tex",
+      "sha256": "8d30e39b53c80d34c4f33e832e9e8ed2f11d2879d64a8ab3a59b28e5013dcd6f"
+    },
+    {
+      "bytes": 189,
+      "path": "paper/tosem/generated/natural_module_rows.tex",
+      "sha256": "f62ee7e1c4224d52afde3615be945bf5ace9aca6e6446ae74fa3622215321388"
+    },
+    {
+      "bytes": 18257,
+      "path": "paper/tosem/figures/natural_modules.pdf",
+      "sha256": "83b6dbc16e58c23ad218b3dd4de4470e93b689919c3acbf46a1d7e3ed79972e8"
+    },
+    {
+      "bytes": 18257,
+      "path": "artifact/figures/natural_modules.pdf",
+      "sha256": "83b6dbc16e58c23ad218b3dd4de4470e93b689919c3acbf46a1d7e3ed79972e8"
+    },
+    {
+      "bytes": 802,
+      "path": "artifact/figures/natural_modules_binding.json",
+      "sha256": "14ca24f21f2555d1aeeee89fea0ffdf78217c51fbdf947736222616684247d94"
+    },
+    {
+      "bytes": 36369,
+      "path": "artifact/figures/natural_modules.png",
+      "sha256": "67108b1d4b957e0811e5bf7297d20375639fe2b51fdf56645a54bbeb5e171bda"
+    },
+    {
+      "bytes": 36369,
+      "path": "paper/tosem/figures/natural_modules.png",
+      "sha256": "67108b1d4b957e0811e5bf7297d20375639fe2b51fdf56645a54bbeb5e171bda"
     }
   ],
   "basis": [
@@ -72,7 +107,63 @@
     "analysis/method_profiles.json",
     "analysis/edit_component_audit.json",
     "results/tables/suite_all_models_methods/method_attack_summary.csv",
-    "results/released-style/rows.json"
+    "results/released-style/rows.json",
+    "data/natural-modules/protocol.json",
+    "data/natural-modules/inputs.zip",
+    "data/released-style/tool.json",
+    "results/natural-modules/evidence.zip",
+    "results/natural-modules/evidence-members.json",
+    "results/natural-modules/registration.json",
+    "results/natural-modules/statistics-validation/evidence.zip",
+    "results/natural-modules/statistics-validation/evidence-members.json",
+    "results/natural-modules/statistics-validation/registration.json"
+  ],
+  "basis_files": [
+    {
+      "bytes": 7877,
+      "path": "artifact/data/natural-modules/protocol.json",
+      "sha256": "9d61aa05081eadf76ab48f6d87a09ea033e3dff0749bd64299e375c61f366152"
+    },
+    {
+      "bytes": 184211,
+      "path": "artifact/data/natural-modules/inputs.zip",
+      "sha256": "2cbb68ff0ced032b40cd6e8d9b2b7494e94ee0515a7225824187ef7d5fc1b68e"
+    },
+    {
+      "bytes": 4483,
+      "path": "artifact/data/released-style/tool.json",
+      "sha256": "98809d152dac4e73a1cdd4c3f0325d8614b33e9b924468d6de5001486be95c5c"
+    },
+    {
+      "bytes": 887213,
+      "path": "artifact/results/natural-modules/evidence.zip",
+      "sha256": "44d5d9aa016e102cf9e95cea62325f41f4d9e5b24eb1aba1a6675f3fe861d2df"
+    },
+    {
+      "bytes": 1507,
+      "path": "artifact/results/natural-modules/evidence-members.json",
+      "sha256": "2d6cbaca4c941bec693fd21e0ab8f31bdbfdd09898b56d7d0b66398d9d6cd380"
+    },
+    {
+      "bytes": 8461,
+      "path": "artifact/results/natural-modules/registration.json",
+      "sha256": "de23bc20d61146a5308f70f40974f6b7e7032fa806a2d2b3317064bba3bc7afd"
+    },
+    {
+      "bytes": 96007,
+      "path": "artifact/results/natural-modules/statistics-validation/evidence.zip",
+      "sha256": "a51cea8541987fcd5c042dd7f9049c2612a71dcf47dd55fceedf5f322c27bdb9"
+    },
+    {
+      "bytes": 404,
+      "path": "artifact/results/natural-modules/statistics-validation/evidence-members.json",
+      "sha256": "3e2c92ea3c082f0ea23025f81283dfe47c669a8f5aaac80c6043acb2d1fad3b3"
+    },
+    {
+      "bytes": 1923,
+      "path": "artifact/results/natural-modules/statistics-validation/registration.json",
+      "sha256": "fe118474576345de4d289eac94ff7ad6b53870b5888ca0ee4084e1df8561b3f2"
+    }
   ],
   "no_experiment_execution": true
 }

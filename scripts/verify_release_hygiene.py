@@ -17,8 +17,7 @@ FORBIDDEN_SEGMENT = re.compile(
     r"draft(?:[-_].*)?|round\d*|history|old|backup|previous|superseded)$",
     re.IGNORECASE,
 )
-EXPECTED_AUTHORS = ("Haoyi Zhang", "Huaijin Ran", "Xunzhu Tang", "Kisub Kim",
-                    r"Tegawend\'{e} F. Bissyand\'{e}")
+EXPECTED_AUTHORS = ("Huaijin Ran", "Haoyi Zhang", "Yuqiang Sun", "Jiongchi Yu")
 
 
 def author_names(source: str) -> tuple[str, ...]:

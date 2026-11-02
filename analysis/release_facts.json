@@ -1,7 +1,7 @@
 {
   "claim_type_count": 5,
   "configured_records": 1605,
-  "contract_test_count": 275,
+  "contract_test_count": 280,
   "edit_pass_cell_max": 12.46,
   "edit_pass_cell_min": 1.0,
   "edited_pass_max": 3.4000000000000004,
@@ -14,5 +14,6 @@
   "mutation_case_count": 16,
   "release_records": 1662,
   "run_inventory_rows": 140,
-  "source_groups": 7
+  "source_groups": 7,
+  "supplementary_test_count": 30
 }

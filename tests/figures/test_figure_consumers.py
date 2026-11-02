@@ -9,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
 
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -16,12 +17,16 @@ ROOT=Path(__file__).resolve().parents[2]
 class FigureConsumerTests(unittest.TestCase):
     def fixture(self, temporary):
         root=Path(temporary)/'artifact'
-        (root/'scripts').mkdir(parents=True)
-        for name in ('build_paper_assets.py','plot_figures.py'):
-            shutil.copyfile(ROOT/'scripts'/name,root/'scripts'/name)
-        shutil.copytree(ROOT/'fonts',root/'fonts')
+        for name in ('scripts', 'editmark_audit', 'fixtures', 'fonts',
+                     'tests/contract', 'regressions', 'data/natural-modules',
+                     'data/released-style', 'results/natural-modules',
+                     'results/released-style'):
+            shutil.copytree(ROOT/name, root/name,
+                            ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+        shutil.copyfile(ROOT/'README.md', root/'README.md')
         (root/'analysis').mkdir()
-        for name in ('source_inventory.json','method_profiles.json','edit_component_audit.json'):
+        for name in ('source_inventory.json','method_profiles.json','edit_component_audit.json',
+                     'frozen_audit.json','contract_mutations.json'):
             shutil.copyfile(ROOT/'analysis'/name,root/'analysis'/name)
         table=root/'results/tables/suite_all_models_methods/method_attack_summary.csv'
         table.parent.mkdir(parents=True)
@@ -56,7 +61,7 @@ class FigureConsumerTests(unittest.TestCase):
             root,_=self.fixture(td)
             result=self.build(root);self.assertEqual(result.returncode,0,result.stderr)
             manifest=json.loads((root/'analysis/manuscript_assets.json').read_text())
-            for name in ('evidence_contract','edit_functionality','application_coverage'):
+            for name in ('evidence_contract','edit_functionality','application_coverage','natural_modules'):
                 for suffix in ('pdf','png'):
                     path=root/'figures'/f'{name}.{suffix}'
                     paper=root.parent/'paper/tosem/figures'/path.name
@@ -64,6 +69,20 @@ class FigureConsumerTests(unittest.TestCase):
                     self.assertEqual(path.read_bytes(),paper.read_bytes())
                     item=next(r for r in manifest['assets'] if r['path']==paper.relative_to(root.parent).as_posix())
                     self.assertEqual(item['sha256'],hashlib.sha256(paper.read_bytes()).hexdigest())
+            for name in ('natural_module_values.tex', 'natural_module_rows.tex'):
+                path = root.parent/'paper/tosem/generated'/name
+                # TeX display text is portable across CRLF/LF working copies;
+                # raw scientific archive bytes remain separately hash-bound.
+                self.assertEqual(path.read_text(encoding='utf-8'),
+                                 (ROOT.parent/'paper/tosem/generated'/name).read_text(encoding='utf-8'))
+                self.assertTrue(any(r['path'] == path.relative_to(root.parent).as_posix()
+                                    for r in manifest['assets']))
+            binding = root/'figures/natural_modules_binding.json'
+            self.assertTrue(any(r['path'] == binding.relative_to(root.parent).as_posix()
+                                for r in manifest['assets']))
+            for item in manifest['basis_files']:
+                self.assertEqual(item['sha256'], hashlib.sha256(
+                    (root.parent/item['path']).read_bytes()).hexdigest())
 
     def test_one_owned_csv_cell_refreshes_both_formats_not_old_cache(self):
         with tempfile.TemporaryDirectory() as td:
@@ -131,3 +150,42 @@ class FigureConsumerTests(unittest.TestCase):
             self.assertNotEqual(result.returncode,0)
             self.assertIn('Plotting requires matplotlib',result.stderr)
             self.assertNotIn('PAPER_ASSETS_OK',result.stdout)
+
+    def test_missing_natural_evidence_fails_before_refreshing_cached_displays(self):
+        for name in ('evidence.zip', 'evidence-members.json',
+                     'statistics-validation/evidence.zip'):
+            with self.subTest(member=name), tempfile.TemporaryDirectory() as td:
+                root, _ = self.fixture(td)
+                (root/'results/natural-modules'/name).unlink()
+                paper = root.parent/'paper/tosem/figures'
+                paper.mkdir()
+                cached = paper/'natural_modules.pdf'
+                cached.write_bytes(b'old natural display must not count as success')
+                result = self.build(root)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('Missing retained natural evidence', result.stderr)
+                self.assertNotIn('PAPER_ASSETS_OK', result.stdout)
+                self.assertEqual(cached.read_bytes(), b'old natural display must not count as success')
+
+    def test_corrupt_natural_evidence_fails_before_refreshing_cached_displays(self):
+        for name in ('evidence.zip', 'evidence-members.json',
+                     'statistics-validation/evidence.zip', 'valid-zip-wrong-member'):
+            with self.subTest(member=name), tempfile.TemporaryDirectory() as td:
+                root, _ = self.fixture(td)
+                if name == 'valid-zip-wrong-member':
+                    archive = root/'results/natural-modules/evidence.zip'
+                    with zipfile.ZipFile(archive) as stored:
+                        members = [(item, stored.read(item.filename)) for item in stored.infolist()]
+                    with zipfile.ZipFile(archive, 'w') as stored:
+                        for item, raw in members:
+                            stored.writestr(item, raw + b'\n' if item.filename == 'rows.json' else raw)
+                else:
+                    (root/'results/natural-modules'/name).write_bytes(b'corrupt retained evidence')
+                paper = root.parent/'paper/tosem/figures'
+                paper.mkdir()
+                cached = paper/'natural_modules.pdf'
+                cached.write_bytes(b'old natural display must not count as success')
+                result = self.build(root)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertNotIn('PAPER_ASSETS_OK', result.stdout)
+                self.assertEqual(cached.read_bytes(), b'old natural display must not count as success')

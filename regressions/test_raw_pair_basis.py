@@ -92,7 +92,7 @@ class RawPairBasisTests(unittest.TestCase):
 
 
 class CurrentMetadataTests(unittest.TestCase):
-    def test_current_author_order_and_nested_accents_are_preserved(self):
+    def test_current_literal_author_order_is_preserved(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td) / "artifact"
             paper = root.parent / "paper/tosem"
@@ -100,12 +100,24 @@ class CurrentMetadataTests(unittest.TestCase):
             # Literal current-project identity, independent of the validator's
             # constant. Code-only test discovery needs no sibling manuscript.
             (paper / "authors.tex").write_text(
-                "\\author{Haoyi Zhang}\n\\author{Huaijin Ran}\n\\author{Xunzhu Tang}\n"
-                "\\author{Kisub Kim}\n" + r"\author{Tegawend\'{e} F. Bissyand\'{e}}" + "\n",
+                "\\author{Huaijin Ran}\n\\author{Haoyi Zhang}\n"
+                "\\author{Yuqiang Sun}\n\\author{Jiongchi Yu}\n",
                 encoding="utf-8")
             (paper / "main.tex").write_text(r"\input{authors}", encoding="utf-8")
             (paper / "main.pdf").write_bytes(b"%PDF-1.4\n%%EOF\n")
             self.assertEqual(hygiene(root), [])
+
+    def test_current_release_package_author_names_and_emails(self):
+        import re
+        source = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+        block = re.search(r"(?m)^authors\s*=\s*\[(.*?)\]", source, re.S).group(1)
+        found = re.findall(r'\{name = "([^"]+)", email = "([^"]+)"\}', block)
+        self.assertEqual(found, [
+            ("Huaijin Ran", "huaijin003@e.ntu.edu.sg"),
+            ("Haoyi Zhang", "hyeliozhang@gmail.com"),
+            ("Yuqiang Sun", "yuqiang.sun@ntu.edu.sg"),
+            ("Jiongchi Yu", "jiongchiyu@acm.org"),
+        ])
 
 
 if __name__ == "__main__":

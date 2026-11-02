@@ -139,15 +139,33 @@ def write_json(path: Path, value: Any):
     path.write_text(json.dumps(value,indent=2,sort_keys=True,allow_nan=False)+'\n',encoding='utf-8')
 
 
-def count_test_methods() -> int:
+def count_test_methods(selection: str = 'tests/contract') -> int:
     total=0
-    for path in sorted((ROOT/'tests/contract').glob('test_*.py')):
+    for path in sorted((ROOT/selection).glob('test_*.py')):
         tree=ast.parse(path.read_text(encoding='utf-8'),filename=str(path))
         total += sum(
             isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)) and node.name.startswith('test_')
             for node in ast.walk(tree)
         )
     return total
+
+
+def refresh_readme_test_counts(facts):
+    """Refresh current source selections, never historical execution records."""
+    path = ROOT / 'README.md'
+    text = path.read_text(encoding='utf-8')
+    start = '<!-- BEGIN GENERATED SOURCE TEST COUNTS -->'
+    end = '<!-- END GENERATED SOURCE TEST COUNTS -->'
+    if text.count(start) != 1 or text.count(end) != 1:
+        raise EvidenceError('README source-test count markers must occur exactly once')
+    before, rest = text.split(start)
+    _, after = rest.split(end)
+    passage = (
+        f"\nThe current model-free source selection contains {facts['contract_test_count']} contract\n"
+        f"methods and {facts['supplementary_test_count']} supplementary methods. These counts describe\n"
+        "the current source, not a newly executed or archived test run.\n"
+    )
+    path.write_text(before + start + passage + end + after, encoding='utf-8')
 
 
 def build_facts(mutation_count: int):
@@ -187,6 +205,7 @@ def build_facts(mutation_count: int):
         ),
         'mbxp_go_configured':audit['mbxp_canonical_go_records'],
         'contract_test_count':count_test_methods(),
+        'supplementary_test_count':count_test_methods('regressions'),
         'mutation_case_count':mutation_count,
         'claim_type_count':5,
     }
@@ -205,11 +224,13 @@ def build_facts(mutation_count: int):
         f"\\newcommand{{\\HighCoverageEditPassMax}}{{{facts['high_coverage_edit_pass_max']:.2f}\\%}}",
         f"\\newcommand{{\\ConfiguredGoRecords}}{{{facts['mbxp_go_configured']}}}",
         f"\\newcommand{{\\ContractTestCount}}{{{facts['contract_test_count']}}}",
+        f"\\newcommand{{\\SupplementaryTestCount}}{{{facts['supplementary_test_count']}}}",
         f"\\newcommand{{\\MutationCaseCount}}{{{facts['mutation_case_count']}}}",
         f"\\newcommand{{\\ClaimTypeCount}}{{{facts['claim_type_count']}}}",
     ]
     (ROOT.parent / 'paper/tosem/generated/release_facts.tex').write_text('\n'.join(lines)+'\n')
     write_json(ROOT/'analysis/release_facts.json',facts)
+    refresh_readme_test_counts(facts)
     return facts
 
 
