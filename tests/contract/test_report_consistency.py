@@ -203,15 +203,34 @@ class PairReportConsistencyTests(unittest.TestCase):
                 'root-link': stack.enter_context(directory_alias(private / 'root-alias', root))
                              / 'results/owned_finite_carrier/pairs.jsonl',
             }
+            for label, alias in (
+                ('root-hardlink', root / 'linked-basis.jsonl'),
+                ('cohort-hardlink-renamed', cohort / 'linked-basis.data'),
+            ):
+                os.link(basis_path, alias)
+                stack.callback(alias.unlink)
+                aliases[label] = alias
             if os.name == 'nt':
                 aliases.update({
                     'file-case': cohort / 'PAIRS.JSONL',
                     'directory-case': root / 'RESULTS/OWNED_FINITE_CARRIER/pairs.jsonl',
+                    'trailing-dot': cohort / 'pairs.jsonl.',
+                    'trailing-space': cohort / 'pairs.jsonl ',
                 })
+                import ctypes
+                short_name = ctypes.windll.kernel32.GetShortPathNameW
+                short_name.argtypes = [ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_uint32]
+                short_name.restype = ctypes.c_uint32
+                buffer = ctypes.create_unicode_buffer(32768)
+                length = short_name(str(basis_path), buffer, len(buffer))
+                self.assertGreater(length, 0)
+                self.assertLess(length, len(buffer))
+                if buffer.value != str(basis_path):
+                    aliases['windows-short-name'] = Path(buffer.value)
             # File symlinks may need a Windows privilege; junctions are mandatory.
             # A skipped subcase is visible and does not skip the remaining checks.
             with self.subTest(link='file-symlink-alias-and-escapes'):
-                file_alias = private / 'linked-pairs.jsonl'
+                file_alias = private / 'linked-pairs.data'
                 try:
                     file_alias.symlink_to(basis_path)
                 except OSError as exc:
@@ -282,6 +301,14 @@ class PairReportConsistencyTests(unittest.TestCase):
             check_aliases('changed-measurement', 'measurement SHA-256')
             measurement.unlink()
             check_aliases('missing-measurement', 'measurement.json')
+
+            # An unclassifiable hard link must not silently become generic.
+            # This external sibling has no retained anchor among its ancestors.
+            unknown_link = private / 'unknown-hardlink.jsonl'
+            os.link(basis_path, unknown_link)
+            stack.callback(unknown_link.unlink)
+            self.assertTrue(unknown_link.samefile(basis_path))
+            check(unknown_link, 'multiply-linked basis')
 
             # Copies/renames are generic inputs, not aliases of the owned path.
             generic = private / 'generic/pairs.jsonl'

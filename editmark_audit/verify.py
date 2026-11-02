@@ -64,8 +64,8 @@ def _source_binding(value: Any) -> tuple[str, str]:
     return path, expected
 
 
-def _verify_retained_owned_sources(basis: Path) -> None:
-    """Hash source files as data only; never import or execute either version."""
+def _verify_retained_owned_sources(basis: Path) -> Path:
+    """Check source bytes and return the authoritative input-format path."""
     def owned_root(path: Path) -> Path | None:
         # Path equality follows the host's case semantics, unlike string parts.
         if Path(*path.parts[-3:]) == Path('results/owned_finite_carrier/pairs.jsonl'):
@@ -83,8 +83,26 @@ def _verify_retained_owned_sources(basis: Path) -> None:
     else:
         root = owned_root(resolved)
         if root is None:
-            return
+            # resolve() follows symlinks, not hard links. Compare file identity
+            # with known cohort anchors; never identify copies by byte hash.
+            roots = dict.fromkeys((Path(__file__).resolve().parents[1],
+                                   *resolved.parents))
+            for candidate_root in roots:
+                anchor = candidate_root / 'results/owned_finite_carrier/pairs.jsonl'
+                if anchor.is_file() and resolved.samefile(anchor):
+                    root = candidate_root.resolve()
+                    break
+            if root is None:
+                # An external hard link may hide an anchor beyond our roots.
+                # Require a canonical path or an independent copy, rather than
+                # silently bypassing a potentially retained source contract.
+                if resolved.stat().st_nlink > 1:
+                    raise EvidenceError('unclassified multiply-linked basis; use its canonical path or an independent copy')
+                return resolved
     cohort = root / 'results/owned_finite_carrier'
+    canonical_basis = cohort / 'pairs.jsonl'
+    if not canonical_basis.resolve().is_relative_to(cohort):
+        raise EvidenceError('retained basis path leaves its cohort')
     measurement = cohort / 'measurement.json'
     if not measurement.resolve().is_relative_to(cohort):
         raise EvidenceError('retained measurement path leaves its cohort')
@@ -109,6 +127,7 @@ def _verify_retained_owned_sources(basis: Path) -> None:
                 break
         else:
             raise EvidenceError(f'retained source missing or SHA-256 mismatch: {path}')
+    return canonical_basis.resolve()
 
 
 def _core_hash(certificate: Mapping[str, Any]) -> str:
@@ -258,7 +277,7 @@ def verify_bundle_against_basis(
     bundle: Mapping[str, Any], basis: Path
 ) -> dict[str, Any]:
     result = verify_bundle(bundle)
-    _verify_retained_owned_sources(basis)
+    basis = _verify_retained_owned_sources(basis)
     recorded = bundle['input_file']
     actual_digest = digest(basis)
     if actual_digest != recorded['sha256']:
