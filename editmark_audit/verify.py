@@ -6,6 +6,8 @@ facts embedded in the certificate.  Supplying ``--basis`` additionally checks
 the recorded input digest and regenerates the certificate records from their
 raw-pair, pair-report or exact-count basis. V2 requires full stratum coverage;
 legacy v1 retains its cohort contract and explicitly reports omitted strata.
+The retained results/owned_finite_carrier/pairs.jsonl also requires its original
+measured source inventory: exact live bytes or preserved data-only preimages.
 
 This verifier checks integrity and logical sufficiency.  It does not attest that
 an experiment was executed honestly, that task oracles are correct, or that a
@@ -15,7 +17,8 @@ from __future__ import annotations
 
 import argparse
 from collections.abc import Mapping
-from pathlib import Path
+import hashlib
+from pathlib import Path, PurePosixPath, PureWindowsPath
 import sys
 from typing import Any
 
@@ -40,6 +43,57 @@ from .constants import (
 )
 from .io import EvidenceError, digest, loads, write_new_json
 from .records import checked_object, text
+
+
+# Pin the original raw record, not a regenerated measurement or updated map.
+_OWNED_MEASUREMENT_SHA256 = '9e9fbc56c6421e39950181d063eb9433950bec2f60a7a694e5c4462961fcda6e'
+
+
+def _source_binding(value: Any) -> tuple[str, str]:
+    binding = checked_object(value, 'source_binding', {'path', 'sha256'})
+    path = text(binding.get('path'), 'source_binding.path')
+    relative = PurePosixPath(path)
+    if (relative.is_absolute() or relative.as_posix() != path
+            or '..' in relative.parts or path == '.' or '\\' in path
+            or ':' in path or PureWindowsPath(path).drive):
+        raise EvidenceError('source_binding.path: expected a canonical relative POSIX path')
+    expected = sha256(binding.get('sha256'), 'source_binding.sha256')
+    if expected != binding['sha256']:
+        raise EvidenceError('source_binding.sha256: expected lowercase SHA-256')
+    return path, expected
+
+
+def _verify_retained_owned_sources(basis: Path) -> None:
+    """Hash source files as data only; never import or execute either version."""
+    if (basis.name != 'pairs.jsonl' or basis.parent.name != 'owned_finite_carrier'
+            or basis.parent.parent.name != 'results'):
+        return
+    root = basis.absolute().parents[2].resolve()
+    cohort = root / 'results/owned_finite_carrier'
+    measurement = cohort / 'measurement.json'
+    if not measurement.resolve().is_relative_to(cohort):
+        raise EvidenceError('retained measurement path leaves its cohort')
+    raw = measurement.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != _OWNED_MEASUREMENT_SHA256:
+        raise EvidenceError('retained measurement SHA-256 does not match the original record')
+    inventory = loads(raw.decode('utf-8-sig'))['source_bindings']
+    if not isinstance(inventory, list) or not inventory:
+        raise EvidenceError('retained source_bindings must be a nonempty array')
+    seen: set[str] = set()
+    for value in inventory:
+        path, expected = _source_binding(value)
+        if path.casefold() in seen:
+            raise EvidenceError('duplicate retained source_binding path')
+        seen.add(path.casefold())
+        for base in (root, cohort / 'source-preimage'):
+            candidate = base / path
+            resolved = candidate.resolve()
+            if not resolved.is_relative_to(base):
+                raise EvidenceError(f'retained source path leaves its inventory root: {path}')
+            if candidate.is_file() and digest(candidate) == expected:
+                break
+        else:
+            raise EvidenceError(f'retained source missing or SHA-256 mismatch: {path}')
 
 
 def _core_hash(certificate: Mapping[str, Any]) -> str:
@@ -189,6 +243,7 @@ def verify_bundle_against_basis(
     bundle: Mapping[str, Any], basis: Path
 ) -> dict[str, Any]:
     result = verify_bundle(bundle)
+    _verify_retained_owned_sources(basis)
     recorded = bundle['input_file']
     actual_digest = digest(basis)
     if actual_digest != recorded['sha256']:

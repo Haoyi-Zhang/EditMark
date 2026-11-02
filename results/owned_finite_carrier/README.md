@@ -26,7 +26,30 @@ rederivation checks the supplied source hashes, duplicate identities,
 eligibility and transitions; it does not authenticate execution or external
 origin. `membership_verified` remains false in every claim.
 
-From the artifact root, use a new output directory:
+`measurement.json` and its `source_bindings` remain the original measured
+record, not a map of the current approved source. The exact measured versions
+of `scripts/measure_owned_carrier.py`, `editmark_audit/aggregates.py`,
+`editmark_audit/certificate.py` and `editmark_audit/verify.py` are preserved under
+`source-preimage/` at those same relative paths. They are DATA ONLY: do not
+import or execute them. The other three bindings resolve to exact live bytes.
+No raw measurements, environment, source map or expected digest was rewritten,
+and no rerun or independent deployment is claimed.
+
+The existing basis verifier checks the original measurement's raw SHA-256 and
+every recorded source path/hash when receiving this retained cohort. Each must
+resolve to exact live bytes or the corresponding exact preimage; missing or
+tampered bytes fail closed, without line-ending normalization. For saved-data
+verification only, from the artifact root:
+
+```bash
+python -B -m editmark_audit.verify results/owned_finite_carrier/positive_decision_change.json --basis results/owned_finite_carrier/pairs.jsonl
+python -B -m unittest tests.contract.test_report_consistency -v
+```
+
+These commands never import the fixture, measurement runner or preimages, and
+do not authenticate execution or external origin. The following commands use
+the current runner, not the historical measured producer. From the artifact
+root, use a new output directory:
 
 ```bash
 python -B scripts/measure_owned_carrier.py --out NEW_DIRECTORY

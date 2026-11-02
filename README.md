@@ -33,7 +33,7 @@ This command runs the evidence-contract tests, rebuilds the machine-readable fac
 The retained Ubuntu 24.04 / Python 3.12 run passed all 203 contract test methods. Its passive inventory reconstruction recovered 1,662 released records, 1,605 configured records, 57 exclusions, five model settings, and four methods. Raw outputs are retained in `results/current/`. This run did not generate programs or rerun models or watermark detectors; it does not supply the missing joint program observations described below.
 
 <!-- BEGIN GENERATED SOURCE TEST COUNTS -->
-The current model-free source selection contains 284 contract
+The current model-free source selection contains 286 contract
 methods and 30 supplementary methods. These counts describe
 the current source, not a newly executed or archived test run.
 <!-- END GENERATED SOURCE TEST COUNTS -->
@@ -278,6 +278,17 @@ All five bundles are verified against the raw JSONL, with FPR/AUROC/posterior
 requests still denied. Origin stays `synthetic_test`; this is an authored
 native fixture integration check, not independently sourced study evidence or
 validation of KGW/SWEET/STONE/EWD. Default model-free commands do not execute it.
+
+The unchanged `measurement.json` source inventory describes the measured
+producer, not the current source tree. Four historical producer files are
+preserved byte-for-byte under that cohort's `source-preimage/`, at their
+recorded relative paths; these are data only, never import or execution targets.
+The basis verifier's retained-cohort path pins the original measurement and
+requires every recorded source hash to match either exact live bytes or its
+exact preserved preimage, without line-ending normalization. The default
+contract suite exercises this receiver and missing/tampered-source rejection.
+This preserves provenance without rerunning measurements, resealing records,
+or replacing the current approved source with historical code.
 
 No independent human review or empirical novelty is inferred from these checks.
 

@@ -150,6 +150,80 @@ class PairReportConsistencyTests(unittest.TestCase):
                     self.assertEqual(current, saved['certificates'])
                     self.assertTrue(verify.verify_bundle_against_basis(saved, root / 'pairs.jsonl')['basis_verified'])
 
+    def test_retained_owned_source_inventory_requires_exact_live_or_preimage_bytes(self):
+        saved_root = ROOT / 'results/owned_finite_carrier'
+        saved = loads((saved_root / (CLAIM + '.json')).read_text(encoding='utf-8'))
+        bindings = loads((saved_root / 'measurement.json').read_text(encoding='utf-8'))['source_bindings']
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            cohort = root / 'results/owned_finite_carrier'
+            cohort.mkdir(parents=True)
+            for name in ('pairs.jsonl', 'measurement.json'):
+                (cohort / name).write_bytes((saved_root / name).read_bytes())
+            originals = {}
+            for binding in bindings:
+                path, expected = binding['path'], binding['sha256']
+                source = ROOT / path
+                if not source.is_file() or digest(source) != expected:
+                    source = saved_root / 'source-preimage' / path
+                self.assertEqual(digest(source), expected)
+                originals[path] = source.read_bytes()
+                target = root / path
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(originals[path])
+            basis_path = cohort / 'pairs.jsonl'
+            bundle_path = root / 'bundle.json'
+            bundle_path.write_text(json.dumps(saved), encoding='utf-8')
+            rejected_output = root / 'must-not-publish.json'
+            # These copied .py files are bytes only, never imported or executed.
+            self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+            for binding in bindings:
+                path = binding['path']
+                live, preimage = root / path, cohort / 'source-preimage' / path
+                with self.subTest(path=path):
+                    live.unlink()
+                    with self.assertRaisesRegex(EvidenceError, 'source missing or SHA-256 mismatch'):
+                        verify.verify_bundle_against_basis(saved, basis_path)
+                    preimage.parent.mkdir(parents=True, exist_ok=True)
+                    preimage.write_bytes(originals[path])
+                    self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+                    lf = originals[path].replace(b'\r\n', b'\n')
+                    changed_endings = lf if lf != originals[path] else lf.replace(b'\n', b'\r\n')
+                    self.assertNotEqual(changed_endings, originals[path])
+                    live.write_bytes(changed_endings)
+                    self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+                    preimage.write_bytes(changed_endings)
+                    with self.assertRaisesRegex(EvidenceError, 'source missing or SHA-256 mismatch'):
+                        verify.verify_bundle_against_basis(saved, basis_path)
+                    with contextlib.redirect_stderr(io.StringIO()):
+                        self.assertEqual(verify.main([str(bundle_path), '--basis', str(basis_path),
+                                                      '--out', str(rejected_output)]), 2)
+                    self.assertFalse(rejected_output.exists())
+                    live.write_bytes(originals[path])
+                    self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+                    preimage.unlink()
+            measurement = cohort / 'measurement.json'
+            measurement.write_bytes(measurement.read_bytes() + b'\n')
+            with self.assertRaisesRegex(EvidenceError, 'measurement SHA-256'):
+                verify.verify_bundle_against_basis(saved, basis_path)
+            measurement.unlink()
+            with self.assertRaises(FileNotFoundError):
+                verify.verify_bundle_against_basis(saved, basis_path)
+
+    def test_retained_source_binding_paths_and_hashes_are_strict(self):
+        good = dict(path='editmark_audit/verify.py', sha256='a' * 64)
+        self.assertEqual(verify._source_binding(good), (good['path'], good['sha256']))
+        for path in ('', '.', './x.py', '../x.py', 'a/../x.py', '/x.py',
+                     'a//x.py', 'a/./x.py', 'a/', 'C:/x.py', 'C:x.py',
+                     '\\\\host\\share\\x.py', 'a\\x.py', 'a:x.py', ' x.py'):
+            with self.subTest(path=path), self.assertRaises(EvidenceError):
+                verify._source_binding(dict(good, path=path))
+        for value in (None, {}, [], dict(good, extra=True), dict(good, path=False),
+                      dict(good, sha256=None), dict(good, sha256='A' * 64),
+                      dict(good, sha256='a' * 63), dict(good, sha256='z' * 64)):
+            with self.subTest(binding=value), self.assertRaises(EvidenceError):
+                verify._source_binding(value)
+
     def test_finite_valid_gate_reports_remain_accepted(self):
         # 2,187 Boolean/null disclosures, not executions or watermark samples.
         for support, change, before_pass, after_pass, before, after, rule in itertools.product(
