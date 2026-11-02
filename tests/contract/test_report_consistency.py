@@ -114,6 +114,58 @@ class PairReportConsistencyTests(unittest.TestCase):
         value['strata'][0]['estimates']['changed_only']['functional_preservation'].update(numerator=1, rate=0.5)
         self.reject_both_routes(value)
 
+        # Mirror the same impossible interval into every mode: cross-mode
+        # differences alone cannot see a shared within-mode contradiction.
+        for nonempty in (False, True):
+            missing = fixture('missing', before=True, after=True)
+            missing['edited']['detection'].update(available=False, detected=None, score=None)
+            rows = [Pair.parse(missing)]
+            if nonempty:
+                rows.append(Pair.parse(fixture('complete', before=True, after=False)))
+            valid = report(rows)
+            aggregates.validate_pair_report(valid)
+            certificates = certificate.certificates_from_pair_report(valid, CLAIM)
+            bad = copy.deepcopy(valid)
+            for stratum in bad['strata']:
+                for estimate in stratum['estimates'].values():
+                    loss = estimate['missing_decision_bounds']
+                    complete_loss = estimate['n10'] - estimate['n01']
+                    low, high = complete_loss - 1, complete_loss + 1
+                    denominator = loss['denominator']
+                    loss.update(lower_numerator=low, upper_numerator=high,
+                                lower=low / denominator, upper=high / denominator)
+                    estimate['missing_decision_change_bounds'].update(
+                        lower_numerator=-high, upper_numerator=-low,
+                        lower=-high / denominator, upper=-low / denominator)
+            with self.subTest(nonempty=nonempty):
+                self.reject_both_routes(bad)
+                with tempfile.TemporaryDirectory() as directory:
+                    root = Path(directory);basis_path = root / 'report.json'
+                    basis_path.write_text(json.dumps(bad), encoding='utf-8')
+                    for schema in (CERTIFICATE_BUNDLE_SCHEMA, COVERAGE_BUNDLE_SCHEMA):
+                        bundle = dict(schema_version=schema,
+                                      input_file=dict(name=basis_path.name, sha256=digest(basis_path)),
+                                      requested_claim=CLAIM, certificates=certificates)
+                        source = root / ('bundle-' + schema + '.json')
+                        source.write_text(json.dumps(bundle), encoding='utf-8')
+                        output = root / 'must-not-publish.json'
+                        with contextlib.redirect_stderr(io.StringIO()):
+                            self.assertEqual(verify.main([str(source), '--basis', str(basis_path),
+                                                          '--out', str(output)]), 2)
+                        self.assertFalse(output.exists())
+                    output = root / 'must-not-produce.json'
+                    with contextlib.redirect_stderr(io.StringIO()):
+                        self.assertEqual(certificate.main([str(basis_path), '--claim', CLAIM,
+                                                            '--out', str(output)]), 2)
+                    self.assertFalse(output.exists())
+        both = fixture('both', before=True, after=True)
+        for side in ('original', 'edited'):
+            both[side]['detection'].update(available=False, detected=None, score=None)
+        valid = report([Pair.parse(both)])
+        aggregates.validate_pair_report(valid)
+        bounds = valid['strata'][0]['estimates']['changed_only']['missing_decision_bounds']
+        self.assertEqual(bounds['upper_numerator'] - bounds['lower_numerator'], 2)
+
     def test_both_bundle_versions_reject_inconsistent_report_basis(self):
         original = basis()
         values = certificate.certificates_from_pair_report(original, CLAIM)

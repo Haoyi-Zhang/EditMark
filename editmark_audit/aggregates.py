@@ -328,8 +328,12 @@ def _pair_estimate(estimate: Mapping[str, Any], mode: str) -> Mapping[str, Any]:
     if type(lo) is not int or type(hi) is not int:
         raise EvidenceError('missing-bound numerators require exact signed integers')
     complete_loss = before - after
+    # Edited-only unavailability leaves one observed Boolean decision, so its
+    # completion range has width one. Width two is possible only among the
+    # original-unavailable bucket, which also contains all both-missing pairs.
+    original_missing = exclusions.get('original_decision_unavailable', 0)
     if not (complete_loss - missing <= lo <= complete_loss <= hi <= complete_loss + missing
-            and missing <= hi - lo <= 2 * missing):
+            and missing <= hi - lo <= missing + original_missing):
         raise EvidenceError('missing-decision bounds contradict complete transitions and missingness')
     for key, lower, upper, estimand in (
         ('missing_decision_bounds', lo, hi, 'net_detection_loss'),
