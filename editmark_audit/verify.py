@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 from collections.abc import Mapping
 import hashlib
+import os
 from pathlib import Path, PurePosixPath, PureWindowsPath
 import sys
 from typing import Any
@@ -65,10 +66,24 @@ def _source_binding(value: Any) -> tuple[str, str]:
 
 def _verify_retained_owned_sources(basis: Path) -> None:
     """Hash source files as data only; never import or execute either version."""
-    if (basis.name != 'pairs.jsonl' or basis.parent.name != 'owned_finite_carrier'
-            or basis.parent.parent.name != 'results'):
-        return
-    root = basis.absolute().parents[2].resolve()
+    def owned_root(path: Path) -> Path | None:
+        # Path equality follows the host's case semantics, unlike string parts.
+        if Path(*path.parts[-3:]) == Path('results/owned_finite_carrier/pairs.jsonl'):
+            return path.parents[2]
+        return None
+
+    resolved = basis.resolve()
+    # Normalize traversal without following links so lexical owned paths cannot
+    # escape via a junction/symlink and silently become generic inputs.
+    lexical_root = owned_root(Path(os.path.abspath(basis)))
+    if lexical_root is not None:
+        root = lexical_root.resolve()
+        if not resolved.is_relative_to(root / 'results/owned_finite_carrier'):
+            raise EvidenceError('retained basis path leaves its cohort')
+    else:
+        root = owned_root(resolved)
+        if root is None:
+            return
     cohort = root / 'results/owned_finite_carrier'
     measurement = cohort / 'measurement.json'
     if not measurement.resolve().is_relative_to(cohort):

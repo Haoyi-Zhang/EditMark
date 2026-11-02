@@ -4,6 +4,7 @@ import contextlib
 import io
 import itertools
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -154,8 +155,9 @@ class PairReportConsistencyTests(unittest.TestCase):
         saved_root = ROOT / 'results/owned_finite_carrier'
         saved = loads((saved_root / (CLAIM + '.json')).read_text(encoding='utf-8'))
         bindings = loads((saved_root / 'measurement.json').read_text(encoding='utf-8'))['source_bindings']
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+        with tempfile.TemporaryDirectory() as directory, contextlib.ExitStack() as stack:
+            private = Path(directory).resolve()
+            root = private / 'artifact'
             cohort = root / 'results/owned_finite_carrier'
             cohort.mkdir(parents=True)
             for name in ('pairs.jsonl', 'measurement.json'):
@@ -175,40 +177,197 @@ class PairReportConsistencyTests(unittest.TestCase):
             bundle_path = root / 'bundle.json'
             bundle_path.write_text(json.dumps(saved), encoding='utf-8')
             rejected_output = root / 'must-not-publish.json'
+
+            @contextlib.contextmanager
+            def directory_alias(link, target):
+                # Real links, confined to this test's private temporary tree.
+                self.assertTrue(link.absolute().is_relative_to(private))
+                self.assertTrue(target.resolve().is_relative_to(private))
+                if os.name == 'nt':
+                    import _winapi
+                    _winapi.CreateJunction(str(target), str(link))
+                else:
+                    link.symlink_to(target, target_is_directory=True)
+                try:
+                    yield link
+                finally:
+                    if os.name == 'nt':
+                        link.rmdir()  # Remove the junction, never its target.
+                    else:
+                        link.unlink()
+
+            aliases = {
+                'canonical': basis_path,
+                'parent-traversal': cohort / '../owned_finite_carrier/pairs.jsonl',
+                'cohort-link': stack.enter_context(directory_alias(private / 'alias', cohort)) / 'pairs.jsonl',
+                'root-link': stack.enter_context(directory_alias(private / 'root-alias', root))
+                             / 'results/owned_finite_carrier/pairs.jsonl',
+            }
+            if os.name == 'nt':
+                aliases.update({
+                    'file-case': cohort / 'PAIRS.JSONL',
+                    'directory-case': root / 'RESULTS/OWNED_FINITE_CARRIER/pairs.jsonl',
+                })
+            # File symlinks may need a Windows privilege; junctions are mandatory.
+            # A skipped subcase is visible and does not skip the remaining checks.
+            with self.subTest(link='file-symlink-alias-and-escapes'):
+                file_alias = private / 'linked-pairs.jsonl'
+                try:
+                    file_alias.symlink_to(basis_path)
+                except OSError as exc:
+                    if os.name != 'nt' or exc.winerror != 1314:
+                        raise
+                    self.skipTest('file symlinks unavailable (Windows privilege 1314); junction cases run')
+                stack.callback(file_alias.unlink)
+                aliases['file-link'] = file_alias
+            for label, alias in aliases.items():
+                with self.subTest(alias=label):
+                    self.assertTrue(alias.samefile(basis_path))
+
+            def check(path, error=None):
+                if error is None:
+                    result = (verify.verify_bundle(saved) if path is None else
+                              verify.verify_bundle_against_basis(saved, path))
+                    self.assertEqual(result['basis_verified'], path is not None)
+                    self.assertEqual([row['decision'] for row in result['certificates']],
+                                     [row['decision'] for row in saved['certificates']])
+                    if path is not None:
+                        self.assertTrue(result['raw_pair_membership_rederived'])
+                        self.assertTrue(result['basis_coverage_complete'])
+                else:
+                    with self.assertRaisesRegex((EvidenceError, OSError), error):
+                        verify.verify_bundle_against_basis(saved, path)
+                args = [str(bundle_path), '--out', str(rejected_output)]
+                if path is not None:
+                    args += ['--basis', str(path)]
+                # Exercise the public CLI with only publication mocked, not a gate.
+                with patch.object(verify, 'write_new_json') as publish, \
+                        contextlib.redirect_stdout(io.StringIO()), \
+                        contextlib.redirect_stderr(io.StringIO()):
+                    self.assertEqual(verify.main(args), 0 if error is None else 2)
+                if error is None:
+                    publish.assert_called_once_with(rejected_output, result)
+                else:
+                    publish.assert_not_called()
+                self.assertFalse(rejected_output.exists())
+
+            def check_aliases(state, error=None):
+                for label, alias in aliases.items():
+                    with self.subTest(state=state, alias=label):
+                        check(alias, error)
+
             # These copied .py files are bytes only, never imported or executed.
-            self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+            check_aliases('exact-live')
             for binding in bindings:
                 path = binding['path']
                 live, preimage = root / path, cohort / 'source-preimage' / path
                 with self.subTest(path=path):
                     live.unlink()
-                    with self.assertRaisesRegex(EvidenceError, 'source missing or SHA-256 mismatch'):
-                        verify.verify_bundle_against_basis(saved, basis_path)
+                    check_aliases('missing-source', 'source missing or SHA-256 mismatch')
                     preimage.parent.mkdir(parents=True, exist_ok=True)
                     preimage.write_bytes(originals[path])
-                    self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+                    check_aliases('exact-preimage')
                     lf = originals[path].replace(b'\r\n', b'\n')
                     changed_endings = lf if lf != originals[path] else lf.replace(b'\n', b'\r\n')
                     self.assertNotEqual(changed_endings, originals[path])
                     live.write_bytes(changed_endings)
-                    self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+                    check_aliases('changed-live-exact-preimage')
                     preimage.write_bytes(changed_endings)
-                    with self.assertRaisesRegex(EvidenceError, 'source missing or SHA-256 mismatch'):
-                        verify.verify_bundle_against_basis(saved, basis_path)
-                    with contextlib.redirect_stderr(io.StringIO()):
-                        self.assertEqual(verify.main([str(bundle_path), '--basis', str(basis_path),
-                                                      '--out', str(rejected_output)]), 2)
-                    self.assertFalse(rejected_output.exists())
+                    check_aliases('both-changed', 'source missing or SHA-256 mismatch')
                     live.write_bytes(originals[path])
-                    self.assertTrue(verify.verify_bundle_against_basis(saved, basis_path)['basis_verified'])
+                    check_aliases('exact-live-recovery')
                     preimage.unlink()
             measurement = cohort / 'measurement.json'
             measurement.write_bytes(measurement.read_bytes() + b'\n')
-            with self.assertRaisesRegex(EvidenceError, 'measurement SHA-256'):
-                verify.verify_bundle_against_basis(saved, basis_path)
+            check_aliases('changed-measurement', 'measurement SHA-256')
             measurement.unlink()
-            with self.assertRaises(FileNotFoundError):
-                verify.verify_bundle_against_basis(saved, basis_path)
+            check_aliases('missing-measurement', 'measurement.json')
+
+            # Copies/renames are generic inputs, not aliases of the owned path.
+            generic = private / 'generic/pairs.jsonl'
+            generic.parent.mkdir()
+            for path in (generic, cohort / 'renamed.jsonl'):
+                path.write_bytes(basis_path.read_bytes())
+                with self.subTest(generic=path.name):
+                    self.assertFalse(path.samefile(basis_path))
+                    check(path)
+            if os.name != 'nt':
+                path = root / 'RESULTS/OWNED_FINITE_CARRIER/PAIRS.JSONL'
+                path.parent.mkdir(parents=True)
+                path.write_bytes(basis_path.read_bytes())
+                with self.subTest(generic='case-distinct-on-posix'):
+                    check(path)
+            check(None)  # Standalone still makes no basis-verification claim.
+            measurement.write_bytes((saved_root / 'measurement.json').read_bytes())
+
+            # A lexically owned path must not become generic on resolution.
+            outside = private / 'outside'
+            outside.mkdir()
+            (outside / 'pairs.jsonl').write_bytes(basis_path.read_bytes())
+            outside_results = private / 'outside-results'
+            (outside_results / 'owned_finite_carrier').mkdir(parents=True)
+            (outside_results / 'owned_finite_carrier/pairs.jsonl').write_bytes(basis_path.read_bytes())
+            for label, link, target, relative in (
+                ('cohort-escape', private / 'escape/results/owned_finite_carrier', outside, 'pairs.jsonl'),
+                ('results-escape', private / 'escape-results/results', outside_results,
+                 'owned_finite_carrier/pairs.jsonl'),
+                ('other-owned-cohort', private / 'escape-owned/results/owned_finite_carrier',
+                 cohort, 'pairs.jsonl'),
+            ):
+                link.parent.mkdir(parents=True, exist_ok=True)
+                with directory_alias(link, target), self.subTest(escape=label):
+                    canonical = link / relative
+                    for path in (canonical, canonical.parent / '../owned_finite_carrier/pairs.jsonl'):
+                        check(path, 'retained basis path leaves its cohort')
+
+            # Exact bytes outside either source inventory root are insufficient.
+            source_path = bindings[0]['path']
+            live = root / source_path
+            preimage = cohort / 'source-preimage' / source_path
+            for label, candidate in (('live', live), ('preimage', preimage)):
+                live.unlink()
+                target = outside / label
+                target.mkdir()
+                (target / candidate.name).write_bytes(originals[source_path])
+                link = candidate.parent
+                holding = None
+                if link.exists():
+                    holding = link.with_name(link.name + '-held')
+                    link.rename(holding)
+                else:
+                    link.parent.mkdir(parents=True, exist_ok=True)
+                try:
+                    with directory_alias(link, target), self.subTest(inventory_escape=label):
+                        check_aliases(label + '-directory-escape', 'source path leaves its inventory root')
+                finally:
+                    if holding is not None:
+                        holding.rename(link)
+                live.parent.mkdir(parents=True, exist_ok=True)
+                live.write_bytes(originals[source_path])
+
+            if 'file-link' in aliases:
+                for label, path, target in (
+                    ('basis', basis_path, outside / 'pairs.jsonl'),
+                    ('measurement', measurement, outside / 'measurement.json'),
+                    ('live', live, outside / 'source.py'),
+                    ('preimage', preimage, outside / 'preimage.py'),
+                ):
+                    original = path.read_bytes() if path.exists() else originals[source_path]
+                    target.write_bytes(original)
+                    path.unlink(missing_ok=True)
+                    if label == 'preimage':
+                        live.unlink()
+                        path.parent.mkdir(parents=True, exist_ok=True)
+                    try:
+                        path.symlink_to(target)
+                        with self.subTest(file_escape=label):
+                            check(basis_path, 'path leaves its')
+                    finally:
+                        path.unlink(missing_ok=True)
+                        if label != 'preimage':
+                            path.write_bytes(original)
+                        else:
+                            live.write_bytes(originals[source_path])
 
     def test_retained_source_binding_paths_and_hashes_are_strict(self):
         good = dict(path='editmark_audit/verify.py', sha256='a' * 64)
